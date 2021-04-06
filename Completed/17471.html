@@ -1,0 +1,94 @@
+<!-- Peace on Earth -->
+<style>
+    .lightblue {
+        background-color: cornflowerblue;
+    }
+
+    .lightred {
+        background-color: rgb(206, 107, 107);
+    }
+
+    .backwhite {
+        background-color: white;
+    }
+
+    .legend {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 15px;
+        text-align: center;
+        width: 65%;
+    }
+
+    .legend-border {
+        border: 1px solid black;
+        vertical-align: middle;
+    }
+</style>
+
+<table width="100" border="0" cellspacing="0" cellpadding="0" align="center">
+    
+    <!-- Stage Image -->
+    
+    <tr>
+        <td>
+            <div align="center">
+                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png" alt="STAGE" width="300" height="80">
+            </div>
+        </td>
+    </tr>
+    
+    <!-- Section Names -->
+    
+    <tr>
+        <td>
+            <div align="center">
+               {{{ sectionNames.32541 }}}
+            </div>
+        </td>
+    </tr>
+    
+    <!-- Section Seats -->
+    
+    <tr  class='lightblue'>
+        <td valign="top">
+            <div align="center">
+                {{{ sectionsMarkup.32541 }}}
+            </div>
+        </td>
+    </tr>
+    
+    <!-- Section Seats -->
+    
+    <tr class='lightred'>
+        <td valign="top">
+            <div align="center">
+                {{{ sectionsMarkup.32639 }}}
+            </div>
+        </td>
+    </tr>
+
+    <!-- Section Names -->
+    
+    <tr>
+        <td>
+            <div align="center">
+               {{{ sectionNames.32639 }}}
+            </div>
+        </td>
+    </tr>
+</table>
+
+<table class='legend' cellspacing='1'>
+    <tr>
+            <td class="legend-border backwhite" colspan="6">Legend</td>
+          </tr>
+          <tr>
+            <td class="legend-border lightblue" colspan="3">Main Seats</td>
+            <td class="legend-border backwhite" colspan="3">1 Box = A Place for 4 People ($10)</td>
+          </tr>
+          <tr>
+            <td class="legend-border lightred" colspan="3">Main Tables</td>
+            <td class="legend-border backwhite" colspan="3">1 Box = A Table for 8 ($20)</td>
+          </tr>
+</table>
