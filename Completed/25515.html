@@ -3,15 +3,33 @@
   #seat-map > table > tbody > tr {
     height: 80px;
   }
+
+  .stage-image {
+    width: 67%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-size: 30px;
+  }
 </style>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td>
+        <div align="center">
+            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="50" height="50">
+        </div>
+    </td>
+</tr>
 
   <!-- Stage Image -->
   <tr> 
-      <td>
-          <div align="center">
-              <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png" alt="STAGE" width="300" height="80">
+      <td align="center">
+          <div align="center" class="stage-image">
+              STAGE
           </div>
       </td>
   </tr>
@@ -19,7 +37,7 @@
   <tr>
       <td>
           <div align="center">
-              <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="35" height="5">
+              <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="50" height="50">
           </div>
       </td>
   </tr>
