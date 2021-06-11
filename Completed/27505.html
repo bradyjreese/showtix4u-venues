@@ -1,4 +1,13 @@
 <!-- Frances Frazier Comstock Theatre -->
+<style>
+  .last-cell > div > table > tbody > tr > td:nth-last-child(1) {
+    visibility: hidden;
+  }
+  .first-cell > div > table > tbody > tr > td:nth-child(1) {
+    visibility: hidden;
+  }
+</style>
+
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
 
   <!-- Stage Image -->
@@ -84,12 +93,12 @@
           <!-- Back Center Seats -->
           <tr> 
             <td valign="top">
-              <div align="right">
+              <div align="right" class="last-cell">
                 {{{ sectionsMarkup.39329 }}}
               </div>
             </td>
             <td>
-              <div align="left">
+              <div align="left" class="first-cell">
                 {{{ sectionsMarkup.39330 }}}
               </div>
             </td>
