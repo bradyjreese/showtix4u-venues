@@ -1,4 +1,26 @@
 <!-- Buffalo Stadium -->
+<style>
+  .general-admission {
+    width: 720px;
+    height: 240px;
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .general-admission-two {
+    width: 3100px;
+    height: 240px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
 
   <!-- Stage Image -->
@@ -13,7 +35,7 @@
   <tr>
     <td>
       <div align="center">
-        <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="150" height="150">
+        <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="100" height="100">
       </div>
     </td>
   </tr>
@@ -23,8 +45,35 @@
     <td>
       <div align="center">
         <table align="center">
+          <!-- General Admission -->
+          <tr>
+            <td colspan="15" align="center">
+              <div align="center" class="general-admission-two">
+                GENERAL ADMISSION SECTIONS 101 - 114
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="50" height="50">
+              </div>
+            </td>
+          </tr>
+
           <!-- Names -->
-          <tr> 
+          <tr>
+            <td>
+              <div align="center">
+                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="35" height="1">
+              </div>
+            </td>
+            <td>
+              <div align="center">
+                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="35" height="1">
+              </div>
+            </td>
             <td>
               <div align="center">
                 {{{ sectionNames.39335 }}}
@@ -50,10 +99,30 @@
                 {{{ sectionNames.39337 }}}
               </div>
             </td>
+            <td>
+              <div align="center">
+                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="35" height="1">
+              </div>
+            </td>
+            <td>
+              <div align="center">
+                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="35" height="1">
+              </div>
+            </td>
           </tr>
               
           <!-- Seats -->
-          <tr> 
+          <tr>
+            <td>
+              <div align="center" class="general-admission">
+                GENERAL ADMISSION SECTIONS 201 - 206
+              </div>
+            </td>
+            <td>
+              <div align="center">
+                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="35" height="1">
+              </div>
+            </td>
             <td>
               <div align="center">
                 {{{ sectionsMarkup.39335 }}}
@@ -77,6 +146,16 @@
             <td>
               <div align="center">
                 {{{ sectionsMarkup.39337 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center">
+                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="35" height="1">
+              </div>
+            </td>
+            <td>
+              <div align="center" class="general-admission">
+                GENERAL ADMISSION SECTIONS 210 - 215
               </div>
             </td>
           </tr>
