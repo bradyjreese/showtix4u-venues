@@ -1,0 +1,72 @@
+<!-- The Playhouse at Museum Village -->
+<style>
+  .space-out > #seat-map > table > tbody > tr {
+    height: 100px;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr> 
+    <td>
+      <div align="center">
+        <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png" alt="STAGE" width="300" height="80">
+      </div>
+     </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="35" height="25">
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Names -->
+          <tr> 
+            <td>
+              <div align="right">
+                {{{ sectionNames.39435 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center">
+                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="100" height="1">
+              </div>
+            </td>
+            <td>
+              <div align="left">
+                {{{ sectionNames.39436 }}}
+              </div>
+            </td>
+          </tr>
+              
+          <!-- Seats -->
+          <tr> 
+            <td>
+              <div class="space-out" align="right">
+                {{{ sectionsMarkup.39435 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center">
+                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="100" height="1">
+              </div>
+            </td>
+            <td>
+              <div class="space-out" align="left">
+                {{{ sectionsMarkup.39436 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
