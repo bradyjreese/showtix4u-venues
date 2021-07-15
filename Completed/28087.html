@@ -1,5 +1,10 @@
 <!-- The Playhouse at Museum Village -->
 <style>
+  .border-walls {
+    border-left: 5px solid black;
+    border-right: 5px solid black;
+  }
+
   .space-out > #seat-map > table > tbody > tr {
     height: 100px;
   }
@@ -27,9 +32,14 @@
   <tr>
     <td>
       <div align="center">
-        <table align="center">
+        <table align="center" class="border-walls">
           <!-- Names -->
-          <tr> 
+          <tr>
+            <td rowspan="3" valign="center">
+              <div align="center" class="adjust rotate90R" style="font-size: 24px;">
+                WALL
+              </div>
+            </td>
             <td>
               <div align="right">
                 {{{ sectionNames.39435 }}}
@@ -43,6 +53,11 @@
             <td>
               <div align="left">
                 {{{ sectionNames.39436 }}}
+              </div>
+            </td>
+            <td rowspan="3" valign="center">
+              <div align="center"  class="adjust rotate90L" style="font-size: 24px;">
+                WALL
               </div>
             </td>
           </tr>
