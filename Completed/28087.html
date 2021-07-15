@@ -1,7 +1,10 @@
 <!-- The Playhouse at Museum Village -->
 <style>
-  .border-walls {
+  .border-wall-left {
     border-left: 5px solid black;
+  }
+
+  .border-wall-right {
     border-right: 5px solid black;
   }
 
@@ -32,12 +35,12 @@
   <tr>
     <td>
       <div align="center">
-        <table align="center" class="border-walls">
+        <table align="center">
           <!-- Names -->
           <tr>
-            <td rowspan="3" valign="center">
-              <div align="center" class="adjust rotate90R" style="font-size: 24px;">
-                WALL
+            <td>
+              <div align="center">
+                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="1" height="1">
               </div>
             </td>
             <td>
@@ -55,17 +58,22 @@
                 {{{ sectionNames.39436 }}}
               </div>
             </td>
-            <td rowspan="3" valign="center">
-              <div align="center"  class="adjust rotate90L" style="font-size: 24px;">
-                WALL
+            <td>
+              <div align="center">
+                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="1" height="1">
               </div>
             </td>
           </tr>
               
           <!-- Seats -->
-          <tr> 
+          <tr>
+            <td valign="center">
+              <div align="center" class="adjust rotate90L" style="font-size: 24px;">
+                WALL
+              </div>
+            </td>
             <td>
-              <div class="space-out" align="right">
+              <div class="space-out border-wall-left" align="right">
                 {{{ sectionsMarkup.39435 }}}
               </div>
             </td>
@@ -75,8 +83,13 @@
               </div>
             </td>
             <td>
-              <div class="space-out" align="left">
+              <div class="space-out border-wall-right" align="left">
                 {{{ sectionsMarkup.39436 }}}
+              </div>
+            </td>
+            <td valign="center">
+              <div align="center"  class="adjust rotate90R" style="font-size: 24px;">
+                WALL
               </div>
             </td>
           </tr>
