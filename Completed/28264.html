@@ -8,6 +8,14 @@
     display: none;
     visibility: hidden;
   }
+
+  .bench-right {
+    border-right: 3px solid black;
+  }
+
+  .bench-left {
+    border-left: 3px solid black;
+  }
 </style>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
@@ -33,19 +41,20 @@
     <td>
       <div align="center">
         <table align="center">
-          <!-- Premium Seats -->
+          <!-- Front Seats -->
           <tr>
             <td>
               <div align="right">
-                <table align="right">
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <!-- Premium Seats One -->
                   <tr>
-                    <td>
-                      <div align="right" class="last-cell">
+                    <td colspan="2">
+                      <div align="right" class="last-cell" style="background-color: blue;">
                         {{{ sectionsMarkup.39504 }}}
                       </div>
                     </td>
                     <td rowspan="2">
-                      <div align="left" class="first-cell">
+                      <div align="left" class="first-cell" style="background-color: blue;">
                         {{{ sectionsMarkup.39505 }}}
                       </div>
                     </td>
@@ -53,8 +62,13 @@
                   <!-- General Admission One -->
                   <tr>
                     <td>
-                      <div align="right" class="last-cell">
-                        {{{ sectionsMarkup.39508 }}}
+                      <div align="right" class="last-cell bench-right">
+                        {{{ sectionsMarkup.39513 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div align="right" class="bench-left">
+                        {{{ sectionsMarkupNoRowNames.39514 }}}
                       </div>
                     </td>
                   </tr>
@@ -68,15 +82,16 @@
             </td>
             <td>
               <div align="left">
-                <table align="left">
+                <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <!-- Premium Seats Two -->
                   <tr>
                     <td rowspan="2">
-                      <div align="right" class="last-cell">
+                      <div align="right" class="last-cell" style="background-color: blue;">
                         {{{ sectionsMarkup.39506 }}}
                       </div>
                     </td>
-                    <td>
-                      <div align="left" class="first-cell">
+                    <td colspan="2">
+                      <div align="left" class="first-cell" style="background-color: blue;">
                         {{{ sectionsMarkup.39507 }}}
                       </div>
                     </td>
@@ -84,8 +99,13 @@
                   <!-- General Admission Two -->
                   <tr>
                     <td>
-                      <div align="left" class="first-cell">
-                        {{{ sectionsMarkup.39509 }}}
+                      <div align="left" class="bench-right">
+                        {{{ sectionsMarkupNoRowNames.39515 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div align="left" class="first-cell bench-left">
+                        {{{ sectionsMarkup.39516 }}}
                       </div>
                     </td>
                   </tr>
@@ -94,11 +114,35 @@
             </td>
           </tr>
 
-          <!-- General Admission Three -->
+          <!-- Back Seats -->
           <tr> 
             <td>
-              <div align="right">
-                {{{ sectionsMarkup.39510 }}}
+              <div align="center">
+                <table align="center" border="0" cellspacing="0" cellpadding="0">
+                  <!-- General Admission Three -->
+                  <tr>
+                    <td>
+                      <div align="center" class="last-cell bench-right">
+                        {{{ sectionsMarkup.39517 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div align="center" class="bench-right bench-left">
+                        {{{ sectionsMarkupNoRowNames.39518 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div align="center" class="bench-right bench-left">
+                        {{{ sectionsMarkupNoRowNames.39519 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div align="center" class="first-cell bench-left">
+                        {{{ sectionsMarkup.39520 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
               </div>
             </td>
             <td>
@@ -107,8 +151,32 @@
               </div>
             </td>
             <td>
-              <div align="left">
-                {{{ sectionsMarkup.39511 }}}
+              <div align="center">
+                <table align="center" border="0" cellspacing="0" cellpadding="0">
+                  <!-- General Admission Four -->
+                  <tr>
+                    <td>
+                      <div align="center" class="last-cell bench-right">
+                        {{{ sectionsMarkup.39521 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div align="center" class="bench-right bench-left">
+                        {{{ sectionsMarkupNoRowNames.39522 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div align="center" class="bench-right bench-left">
+                        {{{ sectionsMarkupNoRowNames.39523 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div align="center" class="first-cell bench-left">
+                        {{{ sectionsMarkup.39524 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
               </div>
             </td>
           </tr>
