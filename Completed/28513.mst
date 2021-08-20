@@ -1,0 +1,86 @@
+<!-- Solivita Starlite Ballroom -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+  <!-- Stage Image -->
+  <tr> 
+    <td>
+      <div align="center">
+        <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png" alt="STAGE" width="300" height="80">
+      </div>
+     </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="35" height="5">
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- $30 Seats -->
+          <tr> 
+            <td>
+              <div align="center">
+                {{{ sectionsMarkup.39685 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center">
+                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="75" height="1">
+              </div>
+            </td>
+            <td>
+              <div align="center">
+                {{{ sectionsMarkup.39686 }}}
+              </div>
+            </td>
+          </tr>
+              
+          <!-- $25 Seats -->
+          <tr> 
+            <td>
+              <div align="center">
+                {{{ sectionsMarkup.39687 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center">
+                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="75" height="1">
+              </div>
+            </td>
+            <td>
+              <div align="center">
+                {{{ sectionsMarkup.39688 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- $20 Seats -->
+          <tr> 
+            <td>
+              <div align="center">
+                {{{ sectionsMarkup.39689 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center">
+                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="75" height="1">
+              </div>
+            </td>
+            <td>
+              <div align="center">
+                {{{ sectionsMarkup.39690 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
