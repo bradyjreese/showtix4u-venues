@@ -1,0 +1,122 @@
+<!-- PAC 2021 -->
+<style>
+  .space-out > #seat-map > table > tbody > tr {
+    height: 65px;
+  }
+</style>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="35"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionNames.39868 }}}</div>
+            </td>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="75"
+                  height="75"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.39870 }}}</div>
+            </td>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="75"
+                  height="75"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.39871 }}}</div>
+            </td>
+          </tr>
+
+          <!-- Seats -->
+          <tr>
+            <td valign="top">
+              <div class="space-out" align="left" style="position: relative; left: 40px;">
+                {{{ sectionsMarkup.39868 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="75"
+                  height="75"
+                />
+              </div>
+            </td>
+            <td rowspan="2">
+              <div class="space-out" align="center">
+                {{{ sectionsMarkup.39870 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="75"
+                  height="75"
+                />
+              </div>
+            </td>
+            <td valign="top">
+              <div class="space-out" align="right" style="position: relative; right: 80px;">
+                {{{ sectionsMarkup.39871 }}}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td valign="bottom">
+              <div class="space-out" align="center">
+                {{{ sectionsMarkup.39869 }}}
+              </div>
+            </td>
+            <td valign="bottom">
+              <div class="space-out" align="left">
+                {{{ sectionsMarkup.39872 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
