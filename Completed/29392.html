@@ -1,4 +1,4 @@
-<!-- Hope Theater -->
+<!-- Tewksbury Memorial High School-->
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
   <!-- Stage Image -->
   <tr>
@@ -20,40 +20,27 @@
         <img
           src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
           width="35"
-          height="10"
+          height="150"
         />
       </div>
     </td>
   </tr>
 
-  <!-- ALL -->
+  <!-- FRONT -->
   <tr>
     <td>
       <div align="center">
         <table align="center">
-          <!-- Front Names -->
-          <tr>
-            <td>
-              <div align="center">{{{ sectionNames.40504 }}}</div>
-            </td>
-            <td>
-              <div align="center">
-                <img
-                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="50"
-                  height="50"
-                />
-              </div>
-            </td>
-            <td>
-              <div align="center">{{{ sectionNames.40505 }}}</div>
-            </td>
-          </tr>
-
           <!-- Front Seats -->
           <tr>
             <td>
-              <div align="center">{{{ sectionsMarkup.40504 }}}</div>
+              <div
+                class="adjust rotate25R"
+                align="right"
+                style="position: relative; bottom: 150px; left: 100px"
+              >
+                {{{ sectionsMarkup.40569 }}}
+              </div>
             </td>
             <td>
               <div align="center">
@@ -65,14 +52,7 @@
               </div>
             </td>
             <td>
-              <div align="left">{{{ sectionsMarkup.40505 }}}</div>
-            </td>
-          </tr>
-
-          <!-- Back Names -->
-          <tr>
-            <td>
-              <div align="center">{{{ sectionNames.40506 }}}</div>
+              <div align="center">{{{ sectionsMarkup.40570 }}}</div>
             </td>
             <td>
               <div align="center">
@@ -84,14 +64,43 @@
               </div>
             </td>
             <td>
-              <div align="center">{{{ sectionNames.40507 }}}</div>
+              <div
+                class="adjust rotate25L"
+                align="left"
+                style="position: relative; bottom: 150px; right: 100px"
+              >
+                {{{ sectionsMarkup.40571 }}}
+              </div>
             </td>
           </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
 
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="200"
+          height="200"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- BACK -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
           <!-- Back Seats -->
           <tr>
             <td>
-              <div align="left">{{{ sectionsMarkup.40506 }}}</div>
+              <div class="adjust rotate25R" align="center">
+                {{{ sectionsMarkup.40572 }}}
+              </div>
             </td>
             <td>
               <div align="center">
@@ -103,7 +112,33 @@
               </div>
             </td>
             <td>
-              <div align="right">{{{ sectionsMarkup.40507 }}}</div>
+              <div align="left">{{{ sectionsMarkup.40573 }}}</div>
+            </td>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="50"
+                  height="50"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="right">{{{ sectionsMarkup.40574 }}}</div>
+            </td>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="50"
+                  height="50"
+                />
+              </div>
+            </td>
+            <td>
+              <div class="adjust rotate25L" align="center">
+                {{{ sectionsMarkup.40575 }}}
+              </div>
             </td>
           </tr>
         </table>
