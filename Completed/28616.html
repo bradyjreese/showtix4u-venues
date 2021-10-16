@@ -1,0 +1,652 @@
+<!-- Dayton Masonic Temple -->
+<style>
+  .blue {
+    background-color: darkblue;
+    width: 126px;
+    height: 126px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+
+  .blue > div > table > tbody > tr > td > .seatCharts-cell,
+  .blue > div > table > tr > td > .seatCharts-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .row-gold > div > table > tbody > tr,
+  .row-gold > div > table > tr {
+    background-color: gold;
+  }
+
+  .row-red > div > table > tbody > tr,
+  .row-red > div > table > tr {
+    background-color: red;
+  }
+
+  .row-teal > div > table > tbody > tr,
+  .row-teal > div > table > tr {
+    background-color: teal;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="40"
+          height="40"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- Key/Legend -->
+  <tr>
+    <td valign="top">
+      <div align="center">
+        <table align="center" style="background-color: white">
+          <tr>
+            <td colspan="2">
+              <div align="center">
+                <strong
+                  >EACH TABLE HAS 6 SEATS<br />(Must Purchase Whole
+                  Table)</strong
+                >
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="80"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="300"
+          height="300"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- SECTION 1, 5, AND TABLES -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <tr>
+            <!-- Section 1 -->
+            <td>
+              <div
+                class="adjust rotate90R"
+                align="right"
+                style="
+                  position: relative;
+                  right: 270px;
+                  bottom: 100px;
+                  z-index: 1;
+                "
+              >
+                <table align="right">
+                  <tr>
+                    <td>
+                      <div align="center">{{{ sectionNames.40767 }}}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-gold" align="right">
+                        {{{ sectionsMarkup.40767 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+
+            <!-- Tables -->
+            <td>
+              <div align="center">
+                <table align="center">
+                  <tr>
+                    <td>
+                      <div
+                        class="blue"
+                        align="center"
+                        style="position: relative; bottom: 200px; right: 200px"
+                      >
+                        {{{ sectionsMarkupNoRowNames.40761 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        class="blue"
+                        align="center"
+                        style="position: relative; bottom: 300px"
+                      >
+                        {{{ sectionsMarkupNoRowNames.40762 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        class="blue"
+                        align="center"
+                        style="position: relative; bottom: 200px; left: 200px"
+                      >
+                        {{{ sectionsMarkupNoRowNames.40763 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="blue"
+                        align="center"
+                        style="position: relative; right: 200px"
+                      >
+                        {{{ sectionsMarkupNoRowNames.40764 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        class="blue"
+                        align="center"
+                        style="position: relative; bottom: 175px"
+                      >
+                        {{{ sectionsMarkupNoRowNames.40765 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        class="blue"
+                        align="center"
+                        style="position: relative; left: 200px"
+                      >
+                        {{{ sectionsMarkupNoRowNames.40766 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+
+            <!-- Section 5 -->
+            <td>
+              <div
+                class="adjust rotate90L"
+                align="left"
+                style="
+                  position: relative;
+                  left: 270px;
+                  bottom: 100px;
+                  z-index: 1;
+                "
+              >
+                <table align="left">
+                  <tr>
+                    <td>
+                      <div align="center">{{{ sectionNames.40768 }}}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-gold" align="left">
+                        {{{ sectionsMarkup.40768 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="50"
+          height="50"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- SECTION 2, 3, AND 4 -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <tr>
+            <!-- Section 2 -->
+            <td>
+              <div
+                class="adjust rotate45R"
+                align="center"
+                style="
+                  position: relative;
+                  left: 300px;
+                  bottom: 235px;
+                  z-index: 0;
+                "
+              >
+                <table align="center">
+                  <tr>
+                    <td>
+                      <div align="center">{{{ sectionNames.40769 }}}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-gold" align="center">
+                        {{{ sectionsMarkup.40769 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+
+            <!-- Section 3 -->
+            <td>
+              <div align="center" style="position: relative; z-index: 1">
+                <table align="center">
+                  <tr>
+                    <td colspan="2">
+                      <div align="center">{{{ sectionNames.40770 }}}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-gold" align="left">
+                        {{{ sectionsMarkup.40770 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="row-gold" align="right">
+                        {{{ sectionsMarkup.40771 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+
+            <!-- Section 4 -->
+            <td>
+              <div
+                class="adjust rotate45L"
+                align="center"
+                style="
+                  position: relative;
+                  right: 300px;
+                  bottom: 235px;
+                  z-index: 0;
+                "
+              >
+                <table align="center">
+                  <tr>
+                    <td>
+                      <div align="center">{{{ sectionNames.40772 }}}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-gold" align="center">
+                        {{{ sectionsMarkup.40772 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="150"
+          height="150"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- SECTION 6, 7, AND 8 -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <tr>
+            <!-- Section 6 -->
+            <td>
+              <div align="right">
+                <table align="right">
+                  <tr>
+                    <td colspan="2">
+                      <div
+                        class="adjust rotate35R"
+                        align="center"
+                        style="position: relative; bottom: 270px; left: 270px"
+                      >
+                        {{{ sectionNames.40773 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="adjust rotate45R row-red"
+                        align="right"
+                        style="
+                          position: relative;
+                          bottom: 600px;
+                          left: 325px;
+                          z-index: 1;
+                        "
+                      >
+                        {{{ sectionsMarkup.40773 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        class="adjust rotate20R row-red"
+                        align="right"
+                        style="
+                          position: relative;
+                          bottom: 190px;
+                          left: 70px;
+                          z-index: 0;
+                        "
+                      >
+                        {{{ sectionsMarkup.40774 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+
+            <!-- Section 7 -->
+            <td>
+              <div align="center">
+                <table align="center">
+                  <tr>
+                    <td colspan="5">
+                      <div align="center">{{{ sectionNames.40775 }}}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-red" align="right">
+                        {{{ sectionsMarkup.40775 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="50"
+                          height="50"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="row-red" align="center">
+                        {{{ sectionsMarkup.40776 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="50"
+                          height="50"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="row-red" align="left">
+                        {{{ sectionsMarkup.40777 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+
+            <!-- Section 8 -->
+            <td>
+              <div align="left">
+                <table align="left">
+                  <tr>
+                    <td colspan="2">
+                      <div
+                        class="adjust rotate35L"
+                        align="center"
+                        style="position: relative; bottom: 270px; right: 270px"
+                      >
+                        {{{ sectionNames.40778 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="adjust rotate20L row-red"
+                        align="left"
+                        style="
+                          position: relative;
+                          bottom: 190px;
+                          right: 70px;
+                          z-index: 0;
+                        "
+                      >
+                        {{{ sectionsMarkup.40778 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        class="adjust rotate45L row-red"
+                        align="left"
+                        style="
+                          position: relative;
+                          bottom: 600px;
+                          right: 325px;
+                          z-index: 1;
+                        "
+                      >
+                        {{{ sectionsMarkup.40779 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="75"
+          height="75"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- SECTION 9, 10, AND 11 -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <tr>
+            <!-- Section 9 -->
+            <td>
+              <div align="right">
+                <table align="right">
+                  <tr>
+                    <td colspan="2">
+                      <div
+                        class="adjust rotate10R"
+                        align="center"
+                        style="position: relative; right: 150px; bottom: 25px"
+                      >
+                        {{{ sectionNames.40780 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="adjust rotate20R row-teal"
+                        align="right"
+                        style="position: relative; bottom: 85px; right: 80px"
+                      >
+                        {{{ sectionsMarkup.40780 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="row-teal" align="center">
+                        {{{ sectionsMarkup.40781 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="50"
+                  height="50"
+                />
+              </div>
+            </td>
+
+            <!-- Section 10 -->
+            <td>
+              <div align="center">
+                <table align="center">
+                  <tr>
+                    <td>
+                      <div align="center">{{{ sectionNames.40782 }}}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-teal" align="center">
+                        {{{ sectionsMarkup.40782 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="50"
+                  height="50"
+                />
+              </div>
+            </td>
+
+            <!-- Section 11 -->
+            <td>
+              <div align="left">
+                <table align="left">
+                  <tr>
+                    <td colspan="2">
+                      <div
+                        class="adjust rotate10L"
+                        align="center"
+                        style="position: relative; left: 150px; bottom: 25px"
+                      >
+                        {{{ sectionNames.40783 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-teal" align="center">
+                        {{{ sectionsMarkup.40783 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        class="adjust rotate20L row-teal"
+                        align="left"
+                        style="position: relative; bottom: 85px; left: 80px"
+                      >
+                        {{{ sectionsMarkup.40784 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
