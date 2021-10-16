@@ -1,0 +1,400 @@
+<!-- Dillingham Hall -->
+<style>
+  .last-cell > div > table > tbody > tr > td:nth-last-child(1),
+  .last-cell > div > table > tr > td:nth-last-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+  .first-cell > div > table > tbody > tr > td:nth-child(1),
+  .first-cell > div > table > tr > td:nth-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+
+  .row-blue > div > table > tbody > tr,
+  .row-blue > div > table > tr {
+    background-color: blue;
+  }
+
+  .row-yellow > div > table > tbody > tr,
+  .row-yellow > div > table > tr {
+    background-color: yellow;
+  }
+
+  .row-gray > div > table > tbody > tr,
+  .row-gray > div > table > tr {
+    background-color: lightgray;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="40"
+          height="40"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- FRONT -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Front Names -->
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; top: 40px">
+                {{{ sectionNames.40739 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="50"
+                  height="50"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.40744 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="50"
+                  height="50"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; top: 40px">
+                {{{ sectionNames.40748 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="1"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Front Seats -->
+          <tr>
+            <!-- Front Left Side U -->
+            <td>
+              <div
+                class="row-blue adjust rotate90R"
+                align="center"
+                style="position: relative; left: 380px"
+              >
+                {{{ sectionsMarkup.40737 }}}
+              </div>
+            </td>
+            <!-- Front Left Side -->
+            <td>
+              <div align="right">
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div class="row-blue" align="right">
+                        {{{ sectionsMarkup.40739 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-yellow" align="right">
+                        {{{ sectionsMarkup.40740 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-blue" align="right">
+                        {{{ sectionsMarkup.40741 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-gray" align="right">
+                        {{{ sectionsMarkup.40742 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-blue" align="right">
+                        {{{ sectionsMarkup.40743 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- Front Center -->
+            <td>
+              <div align="center">
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td>
+                      <div class="row-blue" align="center">
+                        {{{ sectionsMarkup.40744 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-yellow" align="center">
+                        {{{ sectionsMarkup.40745 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-blue" align="center">
+                        {{{ sectionsMarkup.40746 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-gray" align="center">
+                        {{{ sectionsMarkup.40747 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- Front Right Side -->
+            <td>
+              <div align="left">
+                <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div class="row-blue" align="left">
+                        {{{ sectionsMarkup.40748 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-yellow" align="left">
+                        {{{ sectionsMarkup.40749 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-blue" align="left">
+                        {{{ sectionsMarkup.40750 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-gray" align="left">
+                        {{{ sectionsMarkup.40751 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-blue" align="left">
+                        {{{ sectionsMarkup.40752 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- Front Right Side U -->
+            <td>
+              <div
+                class="row-blue adjust rotate90L"
+                align="center"
+                style="position: relative; right: 380px"
+              >
+                {{{ sectionsMarkup.40738 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="100"
+          height="100"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- BACK -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Back Names -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionNames.40753 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="50"
+                  height="50"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.40756 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="50"
+                  height="50"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.40758 }}}</div>
+            </td>
+          </tr>
+
+          <!-- Back Seats -->
+          <tr>
+            <!-- Back Left Side -->
+            <td>
+              <div align="right">
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td rowspan="2">
+                      <div class="row-gray last-cell" align="right">
+                        {{{ sectionsMarkup.40753 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="row-yellow first-cell" align="right">
+                        {{{ sectionsMarkup.40754 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-gray first-cell" align="right">
+                        {{{ sectionsMarkup.40755 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- Back Center -->
+            <td>
+              <div align="center">
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td>
+                      <div class="row-yellow" align="center">
+                        {{{ sectionsMarkup.40756 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-gray" align="center">
+                        {{{ sectionsMarkup.40757 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- Back Right Side -->
+            <td>
+              <div align="left">
+                <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div class="row-yellow last-cell" align="left">
+                        {{{ sectionsMarkup.40759 }}}
+                      </div>
+                    </td>
+                    <td rowspan="2">
+                      <div class="row-gray first-cell" align="left">
+                        {{{ sectionsMarkup.40758 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-gray last-cell" align="left">
+                        {{{ sectionsMarkup.40760 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
