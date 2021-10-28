@@ -123,7 +123,7 @@
 
           <!-- Back Seats -->
           <tr>
-            <td>
+            <td valign="top">
               <div align="right">{{{ sectionsMarkup.41210 }}}</div>
             </td>
             <td>
@@ -147,7 +147,7 @@
                 />
               </div>
             </td>
-            <td>
+            <td valign="top">
               <div align="left">{{{ sectionsMarkup.41212 }}}</div>
             </td>
           </tr>
