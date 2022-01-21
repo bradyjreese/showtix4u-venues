@@ -1,0 +1,685 @@
+<!-- Palace Theatre - 2022 -->
+<style>
+  .love-seat > div > table > tbody > tr > td > .seatCharts-cell,
+  .love-seat > div > table > tr > td > .seatCharts-cell {
+    width: 74px;
+  }
+  .manual-margin {
+    margin: auto;
+    margin-top: 10px;
+  }
+  .last-cell > div > table > tbody > tr > td:nth-last-child(1),
+  .last-cell > div > table > tr > td:nth-last-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+  .first-cell > div > table > tbody > tr > td:nth-child(1),
+  .first-cell > div > table > tr > td:nth-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+  .first-seat-letter-width
+    > div
+    > table
+    > tbody
+    > tr
+    > td:nth-child(1)
+    > .seatCharts-cell,
+  .first-seat-letter-width
+    > div
+    > table
+    > tr
+    > td:nth-child(1)
+    > .seatCharts-cell {
+    width: 33px !important;
+  }
+  .last-seat-letter-width
+    > div
+    > table
+    > tbody
+    > tr
+    > td:nth-last-child(1)
+    > .seatCharts-cell,
+  .last-seat-letter-width
+    > div
+    > table
+    > tr
+    > td:nth-last-child(1)
+    > .seatCharts-cell {
+    width: 33px !important;
+  }
+</style>
+
+<table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- FRONT -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Front Names -->
+          <tr>
+            <td>
+              <div class="front-indicator manual-margin" align="center">
+                LEFT
+              </div>
+            </td>
+            <td rowspan="3">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div class="front-indicator manual-margin" align="center">
+                CENTER
+              </div>
+            </td>
+            <td rowspan="3">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div class="front-indicator manual-margin" align="center">
+                RIGHT
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="15"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Front Seats -->
+          <tr>
+            <!-- Front Left Seats -->
+            <td>
+              <div align="right">
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <!-- VIP 1 Left -->
+                  <tr>
+                    <td>
+                      <div align="right">{{{ sectionsMarkup.42612 }}}</div>
+                    </td>
+                  </tr>
+                  <!-- VIP 2 Left -->
+                  <tr>
+                    <td>
+                      <div align="right">{{{ sectionsMarkup.42613 }}}</div>
+                    </td>
+                  </tr>
+                  <!-- RES 1 Left -->
+                  <tr>
+                    <td>
+                      <div align="right">{{{ sectionsMarkup.42614 }}}</div>
+                    </td>
+                  </tr>
+                  <!-- RES 2 Left -->
+                  <tr>
+                    <td>
+                      <div align="right">{{{ sectionsMarkup.42615 }}}</div>
+                    </td>
+                  </tr>
+                  <!-- RES 3 Left -->
+                  <tr>
+                    <td>
+                      <div align="right">{{{ sectionsMarkup.42616 }}}</div>
+                    </td>
+                  </tr>
+                  <!-- RES 4 Left -->
+                  <tr>
+                    <td>
+                      <div align="right">{{{ sectionsMarkup.42617 }}}</div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+
+            <!-- Front Center Seats -->
+            <td valign="top">
+              <div align="center">
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <!-- VIP 1 Center -->
+                  <tr>
+                    <td>
+                      <div align="center">{{{ sectionsMarkup.42618 }}}</div>
+                    </td>
+                  </tr>
+                  <!-- VIP 2 Center -->
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <table
+                          align="center"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div class="last-cell" align="center">
+                                {{{ sectionsMarkup.42619 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div
+                                class="first-cell love-seat last-seat-letter-width"
+                                align="center"
+                              >
+                                {{{ sectionsMarkup.42620 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- RES 1 Center -->
+                  <!-- Row D -->
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <table
+                          align="center"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div
+                                class="last-cell love-seat first-seat-letter-width"
+                                align="center"
+                              >
+                                {{{ sectionsMarkup.42621 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="first-cell" align="center">
+                                {{{ sectionsMarkup.42622 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row E -->
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <table
+                          align="center"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div class="last-cell" align="center">
+                                {{{ sectionsMarkup.42623 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div
+                                class="first-cell love-seat last-seat-letter-width"
+                                align="center"
+                              >
+                                {{{ sectionsMarkup.42624 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row F -->
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <table
+                          align="center"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div
+                                class="last-cell love-seat first-seat-letter-width"
+                                align="center"
+                              >
+                                {{{ sectionsMarkup.42625 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="first-cell" align="center">
+                                {{{ sectionsMarkup.42626 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row G -->
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <table
+                          align="center"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div class="last-cell" align="center">
+                                {{{ sectionsMarkup.42627 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div
+                                class="first-cell love-seat last-seat-letter-width"
+                                align="center"
+                              >
+                                {{{ sectionsMarkup.42628 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- RES 2 Center -->
+                  <!-- Row H -->
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <table
+                          align="center"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div
+                                class="last-cell love-seat first-seat-letter-width"
+                                align="center"
+                              >
+                                {{{ sectionsMarkup.42629 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="first-cell" align="center">
+                                {{{ sectionsMarkup.42630 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row I -->
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <table
+                          align="center"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div class="last-cell" align="center">
+                                {{{ sectionsMarkup.42631 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div
+                                class="first-cell love-seat last-seat-letter-width"
+                                align="center"
+                              >
+                                {{{ sectionsMarkup.42632 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row J -->
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <table
+                          align="center"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div
+                                class="last-cell love-seat first-seat-letter-width"
+                                align="center"
+                              >
+                                {{{ sectionsMarkup.42633 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="first-cell" align="center">
+                                {{{ sectionsMarkup.42634 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row K -->
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <table
+                          align="center"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div class="last-cell" align="center">
+                                {{{ sectionsMarkup.42635 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div
+                                class="first-cell love-seat last-seat-letter-width"
+                                align="center"
+                              >
+                                {{{ sectionsMarkup.42636 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row L -->
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <table
+                          align="center"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div
+                                class="last-cell love-seat first-seat-letter-width"
+                                align="center"
+                              >
+                                {{{ sectionsMarkup.42637 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="first-cell" align="center">
+                                {{{ sectionsMarkup.42638 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row M -->
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <table
+                          align="center"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div class="last-cell" align="center">
+                                {{{ sectionsMarkup.42639 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div
+                                class="first-cell love-seat last-seat-letter-width"
+                                align="center"
+                              >
+                                {{{ sectionsMarkup.42640 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- RES 3 Center -->
+                  <tr>
+                    <td>
+                      <div align="center">{{{ sectionsMarkup.42641 }}}</div>
+                    </td>
+                  </tr>
+
+                  <!-- RES 4 Center -->
+                  <tr>
+                    <td>
+                      <div align="center">{{{ sectionsMarkup.42642 }}}</div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+
+            <!-- Front Right Seats -->
+            <td>
+              <div align="left">
+                <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <!-- VIP 1 Right -->
+                  <tr>
+                    <td>
+                      <div align="left">{{{ sectionsMarkup.42643 }}}</div>
+                    </td>
+                  </tr>
+                  <!-- VIP 2 Right -->
+                  <tr>
+                    <td>
+                      <div align="left">{{{ sectionsMarkup.42644 }}}</div>
+                    </td>
+                  </tr>
+                  <!-- RES 1 Right -->
+                  <tr>
+                    <td>
+                      <div align="left">{{{ sectionsMarkup.42645 }}}</div>
+                    </td>
+                  </tr>
+                  <!-- RES 2 Right -->
+                  <tr>
+                    <td>
+                      <div align="left">{{{ sectionsMarkup.42646 }}}</div>
+                    </td>
+                  </tr>
+                  <!-- RES 3 Right -->
+                  <tr>
+                    <td>
+                      <div align="left">{{{ sectionsMarkup.42647 }}}</div>
+                    </td>
+                  </tr>
+                  <!-- RES 4 Right -->
+                  <tr>
+                    <td>
+                      <div align="left">{{{ sectionsMarkup.42648 }}}</div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- BACK -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Back Names -->
+          <tr>
+            <td>
+              <div class="front-indicator manual-margin" align="center">
+                LEFT
+              </div>
+            </td>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div class="front-indicator manual-margin" align="center">
+                RIGHT
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="15"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Balcony 1 -->
+          <tr>
+            <td colspan="3">
+              <div align="left">{{{ sectionsMarkup.42649 }}}</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="40"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Balcony 2 -->
+          <tr>
+            <!-- Balcony 2 Left -->
+            <td>
+              <div class="last-cell" align="right">
+                {{{ sectionsMarkup.42650 }}}
+              </div>
+            </td>
+
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="160"
+                  height="1"
+                />
+              </div>
+            </td>
+            <!-- Balcony 2 Right -->
+            <td>
+              <div class="first-cell" align="left">
+                {{{ sectionsMarkup.42651 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
