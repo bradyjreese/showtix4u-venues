@@ -1,0 +1,118 @@
+<!-- JCC Merage Theater 2022 -->
+<style>
+  .row-gold > div > table > tbody > tr,
+  .row-gold > div > table > tr {
+    background-color: gold;
+  }
+  .last-cell > div > table > tbody > tr > td:nth-last-child(1),
+  .last-cell > div > table > tr > td:nth-last-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+  .first-cell > div > table > tbody > tr > td:nth-child(1),
+  .first-cell > div > table > tr > td:nth-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Front Names -->
+          <tr>
+            <td colspan="3">
+              <div align="center">{{{ sectionNames.42810 }}}</div>
+            </td>
+          </tr>
+
+          <!-- Row A -->
+          <tr>
+            <td colspan="3">
+              <div align="right">{{{ sectionsMarkup.42806 }}}</div>
+            </td>
+          </tr>
+          <!-- Rows B - H -->
+          <tr>
+            <td>
+              <div class="last-cell" align="right">
+                {{{ sectionsMarkup.42807 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-gold" align="right">
+                {{{ sectionsMarkupNoRowNames.42808 }}}
+              </div>
+            </td>
+            <td>
+              <div class="first-cell" align="right">
+                {{{ sectionsMarkup.42809 }}}
+              </div>
+            </td>
+          </tr>
+          <!-- Rows I-N -->
+          <tr>
+            <td colspan="3">
+              <div align="right">{{{ sectionsMarkup.42810 }}}</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="60"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Back Names -->
+          <tr>
+            <td colspan="3">
+              <div align="center">{{{ sectionNames.42811 }}}</div>
+            </td>
+          </tr>
+
+          <!-- Back Seats -->
+          <tr>
+            <td valign="top" colspan="3">
+              <div align="right">{{{ sectionsMarkup.42811 }}}</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
