@@ -1,0 +1,129 @@
+<!-- Woodmont High School Auditorium -->
+<style>
+  .row-yellow > div > table > tbody > tr,
+  .row-yellow > div > table > tr {
+    background-color: gold;
+  }
+  .row-pink > div > table > tbody > tr,
+  .row-pink > div > table > tr {
+    background-color: plum;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionNames.43369 }}}</div>
+            </td>
+            <td rowspan="4">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.43370 }}}</div>
+            </td>
+            <td rowspan="4">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.43371 }}}</div>
+            </td>
+          </tr>
+
+          <!-- Front Seats -->
+          <tr>
+            <td valign="top">
+              <div class="row-yellow" align="right">
+                {{{ sectionsMarkup.43369 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-yellow" align="left">
+                {{{ sectionsMarkup.43370 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div class="row-yellow" align="left">
+                {{{ sectionsMarkup.43371 }}}
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="100"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Back Seats -->
+          <tr>
+            <td>
+              <div class="row-pink" align="right">
+                {{{ sectionsMarkup.43372 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div class="row-pink" align="right">
+                {{{ sectionsMarkup.43373 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-pink" align="left">
+                {{{ sectionsMarkup.43374 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
