@@ -1,0 +1,74 @@
+<!-- Lindner Theater (Name A Seat) -->
+<style>
+  .row-pink > div > table > tbody > tr,
+  .row-pink > div > table > tr {
+    background-color: pink;
+  }
+  .row-blue > div > table > tbody > tr,
+  .row-blue > div > table > tr {
+    background-color: skyblue;
+  }
+  .row-green > div > table > tbody > tr,
+  .row-green > div > table > tr {
+    background-color: darkgreen;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="15"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL SEATS -->
+  <tr>
+    <td>
+      <div align="center">
+        <table border="0" cellspacing="0" cellpadding="0" align="center">
+          <tr>
+            <td>
+              <div class="row-pink" align="center">
+                {{{ sectionsMarkup.43536 }}}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="row-blue" align="center">
+                {{{ sectionsMarkup.43537 }}}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="row-green" align="center">
+                {{{ sectionsMarkup.43538 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
