@@ -1,9 +1,34 @@
 <!-- Performing Arts Center (GCDS) -->
+<style>
+  .last-cell > div > table:nth-child(1) > tbody > tr > td:nth-last-child(1),
+  .last-cell > div > table:nth-child(1) > tr > td:nth-last-child(1),
+  .last-cell > div > table:nth-child(2) > tbody > tr > td:nth-last-child(1),
+  .last-cell > div > table:nth-child(2) > tr > td:nth-last-child(1),
+  .last-cell > div > table:nth-child(3) > tbody > tr > td:nth-last-child(1),
+  .last-cell > div > table:nth-child(3) > tr > td:nth-last-child(1),
+  .last-cell > div > table:nth-child(4) > tbody > tr > td:nth-last-child(1),
+  .last-cell > div > table:nth-child(4) > tr > td:nth-last-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+  .first-cell > div > table:nth-child(1) > tbody > tr > td:nth-child(1),
+  .first-cell > div > table:nth-child(1) > tr > td:nth-child(1),
+  .first-cell > div > table:nth-child(2) > tbody > tr > td:nth-child(1),
+  .first-cell > div > table:nth-child(2) > tr > td:nth-child(1),
+  .first-cell > div > table:nth-child(3) > tbody > tr > td:nth-child(1),
+  .first-cell > div > table:nth-child(3) > tr > td:nth-child(1),
+  .first-cell > div > table:nth-child(4) > tbody > tr > td:nth-child(1),
+  .first-cell > div > table:nth-child(4) > tr > td:nth-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+</style>
+
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
   <!-- Stage Image -->
   <tr>
     <td>
-      <div align="center">
+      <div align="center" style="position: relative; z-index: 0">
         <img
           src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
           alt="STAGE"
@@ -16,7 +41,7 @@
 
   <tr>
     <td>
-      <div align="center">
+      <div align="center" style="position: relative; z-index: 0">
         <img
           src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
           width="1"
@@ -34,12 +59,15 @@
           <!-- Front Names -->
           <tr>
             <td>
-              <div align="center" style="position: relative; top: 40px">
+              <div
+                align="center"
+                style="position: relative; top: 40px; z-index: 0"
+              >
                 {{{ sectionNames.43581 }}}
               </div>
             </td>
             <td rowspan="3">
-              <div align="center">
+              <div align="center" style="position: relative; z-index: 0">
                 <img
                   src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
                   width="40"
@@ -48,10 +76,12 @@
               </div>
             </td>
             <td>
-              <div align="center">{{{ sectionNames.43582 }}}</div>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.43582 }}}
+              </div>
             </td>
             <td rowspan="3">
-              <div align="center">
+              <div align="center" style="position: relative; z-index: 0">
                 <img
                   src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
                   width="40"
@@ -60,30 +90,43 @@
               </div>
             </td>
             <td>
-              <div align="center">{{{ sectionNames.43583 }}}</div>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.43583 }}}
+              </div>
             </td>
           </tr>
 
           <!-- Front Seats -->
           <tr>
             <td valign="center">
-              <div align="center" style="position: relative; top: 11px">
+              <div
+                align="center"
+                style="position: relative; top: 11px; z-index: 3"
+              >
                 {{{ sectionsMarkup.43581 }}}
               </div>
             </td>
             <td rowspan="2">
-              <div align="right">{{{ sectionsMarkup.43582 }}}</div>
+              <div align="right" style="position: relative; z-index: 2">
+                {{{ sectionsMarkup.43582 }}}
+              </div>
             </td>
             <td valign="top">
-              <div align="center">{{{ sectionsMarkup.43583 }}}</div>
+              <div align="center" style="position: relative; z-index: 3">
+                {{{ sectionsMarkup.43583 }}}
+              </div>
             </td>
           </tr>
           <tr>
             <td valign="bottom">
-              <div align="center">{{{ sectionsMarkup.43584 }}}</div>
+              <div align="center" style="position: relative; z-index: 3">
+                {{{ sectionsMarkup.43584 }}}
+              </div>
             </td>
             <td valign="bottom">
-              <div align="center">{{{ sectionsMarkup.43585 }}}</div>
+              <div align="center" style="position: relative; z-index: 3">
+                {{{ sectionsMarkup.43585 }}}
+              </div>
             </td>
           </tr>
         </table>
@@ -91,14 +134,72 @@
     </td>
   </tr>
 
+  <!-- SIDE BOXES -->
   <tr>
     <td>
       <div align="center">
-        <img
-          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-          width="1"
-          height="100"
-        />
+        <table align="center">
+          <!-- Side Boxes Names -->
+          <tr>
+            <td>
+              <div
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 0;
+                  bottom: 277px;
+                  right: 575px;
+                "
+              >
+                {{{ sectionNames.43594 }}}
+              </div>
+            </td>
+            <td>
+              <div
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 0;
+                  bottom: 277px;
+                  left: 575px;
+                "
+              >
+                {{{ sectionNames.43595 }}}
+              </div>
+            </td>
+          </tr>
+          <!-- Side Box Seats -->
+          <tr>
+            <td>
+              <div
+                class="last-cell"
+                align="left"
+                style="
+                  position: relative;
+                  z-index: 1;
+                  bottom: 277px;
+                  right: 391px;
+                "
+              >
+                {{{ sectionsMarkup.43594 }}}
+              </div>
+            </td>
+            <td>
+              <div
+                class="first-cell"
+                align="right"
+                style="
+                  position: relative;
+                  z-index: 1;
+                  bottom: 277px;
+                  left: 391px;
+                "
+              >
+                {{{ sectionsMarkup.43595 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
       </div>
     </td>
   </tr>
@@ -111,10 +212,12 @@
           <!-- Back Names -->
           <tr>
             <td>
-              <div align="center">{{{ sectionNames.43586 }}}</div>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.43586 }}}
+              </div>
             </td>
             <td rowspan="2">
-              <div align="center">
+              <div align="center" style="position: relative; z-index: 0">
                 <img
                   src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
                   width="40"
@@ -123,10 +226,12 @@
               </div>
             </td>
             <td>
-              <div align="center">{{{ sectionNames.43587 }}}</div>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.43596 }}}
+              </div>
             </td>
             <td rowspan="2">
-              <div align="center">
+              <div align="center" style="position: relative; z-index: 0">
                 <img
                   src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
                   width="40"
@@ -135,20 +240,28 @@
               </div>
             </td>
             <td>
-              <div align="center">{{{ sectionNames.43588 }}}</div>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.43588 }}}
+              </div>
             </td>
           </tr>
 
           <!-- Back Seats -->
           <tr>
-            <td>
-              <div align="center">{{{ sectionsMarkup.43586 }}}</div>
+            <td valign="top">
+              <div align="center" style="position: relative; z-index: 3">
+                {{{ sectionsMarkup.43586 }}}
+              </div>
             </td>
             <td>
-              <div align="center">{{{ sectionsMarkup.43587 }}}</div>
+              <div align="center" style="position: relative; z-index: 2">
+                {{{ sectionsMarkup.43596 }}}
+              </div>
             </td>
-            <td>
-              <div align="center">{{{ sectionsMarkup.43588 }}}</div>
+            <td valign="top">
+              <div align="center" style="position: relative; z-index: 3">
+                {{{ sectionsMarkup.43588 }}}
+              </div>
             </td>
           </tr>
         </table>
