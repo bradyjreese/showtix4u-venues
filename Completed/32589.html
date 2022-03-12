@@ -1,0 +1,99 @@
+<!-- Lincoln Hubbard Gym -->
+<style>
+  .row-blue > div > table > tbody > tr,
+  .row-blue > div > table > tr {
+    background-color: cornflowerblue;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table border="0" cellspacing="0" cellpadding="0" align="center">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionNames.43789 }}}</div>
+            </td>
+            <td rowspan="4">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.43790 }}}</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="5"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- VIP Seats -->
+          <tr>
+            <td>
+              <div class="row-blue" align="center">
+                {{{ sectionsMarkup.43787 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-blue" align="center">
+                {{{ sectionsMarkup.43788 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Seats -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionsMarkup.43789 }}}</div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionsMarkup.43790 }}}</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
