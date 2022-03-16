@@ -1,0 +1,125 @@
+<!-- Panther Playhouse -->
+<style>
+  .row-gold > div > table > tbody > tr,
+  .row-gold > div > table > tr {
+    background-color: gold;
+  }
+  .row-green > div > table > tbody > tr,
+  .row-green > div > table > tr {
+    background-color: darkgreen;
+  }
+  .row-blue > div > table > tbody > tr,
+  .row-blue > div > table > tr {
+    background-color: cornflowerblue;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table border="0" cellspacing="0" cellpadding="0" align="center">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionNames.43809 }}}</div>
+            </td>
+            <td rowspan="5">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.43810 }}}</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="7"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- VIP -->
+          <tr>
+            <td>
+              <div class="row-gold" align="center">
+                {{{ sectionsMarkup.43807 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-gold" align="center">
+                {{{ sectionsMarkup.43808 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Reserved -->
+          <tr>
+            <td>
+              <div class="row-green" align="center">
+                {{{ sectionsMarkup.43809 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-green" align="center">
+                {{{ sectionsMarkup.43810 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Reserved/Student -->
+          <tr>
+            <td>
+              <div class="row-blue" align="center">
+                {{{ sectionsMarkup.43811 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-blue" align="center">
+                {{{ sectionsMarkup.43812 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
