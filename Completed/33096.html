@@ -1,0 +1,195 @@
+<!-- Hales Corners Lutheran Chapel North -->
+<style>
+  .row-purple > div > table > tbody > tr,
+  .row-purple > div > table > tr {
+    background-color: purple;
+  }
+  .row-orange > div > table > tbody > tr,
+  .row-orange > div > table > tr {
+    background-color: orange;
+  }
+  .row-blue > div > table > tbody > tr,
+  .row-blue > div > table > tr {
+    background-color: cornflowerblue;
+  }
+  .row-red > div > table > tbody > tr,
+  .row-red > div > table > tr {
+    background-color: red;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- FRONT -->
+  <tr>
+    <td>
+      <div align="center">
+        <table border="0" cellspacing="0" cellpadding="0" align="center">
+          <!-- Front Names -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionNames.44195 }}}</div>
+            </td>
+            <td rowspan="4">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.44196 }}}</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="5"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Front Seats -->
+          <tr>
+            <td>
+              <div class="row-purple" align="right">
+                {{{ sectionsMarkup.44195 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-purple" align="left">
+                {{{ sectionsMarkup.44196 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Front Seats Two -->
+          <tr>
+            <td>
+              <div class="row-orange" align="right">
+                {{{ sectionsMarkup.44197 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div class="row-orange" align="left">
+                {{{ sectionsMarkup.44198 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- BACK -->
+  <tr>
+    <td>
+      <div align="center">
+        <table border="0" cellspacing="0" cellpadding="0" align="center">
+          <!-- Back Names -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionNames.44199 }}}</div>
+            </td>
+            <td rowspan="4">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.44200 }}}</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="5"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Back Seats -->
+          <tr>
+            <td>
+              <div class="row-blue" align="right">
+                {{{ sectionsMarkup.44199 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-blue" align="left">
+                {{{ sectionsMarkup.44200 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Back Seats Two -->
+          <tr>
+            <td>
+              <div class="row-red" align="right">
+                {{{ sectionsMarkup.44201 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-red" align="right">
+                {{{ sectionsMarkup.44202 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
