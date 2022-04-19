@@ -1,0 +1,186 @@
+<!-- Livermore High School Theater -->
+<style>
+  .wheelchair-space {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    font-size: 27px;
+    border: 2px solid black;
+    background-color: white;
+    position: relative;
+    z-index: 0;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- FRONT -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Front Names -->
+          <tr>
+            <td>
+              <div align="right">{{{ sectionNames.44416 }}}</div>
+            </td>
+            <td rowspan="3">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.44417 }}}</div>
+            </td>
+            <td rowspan="3">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="left">{{{ sectionNames.44418 }}}</div>
+            </td>
+          </tr>
+
+          <!-- Front Seats -->
+          <tr>
+            <td valign="top">
+              <div align="right" style="position: relative; z-index: 1">
+                {{{ sectionsMarkup.44416 }}}
+              </div>
+            </td>
+            <td valign="top" rowspan="2">
+              <div align="center">{{{ sectionsMarkup.44417 }}}</div>
+            </td>
+            <td valign="top">
+              <div align="left" style="position: relative; z-index: 1">
+                {{{ sectionsMarkup.44418 }}}
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td valign="top">
+              <div
+                class="wheelchair-space"
+                align="center"
+                style="bottom: 100px"
+              >
+                WHEELCHAIR SPACE
+              </div>
+            </td>
+            <td valign="top">
+              <div class="wheelchair-space" align="center" style="bottom: 60px">
+                WHEELCHAIR SPACE
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="60"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- BACK -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Back Names -->
+          <tr>
+            <td>
+              <div align="center" style="position: relative; top: 40px">
+                {{{ sectionNames.44419 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.44420 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; top: 40px">
+                {{{ sectionNames.44421 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Back Seats -->
+          <tr>
+            <td valign="bottom">
+              <div align="center">{{{ sectionsMarkup.44419 }}}</div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionsMarkup.44420 }}}</div>
+            </td>
+            <td valign="bottom">
+              <div align="center">{{{ sectionsMarkup.44421 }}}</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
