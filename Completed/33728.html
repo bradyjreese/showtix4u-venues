@@ -1,0 +1,179 @@
+<!-- Sellman Auditorium - Operetta -->
+<style>
+  .last-cell > div > table > tbody > tr > td:nth-last-child(1),
+  .last-cell > div > table > tr > td:nth-last-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+  .first-cell > div > table > tbody > tr > td:nth-child(1),
+  .first-cell > div > table > tr > td:nth-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+  .row-purple > div > table > tbody > tr,
+  .row-purple > div > table > tr {
+    background-color: purple;
+  }
+  .row-darkblue > div > table > tbody > tr,
+  .row-darkblue > div > table > tr {
+    background-color: darkblue;
+  }
+  .row-blue > div > table > tbody > tr,
+  .row-blue > div > table > tr {
+    background-color: cornflowerblue;
+  }
+  .row-lightblue > div > table > tbody > tr,
+  .row-lightblue > div > table > tr {
+    background-color: lightblue;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center" border="0" cellspacing="0" cellpadding="0">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionNames.44868 }}}</div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.44871 }}}</div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.44876 }}}</div>
+            </td>
+          </tr>
+
+          <!-- Seats -->
+          <tr>
+            <td>
+              <div align="left" style="position: relative; z-index: 2">
+                <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td colspan="2">
+                      <div class="last-cell row-darkblue" align="left">
+                        {{{ sectionsMarkup.44867 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <div class="last-cell" align="left">
+                        {{{ sectionsMarkup.44868 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="last-cell" align="left">
+                        {{{ sectionsMarkup.44869 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="row-blue" align="left">
+                        {{{ sectionsMarkupNoRowNames.44870 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 1">
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td colspan="2">
+                      <div align="center">
+                        {{{ sectionsMarkupNoRowNames.44871 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="center">
+                        {{{ sectionsMarkupNoRowNames.44872 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="row-purple" align="center">
+                        {{{ sectionsMarkupNoRowNames.44873 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <div class="row-blue" align="center">
+                        {{{ sectionsMarkupNoRowNames.44874 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td>
+              <div align="right" style="position: relative; z-index: 2">
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div class="first-cell row-darkblue" align="right">
+                        {{{ sectionsMarkup.44875 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="first-cell" align="right">
+                        {{{ sectionsMarkup.44876 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="first-cell row-lightblue" align="right">
+                        {{{ sectionsMarkup.44877 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
