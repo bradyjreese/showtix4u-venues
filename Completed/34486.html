@@ -1,0 +1,60 @@
+<!-- Ghost Walk -->
+<style>
+  .long-row-name > div > table > tbody > tr > td > .seatCharts-space,
+  .long-row-name > div > table > tr > td > .seatCharts-space {
+    width: 70px;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="20"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionNames.45502 }}}</div>
+            </td>
+          </tr>
+
+          <!-- Seats -->
+          <tr>
+            <td>
+              <div class="long-row-name" align="center">
+                {{{ sectionsMarkup.45502 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
