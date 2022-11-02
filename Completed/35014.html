@@ -1,0 +1,359 @@
+<!-- SJCCA PAC Select Seating -->
+<style>
+  .row-gold > div > table > tbody > tr,
+  .row-gold > div > table > tr {
+    background-color: gold;
+  }
+  .last-cell > div > table > tbody > tr > td:nth-last-child(1),
+  .last-cell > div > table > tr > td:nth-last-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+  .first-cell > div > table > tbody > tr > td:nth-child(1),
+  .first-cell > div > table > tr > td:nth-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+  .extra-wide-seat-front
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .extra-wide-seat-front
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell {
+    width: 115px;
+  }
+  .extra-wide-seat-center
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .extra-wide-seat-center
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .extra-wide-seat-center
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(3)
+    > .seatCharts-cell,
+  .extra-wide-seat-center
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-last-child(3)
+    > .seatCharts-cell {
+    width: 74px;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div align="right">{{{ sectionNames.46088 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.46090 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="left">{{{ sectionNames.46097 }}}</div>
+            </td>
+          </tr>
+
+          <!-- Seats -->
+          <tr>
+            <td>
+              <div align="right">
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div align="right">
+                        <table
+                          align="right"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div class="extra-wide-seat-front" align="right">
+                                {{{ sectionsMarkup.46082 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="right">
+                        <table
+                          align="right"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div class="row-gold last-cell" align="right">
+                                {{{ sectionsMarkup.46083 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div align="right">
+                                {{{ sectionsMarkupNoRowNames.46084 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="row-gold" align="right">
+                                {{{ sectionsMarkupNoRowNames.46085 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="first-cell" align="right">
+                                {{{ sectionsMarkup.46086 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="right">
+                        <table
+                          align="right"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div class="row-gold" align="right">
+                                {{{ sectionsMarkup.46087 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="right">
+                        <table
+                          align="right"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div align="right">
+                                {{{ sectionsMarkup.46088 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td>
+              <div align="center">
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td>
+                      <div class="row-gold" align="center">
+                        {{{ sectionsMarkup.46089 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="extra-wide-seat-center" align="center">
+                        {{{ sectionsMarkup.46090 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td>
+              <div align="left">
+                <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div align="left">
+                        <table
+                          align="left"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div class="extra-wide-seat-front" align="left">
+                                {{{ sectionsMarkup.46091 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="left">
+                        <table
+                          align="left"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div class="last-cell" align="left">
+                                {{{ sectionsMarkup.46092 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="row-gold" align="left">
+                                {{{ sectionsMarkupNoRowNames.46093 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div align="left">
+                                {{{ sectionsMarkupNoRowNames.46094 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="row-gold first-cell" align="left">
+                                {{{ sectionsMarkup.46095 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="left">
+                        <table
+                          align="left"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div class="row-gold" align="left">
+                                {{{ sectionsMarkup.46096 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="left">
+                        <table
+                          align="left"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div align="left">
+                                {{{ sectionsMarkup.46097 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
