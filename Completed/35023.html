@@ -1,0 +1,362 @@
+<!-- BHS Auditorium - Henry IV Studio Seating - Reserved Seating -->
+<!-- NOTE THIS IS A TABLE POD -->
+<style>
+  .width-100 > div > table {
+    width: 100%;
+  }
+  .left-lines > div > table:nth-child(1),
+  .left-lines > div > table:nth-child(2),
+  .left-lines > div > table:nth-child(3),
+  .left-lines > div > table:nth-child(4) {
+    border-bottom: 2px solid black;
+  }
+  .left-lines > div > table:nth-child(1) > tbody > tr > td:nth-child(5),
+  .left-lines > div > table:nth-child(1) > tr > td:nth-child(5),
+  .left-lines > div > table:nth-child(2) > tbody > tr > td:nth-child(5),
+  .left-lines > div > table:nth-child(2) > tr > td:nth-child(5),
+  .left-lines > div > table:nth-child(3) > tbody > tr > td:nth-child(5),
+  .left-lines > div > table:nth-child(3) > tr > td:nth-child(5),
+  .left-lines > div > table:nth-child(4) > tbody > tr > td:nth-child(5),
+  .left-lines > div > table:nth-child(4) > tr > td:nth-child(5) {
+    border-right: 2px solid black;
+  }
+  .left-lines > div > table:nth-child(1) > tbody > tr > td:nth-last-child(5),
+  .left-lines > div > table:nth-child(1) > tr > td:nth-last-child(5),
+  .left-lines > div > table:nth-child(2) > tbody > tr > td:nth-last-child(5),
+  .left-lines > div > table:nth-child(2) > tr > td:nth-last-child(5),
+  .left-lines > div > table:nth-child(3) > tbody > tr > td:nth-last-child(5),
+  .left-lines > div > table:nth-child(3) > tr > td:nth-last-child(5),
+  .left-lines > div > table:nth-child(4) > tbody > tr > td:nth-last-child(5),
+  .left-lines > div > table:nth-child(4) > tr > td:nth-last-child(5) {
+    border-left: 2px solid black;
+  }
+  .right-lines > div > table:nth-child(1),
+  .right-lines > div > table:nth-child(2),
+  .right-lines > div > table:nth-child(3),
+  .right-lines > div > table:nth-child(4) {
+    border-bottom: 2px solid black;
+  }
+  .right-lines > div > table:nth-child(1) > tbody > tr > td:nth-child(5),
+  .right-lines > div > table:nth-child(1) > tr > td:nth-child(5),
+  .right-lines > div > table:nth-child(2) > tbody > tr > td:nth-child(5),
+  .right-lines > div > table:nth-child(2) > tr > td:nth-child(5),
+  .right-lines > div > table:nth-child(3) > tbody > tr > td:nth-child(5),
+  .right-lines > div > table:nth-child(3) > tr > td:nth-child(5),
+  .right-lines > div > table:nth-child(4) > tbody > tr > td:nth-child(5),
+  .right-lines > div > table:nth-child(4) > tr > td:nth-child(5) {
+    border-right: 2px solid black;
+  }
+  .right-lines > div > table:nth-child(1) > tbody > tr > td:nth-last-child(4),
+  .right-lines > div > table:nth-child(1) > tr > td:nth-last-child(4),
+  .right-lines > div > table:nth-child(2) > tbody > tr > td:nth-last-child(4),
+  .right-lines > div > table:nth-child(2) > tr > td:nth-last-child(4),
+  .right-lines > div > table:nth-child(3) > tbody > tr > td:nth-last-child(4),
+  .right-lines > div > table:nth-child(3) > tr > td:nth-last-child(4),
+  .right-lines > div > table:nth-child(4) > tbody > tr > td:nth-last-child(4),
+  .right-lines > div > table:nth-child(4) > tr > td:nth-last-child(4) {
+    border-left: 2px solid black;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="100"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- SEATS -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div
+                align="center"
+                style="position: relative; z-index: 0; bottom: 115px"
+              >
+                {{{ sectionNames.46141 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="200"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div
+                align="center"
+                style="position: relative; z-index: 0; bottom: 115px"
+              >
+                {{{ sectionNames.46142 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Seats -->
+          <tr>
+            <td>
+              <div
+                class="adjust rotate90R left-lines width-100"
+                align="center"
+                style="position: relative; z-index: 1"
+              >
+                {{{ sectionsMarkup.46141 }}}
+              </div>
+            </td>
+            <td>
+              <div
+                class="adjust rotate90L right-lines width-100"
+                align="center"
+                style="position: relative; z-index: 1"
+              >
+                {{{ sectionsMarkup.46142 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="100"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- TABLES -->
+  <tr>
+    <td align="center">
+      <div align="center" style="position: relative">
+        <table>
+          <tr>
+            <td>
+              <div
+                align="center"
+                style="position: relative; top: 60px; left: 220px"
+              >
+                <table>
+                  <tr>
+                    <!-- Table 2 -->
+                    <td align="center" rowspan="3" valign="bottom">
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 2"
+                      >
+                        <table cellspacing="10" cellpadding="0">
+                          <tr>
+                            <td valign="bottom">
+                              <div></div>
+                            </td>
+                            <td rowspan="2">
+                              <div
+                                align="center"
+                                style="
+                                  display: flex;
+                                  justify-content: center;
+                                  align-items: center;
+                                  margin: auto;
+                                  font-size: 34px;
+                                  background-color: white;
+                                  border: 2px solid black;
+                                  border-radius: 50%;
+                                  width: 105px;
+                                  height: 105px;
+                                "
+                              >
+                                2
+                              </div>
+                            </td>
+                            <td valign="top">
+                              <div align="left">
+                                {{{ tablesMarkup.46138.23 }}}
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td valign="bottom">
+                              <div align="right">
+                                {{{ tablesMarkup.46138.21 }}}
+                              </div>
+                            </td>
+                            <td valign="bottom">
+                              <div align="left">
+                                {{{ tablesMarkup.46138.22 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                    <td rowspan="3">
+                      <div style="position: relative; z-index: 0">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="1"
+                        />
+                      </div>
+                    </td>
+                    <!-- Table 4 -->
+                    <td align="center" valign="top">
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 2"
+                      >
+                        <table cellspacing="10" cellpadding="0">
+                          <tr>
+                            <td valign="bottom">
+                              <div></div>
+                            </td>
+                            <td rowspan="2">
+                              <div
+                                align="center"
+                                style="
+                                  display: flex;
+                                  justify-content: center;
+                                  align-items: center;
+                                  margin: auto;
+                                  font-size: 34px;
+                                  background-color: white;
+                                  border: 2px solid black;
+                                  border-radius: 50%;
+                                  width: 105px;
+                                  height: 105px;
+                                "
+                              >
+                                4
+                              </div>
+                            </td>
+                            <td valign="top">
+                              <div align="left">
+                                {{{ tablesMarkup.46140.43 }}}
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td valign="bottom">
+                              <div align="right">
+                                {{{ tablesMarkup.46140.41 }}}
+                              </div>
+                            </td>
+                            <td valign="bottom">
+                              <div align="left">
+                                {{{ tablesMarkup.46140.42 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="1"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <!-- Table 3 -->
+                    <td align="center" valign="top">
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 2"
+                      >
+                        <table cellspacing="10" cellpadding="0">
+                          <tr>
+                            <td valign="bottom">
+                              <div></div>
+                            </td>
+                            <td rowspan="2">
+                              <div
+                                align="center"
+                                style="
+                                  display: flex;
+                                  justify-content: center;
+                                  align-items: center;
+                                  margin: auto;
+                                  font-size: 34px;
+                                  background-color: white;
+                                  border: 2px solid black;
+                                  border-radius: 50%;
+                                  width: 105px;
+                                  height: 105px;
+                                "
+                              >
+                                3
+                              </div>
+                            </td>
+                            <td valign="top">
+                              <div align="left">
+                                {{{ tablesMarkup.46139.33 }}}
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td valign="bottom">
+                              <div align="right">
+                                {{{ tablesMarkup.46139.31 }}}
+                              </div>
+                            </td>
+                            <td valign="bottom">
+                              <div align="left">
+                                {{{ tablesMarkup.46139.32 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
