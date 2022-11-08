@@ -1,6 +1,35 @@
 <!-- BHS Auditorium - Henry IV Studio Seating - Reserved Seating -->
 <!-- NOTE THIS IS A TABLE POD -->
 <style>
+  .stage-text-vert {
+    letter-spacing: 30px;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    font-size: 50px;
+    color: cornflowerblue;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+    top: 85px;
+  }
+  .stage-text-hori {
+    letter-spacing: 50px;
+    font-size: 50px;
+    color: cornflowerblue;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+    top: 140px;
+    left: 45px;
+  }
   .width-100 > div > table {
     width: 100%;
   }
@@ -59,27 +88,13 @@
 </style>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
-  <!-- Stage Image -->
-  <tr>
-    <td>
-      <div align="center" style="position: relative; z-index: 0">
-        <img
-          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
-          alt="STAGE"
-          width="300"
-          height="80"
-        />
-      </div>
-    </td>
-  </tr>
-
   <tr>
     <td>
       <div align="center" style="position: relative; z-index: 0">
         <img
           src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
           width="1"
-          height="100"
+          height="200"
         />
       </div>
     </td>
@@ -95,7 +110,7 @@
             <td>
               <div
                 align="center"
-                style="position: relative; z-index: 0; bottom: 115px"
+                style="position: relative;z-index: 0;bottom: 38px;left: 79px;"
               >
                 {{{ sectionNames.46141 }}}
               </div>
@@ -104,7 +119,24 @@
               <div align="center" style="position: relative; z-index: 0">
                 <img
                   src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="200"
+                  width="90"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td rowspan="2">
+              <div
+                class="stage-text-vert"
+                align="center"
+              >
+                STAGE
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="90"
                   height="1"
                 />
               </div>
@@ -112,7 +144,7 @@
             <td>
               <div
                 align="center"
-                style="position: relative; z-index: 0; bottom: 115px"
+                style="position: relative;z-index: 0;bottom: 10px;right: 79px;"
               >
                 {{{ sectionNames.46142 }}}
               </div>
@@ -125,7 +157,7 @@
               <div
                 class="adjust rotate90R left-lines width-100"
                 align="center"
-                style="position: relative; z-index: 1"
+                style="position: relative; z-index: 1;left: 75px"
               >
                 {{{ sectionsMarkup.46141 }}}
               </div>
@@ -134,7 +166,7 @@
               <div
                 class="adjust rotate90L right-lines width-100"
                 align="center"
-                style="position: relative; z-index: 1"
+                style="position: relative; z-index: 1; right: 75px"
               >
                 {{{ sectionsMarkup.46142 }}}
               </div>
@@ -147,11 +179,19 @@
 
   <tr>
     <td>
+      <div class="stage-text-hori"" align="center">
+      STAGE
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
       <div align="center" style="position: relative; z-index: 0">
         <img
           src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
           width="1"
-          height="100"
+          height="90"
         />
       </div>
     </td>
@@ -164,22 +204,21 @@
         <table>
           <tr>
             <td>
-              <div
-                align="center"
-                style="position: relative; top: 60px; left: 220px"
-              >
+              <div align="center" style="position: relative;z-index: 1;right: 100px;">
                 <table>
                   <tr>
                     <!-- Table 2 -->
-                    <td align="center" rowspan="3" valign="bottom">
+                    <td align="center" valign="top">
                       <div
                         align="center"
                         style="position: relative; z-index: 2"
                       >
                         <table cellspacing="10" cellpadding="0">
                           <tr>
-                            <td valign="bottom">
-                              <div></div>
+                            <td valign="top">
+                              <div align="right">
+                                {{{ tablesMarkup.46138.21 }}}
+                              </div>
                             </td>
                             <td rowspan="2">
                               <div
@@ -201,20 +240,145 @@
                               </div>
                             </td>
                             <td valign="top">
+                              <div></div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td valign="bottom">
+                              <div align="right">
+                                {{{ tablesMarkup.46138.22 }}}
+                              </div>
+                            </td>
+                            <td valign="bottom">
                               <div align="left">
                                 {{{ tablesMarkup.46138.23 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="1"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <!-- Table 3 -->
+                    <td align="center" valign="top">
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 2"
+                      >
+                        <table cellspacing="10" cellpadding="0">
+                          <tr>
+                            <td valign="top">
+                              <div align="right">
+                                {{{ tablesMarkup.46139.31 }}}
+                              </div>
+                            </td>
+                            <td rowspan="2">
+                              <div
+                                align="center"
+                                style="
+                                  display: flex;
+                                  justify-content: center;
+                                  align-items: center;
+                                  margin: auto;
+                                  font-size: 34px;
+                                  background-color: white;
+                                  border: 2px solid black;
+                                  border-radius: 50%;
+                                  width: 105px;
+                                  height: 105px;
+                                "
+                              >
+                                3
+                              </div>
+                            </td>
+                            <td valign="top">
+                              <div></div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td valign="bottom">
+                              <div align="right">
+                                {{{ tablesMarkup.46139.32 }}}
+                              </div>
+                            </td>
+                            <td valign="bottom">
+                              <div align="left">
+                                {{{ tablesMarkup.46139.33 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+
+            <td>
+              <div align="center" style="position: relative;z-index:  1;left: 150px;">
+                <table>
+                  <tr>
+                    <!-- Table 5 -->
+                    <td align="center" rowspan="3" valign="bottom">
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 2"
+                      >
+                        <table cellspacing="10" cellpadding="0">
+                          <tr>
+                            <td valign="top">
+                              <div></div>
+                            </td>
+                            <td rowspan="2">
+                              <div
+                                align="center"
+                                style="
+                                  display: flex;
+                                  justify-content: center;
+                                  align-items: center;
+                                  margin: auto;
+                                  font-size: 34px;
+                                  background-color: white;
+                                  border: 2px solid black;
+                                  border-radius: 50%;
+                                  width: 105px;
+                                  height: 105px;
+                                "
+                              >
+                                5
+                              </div>
+                            </td>
+                            <td valign="top">
+                              <div align="left">
+                                {{{ tablesMarkup.46220.53 }}}
                               </div>
                             </td>
                           </tr>
                           <tr>
                             <td valign="bottom">
                               <div align="right">
-                                {{{ tablesMarkup.46138.21 }}}
+                                {{{ tablesMarkup.46220.51 }}}
                               </div>
                             </td>
                             <td valign="bottom">
                               <div align="left">
-                                {{{ tablesMarkup.46138.22 }}}
+                                {{{ tablesMarkup.46220.52 }}}
                               </div>
                             </td>
                           </tr>
@@ -299,7 +463,7 @@
                   </tr>
 
                   <tr>
-                    <!-- Table 3 -->
+                    <!-- Table 6 -->
                     <td align="center" valign="top">
                       <div
                         align="center"
@@ -307,7 +471,7 @@
                       >
                         <table cellspacing="10" cellpadding="0">
                           <tr>
-                            <td valign="bottom">
+                            <td valign="top">
                               <div></div>
                             </td>
                             <td rowspan="2">
@@ -326,24 +490,24 @@
                                   height: 105px;
                                 "
                               >
-                                3
+                                6
                               </div>
                             </td>
                             <td valign="top">
                               <div align="left">
-                                {{{ tablesMarkup.46139.33 }}}
+                                {{{ tablesMarkup.46221.63 }}}
                               </div>
                             </td>
                           </tr>
                           <tr>
                             <td valign="bottom">
                               <div align="right">
-                                {{{ tablesMarkup.46139.31 }}}
+                                {{{ tablesMarkup.46221.61 }}}
                               </div>
                             </td>
                             <td valign="bottom">
                               <div align="left">
-                                {{{ tablesMarkup.46139.32 }}}
+                                {{{ tablesMarkup.46221.62 }}}
                               </div>
                             </td>
                           </tr>
