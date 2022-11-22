@@ -1,12 +1,36 @@
 <!-- Adams County Christian School Gymnasium -->
 <style>
-  .row-yellow > div > table > tbody > tr,
-  .row-yellow > div > table > tr {
-    background-color: yellow;
-  }
   .row-red > div > table > tbody > tr,
   .row-red > div > table > tr {
     background-color: red;
+  }
+  .floor-seating {
+    position: relative;
+    z-index: 0;
+    top: 20px;
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: goldenrod;
+    border: 2px solid black;
+    font-size: 24px;
+  }
+  .stadium-seating {
+    position: relative;
+    z-index: 0;
+    width: 160px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: orange;
+    border: 2px solid black;
+    font-size: 24px;
+    margin: auto;
   }
 </style>
 
@@ -14,7 +38,7 @@
   <!-- Stage Image -->
   <tr>
     <td>
-      <div align="center">
+      <div align="center" style="position: relative; z-index: 0">
         <img
           src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
           alt="STAGE"
@@ -27,7 +51,7 @@
 
   <tr>
     <td>
-      <div align="center">
+      <div align="center" style="position: relative; z-index: 0">
         <img
           src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
           width="1"
@@ -45,10 +69,12 @@
           <!-- Names -->
           <tr>
             <td>
-              <div align="center">{{{ sectionNames.46416 }}}</div>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.46416 }}}
+              </div>
             </td>
-            <td rowspan="2">
-              <div align="center">
+            <td rowspan="3">
+              <div align="center" style="position: relative; z-index: 0">
                 <img
                   src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
                   width="40"
@@ -57,27 +83,36 @@
               </div>
             </td>
             <td>
-              <div align="center">{{{ sectionNames.46418 }}}</div>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.46418 }}}
+              </div>
             </td>
           </tr>
 
           <!-- Seats -->
           <tr>
             <td>
-              <div align="center">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+              <div align="center" style="position: relative">
+                <table
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                  align="center"
+                >
                   <tr>
                     <td>
-                      <div class="row-red" align="center">
+                      <div
+                        class="row-red"
+                        align="center"
+                        style="position: relative; z-index: 1"
+                      >
                         {{{ sectionsMarkup.46416 }}}
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <div class="row-yellow" align="center">
-                        {{{ sectionsMarkup.46417 }}}
-                      </div>
+                      <div class="floor-seating">FLOOR SEATING</div>
                     </td>
                   </tr>
                 </table>
@@ -85,22 +120,41 @@
             </td>
             <td>
               <div align="center">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+                <table
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                  align="center"
+                >
                   <tr>
                     <td>
-                      <div class="row-red" align="center">
+                      <div
+                        class="row-red"
+                        align="center"
+                        style="position: relative; z-index: 1"
+                      >
                         {{{ sectionsMarkup.46418 }}}
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <div class="row-yellow" align="center">
-                        {{{ sectionsMarkup.46419 }}}
-                      </div>
+                      <div class="floor-seating">FLOOR SEATING</div>
                     </td>
                   </tr>
                 </table>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="stadium-seating" style="right: 390px; bottom: 160px">
+                STADIUM<br />&<br />STUDENT SEATING
+              </div>
+            </td>
+            <td>
+              <div class="stadium-seating" style="left: 390px; bottom: 160px">
+                STADIUM<br />&<br />STUDENT SEATING
               </div>
             </td>
           </tr>
