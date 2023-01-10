@@ -1,0 +1,133 @@
+<!-- Solivita Starliter Ballroom -->
+<style>
+  .row-gold > div > table > tbody > tr,
+  .row-gold > div > table > tr {
+    background-color: gold;
+  }
+  .row-red > div > table > tbody > tr,
+  .row-red > div > table > tr {
+    background-color: red;
+  }
+  .row-blue > div > table > tbody > tr,
+  .row-blue > div > table > tr {
+    background-color: blue;
+  }
+  .manual-margin {
+    margin: auto;
+    margin-top: 10px;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table border="0" cellspacing="0" cellpadding="0" align="center">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div class="manual-margin front-indicator" align="center">
+                LEFT
+              </div>
+            </td>
+            <td rowspan="5">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="80"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div class="manual-margin front-indicator" align="center">
+                RIGHT
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="10"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Front Seats -->
+          <tr>
+            <td>
+              <div class="row-gold" align="center">
+                {{{ sectionsMarkup.46794 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-gold" align="center">
+                {{{ sectionsMarkup.46795 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Middle Seats -->
+          <tr>
+            <td>
+              <div class="row-red" align="center">
+                {{{ sectionsMarkup.46796 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-red" align="center">
+                {{{ sectionsMarkup.46797 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Back Seats -->
+          <tr>
+            <td>
+              <div class="row-blue" align="center">
+                {{{ sectionsMarkup.46798 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-blue" align="center">
+                {{{ sectionsMarkup.46799 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
