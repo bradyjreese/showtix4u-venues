@@ -1,0 +1,159 @@
+<!-- Malonga Casquelourd Center for the Arts -->
+<style>
+  .row-blue > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-blue > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: cornflowerblue;
+  }
+  .row-darkblue > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-darkblue > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: darkblue;
+  }
+  .row-gold > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-gold > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: gold;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center" border="0" cellspacing="0" cellpadding="0">
+          <!-- Names -->
+          <tr>
+            <td valign="top" rowspan="3">
+              <div align="center" style="position: relative; top: 200px;">{{{ sectionNames.46849 }}}</div>
+            </td>
+            <td rowspan="6">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.46850 }}}</div>
+            </td>
+            <td rowspan="6">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.46851 }}}</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="10"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Blue Seats -->
+          <tr>
+            <td>
+              <div class="row-blue" align="center">
+                {{{ sectionsMarkup.46847 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-blue" align="left">
+                {{{ sectionsMarkup.46848 }}}
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="40"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Gold Seats -->
+          <tr>
+            <td>
+              <div class="row-gold" align="left">
+                {{{ sectionsMarkup.46849 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-gold" align="center">
+                {{{ sectionsMarkup.46850 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-gold" align="left">
+                {{{ sectionsMarkup.46851 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Darkblue Seats -->
+          <tr>
+            <td>
+              <div class="row-darkblue" align="left">
+                {{{ sectionsMarkup.46852 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-darkblue" align="center">
+                {{{ sectionsMarkup.46853 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-darkblue" align="left">
+                {{{ sectionsMarkup.46854 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
