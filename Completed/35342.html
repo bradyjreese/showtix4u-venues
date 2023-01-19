@@ -1,0 +1,232 @@
+<!-- Titan Stage -->
+<style>
+  .row-purple > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-purple > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: rgb(193, 105, 255);
+  }
+  .row-orange > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-orange > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: rgb(254, 202, 106);
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- FRONT -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Front Names -->
+          <tr>
+            <td>
+              <div align="center" style="position: relative; top: 80px">
+                {{{ sectionNames.46920 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="60"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.46921 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="60"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.46922 }}}</div>
+            </td>
+          </tr>
+
+          <!-- Front Seats -->
+          <tr>
+            <td valign="bottom">
+              <div class="row-purple" align="right">
+                {{{ sectionsMarkup.46920 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-purple" align="center">
+                {{{ sectionsMarkup.46921 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-purple" align="left">
+                {{{ sectionsMarkup.46922 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <!-- MIDDLE -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Middle Names -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionNames.46923 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="60"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.46924 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="60"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.46925 }}}</div>
+            </td>
+          </tr>
+
+          <!-- Middle Seats -->
+          <tr>
+            <td valign="top">
+              <div class="row-orange" align="right">
+                {{{ sectionsMarkup.46923 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-orange" align="center">
+                {{{ sectionsMarkup.46924 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div class="row-orange" align="left">
+                {{{ sectionsMarkup.46925 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="100"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- BACK -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Back Names -->
+          <tr>
+            <td>
+              <div align="right">{{{ sectionNames.46926 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="60"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; top: 80px">
+                {{{ sectionNames.46927 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="60"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="left">{{{ sectionNames.46928 }}}</div>
+            </td>
+          </tr>
+
+          <!-- Back Seats -->
+          <tr>
+            <td>
+              <div class="row-orange" align="right">
+                {{{ sectionsMarkup.46926 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-orange" align="right">
+                {{{ sectionsMarkup.46927 }}}
+              </div>
+            </td>
+            <td>
+              <div class="row-orange" align="left">
+                {{{ sectionsMarkup.46928 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
