@@ -1,0 +1,640 @@
+<!-- Dinner Theater -->
+<style>
+  .left-section
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+  }
+  .left-section
+    > div
+    > table:nth-child(2)
+    > tbody
+    > tr
+    > td:nth-child(1)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(2)
+    > tr
+    > td:nth-child(1)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(2)
+    > tbody
+    > tr
+    > td:nth-last-child(1)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(2)
+    > tr
+    > td:nth-last-child(1)
+    > .seatCharts-cell,
+  .center-section
+    > div
+    > table:nth-child(2)
+    > tbody
+    > tr
+    > td:nth-child(1)
+    > .seatCharts-cell,
+  .center-section
+    > div
+    > table:nth-child(2)
+    > tr
+    > td:nth-child(1)
+    > .seatCharts-cell,
+  .center-section
+    > div
+    > table:nth-child(2)
+    > tbody
+    > tr
+    > td:nth-last-child(1)
+    > .seatCharts-cell,
+  .center-section
+    > div
+    > table:nth-child(2)
+    > tr
+    > td:nth-last-child(1)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(2)
+    > tbody
+    > tr
+    > td:nth-child(1)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(2)
+    > tr
+    > td:nth-child(1)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(2)
+    > tbody
+    > tr
+    > td:nth-last-child(1)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(2)
+    > tr
+    > td:nth-last-child(1)
+    > .seatCharts-cell {
+    display: none;
+    visibility: hidden;
+  }
+  .left-section
+    > div
+    > table:nth-child(3)
+    > tbody
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(3)
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(3)
+    > tbody
+    > tr
+    > td:nth-child(5)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(3)
+    > tr
+    > td:nth-child(5)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(3)
+    > tbody
+    > tr
+    > td:nth-child(6)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(3)
+    > tr
+    > td:nth-child(6)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(4)
+    > tbody
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(4)
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(4)
+    > tbody
+    > tr
+    > td:nth-child(6)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(4)
+    > tr
+    > td:nth-child(6)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(4)
+    > tbody
+    > tr
+    > td:nth-child(7)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(4)
+    > tr
+    > td:nth-child(7)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(7)
+    > tbody
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(7)
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(7)
+    > tbody
+    > tr
+    > td:nth-child(6)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(7)
+    > tr
+    > td:nth-child(6)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(7)
+    > tbody
+    > tr
+    > td:nth-child(9)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(7)
+    > tr
+    > td:nth-child(9)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(7)
+    > tbody
+    > tr
+    > td:nth-child(10)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(7)
+    > tr
+    > td:nth-child(10)
+    > .seatCharts-cel,
+  .left-section
+    > div
+    > table:nth-child(7)
+    > tbody
+    > tr
+    > td:nth-child(13)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(7)
+    > tr
+    > td:nth-child(13)
+    > .seatCharts-cell,
+  .center-section
+    > div
+    > table:nth-child(7)
+    > tbody
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cell,
+  .center-section
+    > div
+    > table:nth-child(7)
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cel,
+  .center-section
+    > div
+    > table:nth-child(7)
+    > tbody
+    > tr
+    > td:nth-child(5)
+    > .seatCharts-cell,
+  .center-section
+    > div
+    > table:nth-child(7)
+    > tr
+    > td:nth-child(5)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(3)
+    > tbody
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(3)
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(3)
+    > tbody
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(3)
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(3)
+    > tbody
+    > tr
+    > td:nth-child(7)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(3)
+    > tr
+    > td:nth-child(7)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(4)
+    > tbody
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(4)
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(4)
+    > tbody
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(4)
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(4)
+    > tbody
+    > tr
+    > td:nth-child(7)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(4)
+    > tr
+    > td:nth-child(7)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(7)
+    > tbody
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(7)
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(7)
+    > tbody
+    > tr
+    > td:nth-child(6)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(7)
+    > tr
+    > td:nth-child(6)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(7)
+    > tbody
+    > tr
+    > td:nth-child(8)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(7)
+    > tr
+    > td:nth-child(8)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(7)
+    > tbody
+    > tr
+    > td:nth-child(11)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(7)
+    > tr
+    > td:nth-child(11)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(7)
+    > tbody
+    > tr
+    > td:nth-child(12)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(7)
+    > tr
+    > td:nth-child(12)
+    > .seatCharts-cell {
+    border-radius: 50%;
+  }
+  .left-section
+    > div
+    > table:nth-child(5)
+    > tbody
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell,
+  .left-section
+    > div
+    > table:nth-child(5)
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(5)
+    > tbody
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell,
+  .right-section
+    > div
+    > table:nth-child(5)
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell {
+    width: 320px;
+    color: white;
+    font-size: 20px;
+  }
+  .center-section
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell,
+  .center-section
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell {
+    width: 115px;
+    color: white;
+    font-size: 20px;
+  }
+  .center-section
+    > div
+    > table:nth-child(3)
+    > tbody
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell,
+  .center-section
+    > div
+    > table:nth-child(3)
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell {
+    width: 155px;
+    color: white;
+    font-size: 20px;
+  }
+  .center-section
+    > div
+    > table:nth-child(5)
+    > tbody
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell,
+  .center-section
+    > div
+    > table:nth-child(5)
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell {
+    width: 320px;
+    color: white;
+    font-size: 20px;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="100"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative">
+        <table align="center">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div
+                class="adjust rotate30R"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 0;
+                  bottom: 115px;
+                  left: 265px;
+                "
+              >
+                {{{ sectionNames.47048 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="100"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.47049 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="100"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div
+                class="adjust rotate30L"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 0;
+                  bottom: 110px;
+                  right: 260px;
+                "
+              >
+                {{{ sectionNames.47051 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Seats -->
+          <tr>
+            <td>
+              <div
+                class="left-section adjust rotate30R"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 1;
+                  bottom: 145px;
+                  left: 155px;
+                "
+              >
+                {{{ sectionsMarkup.47048 }}}
+              </div>
+            </td>
+            <td>
+              <div
+                class="center-section"
+                align="center"
+                style="position: relative; z-index: 2"
+              >
+                {{{ sectionsMarkup.47049 }}}
+              </div>
+            </td>
+            <td>
+              <div
+                class="right-section adjust rotate30L"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 1;
+                  bottom: 140px;
+                  right: 145px;
+                "
+              >
+                {{{ sectionsMarkup.47051 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
