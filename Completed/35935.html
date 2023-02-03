@@ -1,0 +1,133 @@
+<!-- Erinn McCarthy Theater -->
+<style>
+  .special-names > div > table:nth-last-child(1) > tbody > tr > td:nth-child(1),
+  .special-names > div > table:nth-last-child(1) > tr > td:nth-child(1),
+  .special-names > div > table:nth-last-child(1) > tbody > tr > td:nth-last-child(1),
+  .special-names > div > table:nth-last-child(1) > tr > td:nth-last-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Front Names -->
+          <tr>
+            <td>
+              <div align="right">{{{ sectionNames.47111 }}}</div>
+            </td>
+            <td rowspan="5">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="80"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.47112 }}}</div>
+            </td>
+            <td rowspan="5">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="80"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="left" style="position: relative; top: 40px">
+                {{{ sectionNames.47113 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Front Seats -->
+          <tr>
+            <td valign="top">
+              <div align="right">{{{ sectionsMarkup.47111 }}}</div>
+            </td>
+            <td>
+              <div class="special-names" align="center">
+                {{{ sectionsMarkup.47112 }}}
+              </div>
+            </td>
+            <td>
+              <div align="left">{{{ sectionsMarkup.47113 }}}</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="80"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Back Names -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionNames.47114 }}}</div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.47115 }}}</div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.47116 }}}</div>
+            </td>
+          </tr>
+
+          <!-- Back Seats -->
+          <tr>
+            <td>
+              <div align="right">{{{ sectionsMarkup.47114 }}}</div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionsMarkup.47115 }}}</div>
+            </td>
+            <td>
+              <div align="left">{{{ sectionsMarkup.47116 }}}</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
