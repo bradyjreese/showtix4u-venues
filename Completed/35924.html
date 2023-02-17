@@ -1,0 +1,195 @@
+<!-- RHS Auditorium -->
+<style>
+  .extra-wide-seat
+    > div
+    > table:nth-child(2)
+    > tbody
+    > tr
+    > td
+    > .seatCharts-seat,
+  .extra-wide-seat > div > table:nth-child(2) > tr > td > .seatCharts-seat,
+  .extra-wide-seat
+    > div
+    > table:nth-child(4)
+    > tbody
+    > tr
+    > td
+    > .seatCharts-seat,
+  .extra-wide-seat > div > table:nth-child(4) > tr > td > .seatCharts-seat,
+  .extra-wide-seat
+    > div
+    > table:nth-child(6)
+    > tbody
+    > tr
+    > td
+    > .seatCharts-seat,
+  .extra-wide-seat > div > table:nth-child(6) > tr > td > .seatCharts-seat,
+  .extra-wide-seat
+    > div
+    > table:nth-child(8)
+    > tbody
+    > tr
+    > td
+    > .seatCharts-seat,
+  .extra-wide-seat > div > table:nth-child(8) > tr > td > .seatCharts-seat,
+  .extra-wide-seat
+    > div
+    > table:nth-child(10)
+    > tbody
+    > tr
+    > td
+    > .seatCharts-seat,
+  .extra-wide-seat > div > table:nth-child(10) > tr > td > .seatCharts-seat,
+  .extra-wide-seat
+    > div
+    > table:nth-child(12)
+    > tbody
+    > tr
+    > td
+    > .seatCharts-seat,
+  .extra-wide-seat > div > table:nth-child(12) > tr > td > .seatCharts-seat,
+  .extra-wide-seat
+    > div
+    > table:nth-child(14)
+    > tbody
+    > tr
+    > td
+    > .seatCharts-seat,
+  .extra-wide-seat > div > table:nth-child(14) > tr > td > .seatCharts-seat,
+  .extra-wide-seat
+    > div
+    > table:nth-child(16)
+    > tbody
+    > tr
+    > td
+    > .seatCharts-seat,
+  .extra-wide-seat > div > table:nth-child(16) > tr > td > .seatCharts-seat,
+  .extra-wide-seat
+    > div
+    > table:nth-child(18)
+    > tbody
+    > tr
+    > td
+    > .seatCharts-seat,
+  .extra-wide-seat > div > table:nth-child(18) > tr > td > .seatCharts-seat,
+  .extra-wide-seat
+    > div
+    > table:nth-child(20)
+    > tbody
+    > tr
+    > td
+    > .seatCharts-seat,
+  .extra-wide-seat > div > table:nth-child(20) > tr > td > .seatCharts-seat {
+    width: 42px;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="50"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <table align="center">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div
+                class="adjust rotate15R"
+                align="center"
+                style="position: relative; z-index: 0; bottom: 70px; left: 50px"
+              >
+                {{{ sectionNames.47472 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.47473 }}}
+              </div>
+            </td>
+            <td>
+              <div
+                class="adjust rotate15L"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 0;
+                  bottom: 70px;
+                  right: 50px;
+                "
+              >
+                {{{ sectionNames.47474 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Seats -->
+          <tr>
+            <td valign="top">
+              <div
+                class="adjust rotate15R"
+                align="right"
+                style="
+                  position: relative;
+                  z-index: 2;
+                  right: 150px;
+                  bottom: 105px;
+                "
+              >
+                {{{ sectionsMarkup.47472 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div
+                class="extra-wide-seat"
+                align="center"
+                style="position: relative; z-index: 1"
+              >
+                {{{ sectionsMarkup.47473 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div
+                class="adjust rotate15L"
+                align="left"
+                style="
+                  position: relative;
+                  z-index: 2;
+                  left: 150px;
+                  bottom: 105px;
+                "
+              >
+                {{{ sectionsMarkup.47474 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
