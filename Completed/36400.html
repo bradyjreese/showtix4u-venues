@@ -1,0 +1,135 @@
+<!-- The Core -->
+<style>
+  .stage-main {
+    width: 80%;
+    height: 82px;
+    border: 2px solid black;
+    font-size: 40px;
+    background-color: white;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    letter-spacing: 20px;
+  }
+  .stage-extension {
+    width: 82px;
+    height: 505px;
+    border: 2px solid black;
+    font-size: 30px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    writing-mode: vertical-rl;
+    letter-spacing: 9px;
+    position: relative;
+    bottom: 119px;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="25"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Stage Image -->
+          <tr>
+            <td colspan="7">
+              <div class="stage-main" align="center">STAGE</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="25"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Names -->
+          <tr>
+            <td>
+              <div align="right">{{{ sectionNames.47764 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="80"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.47765 }}}</div>
+            </td>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.47766 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="80"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="left">{{{ sectionNames.47767 }}}</div>
+            </td>
+          </tr>
+          <!-- Seats -->
+          <tr>
+            <td valign="top">
+              <div align="right">{{{ sectionsMarkup.47764 }}}</div>
+            </td>
+            <td valign="top">
+              <div align="left">{{{ sectionsMarkup.47765 }}}</div>
+            </td>
+            <td>
+              <div class="stage-extension" align="center">STAGE EXTENSION</div>
+            </td>
+            <td valign="top">
+              <div align="right">{{{ sectionsMarkup.47766 }}}</div>
+            </td>
+            <td valign="top">
+              <div align="left">{{{ sectionsMarkup.47767 }}}</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
