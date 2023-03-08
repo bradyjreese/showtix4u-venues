@@ -10,29 +10,6 @@
     display: none;
     visibility: hidden;
   }
-  .space-box {
-    width: 82px;
-  }
-  .floor-space {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 80px;
-    border: 2px solid black;
-    background-color: green;
-  }
-  .aisle-space {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 120px;
-    border-left: 2px solid black;
-    border-right: 2px solid black;
-    border-bottom: 2px solid black;
-    background-color: orange;
-  }
   .stage-space {
     display: flex;
     justify-content: center;
@@ -42,6 +19,23 @@
     border: 2px solid black;
     background-color: yellow;
     font-size: 25px;
+  }
+  .bb-one > div > table:nth-child(1),
+  .bb-one > div > table:nth-child(2),
+  .bb-one > div > table:nth-child(3) {
+    border-bottom: 2px solid black;
+  }
+  .bb-two > div > table:nth-child(4) {
+    border-bottom: 2px solid black;
+  }
+  .bb-three > div > table:nth-child(1) {
+    border-bottom: none !important;
+  }
+  .bt-one > div > table {
+    border-top: 2px solid black;
+  }
+  .bt-two > div > table:nth-child(2) {
+    border-top: 2px dashed black;
   }
 </style>
 
@@ -66,12 +60,18 @@
           <!-- Stage Image -->
           <tr>
             <td>
-              <div class="stage-space" align="center">STAGE</div>
+              <div
+                class="stage-space"
+                align="center"
+                style="position: relative; z-index: 0"
+              >
+                STAGE
+              </div>
             </td>
           </tr>
           <tr>
             <td>
-              <div align="center">
+              <div align="center" style="position: relative; z-index: 0">
                 <img
                   src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
                   width="1"
@@ -83,7 +83,7 @@
           <!-- Seats -->
           <tr>
             <td>
-              <div align="center">
+              <div align="center" style="position: relative; z-index: 3">
                 <table
                   align="center"
                   border="0"
@@ -92,47 +92,61 @@
                 >
                   <tr>
                     <td valign="bottom">
-                      <div class="last-cell" align="center">
+                      <div class="bb-one last-cell" align="left">
                         {{{ sectionsMarkup.47711 }}}
                       </div>
                     </td>
                     <td>
-                      <div align="center">
-                        <table
-                          align="center"
-                          border="0"
-                          cellspacing="0"
-                          cellpadding="0"
-                        >
-                          <tr>
-                            <td>
-                              <div class="space-box floor-space" align="center">
-                                FLOOR
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="space-box aisle-space" align="center">
-                                AISLE
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="first-cell" align="center">
+                      <div
+                        class="bb-one bb-two bt-two bb-three first-cell"
+                        align="right"
+                      >
                         {{{ sectionsMarkup.47712 }}}
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td colspan="3">
-                      <div align="center">{{{ sectionsMarkup.47713 }}}</div>
+                    <td colspan="2">
+                      <div class="bt-one" align="center">
+                        {{{ sectionsMarkup.47713 }}}
+                      </div>
                     </td>
                   </tr>
                 </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <!-- Key/Legend -->
+  <tr>
+    <td valign="top">
+      <div align="center">
+        <table
+          align="center"
+          style="
+            background-color: white;
+            width: 325px;
+            position: relative;
+            z-index: 0;
+            bottom: 280px;
+            right: 164px;
+          "
+        >
+          <tr>
+            <td>
+              <div align="left" style="width: 100%; padding-left: 20px">
+                <strong>Floor: Row AA IF available and Row A</strong>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div align="left" style="width: 100%; padding-left: 20px">
+                <strong>Risers: Row B-E</strong>
               </div>
             </td>
           </tr>
