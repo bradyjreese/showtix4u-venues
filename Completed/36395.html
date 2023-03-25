@@ -1,4 +1,15 @@
 <!-- Mary Glass Performing Arts Center -->
+<style>
+  .row-gold > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-gold > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: gold;
+  }
+  .row-silver > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-silver > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: silver;
+  }
+</style>
+
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
   <!-- Stage Image -->
   <tr>
@@ -68,31 +79,41 @@
                 <table align="right" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td>
-                      <div align="right">{{{ sectionsMarkup.47808 }}}</div>
+                      <div class="row-gold" align="right">
+                        {{{ sectionsMarkup.47808 }}}
+                      </div>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <div align="right">{{{ sectionsMarkup.47809 }}}</div>
+                      <div class="row-silver" align="right">
+                        {{{ sectionsMarkup.47809 }}}
+                      </div>
                     </td>
                   </tr>
                 </table>
               </div>
             </td>
             <td>
-              <div align="center">{{{ sectionsMarkup.47810 }}}</div>
+              <div class="row-gold" align="center">
+                {{{ sectionsMarkup.47810 }}}
+              </div>
             </td>
             <td>
               <div align="left">
                 <table align="left" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td>
-                      <div align="left">{{{ sectionsMarkup.47811 }}}</div>
+                      <div class="row-gold" align="left">
+                        {{{ sectionsMarkup.47811 }}}
+                      </div>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <div align="left">{{{ sectionsMarkup.47812 }}}</div>
+                      <div class="row-silver" align="left">
+                        {{{ sectionsMarkup.47812 }}}
+                      </div>
                     </td>
                   </tr>
                 </table>
@@ -166,16 +187,24 @@
           <!-- Seats -->
           <tr>
             <td>
-              <div align="right">{{{ sectionsMarkup.47813 }}}</div>
+              <div class="row-silver" align="right">
+                {{{ sectionsMarkup.47813 }}}
+              </div>
             </td>
             <td>
-              <div align="right">{{{ sectionsMarkup.47814 }}}</div>
+              <div class="row-silver" align="right">
+                {{{ sectionsMarkup.47814 }}}
+              </div>
             </td>
             <td>
-              <div align="left">{{{ sectionsMarkup.47815 }}}</div>
+              <div class="row-silver" align="left">
+                {{{ sectionsMarkup.47815 }}}
+              </div>
             </td>
             <td>
-              <div align="left">{{{ sectionsMarkup.47816 }}}</div>
+              <div class="row-silver" align="left">
+                {{{ sectionsMarkup.47816 }}}
+              </div>
             </td>
           </tr>
         </table>
