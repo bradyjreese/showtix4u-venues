@@ -1,0 +1,292 @@
+<!-- Mascoma Community Auditorium -->
+<style>
+  .row-green > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-green > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: darkgreen;
+  }
+  .row-yellow > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-yellow > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: yellow;
+  }
+  .row-pink > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-pink > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: pink;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="100"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- FRONT -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative">
+        <table align="center">
+          <!-- Front Names -->
+          <tr>
+            <td>
+              <div
+                class="adjust rotate20R"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 0;
+                  bottom: 80px;
+                  left: 130px;
+                "
+              >
+                {{{ sectionNames.48144 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.48146 }}}
+              </div>
+            </td>
+            <td>
+              <div
+                class="adjust rotate20L"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 0;
+                  bottom: 80px;
+                  right: 130px;
+                "
+              >
+                {{{ sectionNames.48147 }}}
+              </div>
+            </td>
+          </tr>
+          <!-- Front Seats -->
+          <tr>
+            <td>
+              <div
+                class="adjust rotate20R"
+                align="right"
+                style="
+                  position: relative;
+                  z-index: 2;
+                  bottom: 115px;
+                  left: 20px;
+                "
+              >
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div class="row-pink" align="right">
+                        {{{ sectionsMarkup.48144 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-green" align="right">
+                        {{{ sectionsMarkup.48145 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 1">
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td>
+                      <div class="row-pink" align="center">
+                        {{{ sectionsMarkup.48146 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td>
+              <div
+                class="adjust rotate20L"
+                align="left"
+                style="
+                  position: relative;
+                  z-index: 2;
+                  bottom: 115px;
+                  right: 20px;
+                "
+              >
+                <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div class="row-pink" align="left">
+                        {{{ sectionsMarkup.48147 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-green" align="left">
+                        {{{ sectionsMarkup.48148 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="100"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- BACK -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative">
+        <table align="center">
+          <!-- Back Names -->
+          <tr>
+            <td>
+              <div
+                class="adjust rotate10R"
+                align="center"
+                style="position: relative; z-index: 0; bottom: 55px"
+              >
+                {{{ sectionNames.48149 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.48151 }}}
+              </div>
+            </td>
+            <td>
+              <div
+                class="adjust rotate10L"
+                align="center"
+                style="position: relative; z-index: 0; bottom: 55px"
+              >
+                {{{ sectionNames.48153 }}}
+              </div>
+            </td>
+          </tr>
+          <!-- Back Seats -->
+          <tr>
+            <td>
+              <div
+                class="adjust rotate10R"
+                align="right"
+                style="position: relative; z-index: 2; bottom: 55px"
+              >
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div class="row-green" align="right">
+                        {{{ sectionsMarkup.48149 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-yellow" align="right">
+                        {{{ sectionsMarkup.48150 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 1">
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td>
+                      <div class="row-green" align="center">
+                        {{{ sectionsMarkup.48151 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-yellow" align="center">
+                        {{{ sectionsMarkup.48152 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td>
+              <div
+                class="adjust rotate10L"
+                align="left"
+                style="position: relative; z-index: 2; bottom: 55px"
+              >
+                <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div class="row-green" align="left">
+                        {{{ sectionsMarkup.48153 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-yellow" align="left">
+                        {{{ sectionsMarkup.48154 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
