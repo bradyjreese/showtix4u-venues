@@ -1,0 +1,186 @@
+<!-- Sunrise Civic Center Theater -->
+<style>
+  .stagger-front > div > table:nth-child(2),
+  .stagger-front > div > table:nth-child(4),
+  .stagger-front > div > table:nth-child(6),
+  .stagger-front > div > table:nth-child(8),
+  .stagger-front > div > table:nth-child(10),
+  .stagger-front > div > table:nth-child(12),
+  .stagger-front > div > table:nth-child(14) {
+    position: relative;
+    left: 17px;
+  }
+  .stagger-back > div > table:nth-child(2) {
+    position: relative;
+    right: 17px;
+  }
+  .seat-rotate-left > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .seat-rotate-left > div > table > tr > td:has(> .seatCharts-seat) {
+    transform: rotate(-50deg);
+  }
+  .seat-rotate-right > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .seat-rotate-right > div > table > tr > td:has(> .seatCharts-seat) {
+    transform: rotate(50deg);
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="50"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative">
+        <table align="center">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div
+                align="center"
+                style="position: relative; z-index: 0; left: 300px"
+              >
+                {{{ sectionNames.48305 }}}
+              </div>
+            </td>
+            <td>
+              <div
+                align="center"
+                style="position: relative; z-index: 0; left: 60px"
+              >
+                {{{ sectionNames.48306 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.48307 }}}
+              </div>
+            </td>
+            <td>
+              <div
+                align="center"
+                style="position: relative; z-index: 0; right: 60px"
+              >
+                {{{ sectionNames.48308 }}}
+              </div>
+            </td>
+            <td>
+              <div
+                align="center"
+                style="position: relative; z-index: 0; right: 300px"
+              >
+                {{{ sectionNames.48309 }}}
+              </div>
+            </td>
+          </tr>
+          <!-- Seats -->
+          <tr>
+            <td valign="top">
+              <div
+                class="seat-rotate-left adjust rotate90R"
+                align="center"
+                style="position: relative; z-index: 3; top: 262px; left: 300px"
+              >
+                {{{ sectionsMarkup.48305 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div
+                class="seat-rotate-left adjust rotate90R"
+                align="left"
+                style="position: relative; z-index: 2; top: 180px; left: 65px"
+              >
+                {{{ sectionsMarkup.48306 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div align="center" style="position: relative; z-index: 1">
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td>
+                      <div class="stagger-front" align="center">
+                        {{{ sectionsMarkup.48307 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="1"
+                          height="80"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="center">{{{ sectionNames.48310 }}}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stagger-back" align="center">
+                        {{{ sectionsMarkup.48310 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td valign="top">
+              <div
+                class="seat-rotate-right adjust rotate90L"
+                align="right"
+                style="position: relative; z-index: 2; top: 180px; right: 65px"
+              >
+                {{{ sectionsMarkup.48308 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div
+                class="seat-rotate-right adjust rotate90L"
+                align="center"
+                style="position: relative; z-index: 3; top: 262px; right: 300px"
+              >
+                {{{ sectionsMarkup.48309 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
