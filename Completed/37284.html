@@ -1,0 +1,126 @@
+<!-- Trinity Episcopal Church -->
+<style>
+  .wide-seat-left
+    > div
+    > table:nth-child(4)
+    > tbody
+    > tr
+    > td:nth-last-child(2)
+    > .seatCharts-cell,
+  .wide-seat-left
+    > div
+    > table:nth-child(4)
+    > tr
+    > td:nth-last-child(2)
+    > .seatCharts-cell,
+  .wide-seat-left
+    > div
+    > table:nth-child(8)
+    > tbody
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell,
+  .wide-seat-left
+    > div
+    > table:nth-child(8)
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell,
+  .wide-seat-right
+    > div
+    > table:nth-child(4)
+    > tbody
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell,
+  .wide-seat-right
+    > div
+    > table:nth-child(4)
+    > tr
+    > td:nth-child(2)
+    > .seatCharts-cell,
+  .wide-seat-right
+    > div
+    > table:nth-child(8)
+    > tbody
+    > tr
+    > td:nth-last-child(2)
+    > .seatCharts-cell,
+  .wide-seat-right
+    > div
+    > table:nth-child(8)
+    > tr
+    > td:nth-last-child(2)
+    > .seatCharts-cell {
+    width: 74px;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionNames.48668 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.48669 }}}</div>
+            </td>
+          </tr>
+          <!-- Seats -->
+          <tr>
+            <td>
+              <div class="wide-seat-left" align="center">
+                {{{ sectionsMarkup.48668 }}}
+              </div>
+            </td>
+            <td>
+              <div class="wide-seat-right" align="center">
+                {{{ sectionsMarkup.48669 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
