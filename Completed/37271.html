@@ -1,4 +1,17 @@
 <!-- Westgate Chapel -->
+<style>
+  .first-cell > div > table:nth-last-child(1) > tbody > tr > td:nth-child(1),
+  .first-cell > div > table:nth-last-child(1) > tr > td:nth-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+  .last-cell > div > table > tbody > tr > td:nth-last-child(1),
+  .last-cell > div > table > tr > td:nth-last-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+</style>
+
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
   <!-- Stage Image -->
   <tr>
@@ -453,15 +466,15 @@
                 align="left"
                 style="
                   position: relative;
-                  z-index: 3;
-                  bottom: 725px;
-                  right: 580px;
+                  z-index: 5;
+                  bottom: 640px;
+                  right: 485px;
                 "
               >
                 <table align="left" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td>
-                      <div align="left" style="position: relative">
+                      <div align="left" style="position: relative; z-index: 3">
                         {{{ sectionsMarkup.48676 }}}
                       </div>
                     </td>
@@ -482,8 +495,36 @@
                   </tr>
                   <tr>
                     <td>
-                      <div align="left" style="position: relative">
+                      <div
+                        class="first-cell"
+                        align="left"
+                        style="position: relative; z-index: 3"
+                      >
                         {{{ sectionsMarkup.48677 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="center" style="position: relative">
+                        <table>
+                          <tr>
+                            <td>
+                              <div
+                                class="adjust rotate30R last-cell"
+                                align="center"
+                                style="
+                                  position: relative;
+                                  z-index: 4;
+                                  right: 387px;
+                                  bottom: 81px;
+                                "
+                              >
+                                {{{ sectionsMarkup.48696 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
                       </div>
                     </td>
                   </tr>
