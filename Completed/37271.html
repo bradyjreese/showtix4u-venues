@@ -1,5 +1,11 @@
 <!-- Westgate Chapel -->
 <style>
+  .manual-margin {
+    position: relative;
+    z-index: 0;
+    margin: auto;
+    margin-top: 10px;
+  }
   .first-cell > div > table:nth-last-child(1) > tbody > tr > td:nth-child(1),
   .first-cell > div > table:nth-last-child(1) > tr > td:nth-child(1) {
     display: none;
@@ -33,7 +39,7 @@
         <img
           src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
           width="1"
-          height="650"
+          height="600"
         />
       </div>
     </td>
@@ -54,11 +60,44 @@
                 style="
                   position: relative;
                   z-index: 3;
-                  bottom: 650px;
-                  left: 250px;
+                  bottom: 520px;
+                  left: 520px;
                 "
               >
-                {{{ sectionsMarkup.48675 }}}
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div
+                        class="manual-margin front-indicator"
+                        align="center"
+                        style="left: 100px"
+                      >
+                        LOWER 600
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="1"
+                          height="25"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="right" style="position: relative">
+                        {{{ sectionsMarkup.48675 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
               </div>
             </td>
             <!-- LOWER 500 -->
@@ -66,15 +105,86 @@
               <div
                 class="adjust rotate30R"
                 align="right"
-                style="position: relative; z-index: 2; bottom: 205px"
+                style="
+                  position: relative;
+                  z-index: 2;
+                  bottom: 165px;
+                  left: 150px;
+                "
               >
-                {{{ sectionsMarkup.48674 }}}
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div
+                        class="manual-margin front-indicator"
+                        align="center"
+                        style="left: 125px"
+                      >
+                        LOWER 500
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="1"
+                          height="25"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="right" style="position: relative">
+                        {{{ sectionsMarkup.48674 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
               </div>
             </td>
             <!-- LOWER 400 -->
             <td>
               <div align="right" style="position: relative; z-index: 1">
-                {{{ sectionsMarkup.48673 }}}
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div
+                        class="manual-margin front-indicator"
+                        align="center"
+                        style="left: 80px"
+                      >
+                        LOWER 400
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="1"
+                          height="25"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="right" style="position: relative">
+                        {{{ sectionsMarkup.48673 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
               </div>
             </td>
             <td>
@@ -89,7 +199,40 @@
             <!-- LOWER 300 -->
             <td>
               <div align="left" style="position: relative; z-index: 1">
-                {{{ sectionsMarkup.48672 }}}
+                <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div
+                        class="manual-margin front-indicator"
+                        align="center"
+                        style="right: 80px"
+                      >
+                        LOWER 300
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="1"
+                          height="25"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="left" style="position: relative">
+                        {{{ sectionsMarkup.48672 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
               </div>
             </td>
             <!-- LOWER 200 -->
@@ -97,9 +240,47 @@
               <div
                 class="adjust rotate30L"
                 align="left"
-                style="position: relative; z-index: 2; bottom: 205px"
+                style="
+                  position: relative;
+                  z-index: 2;
+                  bottom: 165px;
+                  right: 150px;
+                "
               >
-                {{{ sectionsMarkup.48671 }}}
+                <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div
+                        class="manual-margin front-indicator"
+                        align="center"
+                        style="right: 125px"
+                      >
+                        LOWER 200
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="1"
+                          height="25"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="left" style="position: relative">
+                        {{{ sectionsMarkup.48671 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
               </div>
             </td>
             <!-- LOWER 100 -->
@@ -110,11 +291,44 @@
                 style="
                   position: relative;
                   z-index: 3;
-                  bottom: 650px;
-                  right: 270px;
+                  bottom: 520px;
+                  right: 520px;
                 "
               >
-                {{{ sectionsMarkup.48670 }}}
+                <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div
+                        class="manual-margin front-indicator"
+                        align="center"
+                        style="right: 100px"
+                      >
+                        LOWER 100
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="1"
+                          height="25"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="left" style="position: relative">
+                        {{{ sectionsMarkup.48670 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
               </div>
             </td>
           </tr>
@@ -129,7 +343,7 @@
         <img
           src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
           width="1"
-          height="100"
+          height="200"
         />
       </div>
     </td>
@@ -155,6 +369,27 @@
                 "
               >
                 <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div class="manual-margin front-indicator" align="center">
+                        UPPER 800
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="1"
+                          height="25"
+                        />
+                      </div>
+                    </td>
+                  </tr>
                   <tr>
                     <td>
                       <div align="right" style="position: relative">
@@ -199,6 +434,31 @@
                 "
               >
                 <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div
+                        class="manual-margin front-indicator"
+                        align="center"
+                        style="left: 150px"
+                      >
+                        UPPER 700
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="1"
+                          height="25"
+                        />
+                      </div>
+                    </td>
+                  </tr>
                   <tr>
                     <td>
                       <div align="right" style="position: relative">
@@ -254,6 +514,31 @@
                 <table align="left" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td>
+                      <div
+                        class="manual-margin front-indicator"
+                        align="center"
+                        style="right: 80px"
+                      >
+                        UPPER 600
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="1"
+                          height="25"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
                       <div align="left" style="position: relative">
                         {{{ sectionsMarkup.48686 }}}
                       </div>
@@ -287,6 +572,31 @@
             <td>
               <div align="right" style="position: relative; z-index: 1">
                 <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div
+                        class="manual-margin front-indicator"
+                        align="center"
+                        style="left: 150px"
+                      >
+                        UPPER 500
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="1"
+                          height="25"
+                        />
+                      </div>
+                    </td>
+                  </tr>
                   <tr>
                     <td>
                       <div align="right" style="position: relative">
@@ -333,6 +643,31 @@
                 <table align="left" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td>
+                      <div
+                        class="manual-margin front-indicator"
+                        align="center"
+                        style="right: 100px"
+                      >
+                        UPPER 400
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="1"
+                          height="25"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
                       <div align="left" style="position: relative">
                         {{{ sectionsMarkup.48682 }}}
                       </div>
@@ -375,6 +710,31 @@
                 "
               >
                 <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div
+                        class="manual-margin front-indicator"
+                        align="center"
+                        style="left: 50px"
+                      >
+                        UPPER 300
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="1"
+                          height="25"
+                        />
+                      </div>
+                    </td>
+                  </tr>
                   <tr>
                     <td>
                       <div align="right" style="position: relative">
@@ -430,6 +790,31 @@
                 <table align="left" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td>
+                      <div
+                        class="manual-margin front-indicator"
+                        align="center"
+                        style="right: 85px"
+                      >
+                        UPPER 200
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="1"
+                          height="25"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
                       <div align="left" style="position: relative">
                         {{{ sectionsMarkup.48678 }}}
                       </div>
@@ -472,6 +857,27 @@
                 "
               >
                 <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div class="manual-margin front-indicator" align="center">
+                        UPPER 100
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="1"
+                          height="25"
+                        />
+                      </div>
+                    </td>
+                  </tr>
                   <tr>
                     <td>
                       <div align="left" style="position: relative; z-index: 3">
