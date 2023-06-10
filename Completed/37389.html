@@ -1,0 +1,199 @@
+<!-- SUMC Theater -->
+<style>
+  .row-blue > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-blue > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: cornflowerblue;
+  }
+  .row-green > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-green > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: darkgreen;
+  }
+  .row-pink > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-pink > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: magenta;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="25"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- Key/Legend -->
+  <tr>
+    <td valign="top">
+      <div align="center">
+        <table
+          align="center"
+          style="background-color: white"
+          style="width: 100%"
+        >
+          <tr>
+            <td>
+              <div
+                style="
+                  background-color: cornflowerblue;
+                  width: 40px;
+                  height: 40px;
+                "
+              ></div>
+            </td>
+            <td>
+              <div align="left" style="width: 100%">
+                <strong> - CHILDREN UNDER 12 ONLY</strong>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="25"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- FRONT -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Front Names -->
+          <tr>
+            <td>
+              <div align="center" style="position: relative; top: 40px">
+                {{{ sectionNames.48795 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.48797 }}}</div>
+            </td>
+          </tr>
+          <!-- Front Seats -->
+          <tr>
+            <td valign="bottom">
+              <div class="row-green" align="center">
+                {{{ sectionsMarkup.48795 }}}
+              </div>
+            </td>
+            <td>
+              <div align="right">
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div class="row-blue" align="right">
+                        {{{ sectionsMarkup.48796 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-green" align="right">
+                        {{{ sectionsMarkup.48797 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- BACK -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Back Names -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionNames.48799 }}}</div>
+            </td>
+          </tr>
+          <!-- Back Seats -->
+          <tr>
+            <td>
+              <div align="center">
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td>
+                      <div class="row-pink" align="center">
+                        {{{ sectionsMarkup.48798 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-green" align="center">
+                        {{{ sectionsMarkup.48799 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
