@@ -1,0 +1,104 @@
+<!-- AMC Landmark 8 - Screen 4 -->
+<style>
+  .screen-image {
+    margin: auto;
+    width: 100%;
+    height: 66px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    background-color: white;
+    border: 2px solid black;
+  }
+  .adjust-right > div > table:nth-last-child(1) {
+    position: relative;
+    left: 20px;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="50"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Screen Image -->
+          <tr>
+            <td>
+              <div class="screen-image" align="center">SCREEN</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="30"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Front Seats -->
+          <tr>
+            <td>
+              <table align="center" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td>
+                    <div align="left">{{{ sectionsMarkup.48904 }}}</div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="60"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Back Seats -->
+          <tr>
+            <td>
+              <table align="center" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td>
+                    <div
+                      class="adjust-right"
+                      align="center"
+                      style="position: relative; right: 41px"
+                    >
+                      {{{ sectionsMarkup.48905 }}}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
