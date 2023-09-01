@@ -1,0 +1,199 @@
+<!-- GHS Auditorium -->
+<style>
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(3)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(4)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-last-child(3)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-last-child(4)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cell {
+    width: 115px;
+  }
+
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(3)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(4)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-last-child(3)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-last-child(4)
+    > .seatCharts-cell {
+    width: 74px;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionNames.49112 }}}</div>
+            </td>
+            <td rowspan="4">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.49113 }}}</div>
+            </td>
+            <td rowspan="4">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.49114 }}}</div>
+            </td>
+          </tr>
+          <!-- Front Seats -->
+          <tr>
+            <td>
+              <div class="extra-wide-left" align="right">
+                {{{ sectionsMarkup.49112 }}}
+              </div>
+            </td>
+            <td>
+              <div class="extra-wide-center" align="center">
+                {{{ sectionsMarkup.49113 }}}
+              </div>
+            </td>
+            <td>
+              <div class="extra-wide-right" align="left">
+                {{{ sectionsMarkup.49114 }}}
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="40"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Back Seats -->
+          <tr>
+            <td>
+              <div class="extra-wide-left" align="right">
+                {{{ sectionsMarkup.49115 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div align="center">{{{ sectionsMarkup.49116 }}}</div>
+            </td>
+            <td>
+              <div align="left">{{{ sectionsMarkup.49117 }}}</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
