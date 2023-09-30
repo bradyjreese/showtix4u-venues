@@ -1,0 +1,88 @@
+<!-- Seligman Performing Arts Center -->
+<style>
+  .row-orange > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-orange > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: orange;
+  }
+  .row-green > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-green > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: limegreen;
+  }
+  .row-purple > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-purple > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: purple;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center" border="0" cellspacing="0" cellpadding="0">
+          <!-- Front Seats -->
+          <tr>
+            <td>
+              <div class="row-orange" align="center">
+                {{{ sectionsMarkup.49494 }}}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="60"
+                />
+              </div>
+            </td>
+          </tr>
+          <!-- Middle Seats -->
+          <tr>
+            <td>
+              <div class="row-green" align="center">
+                {{{ sectionsMarkup.49495 }}}
+              </div>
+            </td>
+          </tr>
+          <!-- Back Seats -->
+          <tr>
+            <td>
+              <div class="row-purple" align="center">
+                {{{ sectionsMarkup.49496 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
