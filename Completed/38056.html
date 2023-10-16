@@ -1,0 +1,104 @@
+<!-- Morningstar Church -->
+<style>
+  .hide-rows > div > table:nth-last-child(2),
+  .hide-rows > div > table:nth-last-child(3) {
+    visibility: hidden;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionNames.49744 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.49745 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.49746 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.49747 }}}</div>
+            </td>
+          </tr>
+          <!-- Seats -->
+          <tr>
+            <td valign="top">
+              <div align="center">{{{ sectionsMarkup.49744 }}}</div>
+            </td>
+            <td>
+              <div class="hide-rows" align="center">
+                {{{ sectionsMarkup.49745 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionsMarkup.49746 }}}</div>
+            </td>
+            <td valign="top">
+              <div align="center">{{{ sectionsMarkup.49747 }}}</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
