@@ -1,0 +1,88 @@
+<!-- St. Patrick Auditorium -->
+<style>
+  .row-purple > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-purple > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: purple;
+  }
+  .row-orange > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-orange > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: orange;
+  }
+  .row-pink > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-pink > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: pink;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="50"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Seats -->
+          <tr>
+            <td>
+              <div align="center">
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td>
+                      <div class="row-purple" align="center">
+                        {{{ sectionsMarkup.49802 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-orange" align="center">
+                        {{{ sectionsMarkup.49803 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-pink" align="center">
+                        {{{ sectionsMarkup.49804 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>

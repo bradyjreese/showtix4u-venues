@@ -1,0 +1,498 @@
+<!-- NCHS UPDATED 2023 Chart -->
+<style>
+  .row-purple > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-purple > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: purple;
+  }
+  .row-orange > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-orange > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: orange;
+  }
+  .extra-wide-front
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .extra-wide-front
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(3)
+    > .seatCharts-cell,
+  .extra-wide-front
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cell,
+  .extra-wide-front
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(5)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-last-child(5)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(6)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-last-child(6)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(4)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-last-child(4)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(5)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-last-child(5)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(8)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-last-child(8)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(9)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-last-child(9)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(5)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(5)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(8)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(8)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(9)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(9)
+    > .seatCharts-cell
+    .extra-wide-right
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(5)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(5)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(6)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(6)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-child(5)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-child(5)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-child(8)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-child(8)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-child(9)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-child(9)
+    > .seatCharts-cell {
+    width: 74px;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="25"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- FRONT -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Front Names -->
+          <tr>
+            <td>
+              <div align="right">{{{ sectionNames.49805 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="right">{{{ sectionNames.49808 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.49811 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="left">{{{ sectionNames.49814 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="left">{{{ sectionNames.49815 }}}</div>
+            </td>
+          </tr>
+          <!-- Front Seats -->
+          <tr>
+            <td>
+              <div align="right">{{{ sectionsMarkup.49805 }}}</div>
+            </td>
+            <td>
+              <div align="right">
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div class="extra-wide-front" align="right">
+                        {{{ sectionsMarkup.49806 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-orange" align="right">
+                        {{{ sectionsMarkup.49807 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="right">{{{ sectionsMarkup.49808 }}}</div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td>
+              <div align="center">
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td>
+                      <div class="row-orange" align="center">
+                        {{{ sectionsMarkup.49809 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-purple" align="center">
+                        {{{ sectionsMarkup.49810 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="center">{{{ sectionsMarkup.49811 }}}</div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td>
+              <div align="left">
+                <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div class="extra-wide-front" align="left">
+                        {{{ sectionsMarkup.49812 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row-orange" align="left">
+                        {{{ sectionsMarkup.49813 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="left">{{{ sectionsMarkup.49814 }}}</div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td>
+              <div align="left">{{{ sectionsMarkup.49815 }}}</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="40"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- BACK -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Back Names -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionNames.49816 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.49817 }}}</div>
+            </td>
+            <td rowspan="2">
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center">{{{ sectionNames.49818 }}}</div>
+            </td>
+          </tr>
+          <!-- Back Seats -->
+          <tr>
+            <td>
+              <div class="extra-wide-left" align="center">
+                {{{ sectionsMarkup.49816 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div class="extra-wide-center" align="center">
+                {{{ sectionsMarkup.49817 }}}
+              </div>
+            </td>
+            <td>
+              <div class="extra-wide-right" align="center">
+                {{{ sectionsMarkup.49818 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
