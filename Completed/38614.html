@@ -1,0 +1,203 @@
+<!-- Kinkade Theater (Great Comet) -->
+<style>
+  .manual-margin {
+    position: relative;
+    z-index: 0;
+    margin: auto;
+    margin-top: 10px;
+  }
+  .last-cell > div > table > tbody > tr > td:nth-last-child(1),
+  .last-cell > div > table > tr > td:nth-last-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+  .first-cell > div > table > tbody > tr > td:nth-child(1),
+  .first-cell > div > table > tr > td:nth-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+  .purple-border > div > table > tbody > tr,
+  .purple-border > div > table > tr {
+    border: 2px solid purple;
+    border-radius: 20px;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- FRONT -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative">
+        <table align="center">
+          <!-- Front Names -->
+          <tr>
+            <td>
+              <div align="center" style="position: relative">
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td>
+                      <div
+                        class="front-indicator manual-margin"
+                        align="center"
+                        style="right: 130px"
+                      >
+                        ON-STAGE SEATING
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        {{{ sectionNames.50121 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        class="front-indicator manual-margin"
+                        align="center"
+                        style="left: 130px"
+                      >
+                        ON-STAGE SEATING
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+          <!-- Front Seats -->
+          <tr>
+            <td>
+              <div align="center" style="position: relative">
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td>
+                      <div align="center" style="position: relative">
+                        <table
+                          align="center"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div
+                                class="purple-border last-cell"
+                                align="right"
+                                style="position: relative; z-index: 1"
+                              >
+                                {{{ sectionsMarkup.50118 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div
+                                align="center"
+                                style="position: relative; z-index: 1"
+                              >
+                                {{{ sectionsMarkupNoRowNames.50119 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div
+                                class="purple-border first-cell"
+                                align="left"
+                                style="position: relative; z-index: 1"
+                              >
+                                {{{ sectionsMarkup.50120 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.50121 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- BACK -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Back Names -->
+          <tr>
+            <td>
+              <div align="center">{{{ sectionNames.50122 }}}</div>
+            </td>
+          </tr>
+          <!-- Back Seats -->
+          <tr>
+            <td>
+              <div align="right">{{{ sectionsMarkup.50122 }}}</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
