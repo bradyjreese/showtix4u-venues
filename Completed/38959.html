@@ -1,0 +1,153 @@
+<!-- Robert Margolis Performing Arts Center - Mamma Mia -->
+<style>
+  .row-blue > div > table > tbody > tr,
+  .row-blue > div > table > tr {
+    background-color: cornflowerblue;
+  }
+  .row-red > div > table > tbody > tr,
+  .row-red > div > table > tr {
+    background-color: red;
+  }
+  .row-green > div > table > tbody > tr,
+  .row-green > div > table > tr {
+    background-color: green;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0; right: 45px">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="350px"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 3">
+        <table align="center">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div
+                class="adjust rotate45R"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 0;
+                  bottom: 285px;
+                  left: 240px;
+                "
+              >
+                {{{ sectionNames.50757 }}}
+              </div>
+            </td>
+            <td>
+              <div align="right" style="position: relative; z-index: 0">
+                {{{ sectionNames.50758 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="left" style="position: relative; z-index: 0">
+                {{{ sectionNames.50759 }}}
+              </div>
+            </td>
+            <td>
+              <div
+                class="adjust rotate45L"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 0;
+                  bottom: 285px;
+                  right: 240px;
+                "
+              >
+                {{{ sectionNames.50760 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Seats -->
+          <tr>
+            <td>
+              <div
+                class="row-green adjust rotate45R"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 2;
+                  bottom: 320px;
+                  left: 120px;
+                "
+              >
+                {{{ sectionsMarkup.50757 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div
+                class="row-red"
+                align="right"
+                style="position: relative; z-index: 1"
+              >
+                {{{ sectionsMarkup.50758 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div
+                class="row-red"
+                align="left"
+                style="position: relative; z-index: 1"
+              >
+                {{{ sectionsMarkup.50759 }}}
+              </div>
+            </td>
+            <td>
+              <div
+                class="row-blue adjust rotate45L"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 2;
+                  bottom: 320px;
+                  right: 120px;
+                "
+              >
+                {{{ sectionsMarkup.50760 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>

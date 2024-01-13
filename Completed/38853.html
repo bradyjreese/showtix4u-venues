@@ -3,7 +3,7 @@
   .pit-box {
     position: relative;
     z-index: 0;
-    bottom: 490px;
+    bottom: 510px;
     left: 421px;
     display: flex;
     justify-content: center;
@@ -14,6 +14,11 @@
     height: 237px;
     border: 2px solid black;
     background-color: limegreen;
+  }
+  .seat-note {
+    position: relative;
+    z-index: 0;
+    color: red;
   }
 </style>
 
@@ -74,6 +79,23 @@
             </td>
             <td>
               <div align="left">{{{ sectionsMarkup.50600 }}}</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <!-- NOTE -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <table align="center">
+          <tr>
+            <td>
+              <div class="seat-note" align="center">
+                EACH SEAT CAN BE MADE HANDICAPPED ACCESSIBLE
+              </div>
             </td>
           </tr>
         </table>
