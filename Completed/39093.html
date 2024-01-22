@@ -1,0 +1,90 @@
+<!-- Z PLAYHOUSE MAIN SEATING CHART -->
+<style>
+  .last-cell > div > table > tbody > tr > td:nth-last-child(1),
+  .last-cell > div > table > tr > td:nth-last-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+  .first-cell > div > table > tbody > tr > td:nth-child(1),
+  .first-cell > div > table > tr > td:nth-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="25"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center" border="0" cellspacing="0" cellpadding="0">
+          <!-- Front Seats -->
+          <tr>
+            <td>
+              <div class="last-cell" align="center">
+                {{{ sectionsMarkup.50907 }}}
+              </div>
+            </td>
+            <td>
+              <div class="first-cell" align="right">
+                {{{ sectionsMarkup.50908 }}}
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="41"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Front Seats -->
+          <tr>
+            <td valign="top">
+              <div class="last-cell" align="left">
+                {{{ sectionsMarkup.50909 }}}
+              </div>
+            </td>
+            <td>
+              <div class="first-cell" align="center">
+                {{{ sectionsMarkup.50910 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
