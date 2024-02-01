@@ -1,0 +1,179 @@
+<!-- The Core -->
+<style>
+  .stage-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+    border: 2px solid black;
+    background-color: white;
+    font-size: 34px;
+  }
+  .main {
+    width: 1500px;
+    height: 80px;
+  }
+  .ext {
+    width: 120px;
+    height: 465px;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="200"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative">
+        <table align="center">
+          <!-- Stage Image -->
+          <tr>
+            <td>
+              <div
+                align="center"
+                style="position: relative; z-index: 0; bottom: 75px"
+              >
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td>
+                      <div class="stage-img main" align="center">STAGE</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center">
+                      <div class="stage-img ext" align="center">STAGE</div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div
+                align="center"
+                style="position: relative; z-index: 1; bottom: 490px"
+              >
+                <table align="center">
+                  <!-- Names -->
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        {{{ sectionNames.51094 }}}
+                      </div>
+                    </td>
+                    <td rowspan="2">
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        {{{ sectionNames.51095 }}}
+                      </div>
+                    </td>
+                    <td rowspan="2">
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="160"
+                          height="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        {{{ sectionNames.51096 }}}
+                      </div>
+                    </td>
+                    <td rowspan="2">
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 0"
+                      >
+                        {{{ sectionNames.51097 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Seats -->
+                  <tr>
+                    <td valign="top">
+                      <div align="right" style="position: relative; z-index: 1">
+                        {{{ sectionsMarkup.51094 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div align="right" style="position: relative; z-index: 1">
+                        {{{ sectionsMarkup.51095 }}}
+                      </div>
+                    </td>
+                    <td>
+                      <div align="left" style="position: relative; z-index: 1">
+                        {{{ sectionsMarkup.51096 }}}
+                      </div>
+                    </td>
+                    <td valign="top">
+                      <div align="left" style="position: relative; z-index: 1">
+                        {{{ sectionsMarkup.51097 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
