@@ -239,6 +239,18 @@
     > .seatCharts-cell {
     width: 53px;
   }
+  .row-gold > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-gold > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: gold;
+  }
+  .row-silver > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-silver > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: silver;
+  }
+  .row-bronze > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-bronze > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: #cd7f32;
+  }
 </style>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
@@ -262,7 +274,7 @@
         <img
           src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
           width="1"
-          height="25"
+          height="50"
         />
       </div>
     </td>
@@ -273,51 +285,16 @@
     <td>
       <div align="center" style="position: relative">
         <table align="center">
-          <!-- Front Names -->
-          <tr>
-            <td>
-              <div align="center" style="position: relative; z-index: 0">
-                {{{ sectionNames.51677 }}}
-              </div>
-            </td>
-            <td rowspan="2">
-              <div align="center" style="position: relative; z-index: 0">
-                <img
-                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="40"
-                  height="1"
-                />
-              </div>
-            </td>
-            <td>
-              <div align="center" style="position: relative; z-index: 0">
-                {{{ sectionNames.51680 }}}
-              </div>
-            </td>
-            <td rowspan="2">
-              <div align="center" style="position: relative; z-index: 0">
-                <img
-                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="40"
-                  height="1"
-                />
-              </div>
-            </td>
-            <td>
-              <div align="center" style="position: relative; z-index: 0">
-                {{{ sectionNames.51683 }}}
-              </div>
-            </td>
-          </tr>
           <!-- Front Seats -->
           <tr>
+            <!-- Front Left -->
             <td>
               <div align="right" style="position: relative">
                 <table align="right" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td>
                       <div
-                        class="extra-wide-left-one"
+                        class="extra-wide-left-one row-gold"
                         align="right"
                         style="position: relative; z-index: 1"
                       >
@@ -327,7 +304,11 @@
                   </tr>
                   <tr>
                     <td>
-                      <div align="right" style="position: relative; z-index: 1">
+                      <div
+                        class="row-silver"
+                        align="right"
+                        style="position: relative; z-index: 1"
+                      >
                         {{{ sectionsMarkup.51678 }}}
                       </div>
                     </td>
@@ -335,7 +316,7 @@
                   <tr>
                     <td>
                       <div
-                        class="extra-wide-left-two"
+                        class="extra-wide-left-two row-bronze"
                         align="right"
                         style="position: relative; z-index: 1"
                       >
@@ -346,6 +327,18 @@
                 </table>
               </div>
             </td>
+
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+
+            <!-- Front Center -->
             <td>
               <div align="center" style="position: relative">
                 <table
@@ -357,7 +350,7 @@
                   <tr>
                     <td>
                       <div
-                        class="extra-wide-center-one"
+                        class="extra-wide-center-one row-gold"
                         align="center"
                         style="position: relative; z-index: 1"
                       >
@@ -368,6 +361,7 @@
                   <tr>
                     <td>
                       <div
+                        class="row-silver"
                         align="center"
                         style="position: relative; z-index: 1"
                       >
@@ -378,7 +372,7 @@
                   <tr>
                     <td>
                       <div
-                        class="extra-wide-center-two"
+                        class="extra-wide-center-two row-bronze"
                         align="center"
                         style="position: relative; z-index: 1"
                       >
@@ -389,13 +383,25 @@
                 </table>
               </div>
             </td>
+
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+
+            <!-- Front Right -->
             <td>
               <div align="left" style="position: relative">
                 <table align="left" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td>
                       <div
-                        class="extra-wide-right-one"
+                        class="extra-wide-right-one row-gold"
                         align="left"
                         style="position: relative; z-index: 1"
                       >
@@ -405,7 +411,11 @@
                   </tr>
                   <tr>
                     <td>
-                      <div align="left" style="position: relative; z-index: 1">
+                      <div
+                        class="row-silver"
+                        align="left"
+                        style="position: relative; z-index: 1"
+                      >
                         {{{ sectionsMarkup.51684 }}}
                       </div>
                     </td>
@@ -413,7 +423,7 @@
                   <tr>
                     <td>
                       <div
-                        class="extra-wide-right-two"
+                        class="extra-wide-right-two row-bronze"
                         align="left"
                         style="position: relative; z-index: 1"
                       >
@@ -447,65 +457,54 @@
     <td>
       <div align="center" style="position: relative">
         <table align="center">
-          <!-- Back Names -->
-          <tr>
-            <td>
-              <div align="center" style="position: relative; z-index: 0">
-                {{{ sectionNames.51686 }}}
-              </div>
-            </td>
-            <td rowspan="2">
-              <div align="center" style="position: relative; z-index: 0">
-                <img
-                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="40"
-                  height="1"
-                />
-              </div>
-            </td>
-            <td>
-              <div align="center" style="position: relative; z-index: 0">
-                {{{ sectionNames.51687 }}}
-              </div>
-            </td>
-            <td rowspan="2">
-              <div align="center" style="position: relative; z-index: 0">
-                <img
-                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="40"
-                  height="1"
-                />
-              </div>
-            </td>
-            <td>
-              <div align="center" style="position: relative; z-index: 0">
-                {{{ sectionNames.51688 }}}
-              </div>
-            </td>
-          </tr>
           <!-- Back Seats -->
           <tr>
+            <!-- Back Left -->
             <td>
               <div
-                class="extra-wide-back-left"
+                class="extra-wide-back-left row-bronze"
                 align="center"
                 style="position: relative; z-index: 1"
               >
                 {{{ sectionsMarkup.51686 }}}
               </div>
             </td>
+
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+
+            <!-- Back Center -->
             <td valign="top">
               <div
-                class="extra-wide-center-back"
+                class="extra-wide-center-back row-bronze"
                 align="center"
                 style="position: relative; z-index: 1"
               >
                 {{{ sectionsMarkup.51687 }}}
               </div>
             </td>
+
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+
+            <!-- Back Right -->
             <td>
               <div
-                class="extra-wide-back-right"
+                class="extra-wide-back-right row-bronze"
                 align="center"
                 style="position: relative; z-index: 1"
               >
