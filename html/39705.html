@@ -1,0 +1,225 @@
+<!-- The Harold Greenspon Auditorium -->
+<style>
+  .stage-img {
+    position: relative;
+    z-index: 0;
+    border: 2px solid black;
+    background-color: cornflowerblue;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    text-align: center;
+    font-size: 50px;
+  }
+  .long-way {
+    width: 700px;
+    height: 200px;
+    bottom: 250px;
+  }
+  .tall-way {
+    border-top: none;
+    width: 300px;
+    height: 500px;
+    bottom: 252px;
+  }
+  .aisle-label {
+    position: relative;
+    z-index: 0;
+    font-size: 35px;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="300"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- STAGE IMAGE -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <table align="center" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <table align="center" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td>
+                    <div class="stage-img long-way" align="center">STAGE</div>
+                  </td>
+                </tr>
+              </table>
+              <table align="center" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td>
+                    <div class="stage-img tall-way" align="center"></div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative">
+        <table align="center" border="0" cellspacing="0" cellpadding="0">
+          <!-- SEATS -->
+          <tr>
+            <td valign="top">
+              <div
+                class="adjust rotate90R"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 4;
+                  bottom: 690px;
+                  left: 460px;
+                "
+              >
+                {{{ sectionsMarkupNoRowNames.51804 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div
+                class="adjust rotate90R"
+                align="left"
+                style="
+                  position: relative;
+                  z-index: 3;
+                  bottom: 380px;
+                  left: 214px;
+                "
+              >
+                {{{ sectionsMarkupNoRowNames.51805 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div
+                class="adjust rotate45R"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 2;
+                  bottom: 105px;
+                  right: 25px;
+                "
+              >
+                {{{ sectionsMarkupNoRowNames.51806 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div
+                align="center"
+                style="position: relative; z-index: 1; bottom: 180px"
+              >
+                {{{ sectionsMarkupNoRowNames.51807 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div
+                class="adjust rotate45L"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 2;
+                  bottom: 101px;
+                  right: 8px;
+                "
+              >
+                {{{ sectionsMarkupNoRowNames.51808 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div
+                class="adjust rotate90L"
+                align="right"
+                style="
+                  position: relative;
+                  z-index: 3;
+                  bottom: 402px;
+                  right: 193px;
+                "
+              >
+                {{{ sectionsMarkupNoRowNames.51809 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div
+                class="adjust rotate90L"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 4;
+                  bottom: 690px;
+                  right: 460px;
+                "
+              >
+                {{{ sectionsMarkupNoRowNames.51810 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <!-- AISLE LABELS -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <table align="center" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <div
+                class="aisle-label"
+                align="center"
+                style="bottom: 720px; right: 185px"
+              >
+                AISLE
+              </div>
+            </td>
+            <td>
+              <div
+                class="aisle-label adjust rotate45L"
+                align="center"
+                style="bottom: 375px; right: 180px"
+              >
+                AISLE
+              </div>
+            </td>
+            <td>
+              <div
+                class="aisle-label adjust rotate45R"
+                align="center"
+                style="bottom: 375px; left: 180px"
+              >
+                AISLE
+              </div>
+            </td>
+            <td>
+              <div
+                class="aisle-label"
+                align="center"
+                style="bottom: 720px; left: 185px"
+              >
+                AISLE
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
