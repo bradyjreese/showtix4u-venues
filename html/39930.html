@@ -1,29 +1,41 @@
-<!-- V.P. Henry Auditorium Blackbox -->
+<!-- St. Alphonsus Parish School | Angels' Angle -->
 <style>
-  .stage-img {
-    position: relative;
-    z-index: 0;
-    background-color: purple;
-    border: 2px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 40px;
-    color: white;
-    width: 400px;
-    height: 480px;
+  .row-blue > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-blue > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: cornflowerblue;
+  }
+  .row-red > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-red > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: red;
+  }
+  .row-green > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-green > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: green;
   }
 </style>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
   <tr>
     <td>
       <div align="center" style="position: relative; z-index: 0">
         <img
           src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
           width="1"
-          height="400"
+          height="25"
         />
       </div>
     </td>
@@ -34,14 +46,32 @@
     <td>
       <div align="center" style="position: relative">
         <table align="center">
+          <!-- Names -->
           <tr>
-            <!-- Left -->
             <td>
-              <div
-                class="adjust rotate90L"
-                align="center"
-                style="position: relative; left: 140px"
-              >
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.52035 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="80"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.52038 }}}
+              </div>
+            </td>
+          </tr>
+          <!-- Seats -->
+          <tr>
+            <td>
+              <div align="center" style="position: relative">
                 <table
                   align="center"
                   border="0"
@@ -51,47 +81,41 @@
                   <tr>
                     <td>
                       <div
+                        class="row-red"
                         align="center"
                         style="position: relative; z-index: 1"
                       >
-                        {{{ sectionsMarkup.52020 }}}
+                        {{{ sectionsMarkup.52033 }}}
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <div
+                        class="row-green"
                         align="center"
                         style="position: relative; z-index: 1"
                       >
-                        {{{ sectionsMarkup.52019 }}}
+                        {{{ sectionsMarkup.52034 }}}
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <div
+                        class="row-blue"
                         align="center"
                         style="position: relative; z-index: 1"
                       >
-                        {{{ sectionsMarkup.52018 }}}
+                        {{{ sectionsMarkup.52035 }}}
                       </div>
                     </td>
                   </tr>
                 </table>
               </div>
             </td>
-            <!-- Stage Image -->
             <td>
-              <div class="stage-img" align="center">STAGE</div>
-            </td>
-            <!-- Right -->
-            <td>
-              <div
-                class="adjust rotate90R"
-                align="center"
-                style="position: relative; right: 140px"
-              >
+              <div align="center" style="position: relative">
                 <table
                   align="center"
                   border="0"
@@ -101,30 +125,33 @@
                   <tr>
                     <td>
                       <div
+                        class="row-red"
                         align="center"
                         style="position: relative; z-index: 1"
                       >
-                        {{{ sectionsMarkup.52023 }}}
+                        {{{ sectionsMarkup.52036 }}}
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <div
+                        class="row-green"
                         align="center"
                         style="position: relative; z-index: 1"
                       >
-                        {{{ sectionsMarkup.52022 }}}
+                        {{{ sectionsMarkup.52037 }}}
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <div
+                        class="row-blue"
                         align="center"
                         style="position: relative; z-index: 1"
                       >
-                        {{{ sectionsMarkup.52021 }}}
+                        {{{ sectionsMarkup.52038 }}}
                       </div>
                     </td>
                   </tr>

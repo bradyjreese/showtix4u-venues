@@ -1,0 +1,514 @@
+<!-- New Canaan High School -->
+<style>
+  .row-purple > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-purple > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: purple;
+  }
+  .extra-wide-left
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(5)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-last-child(5)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(6)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-last-child(6)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(4)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-last-child(4)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(5)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-last-child(5)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(8)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-last-child(8)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(9)
+    > .seatCharts-cell,
+  .extra-wide-left
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-last-child(9)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(5)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(5)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(8)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(8)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(9)
+    > .seatCharts-cell,
+  .extra-wide-center
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(9)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(5)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(5)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:nth-child(6)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-child(1)
+    > tr
+    > td:nth-child(6)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-child(4)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-child(5)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-child(5)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-child(8)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-child(8)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-child(9)
+    > .seatCharts-cell,
+  .extra-wide-right
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-child(9)
+    > .seatCharts-cell {
+    width: 74px;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="25"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- FRONT -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <table align="center">
+          <!-- Front Names -->
+          <tr>
+            <td>
+              <div
+                align="center"
+                style="position: relative; z-index: 0; top: 41px"
+              >
+                {{{ sectionNames.52007 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div
+                align="center"
+                style="position: relative; z-index: 0; top: 41px"
+              >
+                {{{ sectionNames.52009 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.52011 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div
+                align="center"
+                style="position: relative; z-index: 0; top: 41px"
+              >
+                {{{ sectionNames.52013 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div
+                align="center"
+                style="position: relative; z-index: 0; top: 41px"
+              >
+                {{{ sectionNames.52014 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Front Seats -->
+          <tr>
+            <td valign="bottom">
+              <div align="right" style="position: relative; z-index: 1">
+                {{{ sectionsMarkup.52007 }}}
+              </div>
+            </td>
+            <td valign="bottom">
+              <div align="right" style="position: relative">
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div
+                        class="row-purple"
+                        align="right"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.52008 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="right" style="position: relative; z-index: 1">
+                        {{{ sectionsMarkup.52009 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative">
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td>
+                      <div
+                        class="row-purple"
+                        align="center"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.52010 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        align="center"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.52011 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td valign="bottom">
+              <div align="left" style="position: relative">
+                <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div
+                        class="row-purple"
+                        align="left"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.52012 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="left" style="position: relative; z-index: 1">
+                        {{{ sectionsMarkup.52013 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td valign="bottom">
+              <div align="left" style="position: relative; z-index: 1">
+                {{{ sectionsMarkup.52014 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="40"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- BACK -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative">
+        <table align="center">
+          <!-- Back Names -->
+          <tr>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.52015 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.52016 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.52017 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Back Seats -->
+          <tr>
+            <td>
+              <div
+                class="extra-wide-left"
+                align="center"
+                style="position: relative; z-index: 1"
+              >
+                {{{ sectionsMarkup.52015 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div
+                class="extra-wide-center"
+                align="center"
+                style="position: relative; z-index: 1"
+              >
+                {{{ sectionsMarkup.52016 }}}
+              </div>
+            </td>
+            <td>
+              <div
+                class="extra-wide-right"
+                align="center"
+                style="position: relative; z-index: 1"
+              >
+                {{{ sectionsMarkup.52017 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
