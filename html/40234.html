@@ -1,0 +1,278 @@
+<!-- OCF Auditorium Summer 2024 -->
+<style>
+  .row-blue > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-blue > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: cornflowerblue;
+  }
+  .row-pink > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-pink > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: pink;
+  }
+  .row-gray > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-gray > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: darkgray;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0; right: 13px">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="100"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- FRONT -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative">
+        <table align="center">
+          <!-- Front Names -->
+          <tr>
+            <td>
+              <div
+                class="adjust rotate15R"
+                align="center"
+                style="position: relative; z-index: 0; bottom: 80px; left: 30px"
+              >
+                {{{ sectionNames.52341 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="60"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.52345 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="60"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div
+                class="adjust rotate15L"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 0;
+                  bottom: 80px;
+                  right: 30px;
+                "
+              >
+                {{{ sectionNames.52348 }}}
+              </div>
+            </td>
+          </tr>
+          <!-- Front Seats -->
+          <tr>
+            <!-- Left -->
+            <td valign="top">
+              <div
+                class="adjust rotate15R"
+                align="right"
+                style="position: relative; bottom: 75px"
+              >
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div
+                        class="row-blue"
+                        align="right"
+                        style="position: relative; z-index: 2"
+                      >
+                        {{{ sectionsMarkup.52339 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-gray"
+                        align="right"
+                        style="position: relative; z-index: 2"
+                      >
+                        {{{ sectionsMarkup.52340 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="right" style="position: relative; z-index: 2">
+                        {{{ sectionsMarkup.52341 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- Center -->
+            <td valign="top">
+              <div align="center" style="position: relative">
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td>
+                      <div
+                        class="row-pink"
+                        align="center"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.52342 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-blue"
+                        align="center"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.52343 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-gray"
+                        align="center"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.52344 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="right" style="position: relative; z-index: 1">
+                        {{{ sectionsMarkup.52345 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- Right -->
+            <td>
+              <div
+                class="adjust rotate15L"
+                align="left"
+                style="position: relative; bottom: 75px"
+              >
+                <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div
+                        class="row-blue"
+                        align="left"
+                        style="position: relative; z-index: 2"
+                      >
+                        {{{ sectionsMarkup.52346 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-gray"
+                        align="left"
+                        style="position: relative; z-index: 2"
+                      >
+                        {{{ sectionsMarkup.52347 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="left" style="position: relative; z-index: 2">
+                        {{{ sectionsMarkup.52348 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="100"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- BACK -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative">
+        <table align="center">
+          <!-- Back Seats -->
+          <tr>
+            <td>
+              <div
+                align="left"
+                style="position: relative; z-index: 1; left: 206px"
+              >
+                {{{ sectionsMarkup.52349 }}}
+              </div>
+            </td>
+            <td valign="bottom">
+              <div
+                align="center"
+                style="position: relative; z-index: 1; left: 350px"
+              >
+                {{{ sectionsMarkup.52350 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
