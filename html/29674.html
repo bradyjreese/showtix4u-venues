@@ -3,7 +3,7 @@
   <!-- Stage Image -->
   <tr>
     <td>
-      <div align="center">
+      <div align="center" style="position: relative; z-index: 0">
         <img
           src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
           alt="STAGE"
@@ -16,10 +16,10 @@
 
   <tr>
     <td>
-      <div align="center">
+      <div align="center" style="position: relative; z-index: 0">
         <img
           src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-          width="75"
+          width="1"
           height="75"
         />
       </div>
@@ -29,7 +29,7 @@
   <!-- FRONT -->
   <tr>
     <td>
-      <div align="center">
+      <div align="center" style="position: relative">
         <table align="center">
           <!-- Front Names -->
           <tr>
@@ -37,41 +37,50 @@
               <div
                 class="adjust rotate25R"
                 align="right"
-                style="position: relative; bottom: 200px; left: 120px"
+                style="
+                  position: relative;
+                  bottom: 200px;
+                  left: 120px;
+                  z-index: 0;
+                "
               >
                 {{{ sectionNames.40973 }}}
               </div>
             </td>
-            <td>
-              <div align="center">
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
                 <img
                   src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
                   width="50"
-                  height="50"
+                  height="1"
                 />
               </div>
             </td>
             <td>
-              <div align="right">{{{ sectionNames.40974 }}}</div>
+              <div align="right" style="position: relative; z-index: 0">
+                {{{ sectionNames.40974 }}}
+              </div>
             </td>
-            <td>
-              <div align="center">
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
                 <img
                   src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
                   width="50"
-                  height="50"
+                  height="1"
                 />
               </div>
             </td>
             <td>
-              <div align="left">{{{ sectionNames.40975 }}}</div>
+              <div align="left" style="position: relative; z-index: 0">
+                {{{ sectionNames.40975 }}}
+              </div>
             </td>
-            <td>
-              <div align="center">
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
                 <img
                   src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
                   width="50"
-                  height="50"
+                  height="1"
                 />
               </div>
             </td>
@@ -79,7 +88,12 @@
               <div
                 class="adjust rotate25L"
                 align="left"
-                style="position: relative; bottom: 200px; right: 120px"
+                style="
+                  position: relative;
+                  bottom: 200px;
+                  right: 120px;
+                  z-index: 0;
+                "
               >
                 {{{ sectionNames.40976 }}}
               </div>
@@ -92,49 +106,36 @@
               <div
                 class="adjust rotate25R"
                 align="right"
-                style="position: relative; bottom: 180px; left: 70px"
+                style="
+                  position: relative;
+                  bottom: 180px;
+                  left: 70px;
+                  z-index: 2;
+                "
               >
                 {{{ sectionsMarkup.40973 }}}
               </div>
             </td>
             <td>
-              <div align="center">
-                <img
-                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="50"
-                  height="50"
-                />
+              <div align="right" style="position: relative; z-index: 1">
+                {{{ sectionsMarkup.40974 }}}
               </div>
             </td>
             <td>
-              <div align="right">{{{ sectionsMarkup.40974 }}}</div>
-            </td>
-            <td>
-              <div align="center">
-                <img
-                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="50"
-                  height="50"
-                />
-              </div>
-            </td>
-            <td>
-              <div align="left">{{{ sectionsMarkup.40975 }}}</div>
-            </td>
-            <td>
-              <div align="center">
-                <img
-                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="50"
-                  height="50"
-                />
+              <div align="left" style="position: relative; z-index: 1">
+                {{{ sectionsMarkup.40975 }}}
               </div>
             </td>
             <td>
               <div
                 class="adjust rotate25L"
                 align="left"
-                style="position: relative; bottom: 180px; right: 70px"
+                style="
+                  position: relative;
+                  bottom: 180px;
+                  right: 70px;
+                  z-index: 2;
+                "
               >
                 {{{ sectionsMarkup.40976 }}}
               </div>
@@ -147,10 +148,10 @@
 
   <tr>
     <td>
-      <div align="center">
+      <div align="center" style="position: relative; z-index: 0">
         <img
           src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-          width="15"
+          width="1"
           height="15"
         />
       </div>
@@ -160,7 +161,7 @@
   <!-- MIDDLE -->
   <tr>
     <td>
-      <div align="center">
+      <div align="center" style="position: relative">
         <table align="center">
           <!-- Middle Names -->
           <tr>
@@ -168,41 +169,45 @@
               <div
                 class="adjust rotate15R"
                 align="center"
-                style="position: relative; bottom: 50px; left: 30px"
+                style="position: relative; bottom: 50px; left: 30px; z-index: 0"
               >
                 {{{ sectionNames.40977 }}}
               </div>
             </td>
-            <td>
-              <div align="center">
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
                 <img
                   src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
                   width="50"
-                  height="50"
+                  height="1"
                 />
               </div>
             </td>
             <td>
-              <div align="center">{{{ sectionNames.40978 }}}</div>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.40978 }}}
+              </div>
             </td>
-            <td>
-              <div align="center">
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
                 <img
                   src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
                   width="50"
-                  height="50"
+                  height="1"
                 />
               </div>
             </td>
             <td>
-              <div align="center">{{{ sectionNames.40979 }}}</div>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.40979 }}}
+              </div>
             </td>
-            <td>
-              <div align="center">
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
                 <img
                   src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
                   width="50"
-                  height="50"
+                  height="1"
                 />
               </div>
             </td>
@@ -210,7 +215,12 @@
               <div
                 class="adjust rotate15L"
                 align="center"
-                style="position: relative; bottom: 50px; right: 30px"
+                style="
+                  position: relative;
+                  bottom: 50px;
+                  right: 30px;
+                  z-index: 0;
+                "
               >
                 {{{ sectionNames.40980 }}}
               </div>
@@ -223,49 +233,31 @@
               <div
                 class="adjust rotate15R"
                 align="center"
-                style="position: relative; bottom: 65px; right: 50px"
+                style="
+                  position: relative;
+                  bottom: 65px;
+                  right: 50px;
+                  z-index: 2;
+                "
               >
                 {{{ sectionsMarkup.40977 }}}
               </div>
             </td>
             <td>
-              <div align="center">
-                <img
-                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="50"
-                  height="50"
-                />
+              <div align="center" style="position: relative; z-index: 1">
+                {{{ sectionsMarkup.40978 }}}
               </div>
             </td>
             <td>
-              <div align="center">{{{ sectionsMarkup.40978 }}}</div>
-            </td>
-            <td>
-              <div align="center">
-                <img
-                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="50"
-                  height="50"
-                />
-              </div>
-            </td>
-            <td>
-              <div align="center">{{{ sectionsMarkup.40979 }}}</div>
-            </td>
-            <td>
-              <div align="center">
-                <img
-                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="50"
-                  height="50"
-                />
+              <div align="center" style="position: relative; z-index: 1">
+                {{{ sectionsMarkup.40979 }}}
               </div>
             </td>
             <td>
               <div
                 class="adjust rotate15L"
                 align="center"
-                style="position: relative; bottom: 65px; left: 50px"
+                style="position: relative; bottom: 65px; left: 50px; z-index: 2"
               >
                 {{{ sectionsMarkup.40980 }}}
               </div>
@@ -278,19 +270,20 @@
 
   <tr>
     <td>
-      <div align="center">
+      <div align="center" style="position: relative; z-index: 0">
         <img
           src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-          width="20"
+          width="1"
           height="20"
         />
       </div>
     </td>
   </tr>
 
+  <!-- BALCONY NOTE -->
   <tr>
     <td>
-      <div align="center">
+      <div align="center" style="position: relative; z-index: 0">
         <table align="center" width="500px">
           <tr>
             <td>
@@ -305,6 +298,8 @@
                   width: 100%;
                   height: 75px;
                   font-size: 28px;
+                  position: relative;
+                  z-index: 0;
                 "
               >
                 BALCONY OVERHANGS ROW "P"
@@ -318,10 +313,10 @@
 
   <tr>
     <td>
-      <div align="center">
+      <div align="center" style="position: relative; z-index: 0">
         <img
           src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-          width="20"
+          width="1"
           height="20"
         />
       </div>
@@ -331,7 +326,7 @@
   <!-- BACK -->
   <tr>
     <td>
-      <div align="center">
+      <div align="center" style="position: relative">
         <table align="center">
           <!-- Back Names -->
           <tr>
@@ -339,41 +334,45 @@
               <div
                 class="adjust rotate5R"
                 align="center"
-                style="position: relative; bottom: 22px; left: 50px"
+                style="position: relative; bottom: 22px; left: 50px; z-index: 0"
               >
                 {{{ sectionNames.40981 }}}
               </div>
             </td>
-            <td>
-              <div align="center">
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
                 <img
                   src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
                   width="50"
-                  height="50"
+                  height="1"
                 />
               </div>
             </td>
             <td>
-              <div align="center">{{{ sectionNames.40982 }}}</div>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.40982 }}}
+              </div>
             </td>
-            <td>
-              <div align="center">
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
                 <img
                   src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
                   width="50"
-                  height="50"
+                  height="1"
                 />
               </div>
             </td>
             <td>
-              <div align="center">{{{ sectionNames.40983 }}}</div>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.40983 }}}
+              </div>
             </td>
-            <td>
-              <div align="center">
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
                 <img
                   src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
                   width="50"
-                  height="50"
+                  height="1"
                 />
               </div>
             </td>
@@ -381,7 +380,12 @@
               <div
                 class="adjust rotate5L"
                 align="center"
-                style="position: relative; bottom: 22px; right: 50px"
+                style="
+                  position: relative;
+                  bottom: 22px;
+                  right: 50px;
+                  z-index: 0;
+                "
               >
                 {{{ sectionNames.40984 }}}
               </div>
@@ -394,49 +398,26 @@
               <div
                 class="adjust rotate5R"
                 align="right"
-                style="position: relative; bottom: 22px"
+                style="position: relative; bottom: 22px; z-index: 2"
               >
                 {{{ sectionsMarkup.40981 }}}
               </div>
             </td>
             <td>
-              <div align="center">
-                <img
-                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="50"
-                  height="50"
-                />
+              <div align="center" style="position: relative; z-index: 1">
+                {{{ sectionsMarkup.40982 }}}
               </div>
             </td>
             <td>
-              <div align="center">{{{ sectionsMarkup.40982 }}}</div>
-            </td>
-            <td>
-              <div align="center">
-                <img
-                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="50"
-                  height="50"
-                />
-              </div>
-            </td>
-            <td>
-              <div align="center">{{{ sectionsMarkup.40983 }}}</div>
-            </td>
-            <td>
-              <div align="center">
-                <img
-                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="50"
-                  height="50"
-                />
+              <div align="center" style="position: relative; z-index: 1">
+                {{{ sectionsMarkup.40983 }}}
               </div>
             </td>
             <td>
               <div
                 class="adjust rotate5L"
                 align="left"
-                style="position: relative; bottom: 22px"
+                style="position: relative; bottom: 22px; z-index: 2"
               >
                 {{{ sectionsMarkup.40984 }}}
               </div>
