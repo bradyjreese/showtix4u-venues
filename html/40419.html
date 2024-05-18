@@ -1,0 +1,475 @@
+<!-- Axelrod Performing Arts Center -->
+<style>
+  .last-cell > div > table > tbody > tr > td:nth-last-child(1),
+  .last-cell > div > table > tr > td:nth-last-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+  .first-cell > div > table > tbody > tr > td:nth-child(1),
+  .first-cell > div > table > tr > td:nth-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+  .row-green > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-green > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: darkgreen;
+  }
+  .row-white > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-white > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: white;
+  }
+  .row-orange > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-orange > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: orange;
+  }
+  .row-green > div > table > tbody > tr > td:has(> .empty),
+  .row-green > div > table > tr > td:has(> .empty),
+  .row-orange > div > table > tbody > tr > td:has(> .empty),
+  .row-orange > div > table > tr > td:has(> .empty),
+  .row-white > div > table > tbody > tr > td:has(> .empty),
+  .row-white > div > table > tr > td:has(> .empty) {
+    background-color: transparent !important;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="25"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div align="center" style="position: relative; z-index: 0"></div>
+            </td>
+            <td>
+              <div
+                align="center"
+                style="position: relative; z-index: 0; top: 41px"
+              >
+                {{{ sectionNames.52560 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.52563 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div
+                align="center"
+                style="position: relative; z-index: 0; top: 41px"
+              >
+                {{{ sectionNames.52567 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 0"></div>
+            </td>
+          </tr>
+
+          <!-- Seats -->
+          <tr>
+            <!-- Far Left -->
+            <td>
+              <div
+                class="adjust rotate90R"
+                align="center"
+                style="position: relative"
+              >
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <!-- LA -->
+                    <td>
+                      <div
+                        class="row-orange"
+                        style="
+                          position: relative;
+                          z-index: 3;
+                          bottom: 165px;
+                          right: 25px;
+                        "
+                      >
+                        {{{ sectionsMarkupNoRowNames.52555 }}}
+                      </div>
+                    </td>
+                    <!-- LB -->
+                    <td>
+                      <div
+                        class="row-orange"
+                        style="
+                          position: relative;
+                          z-index: 3;
+                          bottom: 165px;
+                          left: 45px;
+                        "
+                      >
+                        {{{ sectionsMarkupNoRowNames.52556 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- Left -->
+            <td valign="bottom">
+              <div align="right" style="position: relative">
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div align="right" style="position: relative">
+                        <table
+                          align="right"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div
+                                class="last-cell row-white"
+                                align="right"
+                                style="position: relative; z-index: 2"
+                              >
+                                {{{ sectionsMarkup.52557 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div
+                                class="first-cell row-green"
+                                align="right"
+                                style="position: relative; z-index: 2"
+                              >
+                                {{{ sectionsMarkup.52558 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="right" style="position: relative">
+                        <table
+                          align="right"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div
+                                class="row-white"
+                                align="right"
+                                style="position: relative; z-index: 2"
+                              >
+                                {{{ sectionsMarkup.52559 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="right" style="position: relative">
+                        <table
+                          align="right"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div
+                                class="row-orange"
+                                align="right"
+                                style="position: relative; z-index: 2"
+                              >
+                                {{{ sectionsMarkup.52560 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- Center -->
+            <td>
+              <div align="center" style="position: relative">
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td>
+                      <div align="center" style="position: relative">
+                        <table
+                          align="center"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div
+                                class="row-green"
+                                align="center"
+                                style="position: relative; z-index: 2"
+                              >
+                                {{{ sectionsMarkup.52561 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="center" style="position: relative">
+                        <table
+                          align="center"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div
+                                class="row-white"
+                                align="center"
+                                style="position: relative; z-index: 2"
+                              >
+                                {{{ sectionsMarkup.52562 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="center" style="position: relative">
+                        <table
+                          align="center"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div
+                                class="row-orange"
+                                align="center"
+                                style="position: relative; z-index: 2"
+                              >
+                                {{{ sectionsMarkup.52563 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- Right -->
+            <td valign="bottom">
+              <div align="left" style="position: relative">
+                <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div align="left" style="position: relative">
+                        <table
+                          align="left"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div
+                                class="last-cell row-green"
+                                align="left"
+                                style="position: relative; z-index: 2"
+                              >
+                                {{{ sectionsMarkup.52564 }}}
+                              </div>
+                            </td>
+                            <td>
+                              <div
+                                class="first-cell row-white"
+                                align="left"
+                                style="position: relative; z-index: 2"
+                              >
+                                {{{ sectionsMarkup.52565 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="left" style="position: relative">
+                        <table
+                          align="left"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div
+                                class="row-white"
+                                align="left"
+                                style="position: relative; z-index: 2"
+                              >
+                                {{{ sectionsMarkup.52566 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div align="left" style="position: relative">
+                        <table
+                          align="left"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                        >
+                          <tr>
+                            <td>
+                              <div
+                                class="row-orange"
+                                align="left"
+                                style="position: relative; z-index: 2"
+                              >
+                                {{{ sectionsMarkup.52567 }}}
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- Far Right -->
+            <td>
+              <div
+                class="adjust rotate90L"
+                align="center"
+                style="position: relative"
+              >
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <!-- RB -->
+                    <td>
+                      <div
+                        class="row-orange"
+                        style="
+                          position: relative;
+                          z-index: 3;
+                          bottom: 165px;
+                          right: 45px;
+                        "
+                      >
+                        {{{ sectionsMarkupNoRowNames.52568 }}}
+                      </div>
+                    </td>
+                    <!-- RA -->
+                    <td>
+                      <div
+                        class="row-orange"
+                        style="
+                          position: relative;
+                          z-index: 3;
+                          bottom: 165px;
+                          left: 25px;
+                        "
+                      >
+                        {{{ sectionsMarkupNoRowNames.52569 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
