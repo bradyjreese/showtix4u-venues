@@ -10,6 +10,9 @@
     display: none;
     visibility: hidden;
   }
+  .reverse-order > div > table {
+    direction: rtl;
+  }
   .row-gold > div > table > tbody > tr > td:has(> .seatCharts-seat),
   .row-gold > div > table > tr > td:has(> .seatCharts-seat) {
     background-color: gold;
@@ -144,7 +147,7 @@
                             </td>
                             <td>
                               <div
-                                class="first-cell"
+                                class="reverse-order"
                                 align="right"
                                 style="position: relative; z-index: 1"
                               >
@@ -315,7 +318,6 @@
                           <tr>
                             <td>
                               <div
-                                class="last-cell"
                                 align="left"
                                 style="position: relative; z-index: 1"
                               >
