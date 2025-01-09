@@ -20,6 +20,29 @@
   .rotate-seats-positive > div > table > tr > td {
     transform: rotate(90deg);
   }
+  .fix-label-width
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-child(1)
+    > div,
+  .fix-label-width > div > table:nth-last-child(1) > tr > td:nth-child(1) > div,
+  .fix-label-width
+    > div
+    > table:nth-last-child(1)
+    > tbody
+    > tr
+    > td:nth-last-child(1)
+    > div,
+  .fix-label-width
+    > div
+    > table:nth-last-child(1)
+    > tr
+    > td:nth-last-child(1)
+    > div {
+    width: 21px;
+  }
 </style>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
@@ -76,7 +99,7 @@
                   position: relative;
                   z-index: 0;
                   bottom: 380px;
-                  right: 30px;
+                  left: 35px;
                 "
               >
                 {{{ sectionNames.79436 }}}
@@ -94,7 +117,7 @@
                   position: relative;
                   z-index: 0;
                   bottom: 380px;
-                  left: 30px;
+                  right: 35px;
                 "
               >
                 {{{ sectionNames.79438 }}}
@@ -106,7 +129,7 @@
           <tr>
             <td valign="top">
               <div
-                class="adjust rotate90R rotate-seats-negative"
+                class="adjust rotate90R rotate-seats-negative fix-label-width"
                 align="right"
                 style="
                   position: relative;
@@ -129,7 +152,7 @@
             </td>
             <td valign="top">
               <div
-                class="adjust rotate90L rotate-seats-positive"
+                class="adjust rotate90L rotate-seats-positive fix-label-width"
                 align="left"
                 style="
                   position: relative;

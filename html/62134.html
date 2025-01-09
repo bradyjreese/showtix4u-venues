@@ -1,7 +1,7 @@
 <!-- Tewksbury Memorial High School -->
 <style>
-  .last-cell > div > table > tbody > tr > td:nth-last-child(1),
-  .last-cell > div > table > tr > td:nth-last-child(1) {
+  .last-cell > div > table:nth-child(1) > tbody > tr > td:nth-last-child(1),
+  .last-cell > div > table:nth-child(1) > tr > td:nth-last-child(1) {
     display: none;
     visibility: hidden;
   }
@@ -43,7 +43,7 @@
           <tr>
             <td>
               <div
-                class="last-cell adjust rotate15R"
+                class="adjust rotate15R"
                 align="center"
                 style="position: relative; z-index: 3; top: 50px; right: 1040px"
               >
@@ -245,7 +245,11 @@
           <!-- Back Seats -->
           <tr>
             <td>
-              <div class="adjust rotate10R" align="center" style="position: relative; z-index: 2">
+              <div
+                class="adjust rotate10R"
+                align="center"
+                style="position: relative; z-index: 2"
+              >
                 {{{ sectionsMarkup.79453 }}}
               </div>
             </td>
@@ -260,7 +264,11 @@
               </div>
             </td>
             <td>
-              <div class="adjust rotate10L" align="center" style="position: relative; z-index: 2">
+              <div
+                class="adjust rotate10L"
+                align="center"
+                style="position: relative; z-index: 2"
+              >
                 {{{ sectionsMarkup.79456 }}}
               </div>
             </td>
