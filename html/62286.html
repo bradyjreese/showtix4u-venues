@@ -4,23 +4,26 @@
   .row-pink > div > table > tr > td:has(> .seatCharts-seat) {
     background-color: pink;
   }
+  .stage-init {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    font-size: 50px;
+  }
+  .stage-image {
+    width: 700px;
+    height: 100px;
+  }
+  .thrust-image {
+    width: 150px;
+    height: 200px;
+  }
 </style>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
-  <!-- Stage Image -->
-  <tr>
-    <td>
-      <div align="center" style="position: relative; z-index: 0">
-        <img
-          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
-          alt="STAGE"
-          width="300"
-          height="80"
-        />
-      </div>
-    </td>
-  </tr>
-
   <tr>
     <td>
       <div align="center" style="position: relative; z-index: 0">
@@ -29,6 +32,26 @@
           width="1"
           height="75"
         />
+      </div>
+    </td>
+  </tr>
+
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <table align="center" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <div class="stage-init stage-image" align="center">STAGE</div>
+            </td>
+          </tr>
+          <tr>
+            <td align="center">
+              <div class="stage-init thrust-image" align="center"></div>
+            </td>
+          </tr>
+        </table>
       </div>
     </td>
   </tr>
@@ -44,7 +67,12 @@
               <div
                 class="adjust rotate30R row-pink"
                 align="center"
-                style="position: relative; z-index: 1"
+                style="
+                  position: relative;
+                  z-index: 1;
+                  bottom: 125px;
+                  left: 20px;
+                "
               >
                 {{{ sectionsMarkup.79593 }}}
               </div>
@@ -53,7 +81,7 @@
               <div align="center" style="position: relative; z-index: 0">
                 <img
                   src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="100"
+                  width="250"
                   height="1"
                 />
               </div>
@@ -62,7 +90,12 @@
               <div
                 class="adjust rotate30L row-pink"
                 align="center"
-                style="position: relative; z-index: 1"
+                style="
+                  position: relative;
+                  z-index: 1;
+                  bottom: 125px;
+                  right: 20px;
+                "
               >
                 {{{ sectionsMarkup.79594 }}}
               </div>
@@ -93,7 +126,7 @@
           <!-- Back Seats -->
           <tr>
             <td>
-              <div align="center" style="position: relative">
+              <div align="center" style="position: relative; bottom: 100px">
                 <table
                   align="center"
                   border="0"
