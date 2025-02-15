@@ -4,6 +4,22 @@
   .row-red > div > table > tr > td:has(> .seatCharts-seat) {
     background-color: red;
   }
+  .row-red-sides
+    > div
+    > table:nth-child(1)
+    > tbody
+    > tr
+    > td:has(> .seatCharts-seat),
+  .row-red-sides > div > table:nth-child(1) > tr > td:has(> .seatCharts-seat),
+  .row-red-sides
+    > div
+    > table:nth-child(2)
+    > tbody
+    > tr
+    > td:has(> .seatCharts-seat),
+  .row-red-sides > div > table:nth-child(2) > tr > td:has(> .seatCharts-seat) {
+    background-color: red;
+  }
   .wheelchair {
     width: 74px;
   }
@@ -86,7 +102,7 @@
                   <tr>
                     <td>
                       <div
-                        class="row-red"
+                        class="row-red-sides"
                         align="right"
                         style="position: relative; z-index: 1"
                       >
@@ -142,7 +158,7 @@
                   <tr>
                     <td>
                       <div
-                        class="row-red"
+                        class="row-red-sides"
                         align="left"
                         style="position: relative; z-index: 1"
                       >
