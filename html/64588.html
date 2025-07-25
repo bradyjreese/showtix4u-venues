@@ -1,0 +1,110 @@
+<!-- Players Guild of Leonia -->
+<style>
+  .last-cell > div > table td:nth-last-child(1),
+  .first-cell > div > table td:nth-child(1) {
+    display: none;
+    visibility: hidden;
+  }
+  .stage-image {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 35px;
+    background-color: red;
+    border: 2px solid black;
+    width: 300px;
+    height: 400px;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="25"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- Stage Image -->
+  <tr>
+    <td align="center">
+      <div class="stage-image" align="center">RED SPEEDO<br />STAGE</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="50"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative">
+        <table align="center">
+          <!-- Seats -->
+          <tr>
+            <td valign="top">
+              <div
+                class="adjust rotate90R first-cell"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 2;
+                  bottom: 275px;
+                  left: 250px;
+                "
+              >
+                {{{ sectionsMarkup.81141 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div align="center" style="position: relative; z-index: 1">
+                {{{ sectionsMarkupNoRowNames.81142 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 1">
+                {{{ sectionsMarkup.81143 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div align="center" style="position: relative; z-index: 1">
+                {{{ sectionsMarkupNoRowNames.81144 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div
+                class="adjust rotate90L last-cell"
+                align="center"
+                style="
+                  position: relative;
+                  z-index: 2;
+                  bottom: 275px;
+                  right: 250px;
+                "
+              >
+                {{{ sectionsMarkup.81145 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
