@@ -4,6 +4,10 @@
   .row-green > div > table > tr > td:has(> .seatCharts-seat) {
     background-color: limegreen;
   }
+  .row-purple > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-purple > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: purple;
+  }
 </style>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
@@ -14,8 +18,8 @@
         <img
           src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
           alt="STAGE"
-          width="300"
-          height="80"
+          width="600"
+          height="160"
         />
       </div>
     </td>
@@ -275,7 +279,7 @@
           <tr>
             <td valign="top">
               <div
-                class="adjust rotate90L"
+                class="adjust rotate90L row-purple"
                 align="center"
                 style="
                   position: relative;
@@ -298,6 +302,7 @@
                   <tr>
                     <td colspan="5">
                       <div
+                        class="row-purple"
                         align="center"
                         style="position: relative; z-index: 1"
                       >
@@ -307,7 +312,11 @@
                   </tr>
                   <tr>
                     <td>
-                      <div align="right" style="position: relative; z-index: 1">
+                      <div
+                        class="row-purple"
+                        align="right"
+                        style="position: relative; z-index: 1"
+                      >
                         {{{ sectionsMarkup.81260 }}}
                       </div>
                     </td>
@@ -325,6 +334,7 @@
                     </td>
                     <td>
                       <div
+                        class="row-purple"
                         align="center"
                         style="position: relative; z-index: 1"
                       >
@@ -344,7 +354,11 @@
                       </div>
                     </td>
                     <td>
-                      <div align="left" style="position: relative; z-index: 1">
+                      <div
+                        class="row-purple"
+                        align="left"
+                        style="position: relative; z-index: 1"
+                      >
                         {{{ sectionsMarkup.81262 }}}
                       </div>
                     </td>
@@ -354,7 +368,7 @@
             </td>
             <td valign="top">
               <div
-                class="adjust rotate90R"
+                class="adjust rotate90R row-purple"
                 align="center"
                 style="
                   position: relative;
