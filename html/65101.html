@@ -1,0 +1,127 @@
+<!-- Lakeview Academy Theatre -->
+<style>
+  .last-cell > div > table tr > td:last-child,
+  .first-cell > div > table tr > td:first-child {
+    display: none;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="25"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative">
+        <table align="center" border="0" cellspacing="0" cellpadding="0">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.81431 }}}
+              </div>
+            </td>
+            <td rowspan="3">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="82"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.81432 }}}
+              </div>
+            </td>
+            <td rowspan="3">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="82"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.81433 }}}
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="1"
+                  height="5"
+                />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Seats -->
+          <tr>
+            <td>
+              <div
+                class="last-cell"
+                align="right"
+                style="position: relative; z-index: 1"
+              >
+                {{{ sectionsMarkup.81431 }}}
+              </div>
+            </td>
+            <td>
+              <div align="left" style="position: relative; z-index: 1">
+                {{{ sectionsMarkupNoRowNames.81432 }}}
+              </div>
+            </td>
+            <td>
+              <div
+                class="first-cell"
+                align="left"
+                style="position: relative; z-index: 1"
+              >
+                {{{ sectionsMarkup.81433 }}}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5">
+              <div align="left" style="position: relative; z-index: 1">
+                {{{ sectionsMarkup.81434 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
