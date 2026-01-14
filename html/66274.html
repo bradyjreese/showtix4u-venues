@@ -1,0 +1,217 @@
+<!-- Kiski Area HS Auditorium - Disney's Frozen (66274) -->
+<style>
+  .row-yellow > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-yellow > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: yellow;
+  }
+  .row-orange > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-orange > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: orange;
+  }
+  .row-pink > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-pink > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: pink;
+  }
+  .row-green > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-green > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: green;
+  }
+  .pit-orchestra {
+    position: relative;
+    z-index: 0;
+    color: white;
+    background-color: black;
+    border: 2px solid black;
+    width: 100%;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    font-size: 35px;
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="25"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative">
+        <table align="center">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.82306 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.82309 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="40"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.82311 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Seats -->
+          <tr>
+            <td valign="bottom">
+              <div align="right" style="position: relative; z-index: 1">
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div class="pit-orchestra">PIT ORCHESTRA</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-yellow"
+                        align="right"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82305 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-green"
+                        align="right"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82306 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 1">
+                <table
+                  align="center"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td>
+                      <div
+                        class="row-orange"
+                        align="center"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82307 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-pink"
+                        align="center"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82308 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-green"
+                        align="center"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82309 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td>
+              <div align="left" style="position: relative; z-index: 1">
+                <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div
+                        class="row-pink"
+                        align="left"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82310 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-green"
+                        align="left"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82311 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
