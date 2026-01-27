@@ -1,0 +1,15 @@
+{
+  "name": "showtix4u-venues",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "format": "prettier --cache --write .",
+    "format:check": "prettier --cache --check .",
+    "upload": "./scripts/upload-venue.sh"
+  },
+  "packageManager": "pnpm@10.28.2",
+  "devDependencies": {
+    "prettier": "^3.8.1"
+  }
+}

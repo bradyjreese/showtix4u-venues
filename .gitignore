@@ -1,8 +1,2 @@
 .DS_Store
-
-# AI instruction files
-AI-INSTRUCTIONS.md
-CLAUDE.md
-AGENTS.md
-.github/copilot-instructions.md
-
+node_modules
