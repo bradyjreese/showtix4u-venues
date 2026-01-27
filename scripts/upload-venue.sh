@@ -25,7 +25,7 @@ upload_file() {
   local s3_key="s3://${BUCKET}/${PREFIX}/${basename}.mst"
 
   echo "Uploading ${html_file} -> ${s3_key}"
-  AWS_PROFILE=cur8-prod aws s3 cp "$html_file" "$s3_key" \
+  AWS_PROFILE=cur8-prod op plugin run -- aws s3 cp "$html_file" "$s3_key" \
     --content-type "text/html"
 }
 
