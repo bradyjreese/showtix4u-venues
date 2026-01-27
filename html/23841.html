@@ -1,1045 +1,1320 @@
 <!-- The Core -->
 <style>
-    .blue {
-        background-color: blue;
-        width: 252px;
-        height: 42px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+  .blue {
+    background-color: blue;
+    width: 252px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .red {
-        background-color: red;
-        width: 210px;
-        height: 42px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+  .red {
+    background-color: red;
+    width: 210px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .yellow {
-        background-color: yellow;
-        width: 168px;
-        height: 42px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+  .yellow {
+    background-color: yellow;
+    width: 168px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .green {
-        background-color: green;
-        width: 126px;
-        height: 42px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+  .green {
+    background-color: green;
+    width: 126px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .purple {
-        background-color: purple;
-        width: 84px;
-        height: 42px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+  .purple {
+    background-color: purple;
+    width: 84px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 </style>
 
 <table width="100" align="center" border="0" cellspacing="0" cellpadding="0">
-    <!-- Stage Image -->
-    <tr>
-        <td>
-            <div align="center">
-                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png" alt="STAGE" width="300" height="80">
-            </div>
-        </td>
-    </tr>
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
 
-    <tr>
-        <td>
-            <div align="center">
-                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="42" height="10">
-            </div>
-        </td>
-    </tr>
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="42"
+          height="10"
+        />
+      </div>
+    </td>
+  </tr>
 
-    <!-- Key/Legend -->
-    <tr>
-        <td valign="top">
-            <div align="center">
-                <table align='center' style="background-color: white;">
-                    <tr>
-                        <td>
-                            <div style="background-color: blue; width:40px; height:40px"></div>
-                        </td>
-                        <td>
-                            <div align="left" style="width: 80px;">
-                                <strong> - 6 Seats</strong>
+  <!-- Key/Legend -->
+  <tr>
+    <td valign="top">
+      <div align="center">
+        <table align="center" style="background-color: white">
+          <tr>
+            <td>
+              <div
+                style="background-color: blue; width: 40px; height: 40px"
+              ></div>
+            </td>
+            <td>
+              <div align="left" style="width: 80px">
+                <strong> - 6 Seats</strong>
+              </div>
+            </td>
+            <td>
+              <div
+                style="background-color: red; width: 40px; height: 40px"
+              ></div>
+            </td>
+            <td>
+              <div align="left" style="width: 80px">
+                <strong> - 5 Seats</strong>
+              </div>
+            </td>
+            <td>
+              <div
+                style="background-color: yellow; width: 40px; height: 40px"
+              ></div>
+            </td>
+            <td>
+              <div align="left" style="width: 80px">
+                <strong> - 4 Seats</strong>
+              </div>
+            </td>
+            <td>
+              <div
+                style="background-color: green; width: 40px; height: 40px"
+              ></div>
+            </td>
+            <td>
+              <div align="left" style="width: 80px">
+                <strong> - 3 Seats</strong>
+              </div>
+            </td>
+            <td>
+              <div
+                style="background-color: purple; width: 40px; height: 40px"
+              ></div>
+            </td>
+            <td>
+              <div align="left" style="width: 80px">
+                <strong> - 2 Seats</strong>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="42"
+          height="120"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- Seats -->
+  <tr>
+    <td>
+      <div align="center">
+        <table align="center">
+          <tr>
+            <!-- Left Section Seats -->
+            <td valign="top">
+              <div
+                class="adjust rotate20R"
+                style="position: relative; bottom: 110px"
+                align="center"
+              >
+                <table align="left" style="background-color: #cccccc">
+                  <!-- Row A -->
+                  <tr>
+                    <td>
+                      <table align="left">
+                        <tr>
+                          <td>
+                            <div class="blue" align="center">
+                              {{{ sectionsMarkupNoRowNames.35831 }}}
                             </div>
-                        </td>
-                        <td>
-                            <div style="background-color: red; width:40px; height:40px"></div>
-                        </td>
-                        <td>
-                            <div align="left" style="width: 80px;">
-                                <strong> - 5 Seats</strong>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row B -->
+                  <tr>
+                    <td>
+                      <table align="left">
+                        <tr>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35832 }}}
                             </div>
-                        </td>
-                        <td>
-                            <div style="background-color: yellow; width:40px; height:40px"></div>
-                        </td>
-                        <td>
-                            <div align="left" style="width: 80px;">
-                                <strong> - 4 Seats</strong>
-                            </div>
-                        </td>
-                        <td>
-                            <div style="background-color: green; width:40px; height:40px"></div>
-                        </td>
-                        <td>
-                            <div align="left" style="width: 80px;">
-                                <strong> - 3 Seats</strong>
-                            </div>
-                        </td>
-                        <td>
-                            <div style="background-color: purple; width:40px; height:40px"></div>
-                        </td>
-                        <td>
-                            <div align="left" style="width: 80px;">
-                                <strong> - 2 Seats</strong>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </td>
-    </tr>
-
-    <tr>
-        <td> 
-            <div align="center">
-                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="42" height="120">
-            </div>
-        </td>
-    </tr>
-
-    <!-- Seats -->
-    <tr>
-        <td>
-            <div align="center">
-                <table align="center">
-                    <tr>
-                        <!-- Left Section Seats -->
-                        <td valign="top">
-                            <div class="adjust rotate20R" style="position: relative; bottom: 110px;" align='center'>
-                                <table align='left' style="background-color: #cccccc">
-                                    <!-- Row A -->
-                                    <tr>
-                                        <td>
-                                            <table align='left'>
-                                                <tr>
-                                                    <td>
-                                                        <div class='blue' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35831 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row B -->
-                                    <tr>
-                                        <td>
-                                            <table align='left'>
-                                                <tr>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35832 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="42">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='green' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35833 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row C -->
-                                    <tr>
-                                        <td>
-                                            <table align='left'>
-                                                <tr>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35834 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="42">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='yellow' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35835 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row D -->
-                                    <tr>
-                                        <td>
-                                            <table align='left'>
-                                                <tr>
-                                                    <td>
-                                                        <div class='red' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35836 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="42">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='green' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35837 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row E -->
-                                    <tr>
-                                        <td>
-                                            <table align='left'>
-                                                <tr>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35838 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="42">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35839 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="42">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35840 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row F -->
-                                    <tr>
-                                        <td>
-                                            <table align='left'>
-                                                <tr>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="42" height="42">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='yellow' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35841 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="42">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='green' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35842 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row G -->
-                                    <tr>
-                                        <td>
-                                            <table align='left'>
-                                                <tr>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="84" height="42">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='blue' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35843 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="42">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='green' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35844 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </td>
-
-                        <td>
+                          </td>
+                          <td>
                             <div align="center">
-                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="25" height="25">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="42"
+                              />
                             </div>
-                        </td>
-
-                        <!-- Middle Section Seats -->
-                        <td valign="top">
-                            <div align='center'>
-                                <table align='center' style="background-color: #cccccc">
-                                    <!-- Row A -->
-                                    <tr>
-                                        <td align="center">
-                                            <table align='center' width="100px">
-                                                <tr>
-                                                    <td>
-                                                        <div class='red' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35845 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='red' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35846 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='yellow' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35847 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row B -->
-                                    <tr>
-                                        <td align="center">
-                                            <table align='center' width="100px">
-                                                <tr>
-                                                    <td>
-                                                        <div class='green' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35848 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='green' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35849 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='green' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35850 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35851 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row C -->
-                                    <tr>
-                                        <td align="center">
-                                            <table align='center' width="100px">
-                                                <tr>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35852 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='blue' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35853 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='blue' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35854 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row D -->
-                                    <tr>
-                                        <td align="center">
-                                            <table align='center' width="100px">
-                                                <tr>
-                                                    <td>
-                                                        <div class='yellow' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35855 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35856 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35857 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='green' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35858 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row E -->
-                                    <tr>
-                                        <td align="right">
-                                            <table align='right'>
-                                                <tr>
-                                                    <td>
-                                                        <div class='blue' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35859 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='yellow' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35860 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35861 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row F -->
-                                    <tr>
-                                        <td align="center">
-                                            <table align='center' width="100px">
-                                                <tr>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35862 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='green' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35863 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35864 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='yellow' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35865 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row G -->
-                                    <tr>
-                                        <td align="right">
-                                            <table align='right'>
-                                                <tr>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35866 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35867 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35868 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35869 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row H -->
-                                    <tr>
-                                        <td align="center">
-                                            <table align='center' width="100px">
-                                                <tr>
-                                                    <td>
-                                                        <div class='yellow' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35870 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='red' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35871 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='red' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35872 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row J -->
-                                    <tr>
-                                        <td align="center">
-                                            <table align='center' width="100px">
-                                                <tr>
-                                                    <td>
-                                                        <div class='red' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35873 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="40">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='yellow' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35874 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
+                          </td>
+                          <td>
+                            <div class="green" align="center">
+                              {{{ sectionsMarkupNoRowNames.35833 }}}
                             </div>
-                        </td>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
 
-                        <td>
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row C -->
+                  <tr>
+                    <td>
+                      <table align="left">
+                        <tr>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35834 }}}
+                            </div>
+                          </td>
+                          <td>
                             <div align="center">
-                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="25" height="25">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="42"
+                              />
                             </div>
-                        </td>
-
-                        <!-- Right Section Seats -->
-                        <td valign="top">
-                            <div class="adjust rotate20L" style="position: relative; bottom: 110px;" align='center'>
-                                <table align='right' style="background-color: #cccccc">
-                                    <!-- Row A -->
-                                    <tr>
-                                        <td>
-                                            <table align='right'>
-                                                <tr>
-                                                    <td>
-                                                        <div class='blue' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35875 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row B -->
-                                    <tr>
-                                        <td>
-                                            <table align='right'>
-                                                <tr>
-                                                    <td>
-                                                        <div class='green' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35876 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="42">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35877 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row C -->
-                                    <tr>
-                                        <td>
-                                            <table align='right'>
-                                                <tr>
-                                                    <td>
-                                                        <div class='yellow' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35878 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="42">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35879 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row D -->
-                                    <tr>
-                                        <td>
-                                            <table align='right'>
-                                                <tr>
-                                                    <td>
-                                                        <div class='green' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35880 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="42">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='red' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35881 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row E -->
-                                    <tr>
-                                        <td>
-                                            <table align='right'>
-                                                <tr>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35882 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="42">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35883 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="42">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='purple' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35884 }}}
-                                                        </div>    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row F -->
-                                    <tr>
-                                        <td>
-                                            <table align='right'>
-                                                <tr>
-                                                    <td>
-                                                        <div class='green' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35885 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="42">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='yellow' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35886 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="42" height="42">
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div align='center'>
-                                                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="40" height="40">
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row G -->
-                                    <tr>
-                                        <td>
-                                            <table align='right'>
-                                                <tr>
-                                                    <td>
-                                                        <div class='green' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35887 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="126" height="42">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class='blue' align='center'>
-                                                            {{{ sectionsMarkupNoRowNames.35888 }}}
-                                                        </div>    
-                                                    </td>
-                                                    <td>
-                                                        <div align='center'>
-                                                            <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="84" height="42">
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
+                          </td>
+                          <td>
+                            <div class="yellow" align="center">
+                              {{{ sectionsMarkupNoRowNames.35835 }}}
                             </div>
-                        </td>
-                    </tr>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row D -->
+                  <tr>
+                    <td>
+                      <table align="left">
+                        <tr>
+                          <td>
+                            <div class="red" align="center">
+                              {{{ sectionsMarkupNoRowNames.35836 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="42"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="green" align="center">
+                              {{{ sectionsMarkupNoRowNames.35837 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row E -->
+                  <tr>
+                    <td>
+                      <table align="left">
+                        <tr>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35838 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="42"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35839 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="42"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35840 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row F -->
+                  <tr>
+                    <td>
+                      <table align="left">
+                        <tr>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="42"
+                                height="42"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="yellow" align="center">
+                              {{{ sectionsMarkupNoRowNames.35841 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="42"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="green" align="center">
+                              {{{ sectionsMarkupNoRowNames.35842 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row G -->
+                  <tr>
+                    <td>
+                      <table align="left">
+                        <tr>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="84"
+                                height="42"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="blue" align="center">
+                              {{{ sectionsMarkupNoRowNames.35843 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="42"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="green" align="center">
+                              {{{ sectionsMarkupNoRowNames.35844 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
                 </table>
-            </div>
-        </td>
-    </tr>
+              </div>
+            </td>
+
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="25"
+                  height="25"
+                />
+              </div>
+            </td>
+
+            <!-- Middle Section Seats -->
+            <td valign="top">
+              <div align="center">
+                <table align="center" style="background-color: #cccccc">
+                  <!-- Row A -->
+                  <tr>
+                    <td align="center">
+                      <table align="center" width="100px">
+                        <tr>
+                          <td>
+                            <div class="red" align="center">
+                              {{{ sectionsMarkupNoRowNames.35845 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="red" align="center">
+                              {{{ sectionsMarkupNoRowNames.35846 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="yellow" align="center">
+                              {{{ sectionsMarkupNoRowNames.35847 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row B -->
+                  <tr>
+                    <td align="center">
+                      <table align="center" width="100px">
+                        <tr>
+                          <td>
+                            <div class="green" align="center">
+                              {{{ sectionsMarkupNoRowNames.35848 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="green" align="center">
+                              {{{ sectionsMarkupNoRowNames.35849 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="green" align="center">
+                              {{{ sectionsMarkupNoRowNames.35850 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35851 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row C -->
+                  <tr>
+                    <td align="center">
+                      <table align="center" width="100px">
+                        <tr>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35852 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="blue" align="center">
+                              {{{ sectionsMarkupNoRowNames.35853 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="blue" align="center">
+                              {{{ sectionsMarkupNoRowNames.35854 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row D -->
+                  <tr>
+                    <td align="center">
+                      <table align="center" width="100px">
+                        <tr>
+                          <td>
+                            <div class="yellow" align="center">
+                              {{{ sectionsMarkupNoRowNames.35855 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35856 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35857 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="green" align="center">
+                              {{{ sectionsMarkupNoRowNames.35858 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row E -->
+                  <tr>
+                    <td align="right">
+                      <table align="right">
+                        <tr>
+                          <td>
+                            <div class="blue" align="center">
+                              {{{ sectionsMarkupNoRowNames.35859 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="yellow" align="center">
+                              {{{ sectionsMarkupNoRowNames.35860 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35861 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row F -->
+                  <tr>
+                    <td align="center">
+                      <table align="center" width="100px">
+                        <tr>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35862 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="green" align="center">
+                              {{{ sectionsMarkupNoRowNames.35863 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35864 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="yellow" align="center">
+                              {{{ sectionsMarkupNoRowNames.35865 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row G -->
+                  <tr>
+                    <td align="right">
+                      <table align="right">
+                        <tr>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35866 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35867 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35868 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35869 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row H -->
+                  <tr>
+                    <td align="center">
+                      <table align="center" width="100px">
+                        <tr>
+                          <td>
+                            <div class="yellow" align="center">
+                              {{{ sectionsMarkupNoRowNames.35870 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="red" align="center">
+                              {{{ sectionsMarkupNoRowNames.35871 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="red" align="center">
+                              {{{ sectionsMarkupNoRowNames.35872 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row J -->
+                  <tr>
+                    <td align="center">
+                      <table align="center" width="100px">
+                        <tr>
+                          <td>
+                            <div class="red" align="center">
+                              {{{ sectionsMarkupNoRowNames.35873 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="40"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="yellow" align="center">
+                              {{{ sectionsMarkupNoRowNames.35874 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+
+            <td>
+              <div align="center">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="25"
+                  height="25"
+                />
+              </div>
+            </td>
+
+            <!-- Right Section Seats -->
+            <td valign="top">
+              <div
+                class="adjust rotate20L"
+                style="position: relative; bottom: 110px"
+                align="center"
+              >
+                <table align="right" style="background-color: #cccccc">
+                  <!-- Row A -->
+                  <tr>
+                    <td>
+                      <table align="right">
+                        <tr>
+                          <td>
+                            <div class="blue" align="center">
+                              {{{ sectionsMarkupNoRowNames.35875 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row B -->
+                  <tr>
+                    <td>
+                      <table align="right">
+                        <tr>
+                          <td>
+                            <div class="green" align="center">
+                              {{{ sectionsMarkupNoRowNames.35876 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="42"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35877 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row C -->
+                  <tr>
+                    <td>
+                      <table align="right">
+                        <tr>
+                          <td>
+                            <div class="yellow" align="center">
+                              {{{ sectionsMarkupNoRowNames.35878 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="42"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35879 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row D -->
+                  <tr>
+                    <td>
+                      <table align="right">
+                        <tr>
+                          <td>
+                            <div class="green" align="center">
+                              {{{ sectionsMarkupNoRowNames.35880 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="42"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="red" align="center">
+                              {{{ sectionsMarkupNoRowNames.35881 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row E -->
+                  <tr>
+                    <td>
+                      <table align="right">
+                        <tr>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35882 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="42"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35883 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="42"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="purple" align="center">
+                              {{{ sectionsMarkupNoRowNames.35884 }}}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row F -->
+                  <tr>
+                    <td>
+                      <table align="right">
+                        <tr>
+                          <td>
+                            <div class="green" align="center">
+                              {{{ sectionsMarkupNoRowNames.35885 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="42"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="yellow" align="center">
+                              {{{ sectionsMarkupNoRowNames.35886 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="42"
+                                height="42"
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div align="center">
+                        <img
+                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row G -->
+                  <tr>
+                    <td>
+                      <table align="right">
+                        <tr>
+                          <td>
+                            <div class="green" align="center">
+                              {{{ sectionsMarkupNoRowNames.35887 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="126"
+                                height="42"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="blue" align="center">
+                              {{{ sectionsMarkupNoRowNames.35888 }}}
+                            </div>
+                          </td>
+                          <td>
+                            <div align="center">
+                              <img
+                                src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                                width="84"
+                                height="42"
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
 </table>

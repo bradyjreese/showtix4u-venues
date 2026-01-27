@@ -1,4 +1,10 @@
-<!-- Fern Street Theatre 2024 - Little Mermaid Jr. -->
+<!-- Longfellow Auditorium (66517) -->
+<style>
+  .row-premium td:has(.seatCharts-seat) {
+    background-color: #d32f2f;
+  }
+</style>
+
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
   <!-- Stage Image -->
   <tr>
@@ -26,50 +32,36 @@
     </td>
   </tr>
 
-  <!-- ALL -->
+  <!-- Single Column: Premium rows over Main rows -->
   <tr>
     <td>
       <div align="center" style="position: relative">
-        <table align="center">
-          <!-- Names -->
+        <table align="center" border="0" cellspacing="0" cellpadding="0">
+          <!-- Name (use the main section's name) -->
           <tr>
             <td>
               <div align="center" style="position: relative; z-index: 0">
-                {{{ sectionNames.51950 }}}
+                {{{ sectionNames.82421 }}}
               </div>
             </td>
           </tr>
-          <!-- Seats -->
+
+          <!-- Seats stacked to look like one section -->
+          <tr>
+            <td>
+              <div
+                class="row-premium"
+                align="center"
+                style="position: relative; z-index: 1"
+              >
+                {{{ sectionsMarkup.82420 }}}
+              </div>
+            </td>
+          </tr>
           <tr>
             <td>
               <div align="center" style="position: relative; z-index: 1">
-                <table
-                  align="center"
-                  border="0"
-                  cellspacing="0"
-                  cellpadding="0"
-                >
-                  <tr>
-                    <td>
-                      <div
-                        align="center"
-                        style="position: relative; z-index: 1"
-                      >
-                        {{{ sectionsMarkup.51949 }}}
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div
-                        align="center"
-                        style="position: relative; z-index: 1"
-                      >
-                        {{{ sectionsMarkup.51950 }}}
-                      </div>
-                    </td>
-                  </tr>
-                </table>
+                {{{ sectionsMarkup.82421 }}}
               </div>
             </td>
           </tr>
