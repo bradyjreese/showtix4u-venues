@@ -10,12 +10,10 @@ usage() {
   echo "Upload venue HTML files to S3 as .mst files"
   echo ""
   echo "Usage: $0 <id> [id2 ...]"
-  echo "       $0 --all"
   echo ""
   echo "Examples:"
   echo "  $0 66517"
   echo "  $0 1915 2656"
-  echo "  $0 --all    # uploads all html/*.html files"
 }
 
 upload_file() {
@@ -44,14 +42,8 @@ resolve_file() {
   echo "$file"
 }
 
-if [[ "$1" == "--all" ]]; then
-  for f in "$REPO_ROOT"/html/*.html; do
-    upload_file "$f"
-  done
-else
-  for id in "$@"; do
-    upload_file "$(resolve_file "$id")"
-  done
-fi
+for id in "$@"; do
+  upload_file "$(resolve_file "$id")"
+done
 
 echo "Done."
