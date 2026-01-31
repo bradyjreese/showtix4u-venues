@@ -6,7 +6,8 @@
   "scripts": {
     "format": "prettier --cache --write .",
     "format:check": "prettier --cache --check .",
-    "upload": "./scripts/upload-venue.sh"
+    "upload": "./scripts/upload-venue.sh",
+    "download": "./scripts/download-venue.sh"
   },
   "packageManager": "pnpm@10.28.2",
   "devDependencies": {

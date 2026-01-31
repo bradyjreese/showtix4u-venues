@@ -7,20 +7,19 @@ PREFIX="venues"
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
 usage() {
-  echo "Upload venue HTML files to S3 as .mst files"
+  echo "Download venue .mst files from S3 as .html files"
   echo ""
-  echo "Usage: $0 [options] <id|html_path> [id2|html_path2 ...]"
+  echo "Usage: $0 [options] <id> [id2 ...]"
   echo ""
   echo "Options:"
-  echo "  -j, --concurrency N   Parallel uploads (default: 4)"
+  echo "  -j, --concurrency N   Parallel downloads (default: 4)"
   echo "  --file PATH           Read IDs from a file (one per line, # comments ok)"
-  echo "  --dry-run             Print actions without uploading"
+  echo "  --dry-run             Print actions without downloading"
   echo "  -h, --help            Show help"
   echo ""
   echo "Examples:"
   echo "  $0 66517"
   echo "  $0 1915 2656"
-  echo "  $0 html/1915.html html/2656.html"
 }
 
 aws_cmd() {
@@ -45,32 +44,13 @@ preflight_auth() {
   fi
 }
 
-upload_file() {
-  local html_file="$1"
-  local basename
-  basename="$(basename "$html_file" .html)"
-  local s3_key="s3://${BUCKET}/${PREFIX}/${basename}.mst"
+download_file() {
+  local id="$1"
+  local s3_key="s3://${BUCKET}/${PREFIX}/${id}.mst"
+  local html_file="${REPO_ROOT}/html/${id}.html"
 
-  echo "Uploading ${html_file} -> ${s3_key}"
-  maybe_run aws_cmd s3 cp "$html_file" "$s3_key" \
-    --content-type "text/html"
-}
-
-resolve_file() {
-  local input="$1"
-  local file=""
-
-  if [[ "$input" == *.html ]] || [[ "$input" == */* ]]; then
-    file="$input"
-  else
-    file="${REPO_ROOT}/html/${input}.html"
-  fi
-
-  if [[ ! -f "$file" ]]; then
-    echo "Error: ${file} not found" >&2
-    exit 1
-  fi
-  echo "$file"
+  echo "Downloading ${s3_key} -> ${html_file}"
+  maybe_run aws_cmd s3 cp "$s3_key" "$html_file"
 }
 
 CONCURRENCY=4
@@ -155,13 +135,13 @@ fi
 preflight_auth
 
 if [[ "$CONCURRENCY" -le 1 ]]; then
-  for input in "${ARGS[@]}"; do
-    upload_file "$(resolve_file "$input")"
+  for id in "${ARGS[@]}"; do
+    download_file "$id"
   done
 else
   init_semaphore "$CONCURRENCY"
-  for input in "${ARGS[@]}"; do
-    run_with_semaphore upload_file "$(resolve_file "$input")"
+  for id in "${ARGS[@]}"; do
+    run_with_semaphore download_file "$id"
   done
   wait
 fi
