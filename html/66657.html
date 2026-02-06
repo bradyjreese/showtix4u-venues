@@ -1,0 +1,276 @@
+<!-- John P. Stevens High School - Andrew S. Denicola Auditorium (66657) -->
+<style>
+  .last-cell > div > table tr > td:last-child,
+  .first-cell > div > table tr > td:first-child {
+    display: none;
+  }
+  .row-yellow td:has(.seatCharts-seat) {
+    background-color: yellow;
+  }
+  .row-green td:has(.seatCharts-seat) {
+    background-color: rgb(131, 185, 131);
+  }
+  .row-purple td:has(.seatCharts-seat) {
+    background-color: rgb(124, 88, 124);
+  }
+  .row-red td:has(.seatCharts-seat) {
+    background-color: rgb(175, 81, 81);
+  }
+  .row-blue td:has(.seatCharts-seat) {
+    background-color: cornflowerblue;
+  }
+  .row-white td:has(.seatCharts-seat) {
+    background-color: white;
+  }
+  .row-tan td:has(.seatCharts-seat) {
+    background-color: tan;
+  }
+  .row-pink td:has(.seatCharts-seat) {
+    background-color: rgb(216, 176, 183);
+  }
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+          width="1"
+          height="25"
+        />
+      </div>
+    </td>
+  </tr>
+
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative">
+        <table align="center" border="0" cellspacing="0" cellpadding="0">
+          <!-- Names -->
+          <tr>
+            <td>
+              <div align="right" style="position: relative; z-index: 0">
+                {{{ sectionNames.82554 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="50"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.82560 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 0">
+                {{{ sectionNames.82561 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img
+                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+                  width="50"
+                  height="1"
+                />
+              </div>
+            </td>
+            <td>
+              <div align="left" style="position: relative; z-index: 0">
+                {{{ sectionNames.82562 }}}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Seats -->
+          <tr>
+            <td>
+              <div align="right" style="position: relative">
+                <table align="right" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div
+                        class="row-yellow"
+                        align="right"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82554 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-green"
+                        align="right"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82555 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-purple"
+                        align="right"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82556 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-red"
+                        align="right"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82557 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-blue"
+                        align="right"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82558 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-white"
+                        align="right"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82559 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td valign="top">
+              <div
+                class="last-cell row-tan"
+                align="center"
+                style="position: relative; z-index: 1"
+              >
+                {{{ sectionsMarkup.82560 }}}
+              </div>
+            </td>
+            <td valign="top">
+              <div
+                class="first-cell row-pink"
+                align="center"
+                style="position: relative; z-index: 1"
+              >
+                {{{ sectionsMarkup.82561 }}}
+              </div>
+            </td>
+            <td>
+              <div align="left" style="position: relative">
+                <table align="left" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <div
+                        class="row-yellow"
+                        align="left"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82562 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-green"
+                        align="left"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82563 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-purple"
+                        align="left"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82564 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-red"
+                        align="left"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82565 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-blue"
+                        align="left"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82566 }}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="row-white"
+                        align="left"
+                        style="position: relative; z-index: 1"
+                      >
+                        {{{ sectionsMarkup.82567 }}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
