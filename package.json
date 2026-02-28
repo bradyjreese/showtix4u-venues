@@ -9,7 +9,7 @@
     "upload": "./scripts/upload-venue.sh",
     "download": "./scripts/download-venue.sh"
   },
-  "packageManager": "pnpm@10.29.3",
+  "packageManager": "pnpm@10.30.3",
   "devDependencies": {
     "prettier": "^3.8.1"
   }
