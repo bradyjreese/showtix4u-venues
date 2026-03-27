@@ -1,165 +1,205 @@
 <!-- FFCA South High School 2025 -->
 <style>
-  .row-pink > div > table > tbody > tr > td:has(> .seatCharts-seat),
-  .row-pink > div > table > tr > td:has(> .seatCharts-seat) {
-    background-color: pink;
-  }
-  .stage-init {
-    position: relative;
-    z-index: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    font-size: 50px;
-  }
-  .stage-image {
-    width: 700px;
-    height: 100px;
-  }
-  .thrust-image {
-    width: 150px;
-    height: 200px;
-  }
+.row-pink > div > table > tbody > tr > td:has(> .seatCharts-seat),
+.row-pink > div > table > tr > td:has(> .seatCharts-seat) {
+	background-color: pink;
+}
+.stage-init {
+	position: relative;
+	z-index: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	font-size: 50px;
+}
+.stage-image {
+	width: 700px;
+	height: 100px;
+}
+.thrust-image {
+	width: 150px;
+	height: 200px;
+}
 </style>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
-  <tr>
-    <td>
-      <div align="center" style="position: relative; z-index: 0">
-        <img
-          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-          width="1"
-          height="75"
-        />
-      </div>
-    </td>
-  </tr>
+<table
+	width="100%"
+	border="0"
+	cellspacing="0"
+	cellpadding="0"
+	align="center"
+>
+	<tr>
+		<td>
+			<div
+				align="center"
+				style="position: relative; z-index: 0"
+			>
+				<img
+					src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+					width="1"
+					height="75"
+				>
+			</div>
+		</td>
+	</tr>
 
-  <!-- Stage Image -->
-  <tr>
-    <td>
-      <div align="center" style="position: relative; z-index: 0">
-        <table align="center" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td>
-              <div class="stage-init stage-image" align="center">STAGE</div>
-            </td>
-          </tr>
-          <tr>
-            <td align="center">
-              <div class="stage-init thrust-image" align="center"></div>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </td>
-  </tr>
+	<!-- Stage Image -->
+	<tr>
+		<td>
+			<div
+				align="center"
+				style="position: relative; z-index: 0"
+			>
+				<table
+					align="center"
+					border="0"
+					cellspacing="0"
+					cellpadding="0"
+				>
+					<tr>
+						<td>
+							<div
+								class="stage-init stage-image"
+								align="center"
+							>
+								STAGE
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<div
+								class="stage-init thrust-image"
+								align="center"
+							></div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</td>
+	</tr>
 
-  <!-- FRONT -->
-  <tr>
-    <td>
-      <div align="center" style="position: relative">
-        <table align="center">
-          <!-- Front Seats -->
-          <tr>
-            <td>
-              <div
-                class="adjust rotate30R row-pink"
-                align="center"
-                style="
+	<!-- FRONT -->
+	<tr>
+		<td>
+			<div
+				align="center"
+				style="position: relative"
+			>
+				<table align="center">
+					<!-- Front Seats -->
+					<tr>
+						<td>
+							<div
+								class="adjust rotate30R row-pink"
+								align="center"
+								style="
                   position: relative;
                   z-index: 1;
                   bottom: 125px;
                   left: 20px;
                 "
-              >
-                {{{ sectionsMarkup.79593 }}}
-              </div>
-            </td>
-            <td rowspan="2">
-              <div align="center" style="position: relative; z-index: 0">
-                <img
-                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="250"
-                  height="1"
-                />
-              </div>
-            </td>
-            <td>
-              <div
-                class="adjust rotate30L row-pink"
-                align="center"
-                style="
+							>
+								{{{ sectionsMarkup.79593 }}}
+							</div>
+						</td>
+						<td rowspan="2">
+							<div
+								align="center"
+								style="position: relative; z-index: 0"
+							>
+								<img
+									src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+									width="250"
+									height="1"
+								>
+							</div>
+						</td>
+						<td>
+							<div
+								class="adjust rotate30L row-pink"
+								align="center"
+								style="
                   position: relative;
                   z-index: 1;
                   bottom: 125px;
                   right: 20px;
                 "
-              >
-                {{{ sectionsMarkup.79594 }}}
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </td>
-  </tr>
+							>
+								{{{ sectionsMarkup.79594 }}}
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</td>
+	</tr>
 
-  <tr>
-    <td>
-      <div align="center" style="position: relative; z-index: 0">
-        <img
-          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-          width="1"
-          height="50"
-        />
-      </div>
-    </td>
-  </tr>
+	<tr>
+		<td>
+			<div
+				align="center"
+				style="position: relative; z-index: 0"
+			>
+				<img
+					src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+					width="1"
+					height="50"
+				>
+			</div>
+		</td>
+	</tr>
 
-  <!-- BACK -->
-  <tr>
-    <td>
-      <div align="center" style="position: relative">
-        <table align="center">
-          <!-- Back Seats -->
-          <tr>
-            <td>
-              <div align="center" style="position: relative; bottom: 100px">
-                <table
-                  align="center"
-                  border="0"
-                  cellspacing="0"
-                  cellpadding="0"
-                >
-                  <tr>
-                    <td>
-                      <div
-                        class="row-pink"
-                        align="center"
-                        style="position: relative; z-index: 1"
-                      >
-                        {{{ sectionsMarkup.79595 }}}
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div
-                        align="center"
-                        style="position: relative; z-index: 1"
-                      >
-                        {{{ sectionsMarkup.79596 }}}
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </td>
-  </tr>
+	<!-- BACK -->
+	<tr>
+		<td>
+			<div
+				align="center"
+				style="position: relative"
+			>
+				<table align="center">
+					<!-- Back Seats -->
+					<tr>
+						<td>
+							<div
+								align="center"
+								style="position: relative; bottom: 100px"
+							>
+								<table
+									align="center"
+									border="0"
+									cellspacing="0"
+									cellpadding="0"
+								>
+									<tr>
+										<td>
+											<div
+												class="row-pink"
+												align="center"
+												style="position: relative; z-index: 1"
+											>
+												{{{ sectionsMarkup.79595 }}}
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div
+												align="center"
+												style="position: relative; z-index: 1"
+											>
+												{{{ sectionsMarkup.79596 }}}
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</td>
+	</tr>
 </table>

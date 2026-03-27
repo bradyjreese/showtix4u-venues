@@ -1,16 +1,18 @@
 {
-  "name": "showtix4u-venues",
-  "version": "1.0.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "format": "prettier --cache --write .",
-    "format:check": "prettier --cache --check .",
-    "upload": "./scripts/upload-venue.sh",
-    "download": "./scripts/download-venue.sh"
-  },
-  "packageManager": "pnpm@10.33.0",
-  "devDependencies": {
-    "prettier": "^3.8.1"
-  }
+	"name": "showtix4u-venues",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"format": "biome format --write . && sed -i '' 's/{{ {/{{{/g' html/*.html",
+		"format:check": "biome format .",
+		"check": "biome check --write . && sed -i '' 's/{{ {/{{{/g' html/*.html",
+		"lint": "biome lint .",
+		"upload": "./scripts/upload-venue.sh",
+		"download": "./scripts/download-venue.sh"
+	},
+	"packageManager": "pnpm@10.33.0",
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.9"
+	}
 }

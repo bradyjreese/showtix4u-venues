@@ -1,165 +1,195 @@
 <!-- Adams County Christian School Gymnasium -->
 <style>
-  .row-red > div > table > tbody > tr,
-  .row-red > div > table > tr {
-    background-color: red;
-  }
-  .floor-seating {
-    position: relative;
-    z-index: 0;
-    top: 20px;
-    width: 100%;
-    height: 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: goldenrod;
-    border: 2px solid black;
-    font-size: 24px;
-  }
-  .stadium-seating {
-    position: relative;
-    z-index: 0;
-    width: 160px;
-    height: 350px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: orange;
-    border: 2px solid black;
-    font-size: 24px;
-    margin: auto;
-  }
+.row-red > div > table > tbody > tr,
+.row-red > div > table > tr {
+	background-color: red;
+}
+.floor-seating {
+	position: relative;
+	z-index: 0;
+	top: 20px;
+	width: 100%;
+	height: 120px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background-color: goldenrod;
+	border: 2px solid black;
+	font-size: 24px;
+}
+.stadium-seating {
+	position: relative;
+	z-index: 0;
+	width: 160px;
+	height: 350px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background-color: orange;
+	border: 2px solid black;
+	font-size: 24px;
+	margin: auto;
+}
 </style>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
-  <!-- Stage Image -->
-  <tr>
-    <td>
-      <div align="center" style="position: relative; z-index: 0">
-        <img
-          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
-          alt="STAGE"
-          width="300"
-          height="80"
-        />
-      </div>
-    </td>
-  </tr>
+<table
+	width="100%"
+	border="0"
+	cellspacing="0"
+	cellpadding="0"
+	align="center"
+>
+	<!-- Stage Image -->
+	<tr>
+		<td>
+			<div
+				align="center"
+				style="position: relative; z-index: 0"
+			>
+				<img
+					src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+					alt="STAGE"
+					width="300"
+					height="80"
+				>
+			</div>
+		</td>
+	</tr>
 
-  <tr>
-    <td>
-      <div align="center" style="position: relative; z-index: 0">
-        <img
-          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-          width="1"
-          height="10"
-        />
-      </div>
-    </td>
-  </tr>
+	<tr>
+		<td>
+			<div
+				align="center"
+				style="position: relative; z-index: 0"
+			>
+				<img
+					src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+					width="1"
+					height="10"
+				>
+			</div>
+		</td>
+	</tr>
 
-  <!-- ALL -->
-  <tr>
-    <td>
-      <div align="center">
-        <table align="center">
-          <!-- Names -->
-          <tr>
-            <td>
-              <div align="center" style="position: relative; z-index: 0">
-                {{{ sectionNames.46416 }}}
-              </div>
-            </td>
-            <td rowspan="3">
-              <div align="center" style="position: relative; z-index: 0">
-                <img
-                  src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                  width="40"
-                  height="1"
-                />
-              </div>
-            </td>
-            <td>
-              <div align="center" style="position: relative; z-index: 0">
-                {{{ sectionNames.46418 }}}
-              </div>
-            </td>
-          </tr>
+	<!-- ALL -->
+	<tr>
+		<td>
+			<div align="center">
+				<table align="center">
+					<!-- Names -->
+					<tr>
+						<td>
+							<div
+								align="center"
+								style="position: relative; z-index: 0"
+							>
+								{{{ sectionNames.46416 }}}
+							</div>
+						</td>
+						<td rowspan="3">
+							<div
+								align="center"
+								style="position: relative; z-index: 0"
+							>
+								<img
+									src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
+									width="40"
+									height="1"
+								>
+							</div>
+						</td>
+						<td>
+							<div
+								align="center"
+								style="position: relative; z-index: 0"
+							>
+								{{{ sectionNames.46418 }}}
+							</div>
+						</td>
+					</tr>
 
-          <!-- Seats -->
-          <tr>
-            <td>
-              <div align="center" style="position: relative">
-                <table
-                  border="0"
-                  cellspacing="0"
-                  cellpadding="0"
-                  align="center"
-                >
-                  <tr>
-                    <td>
-                      <div
-                        class="row-red"
-                        align="center"
-                        style="position: relative; z-index: 1"
-                      >
-                        {{{ sectionsMarkup.46416 }}}
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="floor-seating">FLOOR SEATING</div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </td>
-            <td>
-              <div align="center">
-                <table
-                  border="0"
-                  cellspacing="0"
-                  cellpadding="0"
-                  align="center"
-                >
-                  <tr>
-                    <td>
-                      <div
-                        class="row-red"
-                        align="center"
-                        style="position: relative; z-index: 1"
-                      >
-                        {{{ sectionsMarkup.46418 }}}
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="floor-seating">FLOOR SEATING</div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="stadium-seating" style="right: 390px; bottom: 160px">
-                STADIUM<br />&<br />STUDENT SEATING
-              </div>
-            </td>
-            <td>
-              <div class="stadium-seating" style="left: 390px; bottom: 160px">
-                STADIUM<br />&<br />STUDENT SEATING
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </td>
-  </tr>
+					<!-- Seats -->
+					<tr>
+						<td>
+							<div
+								align="center"
+								style="position: relative"
+							>
+								<table
+									border="0"
+									cellspacing="0"
+									cellpadding="0"
+									align="center"
+								>
+									<tr>
+										<td>
+											<div
+												class="row-red"
+												align="center"
+												style="position: relative; z-index: 1"
+											>
+												{{{ sectionsMarkup.46416 }}}
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="floor-seating">FLOOR SEATING</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</td>
+						<td>
+							<div align="center">
+								<table
+									border="0"
+									cellspacing="0"
+									cellpadding="0"
+									align="center"
+								>
+									<tr>
+										<td>
+											<div
+												class="row-red"
+												align="center"
+												style="position: relative; z-index: 1"
+											>
+												{{{ sectionsMarkup.46418 }}}
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="floor-seating">FLOOR SEATING</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div
+								class="stadium-seating"
+								style="right: 390px; bottom: 160px"
+							>
+								STADIUM<br>&<br>STUDENT SEATING
+							</div>
+						</td>
+						<td>
+							<div
+								class="stadium-seating"
+								style="left: 390px; bottom: 160px"
+							>
+								STADIUM<br>&<br>STUDENT SEATING
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</td>
+	</tr>
 </table>
