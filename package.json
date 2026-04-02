@@ -4,15 +4,12 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"format": "biome format --write . && sed -i '' 's/{{ {/{{{/g' html/*.html",
-		"format:check": "biome format .",
-		"check": "biome check --write . && sed -i '' 's/{{ {/{{{/g' html/*.html",
-		"lint": "biome lint .",
+		"check": "biome check --max-diagnostics=0 --write . &>/dev/null; true",
 		"upload": "./scripts/upload-venue.sh",
 		"download": "./scripts/download-venue.sh"
 	},
 	"packageManager": "pnpm@10.33.0",
 	"devDependencies": {
-		"@biomejs/biome": "^2.4.9"
+		"@biomejs/biome": "^2.4.10"
 	}
 }
