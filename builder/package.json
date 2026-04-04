@@ -1,0 +1,17 @@
+{
+	"name": "venue-builder",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build"
+	},
+	"dependencies": {
+		"fabric": "^7.2.0"
+	},
+	"devDependencies": {
+		"typescript": "^6.0.2",
+		"vite": "^8.0.3"
+	}
+}

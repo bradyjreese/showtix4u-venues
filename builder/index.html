@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Venue Builder</title>
+		<link rel="stylesheet" href="./src/styles.css" />
+	</head>
+	<body>
+		<div id="app">
+			<aside id="toolbar">
+				<h2>Venue Builder</h2>
+
+				<!-- Add Section -->
+				<div class="tool-group">
+					<h3>Add Section</h3>
+					<div class="row-2col">
+						<label>
+							Name
+							<input type="text" id="section-name" value="A" />
+						</label>
+						<label>
+							Shape
+							<select id="seat-shape">
+								<option value="circle">Circle</option>
+								<option value="square">Square</option>
+							</select>
+						</label>
+					</div>
+					<div class="row-2col">
+						<label>
+							Rows
+							<input type="number" id="section-rows" value="8" min="1" max="50" />
+						</label>
+						<label>
+							Seats/row
+							<input type="number" id="section-seats" value="10" min="1" max="50" />
+						</label>
+					</div>
+					<div class="row-2col">
+						<label>
+							Start seat #
+							<input type="number" id="section-start-seat" value="101" min="1" />
+						</label>
+						<label>
+							Seat size
+							<input type="number" id="seat-size" value="10" min="4" max="20" />
+						</label>
+					</div>
+					<div class="row-2col">
+						<label>
+							Row spacing
+							<input type="number" id="row-spacing" value="28" min="10" max="80" />
+						</label>
+						<label>
+							Seat spacing
+							<input type="number" id="seat-spacing" value="28" min="10" max="80" />
+						</label>
+					</div>
+					<label>
+						Numbering
+						<select id="numbering">
+							<option value="ascending">1, 2, 3, 4...</option>
+							<option value="descending">10, 9, 8, 7...</option>
+							<option value="odd-ascending">1, 3, 5, 7... (odd L→R)</option>
+							<option value="odd-descending">7, 5, 3, 1 (odd R→L)</option>
+							<option value="even-ascending">2, 4, 6, 8... (even L→R)</option>
+							<option value="even-descending">8, 6, 4, 2 (even R→L)</option>
+						</select>
+					</label>
+					<button id="add-section">Add Section</button>
+				</div>
+
+				<!-- Selected Section -->
+				<div class="tool-group" id="selection-panel">
+					<h3>Selected</h3>
+					<div id="selection-info">No section selected</div>
+					<div class="button-row">
+						<button id="edit-seats" disabled>Edit Seats</button>
+						<button id="delete-section" disabled>Delete</button>
+					</div>
+					<button id="done-editing" class="done-btn hidden">Done Editing Seats</button>
+				</div>
+
+				<!-- Section Properties (shown when section selected) -->
+				<div class="tool-group hidden" id="section-props">
+					<h3>Section Properties</h3>
+					<div class="row-2col">
+						<label>
+							Name
+							<input type="text" id="prop-name" />
+						</label>
+						<label>
+							Shape
+							<select id="prop-shape">
+								<option value="circle">Circle</option>
+								<option value="square">Square</option>
+							</select>
+						</label>
+					</div>
+					<div class="row-2col">
+						<label>
+							Seat size
+							<input type="number" id="prop-seat-size" min="4" max="20" />
+						</label>
+						<label>
+							Row spacing
+							<input type="number" id="prop-row-spacing" min="10" max="80" />
+						</label>
+					</div>
+					<div class="row-2col">
+						<label>
+							Seat spacing
+							<input type="number" id="prop-seat-spacing" min="10" max="80" />
+						</label>
+						<label>
+							Row labels
+							<select id="prop-row-labels">
+								<option value="both">Both sides</option>
+								<option value="left">Left only</option>
+								<option value="right">Right only</option>
+								<option value="none">Hidden</option>
+							</select>
+						</label>
+					</div>
+
+					<h3 class="row-header">
+						Rows
+						<button id="add-row" class="inline-btn">+ Add Row</button>
+					</h3>
+					<div class="row-list-header">
+						<span>Row</span>
+						<span>Seats</span>
+						<span>Start</span>
+						<span></span>
+					</div>
+					<div id="row-list"></div>
+				</div>
+
+				<!-- Row Actions (shown when row label clicked in edit mode) -->
+				<div class="tool-group hidden" id="row-actions">
+					<h3>Row <span id="row-action-name"></span></h3>
+					<div id="row-action-info"></div>
+					<div class="row-action-label">Align row within section</div>
+					<div class="button-row-3">
+						<button id="row-align-left" title="Left align">← Left</button>
+						<button id="row-align-center" title="Center">Center</button>
+						<button id="row-align-right" title="Right align">Right →</button>
+					</div>
+					<div class="row-action-label">Nudge row</div>
+					<div class="button-row-4">
+						<button id="row-nudge-left" title="Nudge left">←</button>
+						<button id="row-nudge-right" title="Nudge right">→</button>
+						<button id="row-nudge-up" title="Nudge up">↑</button>
+						<button id="row-nudge-down" title="Nudge down">↓</button>
+					</div>
+				</div>
+
+				<!-- Seat Properties (shown when seat selected in edit mode) -->
+				<div class="tool-group hidden" id="seat-props">
+					<h3>Seat Properties</h3>
+					<label>
+						Seat Name
+						<input type="text" id="seat-prop-name" />
+					</label>
+					<label>
+						Type
+						<select id="seat-prop-type">
+							<option value="available">Available</option>
+							<option value="wheelchair">Wheelchair</option>
+							<option value="handicap">Handicap</option>
+							<option value="companion">Companion</option>
+							<option value="obstructed">Obstructed</option>
+							<option value="unavailable">Unavailable</option>
+							<option value="empty">Empty (spacer)</option>
+						</select>
+					</label>
+				</div>
+
+				<!-- Add Table -->
+				<div class="tool-group">
+					<h3>Add Table</h3>
+					<div class="row-2col">
+						<label>
+							Name
+							<input type="text" id="table-name" value="T1" />
+						</label>
+						<label>
+							Table shape
+							<select id="table-shape">
+								<option value="circle">Circle</option>
+								<option value="square">Square</option>
+								<option value="oval">Oval</option>
+								<option value="rectangle">Rectangle</option>
+							</select>
+						</label>
+					</div>
+					<div class="row-2col">
+						<label>
+							Width
+							<input type="number" id="table-width" value="80" min="30" max="300" />
+						</label>
+						<label>
+							Height
+							<input type="number" id="table-height" value="80" min="30" max="300" />
+						</label>
+					</div>
+					<div class="row-2col">
+						<label>
+							Seats
+							<input type="number" id="table-seats" value="8" min="1" max="20" />
+						</label>
+						<label>
+							Start seat #
+							<input type="number" id="table-start-seat" value="1" min="1" />
+						</label>
+					</div>
+					<div class="row-2col">
+						<label>
+							Seat shape
+							<select id="table-seat-shape">
+								<option value="circle">Circle</option>
+								<option value="square">Square</option>
+							</select>
+						</label>
+						<label>
+							Seat size
+							<input type="number" id="table-seat-size" value="10" min="4" max="20" />
+						</label>
+					</div>
+					<button id="add-table">Add Table</button>
+				</div>
+
+				<!-- Table Properties (shown when table selected) -->
+				<div class="tool-group hidden" id="table-props">
+					<h3>Table Properties</h3>
+					<div class="row-2col">
+						<label>
+							Name
+							<input type="text" id="tp-name" />
+						</label>
+						<label>
+							Shape
+							<select id="tp-shape">
+								<option value="circle">Circle</option>
+								<option value="square">Square</option>
+								<option value="oval">Oval</option>
+								<option value="rectangle">Rectangle</option>
+							</select>
+						</label>
+					</div>
+					<div class="row-2col">
+						<label>
+							Width
+							<input type="number" id="tp-width" min="30" max="300" />
+						</label>
+						<label>
+							Height
+							<input type="number" id="tp-height" min="30" max="300" />
+						</label>
+					</div>
+					<div class="row-2col">
+						<label>
+							Seats
+							<input type="number" id="tp-seat-count" min="1" max="20" />
+						</label>
+						<label>
+							Seat shape
+							<select id="tp-seat-shape">
+								<option value="circle">Circle</option>
+								<option value="square">Square</option>
+							</select>
+						</label>
+					</div>
+					<label>
+						Seat size
+						<input type="number" id="tp-seat-size" min="4" max="20" />
+					</label>
+				</div>
+
+				<!-- Stage / File -->
+				<div class="tool-group">
+					<h3>Stage</h3>
+					<button id="add-stage">Add Stage</button>
+				</div>
+
+				<div class="tool-group">
+					<h3>File</h3>
+					<button id="export-json">Export JSON</button>
+					<button id="import-json">Import JSON</button>
+					<input type="file" id="import-file" accept=".json" hidden />
+				</div>
+			</aside>
+
+			<main id="canvas-container">
+				<canvas id="venue-canvas"></canvas>
+			</main>
+		</div>
+
+		<script type="module" src="./src/main.ts"></script>
+	</body>
+</html>

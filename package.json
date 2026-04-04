@@ -5,6 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"check": "biome check --max-diagnostics=0 --write . &>/dev/null; true",
+		"dev": "pnpm --filter venue-builder dev",
 		"upload": "./scripts/upload-venue.sh",
 		"download": "./scripts/download-venue.sh"
 	},
