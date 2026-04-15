@@ -1,0 +1,22 @@
+[project]
+name = "showtix4u-venues"
+version = "0.1.0"
+description = "HTML venue maps for ShowTix4U"
+requires-python = ">=3.13"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "djlint>=1.36.4",
+]
+
+[tool.djlint]
+profile = "handlebars"
+indent = 2
+use_gitignore = true
+format_css = true
+format_js = true
+max_line_length = 120
+max_attribute_length = 120
+close_void_tags = true
+ignore = "H006,H013,H020,H021,H025,H030,H031"

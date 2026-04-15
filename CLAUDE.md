@@ -4,9 +4,9 @@ HTML venue maps uploaded to S3 as `.mst` files. ~3,000 venues. Data/HTML repo, n
 
 ## Tooling
 
-- **pnpm** via corepack — Biome for formatting and linting
-- `pnpm format` / `pnpm format:check` / `pnpm lint` / `pnpm check`
-- Biome's HTML formatter breaks `{{{ }}}` into `{{ {` — the `format` and `check` scripts auto-fix this with sed
+- **pnpm** via corepack — djlint for formatting and linting (configured in `pyproject.toml`)
+- **uv** for Python/djlint management (project-local `.venv`)
+- `pnpm check` — reformat + lint HTML files
 - `pnpm upload` / `pnpm download` — accepts venue IDs, file paths, `--all`, `--dry-run`, `--concurrency N`, `--file PATH`
 - S3 auth: `AWS_PROFILE=cur8-prod` via 1Password (`op plugin run -- aws`)
 

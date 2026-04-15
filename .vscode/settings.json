@@ -1,0 +1,11 @@
+{
+  // HTML templates use Handlebars {{{ }}} — disable built-in validation
+  "html.validate.scripts": false,
+  "html.validate.styles": false,
+
+  // Use djlint for HTML formatting (matches pnpm check)
+  "[html]": {
+    "editor.defaultFormatter": "monosans.djlint",
+    "editor.formatOnSave": true
+  }
+}

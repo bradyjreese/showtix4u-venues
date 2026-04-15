@@ -1,704 +1,610 @@
 <!-- Shanklin Theatre (67373) -->
 <style>
-.rotate-98R {
-	transform: rotate(98deg);
-}
-.rotate-98L {
-	transform: rotate(-98deg);
-}
-.stage-image {
-	position: relative;
-	z-index: 0;
-	bottom: 205px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	background-color: white;
-	color: black;
-	font-size: 100px;
-	width: 1000px;
-	height: 750px;
-	clip-path: polygon(10% 0%, 90% 0%, 100% 40%, 70% 100%, 30% 100%, 0% 40%);
-}
+    .rotate-98R {
+        transform: rotate(98deg);
+    }
 
-.stage-border {
-	display: inline-block;
-	filter: drop-shadow(0 0 2px black);
-}
-.stair-image {
-	position: relative;
-	z-index: 5;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	background-color: white;
-	border: 1px solid rgb(33, 33, 33);
-	width: 60px;
-	height: 30px;
-}
+    .rotate-98L {
+        transform: rotate(-98deg);
+    }
+
+    .stage-image {
+        position: relative;
+        z-index: 0;
+        bottom: 205px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-color: white;
+        color: black;
+        font-size: 100px;
+        width: 1000px;
+        height: 750px;
+        clip-path: polygon(10% 0%, 90% 0%, 100% 40%, 70% 100%, 30% 100%, 0% 40%);
+    }
+
+    .stage-border {
+        display: inline-block;
+        filter: drop-shadow(0 0 2px black);
+    }
+
+    .stair-image {
+        position: relative;
+        z-index: 5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-color: white;
+        border: 1px solid rgb(33, 33, 33);
+        width: 60px;
+        height: 30px;
+    }
 </style>
-
-<table
-	width="100%"
-	border="0"
-	cellspacing="0"
-	cellpadding="0"
-	align="center"
->
-	<!-- Stage Image -->
-	<tr>
-		<td>
-			<div
-				align="center"
-				style="position: relative; z-index: 0"
-			>
-				<table>
-					<tr>
-						<td>
-							<div class="stage-border">
-								<div
-									class="stage-image"
-									align="center"
-								>
-									STAGE
-								</div>
-							</div>
-						</td>
-					</tr>
-				</table>
-			</div>
-		</td>
-	</tr>
-
-	<!-- FRONT -->
-	<tr>
-		<td>
-			<div
-				align="center"
-				style="position: relative"
-			>
-				<table align="center">
-					<!-- Front Names -->
-					<tr>
-						<td>
-							<div
-								class="rotate-98R"
-								align="center"
-								style="position: relative;z-index: 0;bottom: 850px;left: 1150px;"
-							>
-								{{{ sectionNames.83296 }}}
-							</div>
-						</td>
-						<td>
-							<div
-								class="adjust rotate45R"
-								align="center"
-								style="position: relative;z-index: 0;bottom: 175px;left: 370px;"
-							>
-								{{{ sectionNames.83297 }}}
-							</div>
-						</td>
-						<td>
-							<div
-								align="center"
-								style="position: relative;z-index: 0;top: 90px;"
-							>
-								{{{ sectionNames.83298 }}}
-							</div>
-						</td>
-						<td>
-							<div
-								class="adjust rotate45L"
-								align="center"
-								style="position: relative;z-index: 0;bottom: 175px;right: 370px;"
-							>
-								{{{ sectionNames.83299 }}}
-							</div>
-						</td>
-						<td>
-							<div
-								class="rotate-98L"
-								align="center"
-								style="position: relative;z-index: 0;bottom: 850px;right: 1150px;"
-							>
-								{{{ sectionNames.83300 }}}
-							</div>
-						</td>
-					</tr>
-					<!-- Front Seats -->
-					<tr>
-						<td>
-							<div
-								class="rotate-98R"
-								align="left"
-								style="position: relative;z-index: 1;bottom: 950px;left: 906px;"
-							>
-								{{{ sectionsMarkup.83296 }}}
-							</div>
-						</td>
-						<td>
-							<div
-								class="adjust rotate45R"
-								align="center"
-								style="position: relative;z-index: 2;bottom: 225px;left: 210px;"
-							>
-								{{{ sectionsMarkup.83297 }}}
-							</div>
-						</td>
-						<td>
-							<div
-								align="center"
-								style="position: relative;z-index: 3;top: 95px;"
-							>
-								{{{ sectionsMarkup.83298 }}}
-							</div>
-						</td>
-						<td>
-							<div
-								class="adjust rotate45L"
-								align="center"
-								style="position: relative;z-index: 2;bottom: 225px;right: 210px;"
-							>
-								{{{ sectionsMarkup.83299 }}}
-							</div>
-						</td>
-						<td>
-							<div
-								class="rotate-98L"
-								align="right"
-								style="position: relative;z-index: 1;bottom: 950px;right: 906px;"
-							>
-								{{{ sectionsMarkup.83300 }}}
-							</div>
-						</td>
-					</tr>
-				</table>
-			</div>
-		</td>
-	</tr>
-
-	<!-- STAIRS -->
-	<tr>
-		<td>
-			<div
-				align="center"
-				style="position: relative; z-index: 5"
-			>
-				<table>
-					<tr>
-						<!-- ONE -->
-						<td>
-							<div
-								class="rotate-98R"
-								align="center"
-								style="position: relative;z-index: 5;bottom: 1800px;right: 717px;"
-							>
-								<table>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-								</table>
-							</div>
-						</td>
-						<!-- TWO -->
-						<td>
-							<div
-								class="adjust rotate75R"
-								align="center"
-								style="position: relative;z-index: 5;bottom: 931px;right: 864px;"
-							>
-								<table>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-								</table>
-							</div>
-						</td>
-						<!-- THREE -->
-						<td>
-							<div
-								class="adjust rotate45R"
-								align="center"
-								style="position: relative;z-index: 5;bottom: 557px;right: 710px;"
-							>
-								<table>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-								</table>
-							</div>
-						</td>
-						<!-- FOUR -->
-						<td>
-							<div
-								class="adjust rotate20R"
-								align="center"
-								style="position: relative;z-index: 5;bottom: 385px;right: 377px;"
-							>
-								<table>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-								</table>
-							</div>
-						</td>
-						<!-- FIVE -->
-						<td>
-							<div
-								class="adjust rotate20L"
-								align="center"
-								style="position: relative;z-index: 5;bottom: 385px;left: 377px;"
-							>
-								<table>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-								</table>
-							</div>
-						</td>
-						<!-- SIX -->
-						<td>
-							<div
-								class="adjust rotate45L"
-								align="center"
-								style="position: relative;z-index: 5;bottom: 557px;left: 710px;"
-							>
-								<table>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-								</table>
-							</div>
-						</td>
-						<!-- SEVEN -->
-						<td>
-							<div
-								class="adjust rotate75L"
-								align="center"
-								style="position: relative;z-index: 5;bottom: 931px;left: 864px;"
-							>
-								<table>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-								</table>
-							</div>
-						</td>
-						<!-- EIGHT -->
-						<td>
-							<div
-								class="rotate-98L"
-								align="center"
-								style="position: relative;z-index: 5;bottom: 1800px;left: 717px;"
-							>
-								<table>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="stair-image"></div>
-										</td>
-									</tr>
-								</table>
-							</div>
-						</td>
-					</tr>
-				</table>
-			</div>
-		</td>
-	</tr>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <table>
+          <tr>
+            <td>
+              <div class="stage-border">
+                <div class="stage-image" align="center">STAGE</div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+  <!-- FRONT -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative">
+        <table align="center">
+          <!-- Front Names -->
+          <tr>
+            <td>
+              <div class="rotate-98R" align="center" style="position: relative;z-index: 0;bottom: 850px;left: 1150px;">
+                {{{ sectionNames.83296 }}}
+              </div>
+            </td>
+            <td>
+              <div class="adjust rotate45R" align="center" style="position: relative;z-index: 0;bottom: 175px;left: 370px;">
+                {{{ sectionNames.83297 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative;z-index: 0;top: 90px;">{{{ sectionNames.83298 }}}</div>
+            </td>
+            <td>
+              <div class="adjust rotate45L" align="center" style="position: relative;z-index: 0;bottom: 175px;right: 370px;">
+                {{{ sectionNames.83299 }}}
+              </div>
+            </td>
+            <td>
+              <div class="rotate-98L" align="center" style="position: relative;z-index: 0;bottom: 850px;right: 1150px;">
+                {{{ sectionNames.83300 }}}
+              </div>
+            </td>
+          </tr>
+          <!-- Front Seats -->
+          <tr>
+            <td>
+              <div class="rotate-98R" align="left" style="position: relative;z-index: 1;bottom: 950px;left: 906px;">
+                {{{ sectionsMarkup.83296 }}}
+              </div>
+            </td>
+            <td>
+              <div class="adjust rotate45R" align="center" style="position: relative;z-index: 2;bottom: 225px;left: 210px;">
+                {{{ sectionsMarkup.83297 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative;z-index: 3;top: 95px;">{{{ sectionsMarkup.83298 }}}</div>
+            </td>
+            <td>
+              <div class="adjust rotate45L" align="center" style="position: relative;z-index: 2;bottom: 225px;right: 210px;">
+                {{{ sectionsMarkup.83299 }}}
+              </div>
+            </td>
+            <td>
+              <div class="rotate-98L" align="right" style="position: relative;z-index: 1;bottom: 950px;right: 906px;">
+                {{{ sectionsMarkup.83300 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+  <!-- STAIRS -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 5">
+        <table>
+          <tr>
+            <!-- ONE -->
+            <td>
+              <div class="rotate-98R" align="center" style="position: relative;z-index: 5;bottom: 1800px;right: 717px;">
+                <table>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- TWO -->
+            <td>
+              <div class="adjust rotate75R" align="center" style="position: relative;z-index: 5;bottom: 931px;right: 864px;">
+                <table>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- THREE -->
+            <td>
+              <div class="adjust rotate45R" align="center" style="position: relative;z-index: 5;bottom: 557px;right: 710px;">
+                <table>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- FOUR -->
+            <td>
+              <div class="adjust rotate20R" align="center" style="position: relative;z-index: 5;bottom: 385px;right: 377px;">
+                <table>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- FIVE -->
+            <td>
+              <div class="adjust rotate20L" align="center" style="position: relative;z-index: 5;bottom: 385px;left: 377px;">
+                <table>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- SIX -->
+            <td>
+              <div class="adjust rotate45L" align="center" style="position: relative;z-index: 5;bottom: 557px;left: 710px;">
+                <table>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- SEVEN -->
+            <td>
+              <div class="adjust rotate75L" align="center" style="position: relative;z-index: 5;bottom: 931px;left: 864px;">
+                <table>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <!-- EIGHT -->
+            <td>
+              <div class="rotate-98L" align="center" style="position: relative;z-index: 5;bottom: 1800px;left: 717px;">
+                <table>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="stair-image"></div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
 </table>
