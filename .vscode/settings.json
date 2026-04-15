@@ -7,5 +7,10 @@
   "[html]": {
     "editor.defaultFormatter": "monosans.djlint",
     "editor.formatOnSave": true
-  }
+  },
+
+  // Use project-local .venv Python
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "djlint.useVenv": false,
+  "djlint.pythonPath": "/Users/bradyjreese/Code/showtix4u-venues/.venv/bin/python"
 }
