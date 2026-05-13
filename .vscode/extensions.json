@@ -1,3 +1,3 @@
 {
-  "recommendations": ["monosans.djlint"]
+  "recommendations": ["monosans.djlint", "emeraldwalk.RunOnSave"]
 }

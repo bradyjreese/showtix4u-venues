@@ -14,7 +14,8 @@ The repo currently contains **~3,000 venue maps** in `html/`.
 
 ```sh
 corepack enable   # activates pnpm
-pnpm install      # installs Prettier
+pnpm install      # installs Node/builder dependencies
+uv sync --dev     # installs djlint for HTML formatting/linting
 ```
 
 ## Project Structure
@@ -22,8 +23,10 @@ pnpm install      # installs Prettier
 ```
 html/           # Venue HTML files named by numeric venue ID (e.g. 1915.html)
 scripts/
+  normalize-inline-styles.py  # Normalize style="..." attributes before djlint
   upload-venue.sh    # Upload HTML files to S3 as .mst
   download-venue.sh  # Download .mst files from S3 as HTML
+builder/        # Vite/Fabric venue builder prototype
 utils/
   ReservedSeating.scss  # Seat styling reference (used by the app frontend)
 screenshots/    # Venue screenshots for reference
@@ -31,11 +34,14 @@ screenshots/    # Venue screenshots for reference
 
 ## Scripts
 
-### Formatting
+### Formatting & Checks
 
 ```sh
-pnpm format          # Format all files with Prettier
-pnpm format:check    # Check formatting without writing
+pnpm format          # Normalize inline styles and format HTML with djlint
+pnpm format:check    # Check HTML formatting without writing
+pnpm lint:html       # Lint HTML templates with djlint
+pnpm typecheck       # Type-check the builder app
+pnpm check           # Run all non-mutating checks
 ```
 
 ### Upload & Download

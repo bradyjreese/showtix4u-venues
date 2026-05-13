@@ -4,7 +4,12 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"check": "uv run djlint html/ --reformat --lint",
+		"format": "uv run python scripts/normalize-inline-styles.py html && uv run djlint html/ --reformat --quiet --warn && uv run python scripts/normalize-inline-styles.py html",
+		"format:check": "uv run python scripts/normalize-inline-styles.py --check html && uv run djlint html/ --check",
+		"lint:html": "uv run djlint html/ --lint",
+		"check:html": "pnpm format:check && pnpm lint:html",
+		"typecheck": "pnpm --filter venue-builder exec tsc --noEmit",
+		"check": "pnpm check:html && pnpm typecheck",
 		"dev": "pnpm --filter venue-builder dev",
 		"upload": "./scripts/upload-venue.sh",
 		"download": "./scripts/download-venue.sh"
