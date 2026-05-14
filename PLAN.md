@@ -39,7 +39,7 @@ Workstream / wave structure is preserved as **ordered commits inside the branch*
 **Cross-repo merge ordering**:
 1. `cur8-api/feat/upgrade-2026q2` merges first — provides API surface for SRS + venue drafts.
 2. `cur8-ui/feat/upgrade-2026q2` merges after `cur8-api` is in.
-3. `showtix4u-venues/feat/upgrade-2026q2` is independent and can merge any time after its W0 work passes.
+3. `showtix4u-venues` lands directly on `main` per the solo-repo carve-out — no PR, no merge dependency on the team repos.
 
 ## Executive decisions (locked)
 
@@ -643,10 +643,10 @@ Per locked decision #14, each repo ships as one PR. The wave structure becomes c
 7. **W3 Wave D** (`cur8-ui`) — UI cleanup and replacements, ordered D1–D8.
 8. **W4** — venue builder migration (`cur8-api` drafts table + endpoints first, `cur8-ui` builder admin after).
 
-**Cross-repo merge ordering** (each repo's single PR):
-- `cur8-api/feat/upgrade-2026q2` merges first.
-- `cur8-ui/feat/upgrade-2026q2` merges after.
-- `showtix4u-venues/feat/upgrade-2026q2` is independent.
+**Cross-repo merge ordering**:
+- `cur8-api/feat/upgrade-2026q2` merges first (team PR).
+- `cur8-ui/feat/upgrade-2026q2` merges after (team PR).
+- `showtix4u-venues` is solo-owned and lands W0 directly on `main` — no PR.
 
 **Follow-up PRs** (post-merge, post-SRS-prod-validation):
 - `chore/ams-removal` per repo — strips AMS code, terraform `terraform/ant-media/`, `@antmedia/*`, demo screens, and drops `ams_streams` after DBA sign-off.
@@ -672,6 +672,10 @@ All 10 previously-open decisions are now answered:
 13. **fnm-only Node management on all dev workstations.** No system or Homebrew Node coexists with fnm on `bradys-macbook` or `bradys-rxco-macbook`. `reese-mac-mini` has no Node at all and stays that way. CLI tools that require Node (e.g. `gemini-cli`) install as npm globals under fnm-managed Node, not via Homebrew formulae. Verified clean on 2026-05-14: `which -a node` resolves only to fnm paths on both dev Macs.
 14. **Single PR per repo, commit-based structure.** Each repo ships its upgrade program as one feature branch (`feat/upgrade-2026q2`) and one PR. The workstream / wave structure is preserved as ordered commits inside the branch — not as separate per-wave PRs. The only exception is the post-SRS AMS-removal follow-up (one tiny `chore/ams-removal` PR per repo), which lands after SRS prod-validates because the `streaming.provider` runtime flag requires AMS code to remain in-tree during the validation window. Local sub-branches off `feat/upgrade-2026q2` for working organization are fine and don't need to appear here.
 15. **Bumps target latest stable, not minimum-working.** Whenever a dependency must be bumped (Node compat, security CVE, build failure, anything), the version target is the `latest` dist-tag on the registry (skipping pre-releases). The Wave A/B/C/D phasing in W3 is preserved — this rule is about *version target*, not *bump scope*. A specific exception: when a Wave C bump is required earlier (e.g. `canvas` 2 → 3 in W0 for Node 24 compat), it's pulled forward as a carve-out and the Wave C entry becomes a no-op. Such carve-outs are documented inline at the W0 task and at the original Wave C entry.
+
+### Documented exceptions to #15
+
+- **`cur8-api/@eslint/js`** pinned to `^9.39.1` rather than latest `^10.0.1`. `@eslint/js` 10.x ships stricter `recommended` rules (`no-useless-assignment`, `no-unassigned-vars`) that flag 24 pre-existing cur8-api code violations. Bumping `@eslint/js` to 10.x without simultaneously bumping ESLint itself to 10.x would mismatch majors; bumping both is a focused code-fix project beyond Wave A's "ESLint already on v9" scope per PLAN.md. Resolution: stay on `@eslint/js` 9.x for now; the full ESLint 9 → 10 migration is a queued follow-up after Wave A/B/C land. (Recorded 2026-05-14 in response to independent review.)
 
 ---
 
@@ -757,6 +761,7 @@ Live record of what's been done against the plan, in chronological order per rep
   - chai stays on 4.x because chai-http stays on 4.x and chai 5 is ESM-only. Patch bump 4.3.6 → 4.5.0 applied.
   - nodemon 2 → 3 is a devDep major; Node 18+ baseline is met.
   - eslint stays on 9.x per PLAN.md §Wave A; patch bump to 9.39.4 with `@eslint/js` kept aligned.
+- **Reverted 2026-05-14** to honor executive decision #4 (SRS-before-churn). Revert commits on `feat/upgrade-2026q2`: `425d20d85` (mocha/chai-http), `8bfb7ecf2` (patches), `817635567` (sinon). To be re-applied as commit group after W1 SRS lands.
 
 ### 2026-05-14 — `cur8-api` Wave B low-risk patches
 
@@ -765,7 +770,32 @@ Live record of what's been done against the plan, in chronological order per rep
 - **Bumps (all within their existing majors)**: `@mailchimp/mailchimp_transactional`, `@tus/s3-store`, `@tus/server`, `ably`, `csv-parse`, `express-session`, `handlebars`, `ics`, `jsonwebtoken`, `knex`, `passkit-generator`, `path-to-regexp`, `qrcode`, `qs`, `redis` (within 4.x — 5.x is major), `sitemap` (within 2.x — 3.x is major), `stripe` (within 13.x — 14+ is major), `yaml` (within 1.x — 2.x is major).
 - **Held back for Wave C** (have a major waiting that needs review): `intuit-oauth` 3 → 4, `html-to-text` 9 → 10. Plus all PLAN.md §Wave C entries (`helmet`, `multer`, `axios`, `aws-sdk` v3, `moment` removal, `connect-redis`, `config`, `csv-stringify`, `deepmerge`, `ajv`, `google-auth-library`, `pdfmake`, `promise-mysql`, `randomized-string`, `uuid`, etc.).
 - **Audit delta**: baseline 105 → post-Wave-B 84 vulns. Both `critical` cleared (2 → 0); `high` 55 → 46; `moderate` 40 → 33; `low` 8 → 5. Remaining vulns are concentrated in the Wave C target packages.
-- **Status**: Wave A + B complete on the branch. Wave C, golden artifacts (need dev env), and the two held-back majors (intuit-oauth, html-to-text) remain. Branch ready for review by another agent comparing this log to PLAN.md.
+- **Reverted 2026-05-14** to honor executive decision #4 (SRS-before-churn). Revert commit on `feat/upgrade-2026q2`: `1dc0bb8c7`. To be re-applied as commit group after W1 SRS lands.
+- **Status**: W0 + W0 follow-ups stand. Wave A + B reverted; both will be re-applied post-SRS.
+
+### 2026-05-14 — `cur8-api` post-review corrections
+
+Independent agent review (Codex) of the cur8-api branch on 2026-05-14 identified four issues. Resolved in this order:
+
+- **Branch**: `feat/upgrade-2026q2`.
+- **Commits**:
+  - `6efd16282` `fix(w0): use p-limit .default for ESM-only v7 under require(esm)`
+  - `e81217426` `fix(w0): pin body-parser to ^1.20.3 (match prior transitive)`
+  - `1dc0bb8c7` `Revert "chore(wave-b): minor/patch bumps for 18 non-breaking deps"`
+  - `8bfb7ecf2` `Revert "chore(wave-a): patch bumps for chai, eslint, @eslint/js, nodemon 2->3"`
+  - `425d20d85` `Revert "chore(wave-a): bump mocha 10 -> 11.7.5, chai-http 4.3 -> 4.4"`
+  - `817635567` `Revert "chore(wave-a): bump sinon 5.0.2 -> 22.0.0"`
+- **What each correction addresses**:
+  - **p-limit**: prior smoke test in commit `6300e79c5` used `(pLimit.default || pLimit)` which masked the call-site bug. `tasks/dev/s3-prefix-copy.js:2,14` does plain `require('p-limit')` then `pLimit(1)`; under Node 24 `require(esm)`, p-limit 7 returns a namespace object and `pLimit(1)` throws. Call site updated to `require('p-limit').default`; literal smoke test now mirrors actual usage.
+  - **body-parser**: missing-dep declaration in `6300e79c5` had silently promoted body-parser from the 1.20.3 resolving transitively through express 4 to ^2.2.2 latest. v2 has subtle behavior shifts (extended-default for urlencoded, stricter content-type, dropped legacy options) affecting routes/middleware.js, routes/api/mailing-lists.js, routes/api/mailing.js. Pinned to ^1.20.3 to match prior effective behavior; v2 is now a deliberate Wave C item with focused webhook parity tests.
+  - **Wave A + B reverts**: executive decision #4 says "Finish SRS streaming before broad dep churn." Wave A + B were executed before W1 SRS in violation of that ordering. The reviewer correctly noted that redis, @tus/*, express-session, qs, and stripe are all runtime surface SRS will lean on — reverting clean isolated commits is cheaper than weakening the locked decision. Branch history thereby preserves problem isolation: SRS-port problems stay SRS problems; Wave A/B will be re-applied as a commit group after W1 lands.
+- **Verification (Codex's literal checklist)**:
+  - `node -e 'const pLimit = require("p-limit").default; const limit = pLimit(1); console.log(typeof limit)'` → `function` ✅
+  - `pnpm install --frozen-lockfile` → clean ✅
+  - `pnpm exec eslint . --max-warnings=0` → clean ✅
+  - Final `@eslint/js` version after revert: `^9.39.1` (latest is 10.x; documented exception to locked decision #15 still applies — see §Documented exceptions above)
+- **Audit delta**: Wave B's improvement (105 → 84 vulns, both criticals cleared) is reverted with the bumps. Baseline returns to roughly 105 until Wave A/B re-apply post-SRS.
+- **Status**: cur8-api branch contains W0 + W0 follow-ups + post-review corrections. Wave A + B reverted, awaiting re-apply post-W1 SRS. Branch is the canonical record of what was tried, reviewed, and how it was reconciled.
 
 ## Document history
 
