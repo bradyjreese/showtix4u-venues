@@ -28,9 +28,11 @@ Per locked decision #14, the upgrade program ships as **one PR per repo**. Each 
 |---|---|---|---|
 | `cur8-api` | `feat/upgrade-2026q2` | `staging` | W0, W1 SRS, W2 Docker, W3 Waves A/B/C, W4 venue drafts |
 | `cur8-ui` | `feat/upgrade-2026q2` | `dev` | W0, W1 HLS port, W2 Docker, W3 Waves A/B/C/D, W4 venue builder admin |
-| `showtix4u-venues` | `feat/upgrade-2026q2` | `main` | W0 only |
+| `showtix4u-venues` | direct to `main` (no PR) | `main` | W0 only |
 
-Workstream / wave structure is preserved as **ordered commits inside the branch**, not as separate PRs. Local sub-branches off `feat/upgrade-2026q2` for working organization are fine and don't need to appear in this document.
+**Solo private repo carve-out**: `showtix4u-venues` is solo-owned (`bradyjreese/showtix4u-venues` on GitHub). PR ceremony adds no value with a single reviewer, so W0 commits land directly on `main` (optionally via a short-lived local working branch that is fast-forwarded and deleted). This carve-out is **specific to this repo** — `cur8-api` and `cur8-ui` are team-owned and continue to follow the single-PR rule.
+
+Workstream / wave structure is preserved as **ordered commits inside the branch** (or directly on `main` for solo repos), not as separate PRs. Local sub-branches off `feat/upgrade-2026q2` for working organization are fine and don't need to appear in this document.
 
 **Only documented exception: AMS removal.** After SRS prod-validates, each repo gets a small follow-up `chore/ams-removal` PR (see W1 §Post-SRS AMS-removal PR). AMS code must remain in-tree during the SRS validation window so the `streaming.provider` runtime flag remains a working rollback path. Folding AMS removal into the main PR would forfeit that rollback.
 
