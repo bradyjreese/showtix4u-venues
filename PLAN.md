@@ -2,6 +2,28 @@
 
 Single source of truth for the upgrade program across `cur8-api`, `cur8-ui`, and `showtix4u-venues`. Built from joint Claude + Codex convergence over five review rounds plus the locked-decision pass. All claims here have been grep-verified against the local repos as of 2026-05-14.
 
+## How to use this document (resume protocol)
+
+This document is the program's single source of truth. Any contributor — human or agent — picking up the work for any session should treat the following as their bootstrap. The protocol lives here, in the plan, so it travels via `git pull` to any machine and does not depend on per-session memory.
+
+**1. Read top-to-bottom before touching code.** Plan-first (§"Working agreements" #1) requires that PLAN.md edits land before repo edits; understanding what's already in PLAN.md is a precondition. Pay particular attention to:
+- §"Working agreements" — these bind every contributor, human or agent.
+- §"Locked decisions" — load-bearing constraints; do not silently override.
+- §"Validation environments" — local-vs-dev-vs-CI capability matrix; affects what work is even possible from a given machine.
+- §"Execution log" — the live record of what's been done; the most recent entry per repo is the resume point.
+
+**2. Find the resume point from §"Execution log".** The last "Status" line in each per-repo block records what's done, what's deferred, what's queued. Combine that with §"Recommended commit sequence" to derive what's next. If the resume point is ambiguous, ask the user before guessing — do not invent scope.
+
+**3. Read repo-specific conventions before touching that repo.** Each repo has its own `CLAUDE.md` and `README.md` (e.g. `~/Code/cur8-ui/CLAUDE.md` enforces "Plain JS only — no TypeScript"). Do NOT assume frontend conventions mirror backend conventions, or vice versa. Survey package-manager state (`.nvmrc`, `.node-version`, `package.json` `packageManager` field, `pnpm-lock.yaml` vs `yarn.lock` vs `package-lock.json`) before any package-related work.
+
+**4. Confirm scope before executing.** Per §"Working agreements" #3, surface any tension between user-stated scope and §"Locked decisions" before code is touched. The pattern: summarize program state as you understand it, propose the session's scope, list conflicts (if any) with options, wait for explicit confirmation. Branch history is part of the design — keeping it clean costs less than repairing it.
+
+**5. End each session with a §"Execution log" update.** Per §"Working agreements" #2, the log entry is the last commit of a session, not the first thing skipped at the end. The next session resumes from the log.
+
+A fresh session, on any machine, with `git pull` plus this document, has everything it needs. Per-machine agent memory (e.g. `~/.claude/projects/.../memory/`) is not relied upon — anything load-bearing lives in the plan itself.
+
+---
+
 ## Scope
 
 - `cur8-api` — Node backend modernization + SRS streaming migration
@@ -899,3 +921,7 @@ Built jointly by Claude and Codex over five review rounds plus the locked-decisi
 - Solo-repo carve-out for `showtix4u-venues` recorded — direct-to-main merges, no PR ceremony for that one repo.
 - `canvas` 2.11.2 verified as non-building on Node 24 in cur8-api; bumped to `canvas` 3.x latest stable in W0 as a Node 24 compat carve-out. Wave C "minors bundle" canvas entry struck through.
 - Locked decision #15 added: bumps always target latest stable (not minimum-working). Wave phasing preserved — the rule is about version target, not bump scope.
+
+**2026-05-14 working-agreements + resume-protocol pass** (commits `efe2bb7f` + this one):
+- §"Working agreements" added after §"Executive decisions": plan-first, continuous execution log, flag plan conflicts. Codifies the three workflow rules that today's session learned the hard way (the Wave A/B revert pass was the cost of not having #3 written down).
+- §"How to use this document (resume protocol)" added near the top: reading order, where to find the resume point, repo-specific convention check, scope confirmation, end-of-session log update. Replaces paste-able bootstrap prompts that lived only in chat — now travels via `git pull` to any machine.
