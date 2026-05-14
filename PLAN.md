@@ -734,7 +734,7 @@ Live record of what's been done against the plan, in chronological order per rep
   - **Golden artifacts**: ticket PDF, dymo label, transaction CSV, `.ics`, email HTML per PLAN.md §W0 task 4. Requires a running cur8-api dev environment (MySQL, Redis, config injection) on `bradys-macbook`. Defer until dev env is wired up.
   - **Wave A dev-tooling bumps** (`sinon` 5 → 19, `mocha` latest, etc.): scoped as Wave A commit group, not W0.
   - **Missing-deps declaration cleanup**: surfaced in W0 baseline, fixed in Wave A.
-- **Status**: W0 core complete on the branch. Branch pushed.
+- **Status**: W0 core complete on the branch; goldens (ticket PDF, dymo label, transaction CSV, .ics, email HTML — PLAN.md §W0 task #4) deferred pending the cur8-api dev env (MySQL + Redis + config injection) being wired up locally. Branch pushed.
 
 ### 2026-05-14 — `cur8-api` W0 follow-ups (small fixes)
 
@@ -744,9 +744,9 @@ Live record of what's been done against the plan, in chronological order per rep
   - `6300e79c5` `chore(w0): declare 11 missing-but-used deps`
 - **Notes**:
   - test.dockerfile now apt-installs `build-essential`, `libcairo2-dev`, `libpango1.0-dev`, `libjpeg-dev`, `libgif-dev`, `librsvg2-dev`, `pkg-config`, `python3`. Covers both from-source compile and prebuilt runtime-link paths for canvas 3.x. Removed the prior "TODO: add native libs" comment block.
-  - 11 missing deps declared at latest stable: `@turf/buffer 7.3.5`, `@turf/points-within-polygon 7.3.5`, `body-parser 2.2.2`, `dayjs 1.11.20`, `form-data 4.0.5`, `p-limit 7.3.0`, `passport 0.7.0`, `passport-local 1.0.0` (prod); `@eslint/js 9.39.1` (pinned to 9.x line — see below), `diff 9.0.0`, `globals 17.6.0` (dev).
+  - 11 missing deps declared at latest stable: `@turf/buffer 7.3.5`, `@turf/points-within-polygon 7.3.5`, `body-parser ~~2.2.2~~ 1.20.3` (re-pinned in post-review correction `e81217426` to match prior transitive resolution through express 4 — see post-review corrections entry below), `dayjs 1.11.20`, `form-data 4.0.5`, `p-limit 7.3.0`, `passport 0.7.0`, `passport-local 1.0.0` (prod); `@eslint/js 9.39.1` (pinned to 9.x line — see below), `diff 9.0.0`, `globals 17.6.0` (dev).
   - **`@eslint/js` pin observation**: 10.0.1 latest pulls in stricter `recommended` rules (`no-useless-assignment`, `no-unassigned-vars`) that flag 24 pre-existing cur8-api violations. ESLint major bump (9 → 10) is a separate Wave A task and code-fix project. Per locked decision #15 we'd target 10; per the spirit of "minor cleanup, not a rewrite," `@eslint/js` pinned to 9.x to match installed eslint 9.x.
-  - **`p-limit` 7 (ESM-only)** loads cleanly via `require("p-limit")` thanks to Node 24's stable `require(esm)` — no code changes needed in `tasks/dev/s3-prefix-copy.js`.
+  - **`p-limit` 7 (ESM-only)** — this bullet was wrong as originally written. Under Node 24 `require(esm)`, `require("p-limit")` returns the module namespace object, not the function, so `pLimit(1)` throws at the call site. The original smoke test used `(pLimit.default || pLimit)` which masked the bug. Corrected in post-review correction `6efd16282`: `tasks/dev/s3-prefix-copy.js:2` now uses `require("p-limit").default`. **Superseded — see post-review corrections entry below.**
 
 ### 2026-05-14 — `cur8-api` Wave A dev-tooling
 
@@ -793,7 +793,7 @@ Independent agent review (Codex) of the cur8-api branch on 2026-05-14 identified
   - `node -e 'const pLimit = require("p-limit").default; const limit = pLimit(1); console.log(typeof limit)'` → `function` ✅
   - `pnpm install --frozen-lockfile` → clean ✅
   - `pnpm exec eslint . --max-warnings=0` → clean ✅
-  - Final `@eslint/js` version after revert: `^9.39.1` (latest is 10.x; documented exception to locked decision #15 still applies — see §Documented exceptions above)
+  - Final `@eslint/js`: `package.json` range `^9.39.1`; pnpm lockfile resolves to `9.39.4` (highest 9.x). Intentionally stays on 9.x — `@eslint/js` 10.x adoption is the documented exception to locked decision #15 (see §Documented exceptions above), queued behind a focused ESLint 9 → 10 migration project.
 - **Audit delta**: Wave B's improvement (105 → 84 vulns, both criticals cleared) is reverted with the bumps. Baseline returns to roughly 105 until Wave A/B re-apply post-SRS.
 - **Status**: cur8-api branch contains W0 + W0 follow-ups + post-review corrections. Wave A + B reverted, awaiting re-apply post-W1 SRS. Branch is the canonical record of what was tried, reviewed, and how it was reconciled.
 
