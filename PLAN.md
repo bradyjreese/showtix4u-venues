@@ -820,6 +820,35 @@ Independent agent review (Codex) of the cur8-api branch on 2026-05-14 identified
 - **Audit delta**: Wave B's improvement (105 → 84 vulns, both criticals cleared) is reverted with the bumps. Baseline returns to roughly 105 until Wave A/B re-apply post-SRS.
 - **Status**: cur8-api branch contains W0 + W0 follow-ups + post-review corrections. Wave A + B reverted, awaiting re-apply post-W1 SRS. Branch is the canonical record of what was tried, reviewed, and how it was reconciled.
 
+### 2026-05-14 — `cur8-api` golden capture harness (W0 task #4 prep)
+
+Builds the reproducible harness that will eventually capture the W0 parity baselines (ticket PDF, dymo label, transaction CSV, `.ics`). Per [[feedback-defer-deploys]] in user memory, the *runs* (against staging for baseline, against dev for post-upgrade comparison) are deferred to the program's end-of-program deploy window; the harness itself is committed now so future work has a defined contract to fill in.
+
+- **Branch**: `feat/upgrade-2026q2`.
+- **Commit**: `f9902883e` `chore(w0): add cur8-api golden capture harness`
+- **Files added**:
+  - `tasks/dev/capture-goldens.js` — Node CJS harness; args `--base-url`, `--fixtures`, `--out-dir`, `--dry-run`; auth via `CUR8_AUTH_HEADER` env; manifest shape validation; path-template rendering; status assertions; binary/text body handling; explicit `todo: true` artifact-entry shape so unresolved contracts don't get invented. Zero new npm deps — uses Node built-ins (`fs/promises`, `path`, `url`, global `fetch`).
+  - `test/fixtures/goldens/README.md` — workflow doc (baseline → upgrade → diff), validation-environment caveats, coverage table.
+  - `test/fixtures/goldens/fixtures.example.json` — the committed contract; gets copied to a gitignored `fixtures.json` for actual captures.
+  - `test/fixtures/goldens/.gitignore` — ignores the working `fixtures.json` and the captured artifacts themselves until they're deliberately committed during the baseline/upgrade pass.
+- **Endpoints mapped** (from cur8-api code inspection):
+  - **Ticket PDF**: `GET /api/transactions/:id/print` → `controllers/transactions.js exports.print` (auth `secure('box-office')`)
+  - **Dymo label**: `GET /api/transactions/:id/print-dymo` → `controllers/transactions.js exports.printDymo` (auth `secure('box-office')`)
+  - **Transaction CSV**: `GET /api/credits/reports/csv` → `controllers/credits.js exports.getCreditsCSV` (auth `secure('any-manager-creator')`). Query-param shape still TODO — pending a chosen deterministic small dataset for the baseline.
+  - **`.ics`**: `GET /api/ics-subscriptions/:token` → `controllers/subscriptions.js exports.getSubscription` (token-in-URL, public).
+  - **Email HTML**: **explicitly TODO**. No render-to-HTML endpoint found in `controllers/email-templates.js`, `controllers/communications.js`, or `controllers/mailing.js`. Manifest's TODO entry documents three resolution options: (a) capture template body via `GET /api/email-templates/:id` as JSON (weaker — not rendered HTML), (b) add a non-mutating preview endpoint as a small Wave A item, (c) intercept rendered HTML during `sendPreviewTestEmail` via a dry-run flag. Decision deferred. Until resolved, email-template HTML output is **not under parity-gate coverage** — flagged as a known gap rather than a hidden one.
+- **Local validation (no deploy needed)**:
+  - `node tasks/dev/capture-goldens.js` (no args) → helpful "missing required arg: --base-url" error.
+  - `--base-url=not-a-url ...` → URL validation error.
+  - `--dry-run` against the example manifest → prints 4 planned requests + 1 TODO summary; fetches nothing; writes nothing.
+  - `pnpm exec eslint . --max-warnings=0` clean. `tasks/dev/**` is in the project's eslint ignore list by design (predates this work).
+- **Deferred to the end-of-program deploy window**:
+  - Filling in real IDs in `fixtures.json` against the staging environment.
+  - Running the harness against staging to capture the pre-upgrade baseline (commits the 4 artifacts).
+  - Deploying `feat/upgrade-2026q2` to `cur8-dev`, re-running the harness, byte-diffing against the baseline.
+  - Resolving the email-HTML TODO (add preview endpoint or chosen alternative).
+- **Status**: harness committed and pushed. W0 task #4 contract is defined. Actual captures pending the deploy window.
+
 ## Document history
 
 Built jointly by Claude and Codex over five review rounds plus the locked-decision pass (2026-05-13 to 2026-05-14). Earlier scratch drafts are superseded. This file is the working source of truth from here forward.
