@@ -690,6 +690,48 @@ All 10 previously-open decisions are now answered:
 
 ---
 
+## Execution log
+
+Live record of what's been done against the plan, in chronological order per repo. Maintained alongside commits — see [[feedback-plan-continuous-updates]] in user memory for the workflow rule. Findings and deferrals are intentional surface area for review (human or another agent comparing spec to reality).
+
+### 2026-05-14 — `showtix4u-venues` W0
+
+- **Branch**: none — direct-to-`main` per solo-repo carve-out (§PR / branch structure).
+- **Commits**:
+  - `da7e6405` `chore(w0): bump to Node 24.15.0 + pnpm 11.1.2`
+  - (Plus PLAN.md revisions `22ca6990`, `8494fbc9`, `4091547c`, `4535c003` on the same `main`.)
+- **Findings**: zero deviations from plan. `pnpm install` was a no-op against the existing lockfile; `pnpm check` (djlint format + lint, builder tsc) green on Node 24.15.0 + pnpm 11.1.2.
+- **Deferred**: none. The builder workspace stays (per user direction); pnpm therefore still needed in this repo until W4 builder migration. When the builder leaves the repo per W4, pnpm/`packageManager`/`pnpm-workspace.yaml` can also leave — this W0 commit becomes a no-op then.
+- **Status**: W0 complete. No further workstream work applies until W4.
+
+### 2026-05-14 — `cur8-api` W0 commit group
+
+- **Branch**: `feat/upgrade-2026q2` off `staging`, pushed to `DigitalTheatre/cur8-api`.
+- **Commits** (chronological):
+  - `31cfdfc1e` `chore(w0): pin Node 24.15.0 (.nvmrc, .node-version, engines.node)`
+  - `c151b19e3` `chore(w0): bump canvas 2.8.0 → 3.2.3 for Node 24 compat` (carve-out per locked decisions #11, #15)
+  - `0e5116fa8` `chore(w0): migrate package manager to pnpm 11.1.2 via Corepack`
+  - `6e3b4acc7` `chore(w0): modernize docker/test.dockerfile to Node 24 + pnpm`
+  - `fc0421319` `chore(w0): move nodemon to devDependencies`
+  - `38af5d1a4` `chore(w0): capture depcheck + pnpm audit baselines`
+  - `42531de8f` `chore(w0): document Node 24 runtime gotchas`
+- **CI sanity (local)**: `pnpm install --frozen-lockfile` clean; `pnpm exec eslint . --max-warnings=0` clean.
+- **Findings surfaced** (full detail in `docs/baselines/2026-05-14/node24-gotchas.md`):
+  - `canvas` 2.11.2 cannot build native bindings on Node 24; bumped to 3.2.3 in W0. Wave C minors-bundle canvas entry struck through.
+  - `bcrypt` 5.1.1 installs via prebuilt napi-v3 binary — clean on Node 24.
+  - `dtrace-provider` falls back to stub on macOS — expected.
+  - `aws-sdk` v2 emits end-of-support warnings at require time — Wave C v3 migration unaffected.
+  - pnpm 11 build-script gating lives in `pnpm-workspace.yaml` `allowBuilds:`, NOT in `package.json` `pnpm.onlyBuiltDependencies` despite the docs (the latter is read on fresh install but `pnpm approve-builds` only writes the former).
+  - **11 missing-but-used deps** from `depcheck`: `body-parser`, `passport`, `passport-local`, `dayjs`, `form-data`, `diff`, `p-limit`, `@turf/buffer`, `@turf/points-within-polygon`, `@eslint/js`, `globals`. Real bugs (transitive availability hides them today). Wave A cleanup.
+  - **105 vulnerabilities** from `pnpm audit` (8 low / 40 moderate / 55 high / 2 critical). Drives Wave B + C priority.
+  - **5 deprecated direct deps**: `fluent-ffmpeg`, `multer@1.4.4` (CVE-2022-24434), `sib-api-v3-sdk`, `uuid@9.0.1`, `aws-sdk@2`.
+- **Deferred from this commit group** (explicit, with reason):
+  - **Test dockerfile native build deps**: `apt-get install libcairo2-dev libpango1.0-dev libjpeg-dev librsvg2-dev` inside `node:24.15.0-bookworm-slim` so `canvas` and `dtrace-provider` can build inside the container. Noted in-file as a follow-up.
+  - **Golden artifacts**: ticket PDF, dymo label, transaction CSV, `.ics`, email HTML per PLAN.md §W0 task 4. Requires a running cur8-api dev environment (MySQL, Redis, config injection) on `bradys-macbook`. Defer until dev env is wired up.
+  - **Wave A dev-tooling bumps** (`sinon` 5 → 19, `mocha` latest, etc.): scoped as Wave A commit group, not W0.
+  - **Missing-deps declaration cleanup**: surfaced in W0 baseline, fixed in Wave A.
+- **Status**: W0 commit group complete on the branch. Branch pushed; PR creation pending per user direction. Ready to continue with Wave A commits on the same branch.
+
 ## Document history
 
 Built jointly by Claude and Codex over five review rounds plus the locked-decision pass (2026-05-13 to 2026-05-14). Earlier scratch drafts are superseded. This file is the working source of truth from here forward.
