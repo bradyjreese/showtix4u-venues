@@ -20,6 +20,25 @@ Single source of truth for the upgrade program across `cur8-api`, `cur8-ui`, and
 
 Old branches are abandoned as working bases. Fresh branches off `staging` / `dev`.
 
+## PR / branch structure
+
+Per locked decision #14, the upgrade program ships as **one PR per repo**. Each repo uses a single feature branch:
+
+| Repo | Single branch | Base | Squashes/contains commits for |
+|---|---|---|---|
+| `cur8-api` | `feat/upgrade-2026q2` | `staging` | W0, W1 SRS, W2 Docker, W3 Waves A/B/C, W4 venue drafts |
+| `cur8-ui` | `feat/upgrade-2026q2` | `dev` | W0, W1 HLS port, W2 Docker, W3 Waves A/B/C/D, W4 venue builder admin |
+| `showtix4u-venues` | `feat/upgrade-2026q2` | `main` | W0 only |
+
+Workstream / wave structure is preserved as **ordered commits inside the branch**, not as separate PRs. Local sub-branches off `feat/upgrade-2026q2` for working organization are fine and don't need to appear in this document.
+
+**Only documented exception: AMS removal.** After SRS prod-validates, each repo gets a small follow-up `chore/ams-removal` PR (see W1 §Post-SRS AMS-removal PR). AMS code must remain in-tree during the SRS validation window so the `streaming.provider` runtime flag remains a working rollback path. Folding AMS removal into the main PR would forfeit that rollback.
+
+**Cross-repo merge ordering**:
+1. `cur8-api/feat/upgrade-2026q2` merges first — provides API surface for SRS + venue drafts.
+2. `cur8-ui/feat/upgrade-2026q2` merges after `cur8-api` is in.
+3. `showtix4u-venues/feat/upgrade-2026q2` is independent and can merge any time after its W0 work passes.
+
 ## Executive decisions (locked)
 
 1. **Fresh branches off `staging` (api) and `dev` (ui).** Old branches are mined, not rebased.
@@ -148,9 +167,7 @@ Latest LTS: **v24.15.0**. Latest Current: v26.1.0 (not the prod target). Plan tr
 
 **Goal**: measurable baselines + isolated low-risk fixes before bigger waves. No streaming files touched.
 
-**Branches**:
-- `cur8-api`: `chore/api-upgrade-baseline` from `staging`
-- `cur8-ui`: `chore/ui-upgrade-baseline` from `dev`
+**Branch**: `feat/upgrade-2026q2` in each repo (per locked decision #14). W0 work is the first commit group on that branch.
 
 **Tasks**:
 
@@ -203,9 +220,7 @@ Latest LTS: **v24.15.0**. Latest Current: v26.1.0 (not the prod target). Plan tr
 
 **Goal**: replace Ant Media with SRS on Fargate, behind a provider flag, with rollback.
 
-**Branches**:
-- `cur8-api`: `feat/srs-streaming-service` from `staging`
-- `cur8-ui`: `feat/srs-hls-player` from `dev`
+**Branch**: `feat/upgrade-2026q2` in `cur8-api` and `cur8-ui` (per locked decision #14). SRS work lands as the W1 commit group after W0 commits.
 
 **Salvage sources**:
 - API: `feature/streaming-service` (port; do not rebase)
@@ -307,10 +322,7 @@ Latest LTS: **v24.15.0**. Latest Current: v26.1.0 (not the prod target). Plan tr
 
 **Note (2026-05-14):** Dev-side Node 24 LTS adoption and pnpm 11.x migration are executed in W0 (locked decisions #11 and #12). W2 retains only the Dockerfile / CI build-image / ECR-mirror work that depends on the W0 proof.
 
-**Branches**:
-- `cur8-api`: `chore/api-node24-docker` from `staging` (parallel to SRS if no file overlap; otherwise after; depends on W0)
-- `cur8-ui`: `chore/ui-node24-docker` from `dev` (after HLS port is isolated; depends on W0)
-- `showtix4u-venues`: no W2 work — venues-side W0 PR fully covers it.
+**Branch**: `feat/upgrade-2026q2` in `cur8-api` and `cur8-ui` (per locked decision #14). W2 work is the commit group after W1 in `cur8-api`, after the W1 HLS port in `cur8-ui`. `showtix4u-venues` has no W2 work — venues-side W0 commits fully cover it.
 
 ### cur8-api tasks
 - Dockerfiles (dev/prod): private ECR `node_v22-21` → patch-pinned Node 24 (per locked decision #10 — e.g. `node:24.15.0-bookworm-slim`, or `node_v24-15` if mirrored in ECR). **Precondition: confirm the patch-pinned Node-24 image exists in ECR, or build/mirror it, before merging this PR.** Renovate or Dependabot bumps the pin as Node patches land.
@@ -367,7 +379,7 @@ Validation is performed in W0 (see W0 task #7) so gotchas are caught against the
 
 ### Wave B — Low-risk runtime patches
 
-Patch/minor bumps with no public-behavior change. Security patches. Transitive vuln cleanup post lockfile conversion. One PR per repo.
+Patch/minor bumps with no public-behavior change. Security patches. Transitive vuln cleanup post lockfile conversion. One commit group per repo within `feat/upgrade-2026q2`.
 
 ### Wave C — API breaking upgrades
 
@@ -483,10 +495,7 @@ Ordered by value-per-risk:
 
 **Goal**: move builder into cur8-ui, persist/publish through cur8-api, without breaking 20M existing seats or active events.
 
-**Branches**:
-- `cur8-api`: `feat/venue-layout-drafts` from `staging`
-- `cur8-ui`: `feat/venue-builder-admin` from `dev`
-- `showtix4u-venues`: stays as template archive
+**Branch**: `feat/upgrade-2026q2` in `cur8-api` and `cur8-ui` (per locked decision #14). W4 work is the final commit group on each branch. `showtix4u-venues` stays as template archive — no W4 commits there.
 
 ### Data model
 
@@ -616,13 +625,28 @@ Move Fabric builder into `cur8-ui` as internal support/admin first.
 
 ---
 
-## Recommended PR sequence
+## Recommended commit sequence within `feat/upgrade-2026q2`
 
-1. **W0 baselines**: `chore/api-upgrade-baseline`, `chore/ui-upgrade-baseline`
-2. **W1 SRS** (critical path): `feat/srs-streaming-service`, `feat/srs-hls-player`
-3. **W2 Node/pnpm**: `chore/api-node24-pnpm`, `chore/ui-node24-pnpm`, `chore/venues-node24-refresh`
-4. **W3 dep waves**: A (tooling) → B (low-risk) → C (api breaking) → D (UI cleanup, ordered D1–D8)
-5. **W4 venue builder**: `feat/venue-layout-drafts` (api first), `feat/venue-builder-admin` (ui)
+Per locked decision #14, each repo ships as one PR. The wave structure becomes commit ordering inside that PR.
+
+**Per repo, in commit order:**
+
+1. **W0** — env-prereq note, safety-rail fixes, baselines, zero-touch deletes, pnpm 11.x conversion, Node 24 gotcha findings, `.node-version` + `engines.node` bumps.
+2. **W1 SRS** (`cur8-api` + `cur8-ui`; critical path) — SRS code under the `streaming.provider` flag, still set to `ant-media`.
+3. **W2** — Docker / CI image alignment to Node 24 LTS.
+4. **W3 Wave A** — tooling and lockfile stabilization.
+5. **W3 Wave B** — low-risk patches.
+6. **W3 Wave C** (`cur8-api`) — API breaking upgrades.
+7. **W3 Wave D** (`cur8-ui`) — UI cleanup and replacements, ordered D1–D8.
+8. **W4** — venue builder migration (`cur8-api` drafts table + endpoints first, `cur8-ui` builder admin after).
+
+**Cross-repo merge ordering** (each repo's single PR):
+- `cur8-api/feat/upgrade-2026q2` merges first.
+- `cur8-ui/feat/upgrade-2026q2` merges after.
+- `showtix4u-venues/feat/upgrade-2026q2` is independent.
+
+**Follow-up PRs** (post-merge, post-SRS-prod-validation):
+- `chore/ams-removal` per repo — strips AMS code, terraform `terraform/ant-media/`, `@antmedia/*`, demo screens, and drops `ams_streams` after DBA sign-off.
 
 ---
 
@@ -643,6 +667,7 @@ All 10 previously-open decisions are now answered:
 11. **W0 baselines captured on Node 24 LTS, not Node 22.** Supersedes the prior reference baseline on Node 22 (current prod). Dev workstations standardize on Node 24 LTS immediately; capturing on Node 22 would require version-switching for a baseline that no longer reflects where development happens. Trade-off accepted: Node 24 runtime gotchas (OpenSSL 3.x ciphers, native `fetch`, Webpack 5 + babel-loader, native deps `canvas` / `bcrypt` / `node-canvas`) surface during W0 baseline capture instead of being deferred to a separate W2 concern.
 12. **pnpm 11.x migration moves from W2 into W0.** Corepack-managed pnpm 11.x is the foundation for every subsequent lockfile / dependency wave. Doing the package-manager swap in W0 means every later wave operates on the target package manager from the start — no mid-program lockfile rewrite.
 13. **fnm-only Node management on all dev workstations.** No system or Homebrew Node coexists with fnm on `bradys-macbook` or `bradys-rxco-macbook`. `reese-mac-mini` has no Node at all and stays that way. CLI tools that require Node (e.g. `gemini-cli`) install as npm globals under fnm-managed Node, not via Homebrew formulae. Verified clean on 2026-05-14: `which -a node` resolves only to fnm paths on both dev Macs.
+14. **Single PR per repo, commit-based structure.** Each repo ships its upgrade program as one feature branch (`feat/upgrade-2026q2`) and one PR. The workstream / wave structure is preserved as ordered commits inside the branch — not as separate per-wave PRs. The only exception is the post-SRS AMS-removal follow-up (one tiny `chore/ams-removal` PR per repo), which lands after SRS prod-validates because the `streaming.provider` runtime flag requires AMS code to remain in-tree during the validation window. Local sub-branches off `feat/upgrade-2026q2` for working organization are fine and don't need to appear here.
 
 ---
 
@@ -672,3 +697,10 @@ Built jointly by Claude and Codex over five review rounds plus the locked-decisi
 - Homebrew Node + `gemini-cli` relocated to fnm-managed npm globals on both `bradys-macbook` and `bradys-rxco-macbook`; ~205 MB of brew artifacts removed per machine.
 - Workstream 2 rescoped to deploy-side (Docker + CI image) work; dev-side Node/pnpm fully owned by W0.
 - No repo code changes land before this PLAN.md revision is committed and pushed.
+
+**2026-05-14 session revision #2** (committed alongside):
+- One PR per repo for the upgrade program; commit-based structure replaces per-wave PRs (locked decision #14).
+- Single branch name `feat/upgrade-2026q2` standardized across all three repos.
+- New §"PR / branch structure" added; all per-workstream "Branches" subsections updated to reference the single branch.
+- §"Recommended PR sequence" rewritten as §"Recommended commit sequence within feat/upgrade-2026q2".
+- AMS-removal carved out as a follow-up `chore/ams-removal` PR per repo to preserve flag-based SRS rollback during the validation window.
