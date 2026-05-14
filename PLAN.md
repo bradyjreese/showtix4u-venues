@@ -205,7 +205,8 @@ Latest LTS: **v24.15.0**. Latest Current: v26.1.0 (not the prod target). Plan tr
    - OpenSSL 3.x cipher behavior — TLS edge cases on outbound integrations (Stripe, Ably, Google APIs, Intuit OAuth).
    - Native `fetch` is available — drop any fetch polyfills surfaced by depcheck.
    - Webpack 5 + babel-loader compatibility on Node 24 (cur8-ui).
-   - node-gyp / native deps rebuild cleanly: `canvas`, `bcrypt`, `node-canvas`.
+   - node-gyp / native deps rebuild cleanly: `bcrypt`, `node-canvas`.
+   - **`canvas` 2.11.2 does NOT build on Node 24** (verified 2026-05-14 in cur8-api). Bumped to `canvas` 3.x latest stable in W0 as a Node 24 compat carve-out (per locked decision #15). The full Wave C "minors bundle" canvas entry becomes a no-op as a result.
    - Findings recorded per repo at `docs/baselines/2026-05-14/node24-gotchas.md`.
 8. **Per-repo `.node-version` / `.nvmrc` and `engines.node`** (consolidated into W0):
    - `cur8-api`: add `.nvmrc` and `.node-version` set to `24.15.0`; `package.json` `engines.node: ">=24"`.
@@ -396,7 +397,7 @@ Patch/minor bumps with no public-behavior change. Security patches. Transitive v
 | 7 | `randomized-string` → `crypto.randomUUID()` | — | Trivial | 3 sites |
 | 8 | `axios` 0.21 → 1.x | — | Low | 15 sites; CVEs in 0.21 |
 | 9 | `request` → `undici` / native fetch | — | Low | If still present; verify with grep |
-| 10 | minors bundle: `config` 1 → 3, `csv-stringify` 3 → 6, `deepmerge` 2 → 4, `chokidar` 5 → 4 (deprecated tag jump), `ajv` 6 → 8, `canvas` 2 → 3, `pdfmake` 0.1 → 0.2, `google-auth-library` 7 → 9, `bcrypt` 5.0 → 5.1 | — | Low–Med | One PR |
+| 10 | minors bundle: `config` 1 → 3, `csv-stringify` 3 → 6, `deepmerge` 2 → 4, `chokidar` 5 → 4 (deprecated tag jump), `ajv` 6 → 8, ~~`canvas` 2 → 3~~ (done in W0 per locked decision #15), `pdfmake` 0.1 → 0.2, `google-auth-library` 7 → 9, `bcrypt` 5.0 → 5.1 | — | Low–Med | One PR |
 
 **Also in Wave C** (locked decision #9 — moment is dead upstream, remove it everywhere):
 - **API `moment` / `moment-timezone` → `dayjs`** (38 sites in cur8-api). Approach mirrors UI Wave D1: add a thin dayjs utility wrapper, codemod simple uses first, manual review for timezone arithmetic. Parity gate: every date string that appears in a user-visible artifact (ticket PDF, email, CSV, `.ics`, on-screen) gets byte-diffed via the W0 goldens before/after.
@@ -670,6 +671,7 @@ All 10 previously-open decisions are now answered:
 12. **pnpm 11.x migration moves from W2 into W0.** Corepack-managed pnpm 11.x is the foundation for every subsequent lockfile / dependency wave. Doing the package-manager swap in W0 means every later wave operates on the target package manager from the start — no mid-program lockfile rewrite.
 13. **fnm-only Node management on all dev workstations.** No system or Homebrew Node coexists with fnm on `bradys-macbook` or `bradys-rxco-macbook`. `reese-mac-mini` has no Node at all and stays that way. CLI tools that require Node (e.g. `gemini-cli`) install as npm globals under fnm-managed Node, not via Homebrew formulae. Verified clean on 2026-05-14: `which -a node` resolves only to fnm paths on both dev Macs.
 14. **Single PR per repo, commit-based structure.** Each repo ships its upgrade program as one feature branch (`feat/upgrade-2026q2`) and one PR. The workstream / wave structure is preserved as ordered commits inside the branch — not as separate per-wave PRs. The only exception is the post-SRS AMS-removal follow-up (one tiny `chore/ams-removal` PR per repo), which lands after SRS prod-validates because the `streaming.provider` runtime flag requires AMS code to remain in-tree during the validation window. Local sub-branches off `feat/upgrade-2026q2` for working organization are fine and don't need to appear here.
+15. **Bumps target latest stable, not minimum-working.** Whenever a dependency must be bumped (Node compat, security CVE, build failure, anything), the version target is the `latest` dist-tag on the registry (skipping pre-releases). The Wave A/B/C/D phasing in W3 is preserved — this rule is about *version target*, not *bump scope*. A specific exception: when a Wave C bump is required earlier (e.g. `canvas` 2 → 3 in W0 for Node 24 compat), it's pulled forward as a carve-out and the Wave C entry becomes a no-op. Such carve-outs are documented inline at the W0 task and at the original Wave C entry.
 
 ---
 
@@ -706,3 +708,8 @@ Built jointly by Claude and Codex over five review rounds plus the locked-decisi
 - New §"PR / branch structure" added; all per-workstream "Branches" subsections updated to reference the single branch.
 - §"Recommended PR sequence" rewritten as §"Recommended commit sequence within feat/upgrade-2026q2".
 - AMS-removal carved out as a follow-up `chore/ams-removal` PR per repo to preserve flag-based SRS rollback during the validation window.
+
+**2026-05-14 session revision #3** (committed alongside):
+- Solo-repo carve-out for `showtix4u-venues` recorded — direct-to-main merges, no PR ceremony for that one repo.
+- `canvas` 2.11.2 verified as non-building on Node 24 in cur8-api; bumped to `canvas` 3.x latest stable in W0 as a Node 24 compat carve-out. Wave C "minors bundle" canvas entry struck through.
+- Locked decision #15 added: bumps always target latest stable (not minimum-working). Wave phasing preserved — the rule is about version target, not bump scope.
