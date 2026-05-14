@@ -847,7 +847,8 @@ Builds the reproducible harness that will eventually capture the W0 parity basel
   - Running the harness against staging to capture the pre-upgrade baseline (commits the 4 artifacts).
   - Deploying `feat/upgrade-2026q2` to `cur8-dev`, re-running the harness, byte-diffing against the baseline.
   - Resolving the email-HTML TODO (add preview endpoint or chosen alternative).
-- **Status**: harness committed and pushed. W0 task #4 contract is defined. Actual captures pending the deploy window.
+- **Nits fixed in commit `a21d13170`** after Codex 2nd-pass review: (a) transaction-csv promoted to `todo:true` (its placeholder `query: {TODO}` would have built `?TODO=...` in real captures), (b) harness now defensively rejects any params/query key named `TODO` (case-insensitive) so future placeholder slip fails fast, (c) README relative path to the harness corrected (`../../` -> `../../../` — README lives three dirs deep, not two).
+- **Status**: harness + nit fixes committed and pushed. W0 task #4 contract is defined. Actual captures pending the deploy window.
 
 ## Document history
 
