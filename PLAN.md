@@ -165,6 +165,29 @@ Latest LTS: **v24.15.0**. Latest Current: v26.1.0 (not the prod target). Plan tr
 
 ---
 
+## Validation environments
+
+Recorded 2026-05-14 in response to a constraint that needs to drive every parity gate in this program: the user cannot run `cur8-api` end-to-end on their local machines because the full runtime config (env vars, 1Password injections, deploy-time files referenced by `server.js:4` / `lib/helpers.js:4`) is not available to them. The user said: "I can't set it up cause I can never get the full config... we have to push to a dev environment honestly."
+
+**What this changes:** every artifact / smoke / byte-diff that requires a running `cur8-api` is captured against the **dev environment** (`cur8-dev`, AWS account `583716518461`), not a local checkout.
+
+**What it does NOT change:** lint, install, container build, unit tests that don't hit live integrations, and source-level static analysis still run anywhere — locally on `bradys-macbook` / `bradys-rxco-macbook`, in CI, or in containers.
+
+| Capability | Local (`bradys-*`) | Dev (`cur8-dev`) | CI |
+|---|---|---|---|
+| `pnpm install --frozen-lockfile` | ✅ | ✅ | ✅ |
+| `pnpm exec eslint` | ✅ | n/a | ✅ |
+| Unit / framework-load smoke (e.g. mocha + sinon + chai loads) | ✅ | n/a | ✅ |
+| Container image build | ✅ | ✅ | ✅ |
+| Live API endpoint (ticket PDF, dymo, CSV, .ics, email HTML — i.e. **goldens**) | ❌ | ✅ | n/a |
+| Live integrations (Stripe / Ably / Google / Intuit / Mailchimp callbacks) | ❌ | ✅ | n/a |
+| OBS publish → SRS → HLS pipeline | ❌ | ✅ (Fargate; user provisions) | n/a |
+| iOS Safari + multi-browser playback | ❌ | ✅ (against dev) | n/a |
+
+**AWS provisioning:** the user has permissions on `cur8-dev` to create new ECS / EKS / Fargate resources. This unblocks W1 SRS infra work directly — SRS Fargate tasks, the always-on RTMP router task, and any supporting ECS services can be stood up by the user via CDK in dev.
+
+**New config keys:** when the program introduces new config values (e.g. SRS's `aws.srs.*`, `srs.callback_base_url` per W1 §API tasks #4), they're added to the dev environment by the user. Don't block code work waiting for them — call them out as "needs dev config" in the relevant PR and surface them so they get added.
+
 ## Workstream 0 — Baseline & Safety Rails
 
 **Goal**: measurable baselines + isolated low-risk fixes before bigger waves. No streaming files touched.
@@ -185,12 +208,12 @@ Latest LTS: **v24.15.0**. Latest Current: v26.1.0 (not the prod target). Plan tr
    - both: `pnpm dlx depcheck` report saved as a clue list (not auto-delete)
    - both: `pnpm audit` saved
    - both: clean install + lint + test status documented
-   - **Parity baselines** (per zero-regression principle):
-     - cur8-ui: pick visual-regression tool, capture screenshots of top customer + admin screens
+   - **Parity baselines** (per zero-regression principle; capture environment per §"Validation environments"):
+     - cur8-ui: pick visual-regression tool, capture screenshots of top customer + admin screens (captured against dev or local-with-staging-API)
      - cur8-ui: current Playwright e2e suite green run as "before" reference (15 specs as of 2026-05-14)
-     - cur8-api: golden fixtures — one ticket PDF, dymo label, transaction CSV, `.ics`, email HTML — to `test/fixtures/goldens/`
+     - cur8-api: golden fixtures — one ticket PDF, dymo label, transaction CSV, `.ics`, email HTML — to `test/fixtures/goldens/`. **Captured by deploying the pre-upgrade `cur8-api` baseline to dev and hitting the relevant endpoints, NOT by running locally** (local run is blocked per §"Validation environments").
      - cur8-ui: render-snapshot one reserved-seating + one GA `returnCreateVenueSectionsMarkup` output
-     - Streaming: recorded reference of an AMS live stream on desktop + iOS Safari
+     - Streaming: recorded reference of an AMS live stream on desktop + iOS Safari (against dev)
 5. **cur8-ui: delete W0 zero-touch packages**: `fs`, `npm`, `base64-img`, `moment-countdown`, `redux-saga`, `eslint-plugin-redux-saga`.
    - **`fs` nuance**: delete the fake `^0.0.1-security` dep line at `package.json:124`. **Keep** `"browser": {"fs": false}` at `package.json:55` — that's the actual webpack instruction. Real `require('fs')` resolves Node's core module.
    - **`redux-saga` nuance**: no active imports remain, but stale helper files and docs do. Delete only the packages in W0; helper-file cleanup is a separate behavior-risk pass gated by import tracing.
@@ -406,14 +429,14 @@ Patch/minor bumps with no public-behavior change. Security patches. Transitive v
 - **Express 4 → 5** — middleware semantics change; do after Node/pnpm/SRS settle
 - **`bunyan` → `pino`** — unless ops needs structured-log parity now
 
-**Wave C parity gates**:
+**Wave C parity gates** (all byte-diffs are dev-deploy-vs-dev-deploy per §"Validation environments" — pre-upgrade dev deploy captures the baseline, post-upgrade dev deploy captures the comparison; local runs are not viable for any of these):
 - `aws-sdk` v2 → v3: contract tests on error shapes that bubble to UI (S3 presigned URLs, ECS task launch envelopes, paginator shapes)
 - `helmet` 3 → 8: diff response headers before/after; CSP / CORS / cookie behavior must match
 - `multer` 1 → 2: upload e2e on staging for all 3 routes
-- `pdfmake` 0.1 → 0.2 + `canvas` 2 → 3: regenerate ticket PDF + dymo label goldens, byte-diff the visible content
-- `csv-stringify` 3 → 6: regenerate transaction CSV golden, byte-diff
+- `pdfmake` 0.1 → 0.2 + `canvas` 2 → 3: regenerate ticket PDF + dymo label goldens against dev, byte-diff the visible content
+- `csv-stringify` 3 → 6: regenerate transaction CSV golden against dev, byte-diff
 - `axios` 0.21 → 1: error-shape contract tests where errors leak to UI
-- `config` 1 → 3: smoke-test all deploy envs (local, dev, staging, prod) before merge
+- `config` 1 → 3: smoke-test on dev (and any other envs the user has access to flip through) before merge; "local" no longer applies
 - `@google/maps` → `@googlemaps/google-maps-services-js`: geocode/timezone/place response-shape parity tests
 
 ### Wave D — UI cleanup & replacements
@@ -657,7 +680,7 @@ Per locked decision #14, each repo ships as one PR. The wave structure becomes c
 
 All 10 previously-open decisions are now answered:
 
-1. **SRS infra ownership: CDK.** Verified `terraform/ant-media/` is the only terraform in cur8-api; it's AMS-only and gets nuked with AMS. SRS gets built fresh in CDK.
+1. **SRS infra ownership: CDK.** Verified `terraform/ant-media/` is the only terraform in cur8-api; it's AMS-only and gets nuked with AMS. SRS gets built fresh in CDK. **User has AWS permissions on `cur8-dev` (account 583716518461) to create new ECS / EKS / Fargate resources** — including SRS Fargate tasks and the always-on RTMP router task — so infra provisioning is not gated on external request-and-wait cycles (verified 2026-05-14).
 2. **SRS rollout: global, no DB override.** Single config flag during the validation window, then full cutover. AMS is being deleted entirely (#8), so per-client/per-event nuance is wasted complexity.
 3. **RTMP router: Node proxy on Fargate.** Consistency with the existing JS stack; smaller ops surface than nginx-rtmp + Lua.
 4. **AWS SDK v3 during the SRS cutover.** SRS code is written against `@aws-sdk/*` v3 from day one. The rest of cur8-api's v2 → v3 migration still happens later in Wave C (separately, for the non-SRS call sites).
