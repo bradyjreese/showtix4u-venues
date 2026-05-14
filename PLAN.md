@@ -56,7 +56,7 @@ Old branches are abandoned as working bases. Fresh branches off `staging` / `dev
 
 ### W0 baselines (capture before any wave merges)
 
-- **e2e green run** of all current Playwright specs on `dev`/Node 22 (15 specs as of 2026-05-14). Save report.
+- **e2e green run** of all current Playwright specs on `dev`/**Node 24 LTS (24.15.0)** (15 specs as of 2026-05-14). Save report. If any spec fails on Node 24 that passed on Node 22, treat as a Node 24 regression to fix before the baseline is signed — not a stable-state baseline to lock in.
 - **Visual regression snapshots** of top customer-facing screens (event listing, event detail, seat selection, checkout, livestream watch) and key admin screens. Tool: pick one in W0 (Playwright `toHaveScreenshot()` or `argos`).
 - **Artifact goldens** (committed to `test/fixtures/goldens/`):
   - cur8-api: one ticket PDF, one dymo label, one transaction CSV, one calendar `.ics`, one rendered email HTML
@@ -154,8 +154,12 @@ Latest LTS: **v24.15.0**. Latest Current: v26.1.0 (not the prod target). Plan tr
 
 **Tasks**:
 
-1. **cur8-api `docker/test.dockerfile` Node 8.10 → 24** (or delete if unused — verify with CI grep). The single most embarrassing line in either repo.
-2. **cur8-api `.github/workflows/eslint.yml` Node 20 → 22** (matching current). Will move to 24 in W2.
+0. **Environment prereqs** (one-time, no PR — completed 2026-05-14):
+   - fnm installed; Node 24.15.0 set as default on both `bradys-macbook` and `bradys-rxco-macbook` (`fnm default 24.15.0`, aliased `lts-latest`).
+   - Homebrew Node uninstalled on both Macs; `gemini-cli` reinstalled as `npm i -g @google/gemini-cli` under fnm-managed Node 24.15.0.
+   - `which -a node` resolves to only the fnm path on both Macs. `reese-mac-mini` confirmed to have no Node installed.
+1. **cur8-api `docker/test.dockerfile` Node 8.10 → 24.15.0** (patch-pinned per locked decision #10) or delete if unused — verify with CI grep. The single most embarrassing line in either repo.
+2. **cur8-api `.github/workflows/eslint.yml` Node 20 → 24.15.0** (matches W0 baseline target per locked decision #11; supersedes the prior "→ 22, move to 24 in W2" plan).
 3. **cur8-api: move `nodemon` to devDependencies.**
 4. **Baselines** (measure only, no deletions):
    - cur8-ui: `webpack-bundle-analyzer` snapshot committed
@@ -172,10 +176,26 @@ Latest LTS: **v24.15.0**. Latest Current: v26.1.0 (not the prod target). Plan tr
    - **`fs` nuance**: delete the fake `^0.0.1-security` dep line at `package.json:124`. **Keep** `"browser": {"fs": false}` at `package.json:55` — that's the actual webpack instruction. Real `require('fs')` resolves Node's core module.
    - **`redux-saga` nuance**: no active imports remain, but stale helper files and docs do. Delete only the packages in W0; helper-file cleanup is a separate behavior-risk pass gated by import tracing.
    - **`eslint-plugin-redux-saga` nuance**: confirmed at version `1.0.0` in `cur8-ui/package.json`. Current `.eslintrc.js` does not configure this plugin, but re-check for alternate eslint config before deletion. If any `plugins: ['redux-saga']` or `rules: { 'redux-saga/*': ... }` entries exist, remove them before deleting the package or `pnpm lint` will fail with "plugin not found".
+6. **pnpm 11.x via Corepack** (moved from W2 per locked decision #12):
+   - All three repos: set `packageManager: "pnpm@11.x.y"` (latest 11 patch) and confirm Corepack provisions it on Node 24.15.0.
+   - `showtix4u-venues`: bump from `pnpm@10.33.0` to selected pnpm 11.x patch.
+   - `cur8-api`: introduce `packageManager` field; generate `pnpm-lock.yaml`; delete `package-lock.json`; convert `npm run` script references to `pnpm run`.
+   - `cur8-ui`: introduce `packageManager` field; generate `pnpm-lock.yaml`; delete `yarn.lock`; convert `yarn` invocations to `pnpm`.
+   - `.npmrc` env-var resolution (`${NPM_GITHUB_TOKEN}`) must work under non-interactive shells; document the 1Password env-load expectation.
+7. **Node 24 runtime gotcha validation** (moved from W2 per locked decision #11):
+   - OpenSSL 3.x cipher behavior — TLS edge cases on outbound integrations (Stripe, Ably, Google APIs, Intuit OAuth).
+   - Native `fetch` is available — drop any fetch polyfills surfaced by depcheck.
+   - Webpack 5 + babel-loader compatibility on Node 24 (cur8-ui).
+   - node-gyp / native deps rebuild cleanly: `canvas`, `bcrypt`, `node-canvas`.
+   - Findings recorded per repo at `docs/baselines/2026-05-14/node24-gotchas.md`.
+8. **Per-repo `.node-version` / `.nvmrc` and `engines.node`** (consolidated into W0):
+   - `cur8-api`: add `.nvmrc` and `.node-version` set to `24.15.0`; `package.json` `engines.node: ">=24"`.
+   - `cur8-ui`: add `.nvmrc` and `.node-version` set to `24.15.0`; `package.json` `engines.node: ">=24"`; remove `npm` from `engines`.
+   - `showtix4u-venues`: bump `.node-version` from `24.13.0` to `24.15.0`.
 
-**Exit criteria**: CI green, baselines committed, test-dockerfile fixed.
+**Exit criteria**: CI green on Node 24.15.0 + pnpm 11.x in all three repos; baselines committed (`docs/baselines/2026-05-14/`); test-dockerfile fixed; zero-touch deletes merged; Node 24 gotcha findings documented.
 
-**Estimated effort**: 1–2 days.
+**Estimated effort**: 1–2 days (tasks 6 and 7 widen W0's surface but each repo's lockfile/gotcha pass is self-contained).
 
 ---
 
@@ -281,56 +301,45 @@ Latest LTS: **v24.15.0**. Latest Current: v26.1.0 (not the prod target). Plan tr
 
 ---
 
-## Workstream 2 — Node 24 LTS + pnpm Standardization
+## Workstream 2 — Docker / CI image alignment
 
-**Goal**: align all three repos on Node 24 LTS + pnpm 11.x.
+**Goal**: align deploy-side container and CI infrastructure with the W0 dev-env standard (Node 24 LTS + pnpm 11.x).
+
+**Note (2026-05-14):** Dev-side Node 24 LTS adoption and pnpm 11.x migration are executed in W0 (locked decisions #11 and #12). W2 retains only the Dockerfile / CI build-image / ECR-mirror work that depends on the W0 proof.
 
 **Branches**:
-- `cur8-api`: `chore/api-node24-pnpm` from `staging` (parallel to SRS if no file overlap; otherwise after)
-- `cur8-ui`: `chore/ui-node24-pnpm` from `dev` (after HLS port is isolated)
-- `showtix4u-venues`: `chore/venues-node24-refresh` from `main`
+- `cur8-api`: `chore/api-node24-docker` from `staging` (parallel to SRS if no file overlap; otherwise after; depends on W0)
+- `cur8-ui`: `chore/ui-node24-docker` from `dev` (after HLS port is isolated; depends on W0)
+- `showtix4u-venues`: no W2 work — venues-side W0 PR fully covers it.
 
 ### cur8-api tasks
-- `.nvmrc` → current Node 24 LTS patch (`24.15.0`), add `.node-version`
-- Dockerfiles (dev/prod/test): private ECR `node_v22-21` → patch-pinned Node 24 (per locked decision #10 — e.g. `node:24.15.0-bookworm-slim`, or `node_v24-15` if mirrored in ECR). **Precondition: confirm the patch-pinned Node-24 image exists in ECR, or build/mirror it, before merging this PR.** Renovate or Dependabot bumps the pin as Node patches land.
-- `.github/workflows/eslint.yml` → Node 24
-- `package.json`: add `packageManager: "pnpm@11.x"` + `engines.node: ">=24"`
-- Generate `pnpm-lock.yaml`, delete `package-lock.json`
-- Convert `npm run` script refs to `pnpm run`
-- Move `nodemon` to devDeps (covered in W0)
+- Dockerfiles (dev/prod): private ECR `node_v22-21` → patch-pinned Node 24 (per locked decision #10 — e.g. `node:24.15.0-bookworm-slim`, or `node_v24-15` if mirrored in ECR). **Precondition: confirm the patch-pinned Node-24 image exists in ECR, or build/mirror it, before merging this PR.** Renovate or Dependabot bumps the pin as Node patches land.
+- Test Dockerfile is handled in W0 (see W0 task #1).
 - **Config-loading note**: `cur8-api/config/` is empty in the repo (just `.gitkeep`) but `server.js:4` and `lib/helpers.js:4` both `require('config')`. Config is injected at runtime (env vars, 1Password, or deploy-time files — confirm during W2 baseline). Bumping `config` 1 → 3 in Wave C must preserve whatever resolution path is in use, or every environment breaks at once.
 
 ### cur8-ui tasks
-- `.nvmrc` → current Node 24 LTS patch, add `.node-version`
-- Dockerfiles + buildspecs: Node 22 → patch-pinned Node 24 (per locked decision #10)
-- `.github/workflows/*` setup-node + cache key → Node 24 + pnpm
-- `package.json`: add `packageManager: "pnpm@11.x"`, drop `npm` from engines/deps, set `engines.node: ">=24"`
-- Generate `pnpm-lock.yaml`, delete `yarn.lock`
-- Convert `yarn` script calls → `pnpm`
-- **Caveat**: `app/lib/labels/dymojs` has its own nested package metadata — handle separately
-- Update `CONTRIBUTING.md`, `README.md`, `CLAUDE.md` (yarn → pnpm)
+- Dockerfiles + buildspecs: Node 22 → patch-pinned Node 24 (per locked decision #10).
+- `.github/workflows/*` setup-node + cache key → Node 24 + pnpm.
+- **Caveat**: `app/lib/labels/dymojs` has its own nested package metadata — handle separately.
+- Update `CONTRIBUTING.md`, `README.md`, `CLAUDE.md` (yarn → pnpm).
 
 ### showtix4u-venues tasks
-- `.node-version`: `24.13.0` → current Node 24 LTS patch
-- Bump `packageManager` from `pnpm@10.33.0` to the selected pnpm 11.x patch
-- Verify Vite + TypeScript versions support Node 24
+- None at W2. Covered fully in W0.
 
 ### Verify install parity
-Clean install, build, lint, unit tests, smoke/e2e where available — on Node 24.
+Clean container build, run, lint, unit tests, smoke/e2e — on Node 24.15.0 inside the new base images. Match the W0 dev-environment proof in container land.
 
 ### pnpm 11 note
 
-Plan targets `pnpm@11.x`. Only fall back to `pnpm@10.x` if implementation finds a concrete tooling blocker (CI image, Renovate config, lockfile-lint, etc.), documents the blocker in the PR, and gets explicit approval. The migration goals stay the same: one Corepack-managed package manager per repo with lockfile parity.
+Plan targets `pnpm@11.x`. Only fall back to `pnpm@10.x` if implementation finds a concrete tooling blocker (CI image, Renovate config, lockfile-lint, etc.), documents the blocker in the PR, and gets explicit approval. The migration goals stay the same: one Corepack-managed package manager per repo with lockfile parity. (Dev-side adoption already complete via W0.)
 
-### Node 24 runtime gotchas to validate
-- OpenSSL 3.x cipher behavior (TLS edge cases vs Node 22)
-- Native `fetch` availability (drop any fetch polyfills)
-- Webpack 5 + babel-loader compatibility on Node 24
-- node-gyp / native deps: `canvas`, `bcrypt`, `node-canvas`
+### Node 24 runtime gotchas
 
-**Exit criteria**: one package manager per repo; CI + Docker on Node 24 LTS; local setup is `fnm` + Corepack + pnpm.
+Validation is performed in W0 (see W0 task #7) so gotchas are caught against the dev environment first. W2 re-runs the same checks inside the new container images to confirm dev/deploy parity.
 
-**Estimated effort**: 2–3 days per repo, mostly waiting on CI parity.
+**Exit criteria**: CI + Docker images on Node 24 LTS in dev/staging; production deploy unchanged until the SRS cutover window per locked decision #2.
+
+**Estimated effort**: 1–2 days per repo, mostly waiting on ECR mirror + CI parity.
 
 ---
 
@@ -631,6 +640,9 @@ All 10 previously-open decisions are now answered:
 8. **AMS removal: complete and clean.** No salvage from `ams-vimeo-replace`. After SRS validation: delete AMS code (api + ui), the `terraform/ant-media/` directory, `@antmedia/webrtc_adaptor`, the `ams_streams` table (DBA sign-off on retention), and tear down the AMS Fargate / EC2 / NLB resources. SRS lifecycle data lives in its own neutral `streaming_streams` table from W1 onward, so the AMS table drop is clean — no data migration needed at removal time.
 9. **API moment removal: do it.** Moved from Deferred into Wave C. Same dayjs wrapper pattern as UI Wave D1. Parity-gated on all date strings in user-visible artifacts.
 10. **Docker base: patch-pin both repos** (e.g. `node:24.15.0-bookworm-slim`). Reproducibility wins; Renovate or Dependabot can auto-bump as patches land.
+11. **W0 baselines captured on Node 24 LTS, not Node 22.** Supersedes the prior reference baseline on Node 22 (current prod). Dev workstations standardize on Node 24 LTS immediately; capturing on Node 22 would require version-switching for a baseline that no longer reflects where development happens. Trade-off accepted: Node 24 runtime gotchas (OpenSSL 3.x ciphers, native `fetch`, Webpack 5 + babel-loader, native deps `canvas` / `bcrypt` / `node-canvas`) surface during W0 baseline capture instead of being deferred to a separate W2 concern.
+12. **pnpm 11.x migration moves from W2 into W0.** Corepack-managed pnpm 11.x is the foundation for every subsequent lockfile / dependency wave. Doing the package-manager swap in W0 means every later wave operates on the target package manager from the start — no mid-program lockfile rewrite.
+13. **fnm-only Node management on all dev workstations.** No system or Homebrew Node coexists with fnm on `bradys-macbook` or `bradys-rxco-macbook`. `reese-mac-mini` has no Node at all and stays that way. CLI tools that require Node (e.g. `gemini-cli`) install as npm globals under fnm-managed Node, not via Homebrew formulae. Verified clean on 2026-05-14: `which -a node` resolves only to fnm paths on both dev Macs.
 
 ---
 
@@ -652,3 +664,11 @@ All 10 previously-open decisions are now answered:
 ## Document history
 
 Built jointly by Claude and Codex over five review rounds plus the locked-decision pass (2026-05-13 to 2026-05-14). Earlier scratch drafts are superseded. This file is the working source of truth from here forward.
+
+**2026-05-14 session decisions** (committed alongside this revision):
+- Node 24 LTS adopted as W0 baseline target; Node 22 reference baseline dropped (locked decision #11).
+- pnpm 11.x migration folded into W0 (locked decision #12).
+- fnm-only Node policy added as documented dev-workstation prereq (locked decision #13).
+- Homebrew Node + `gemini-cli` relocated to fnm-managed npm globals on both `bradys-macbook` and `bradys-rxco-macbook`; ~205 MB of brew artifacts removed per machine.
+- Workstream 2 rescoped to deploy-side (Docker + CI image) work; dev-side Node/pnpm fully owned by W0.
+- No repo code changes land before this PLAN.md revision is committed and pushed.
