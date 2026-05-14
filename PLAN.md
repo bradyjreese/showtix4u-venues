@@ -730,7 +730,42 @@ Live record of what's been done against the plan, in chronological order per rep
   - **Golden artifacts**: ticket PDF, dymo label, transaction CSV, `.ics`, email HTML per PLAN.md §W0 task 4. Requires a running cur8-api dev environment (MySQL, Redis, config injection) on `bradys-macbook`. Defer until dev env is wired up.
   - **Wave A dev-tooling bumps** (`sinon` 5 → 19, `mocha` latest, etc.): scoped as Wave A commit group, not W0.
   - **Missing-deps declaration cleanup**: surfaced in W0 baseline, fixed in Wave A.
-- **Status**: W0 commit group complete on the branch. Branch pushed; PR creation pending per user direction. Ready to continue with Wave A commits on the same branch.
+- **Status**: W0 core complete on the branch. Branch pushed.
+
+### 2026-05-14 — `cur8-api` W0 follow-ups (small fixes)
+
+- **Branch**: `feat/upgrade-2026q2` (continues from W0 commit group).
+- **Commits**:
+  - `54a3fb38a` `chore(w0): add canvas native libs to test.dockerfile`
+  - `6300e79c5` `chore(w0): declare 11 missing-but-used deps`
+- **Notes**:
+  - test.dockerfile now apt-installs `build-essential`, `libcairo2-dev`, `libpango1.0-dev`, `libjpeg-dev`, `libgif-dev`, `librsvg2-dev`, `pkg-config`, `python3`. Covers both from-source compile and prebuilt runtime-link paths for canvas 3.x. Removed the prior "TODO: add native libs" comment block.
+  - 11 missing deps declared at latest stable: `@turf/buffer 7.3.5`, `@turf/points-within-polygon 7.3.5`, `body-parser 2.2.2`, `dayjs 1.11.20`, `form-data 4.0.5`, `p-limit 7.3.0`, `passport 0.7.0`, `passport-local 1.0.0` (prod); `@eslint/js 9.39.1` (pinned to 9.x line — see below), `diff 9.0.0`, `globals 17.6.0` (dev).
+  - **`@eslint/js` pin observation**: 10.0.1 latest pulls in stricter `recommended` rules (`no-useless-assignment`, `no-unassigned-vars`) that flag 24 pre-existing cur8-api violations. ESLint major bump (9 → 10) is a separate Wave A task and code-fix project. Per locked decision #15 we'd target 10; per the spirit of "minor cleanup, not a rewrite," `@eslint/js` pinned to 9.x to match installed eslint 9.x.
+  - **`p-limit` 7 (ESM-only)** loads cleanly via `require("p-limit")` thanks to Node 24's stable `require(esm)` — no code changes needed in `tasks/dev/s3-prefix-copy.js`.
+
+### 2026-05-14 — `cur8-api` Wave A dev-tooling
+
+- **Branch**: `feat/upgrade-2026q2`.
+- **Commits**:
+  - `a31c010e6` `chore(wave-a): bump sinon 5.0.2 -> 22.0.0`
+  - `f8db61fb8` `chore(wave-a): bump mocha 10 -> 11.7.5, chai-http 4.3 -> 4.4`
+  - `78c36af77` `chore(wave-a): patch bumps for chai, eslint, @eslint/js, nodemon 2->3`
+- **Notes**:
+  - sinon 5 → 22 is a long jump. PLAN.md §Wave A originally said "5 → 19"; per locked decision #15 went to latest stable 22.0.0. Smoke test confirmed `stub.withArgs` works on Node 24; full test-suite verification requires running `bin/test.sh` against the dev env (deferred).
+  - mocha 11.x drops Node 18 support — clean carry on Node 24.15.0.
+  - chai stays on 4.x because chai-http stays on 4.x and chai 5 is ESM-only. Patch bump 4.3.6 → 4.5.0 applied.
+  - nodemon 2 → 3 is a devDep major; Node 18+ baseline is met.
+  - eslint stays on 9.x per PLAN.md §Wave A; patch bump to 9.39.4 with `@eslint/js` kept aligned.
+
+### 2026-05-14 — `cur8-api` Wave B low-risk patches
+
+- **Branch**: `feat/upgrade-2026q2`.
+- **Commit**: `ab61768a6` `chore(wave-b): minor/patch bumps for 18 non-breaking deps`
+- **Bumps (all within their existing majors)**: `@mailchimp/mailchimp_transactional`, `@tus/s3-store`, `@tus/server`, `ably`, `csv-parse`, `express-session`, `handlebars`, `ics`, `jsonwebtoken`, `knex`, `passkit-generator`, `path-to-regexp`, `qrcode`, `qs`, `redis` (within 4.x — 5.x is major), `sitemap` (within 2.x — 3.x is major), `stripe` (within 13.x — 14+ is major), `yaml` (within 1.x — 2.x is major).
+- **Held back for Wave C** (have a major waiting that needs review): `intuit-oauth` 3 → 4, `html-to-text` 9 → 10. Plus all PLAN.md §Wave C entries (`helmet`, `multer`, `axios`, `aws-sdk` v3, `moment` removal, `connect-redis`, `config`, `csv-stringify`, `deepmerge`, `ajv`, `google-auth-library`, `pdfmake`, `promise-mysql`, `randomized-string`, `uuid`, etc.).
+- **Audit delta**: baseline 105 → post-Wave-B 84 vulns. Both `critical` cleared (2 → 0); `high` 55 → 46; `moderate` 40 → 33; `low` 8 → 5. Remaining vulns are concentrated in the Wave C target packages.
+- **Status**: Wave A + B complete on the branch. Wave C, golden artifacts (need dev env), and the two held-back majors (intuit-oauth, html-to-text) remain. Branch ready for review by another agent comparing this log to PLAN.md.
 
 ## Document history
 
