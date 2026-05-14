@@ -54,6 +54,32 @@ Workstream / wave structure is preserved as **ordered commits inside the branch*
 
 ---
 
+## Working agreements (how this program operates)
+
+Operating rules that bind both human contributors and any agent working against this PLAN.md. Discovered during 2026-05-14 execution and codified here so a fresh contributor on any machine has the same operating context as the session that produced them. They live in the plan rather than in per-machine notes specifically so `git pull` propagates them.
+
+1. **Plan-first.** No repo code changes land before the corresponding PLAN.md edits are committed and pushed. When mid-session work surfaces a scope change, a new locked decision, or a change in the validation strategy, the plan edit comes first, then the code. This rule supersedes momentum.
+
+   **Why:** PLAN.md is the multi-repo source of truth across `cur8-api`, `cur8-ui`, and `showtix4u-venues`. Code that diverges from the plan — even with intent to "backfill the plan later" — creates drift that later sessions can't recover from cleanly.
+
+   **How to apply:** before opening an editor on any repo file, check whether the change is consistent with PLAN.md as it currently stands on origin. If not, edit + commit + push PLAN.md first. The plan-update commit should be small, conventional-commit-prefixed (`docs(plan):`), and self-contained.
+
+2. **Continuous execution log.** PLAN.md §"Execution log" stays in sync with commit history. After each commit group or natural pause point, append an entry under the relevant date with: branch, commit hashes (one-line subjects), findings, deferrals, status. The log records what we did, not just what we planned — including reverts, course corrections, and explicit gaps. It is the resume point for the next session.
+
+   **Why:** the plan tells future readers what we intended; the execution log tells them what happened. Both are needed to review whether the work matched the plan, and both must live in the same document so cross-referencing is local. A fresh agent resuming the program reads the plan top-to-bottom (including the log) and knows the state without external context.
+
+   **How to apply:** the log entry is the *last* thing committed in a session, not the first thing skipped at the end. If a commit pushes work to a branch, the next commit (typically within the same session, latest within ~24h) updates §"Execution log". Cross-link related entries with `[[name]]` where helpful.
+
+3. **Flag plan conflicts before executing.** When user-stated scope for a session conflicts with a locked decision recorded here (executive decisions, locked decisions, or these working agreements), the conflict gets surfaced in plain language before any code is touched. The user explicitly overrides the decision (and the override is recorded as a plan edit), or the scope adjusts, or the work waits. Silent execution of conflicting scope is the failure mode this rule prevents.
+
+   **Why:** learned hard on 2026-05-14. Wave A + B were executed before W1 SRS, violating executive decision #4 ("Finish SRS streaming before broad dep churn"). The deviation surfaced only when an independent reviewer (Codex) audited the branch, and four clean commits had to be reverted to honor the locked sequencing. Branch history is part of the design; preserving it requires flagging conflicts at the front, not patching the plan at the back.
+
+   **How to apply:** at the start of any scope-bounded session ("today let's do X"), scan §Executive decisions, §Locked decisions, and §Working agreements for anything that constrains X. If conflict: name it ("X is in tension with locked decision #N because Y"), list options ("(a) reorder, (b) override the decision and update plan, (c) accept the deviation"), let user pick explicitly. Branch history is cheaper to keep clean than to repair.
+
+These three rules are program-specific to this upgrade plan. General workflow rules (SSH-into-staged-machine, fnm-only Node, etc.) belong in the user's global `~/.claude/CLAUDE.md`, not here. The line is: if the rule's failure mode would corrupt *this* plan's execution, document it here.
+
+---
+
 ## User-visible parity (zero-regression principle)
 
 ### What counts as user-visible (must match)
