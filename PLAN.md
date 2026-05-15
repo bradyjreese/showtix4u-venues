@@ -1277,6 +1277,28 @@ The branch is in a fully shippable state. The only "old pattern" remaining is th
 | `cur8-api` | 105 (8 critical / 33 high) | **4 (0 critical / 1 high)** — 96% reduction |
 | `cur8-ui` | 75 (8 critical / 33 high) | **0 (0 critical / 0 high)** — 100% reduction |
 
+### 2026-05-15 evening — cur8-ui class → function conversion session
+
+User decision recorded in PLAN.md commit `f953634b` (showtix4u-venues): convert all 4 remaining class components, phased smallest-first with check-ins between each. After all 4 land, delete `app/utils/withRouter.jsx` (zero callers).
+
+| Hash | LOC | Subject | Validation |
+|---|---|---|---|
+| `37a1acdf0` | 1,057 | `refactor(GeneralSeating): class → function component, drop withRouter HOC` | oxlint 0 errors / 7 warnings (3 new = oxlint surfacing dead code that was hidden inside class form: `setFlexpassPricingOptions`, `setEventsPricingOptions`, `getTotalTickets`); vite build green at 27.79s |
+
+**Pattern established (mechanical, behavior-preserving):**
+1. `useState` per piece of class state; rename when shadowing a same-named prop (e.g. `pricingOptions` state → `pricingOptionsState` since `props.pricingOptions` exists).
+2. Two `useEffect`s: `[]`-deps for mount/unmount, and a no-deps "componentDidUpdate" effect gated by `didMountRef.current` to skip the first fire, with a `prev*Ref` for the prop-change comparisons the class did against `prevProps`.
+3. Bound class methods → `const fn = (...) => {}` inside the component body — closures naturally capture latest props each render.
+4. `props.history.push(url, { prevPath })` → `navigate(url, { state: { prevPath } })` via `useNavigate()`; `props.location` → `useLocation()`; drop the `withRouter` wrapper from the `connect()` export.
+5. Module-level `let`s for refs like Ably channels are preserved (refactoring to `useRef` would change cross-render sharing — out of scope).
+6. Over-fetching or other behavior quirks present in the class are preserved as-is — the goal is "same behavior, hooks form," not "clean up."
+
+**Queued for this session (in order):**
+- `app/containers/Payout/Payout.jsx` — 1,619 LOC (money flow)
+- `app/components/Event/ReservedSeating/ReservedSeating.jsx` — 1,998 LOC
+- `app/containers/Event/EventListing/EventListing.jsx` — 4,680 LOC
+- Delete `app/utils/withRouter.jsx` after the last one — 0 callers will remain.
+
 ## Document history
 
 Built jointly by Claude and Codex over five review rounds plus the locked-decision pass (2026-05-13 to 2026-05-14). Earlier scratch drafts are superseded. This file is the working source of truth from here forward.
