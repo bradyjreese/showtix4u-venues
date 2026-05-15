@@ -68,7 +68,7 @@ Workstream / wave structure is preserved as **ordered commits inside the branch*
 1. **Fresh branches off `staging` (api) and `dev` (ui).** Old branches are mined, not rebased.
 2. **Target the Node 24 LTS line.** Node 26 is Current — not the target. Pin dev to the latest LTS patch (`24.15.0` as of 2026-05-14) and bump as patches land. Docker bases are patch-pinned per locked decision #10.
 3. **pnpm 11.x via Corepack** in all three repos. Replaces npm (cur8-api) and Yarn Classic (cur8-ui). Aligns with `~/.claude/CLAUDE.md`'s "never npm/yarn" rule.
-4. **Finish SRS streaming before broad dep churn.** It touches infra, runtime, and playback — moving the ground under it during package waves is risky.
+4. **Finish SRS streaming before broad dep churn.** ~~It touches infra, runtime, and playback — moving the ground under it during package waves is risky.~~ **Superseded 2026-05-14 by locked decision #16.** The dep-churn-after-SRS sequencing is dropped; "everything to latest" wins. SRS will land on top of latest deps in cur8-api, accepting the trade-off Codex flagged. Retained as struck-through so the rationale and override trail stay readable.
 5. **Baseline cleanup can run in parallel** with SRS, as long as it doesn't touch streaming files.
 6. **Venue builder: draft JSON table + publish adapters.** No `venues.seating_layout` column on the existing schema — `venue_seat` has 20M rows tied to existing tickets.
 7. **Keep S3 `.mst` HTML runtime during venue migration.** Generate compatible templates from publish flow; retire manual template editing later.
@@ -224,7 +224,7 @@ Recorded 2026-05-14 in response to a constraint that needs to drive every parity
 | Capability | Local (`bradys-*`) | Dev (`cur8-dev`) | CI |
 |---|---|---|---|
 | `pnpm install --frozen-lockfile` | ✅ | ✅ | ✅ |
-| `pnpm exec eslint` | ✅ | n/a | ✅ |
+| `pnpm exec oxlint` (post Wave A swap) | ✅ | n/a | ✅ |
 | Unit / framework-load smoke (e.g. mocha + sinon + chai loads) | ✅ | n/a | ✅ |
 | Container image build | ✅ | ✅ | ✅ |
 | Live API endpoint (ticket PDF, dymo, CSV, .ics, email HTML — i.e. **goldens**) | ❌ | ✅ | n/a |
@@ -249,7 +249,7 @@ Recorded 2026-05-14 in response to a constraint that needs to drive every parity
    - Homebrew Node uninstalled on both Macs; `gemini-cli` reinstalled as `npm i -g @google/gemini-cli` under fnm-managed Node 24.15.0.
    - `which -a node` resolves to only the fnm path on both Macs. `reese-mac-mini` confirmed to have no Node installed.
 1. **cur8-api `docker/test.dockerfile` Node 8.10 → 24.15.0** (patch-pinned per locked decision #10) or delete if unused — verify with CI grep. The single most embarrassing line in either repo.
-2. **cur8-api `.github/workflows/eslint.yml` Node 20 → 24.15.0** (matches W0 baseline target per locked decision #11; supersedes the prior "→ 22, move to 24 in W2" plan).
+2. **cur8-api `.github/workflows/eslint.yml` Node 20 → 24.15.0** (matches W0 baseline target per locked decision #11; supersedes the prior "→ 22, move to 24 in W2" plan). **Note**: per locked decision #17, this workflow gets re-pointed at `oxlint` during Wave A (and may be renamed `lint.yml`). The Node bump still applies regardless of which linter the workflow invokes.
 3. **cur8-api: move `nodemon` to devDependencies.**
 4. **Baselines** (measure only, no deletions):
    - cur8-ui: `webpack-bundle-analyzer` snapshot committed
@@ -272,6 +272,11 @@ Recorded 2026-05-14 in response to a constraint that needs to drive every parity
    - `cur8-api`: introduce `packageManager` field; generate `pnpm-lock.yaml`; delete `package-lock.json`; convert `npm run` script references to `pnpm run`.
    - `cur8-ui`: introduce `packageManager` field; generate `pnpm-lock.yaml`; delete `yarn.lock`; convert `yarn` invocations to `pnpm`.
    - `.npmrc` env-var resolution (`${NPM_GITHUB_TOKEN}`) must work under non-interactive shells; document the 1Password env-load expectation.
+   - **pnpm 11 install-gate config (`pnpm-workspace.yaml`)** — pnpm 11 introduces two install-time guardrails that need explicit configuration:
+     - **`allowBuilds:`** — every package whose `install`/`postinstall` script needs to run must be approved with `true`; everything else gets explicit `false` to silence the warning. **Approve only what's load-bearing** (native builds: `bcrypt`, `canvas`, `@parcel/watcher`, `fsevents`, etc.). **Deny** packages whose only postinstall is a sponsorship/donate `console.log` (`core-js`, `preact`, `styled-components`, `protobufjs` — all five seen in cur8-ui 2026-05-14). The cur8-api W0 entry `allowBuilds: { aws-sdk, bcrypt, canvas, dtrace-provider }` is the working reference.
+     - **`blockExoticSubdeps: false`** (cur8-ui only, as of 2026-05-14) — required because `color-thief-react@2.1.0 → colorthief@2.3.2` declares its `quantize` subdep via a git URL, which pnpm 11 blocks by default. Set via `pnpm config --location project set blockExoticSubdeps false` (writes into `pnpm-workspace.yaml`). The flag is documented at the file with a Wave D8 follow-up note: removing `color-thief-react` removes the need for the flag. **Do not** use `.pnpmfile.cjs` hooks or `pnpm.overrides` in `package.json` to work around this — both fail (`.npmrc block-exotic-subdeps=false` is silently ignored; `pnpm.overrides` resolves *after* the gate fires; `.pnpmfile.cjs` works but is the wrong abstraction for a one-line gate-flip).
+   - **`engines.npm` removal** (cur8-ui only) — the existing `package.json` had `engines: { npm: ">=9" }` which contradicts `npm@^8.19.2` in *deps*. Delete the `engines.npm` line during the pnpm migration; pnpm is the package manager via the `packageManager` field, not npm.
+   - **Preinstall hook cleanup** (cur8-ui only) — `internals/scripts/npmcheckversion.js` + the `preinstall: "npm run npmcheckversion"` hook check `npm -v >= 5`, which is no longer load-bearing. Delete both during the pnpm migration.
 7. **Node 24 runtime gotcha validation** (moved from W2 per locked decision #11):
    - OpenSSL 3.x cipher behavior — TLS edge cases on outbound integrations (Stripe, Ably, Google APIs, Intuit OAuth).
    - Native `fetch` is available — drop any fetch polyfills surfaced by depcheck.
@@ -435,21 +440,24 @@ Validation is performed in W0 (see W0 task #7) so gotchas are caught against the
 
 ### Wave A — Tooling & lockfile stabilization
 
+Per locked decision #17, all ESLint / `eslint-config-*` / `eslint-plugin-*` / `babel-eslint` packages are deleted from each repo and replaced with `oxlint` + `prettier` 4.x latest + `stylelint` latest (cur8-ui only — cur8-api has no CSS). All version targets follow locked decision #15 (`latest` dist-tag).
+
 **cur8-api**:
-- ESLint flat config cleanup (already on v9)
-- mocha, chai 4 (stay — chai 5 is ESM-only, tests are CJS), chai-http, **sinon 5 → 19**
-- Test Docker modernization (covered in W0)
+- **Linter swap**: delete `eslint`, `@eslint/js`, `globals` (or keep if oxlint config wants them), every `eslint-config-*` / `eslint-plugin-*`; add `oxlint@latest`; add `.oxlintrc.json` covering the rules currently in `.eslintrc.js`. The `@eslint/js` 9 → 10 carve-out is moot (see locked decision #17).
+- **Test stack**: `mocha` → latest, `chai` 4.x → latest 5.x with the CJS↔ESM compatibility addressed via `--experimental-vm-modules` or test transformer (chai 5 is ESM-only; locked decision #15 says we go to latest, this is the trade-off), `chai-http` → latest, `sinon` → latest (5 → 22). If chai 5 ESM-only blocks within the time budget, document a one-line carve-out and stay on chai 4.5 — but try first.
+- **Test Docker modernization (covered in W0)**.
 
 **cur8-ui**:
-- ESLint, Prettier (^1.17 → current; major bump), Stylelint
-- Jest 29 → 30 if stable, else stay; @testing-library current
-- Playwright current
-- Babel/Webpack loaders: drop obsolete proposal plugins (`@babel/plugin-proposal-nullish-coalescing-operator` is in syntax now)
-- Keep Webpack 5 — do not combine with Vite migration
+- **Linter / formatter swap**: delete `eslint` and all `eslint-*` / `babel-eslint` devDeps; add `oxlint@latest`; bump `prettier` 1.17 → latest 4.x; bump `stylelint` → latest with whatever recommended config still applies; port `.eslintrc.js`'s `simple-import-sort` group config into oxlint's import-order config; update `lint:js` script to invoke `oxlint`.
+- `Jest` → latest, `@testing-library/*` → latest.
+- `Playwright` → latest.
+- Babel / Webpack loaders → latest; drop obsolete proposal plugins (`@babel/plugin-proposal-nullish-coalescing-operator` is in syntax now).
+- Keep Webpack 5 — Vite migration is still a non-goal of this batch.
 
 **showtix4u-venues**:
-- Vite + TS + Fabric version sweep
-- Builder typecheck/build green
+- `Vite` + `TS` + `Fabric` version sweep to latest.
+- Builder typecheck/build green.
+- The repo never had ESLint, so no linter swap here. (If djlint introduces a JS lint step later, oxlint is the target.)
 
 ### Wave B — Low-risk runtime patches
 
@@ -701,17 +709,17 @@ Move Fabric builder into `cur8-ui` as internal support/admin first.
 
 ## Recommended commit sequence within `feat/upgrade-2026q2`
 
-Per locked decision #14, each repo ships as one PR. The wave structure becomes commit ordering inside that PR.
+Per locked decision #14, each repo ships as one PR. The wave structure becomes commit ordering inside that PR. Per locked decision #16, the SRS-before-churn sequencing constraint is dropped — A/B/C/D no longer wait on W1, they sit alongside it in commit order.
 
-**Per repo, in commit order:**
+**Per repo, in commit order (default ordering, not a hard gate after locked #16):**
 
-1. **W0** — env-prereq note, safety-rail fixes, baselines, zero-touch deletes, pnpm 11.x conversion, Node 24 gotcha findings, `.node-version` + `engines.node` bumps.
-2. **W1 SRS** (`cur8-api` + `cur8-ui`; critical path) — SRS code under the `streaming.provider` flag, still set to `ant-media`.
-3. **W2** — Docker / CI image alignment to Node 24 LTS.
-4. **W3 Wave A** — tooling and lockfile stabilization.
-5. **W3 Wave B** — low-risk patches.
-6. **W3 Wave C** (`cur8-api`) — API breaking upgrades.
-7. **W3 Wave D** (`cur8-ui`) — UI cleanup and replacements, ordered D1–D8.
+1. **W0** — env-prereq note, safety-rail fixes, baselines, zero-touch deletes, pnpm 11.x conversion, Node 24 gotcha findings, `.node-version` + `engines.node` bumps. `pnpm-workspace.yaml` carries `allowBuilds:` + `blockExoticSubdeps: false` (cur8-ui) per pnpm 11 install requirements (see 2026-05-14 evening execution-log entry for the resolution path).
+2. **W3 Wave A** — tooling stabilization, including the **linter swap to oxlint** + Prettier 4 + Stylelint latest per locked decision #17. ESLint and all `eslint-*` / `babel-eslint` packages deleted. (Moves ahead of W1 because the linter swap touches CI workflows and pre-commit hooks that W1 will lean on.)
+3. **W3 Wave B** — minor/patch bumps to latest (locked #15) across remaining maintained packages.
+4. **W3 Wave C** (`cur8-api`) — API breaking upgrades per the Wave C table, with parity gates required pre-merge.
+5. **W3 Wave D** (`cur8-ui`) — UI cleanup and replacements, ordered D1–D8.
+6. **W1 SRS** (`cur8-api` + `cur8-ui`) — SRS code under the `streaming.provider` flag, still set to `ant-media`. Lands on top of the modernized dep surface; the Codex caution (SRS on top of new redis / @tus / express-session / qs / stripe versions) is the accepted trade-off recorded in locked #16.
+7. **W2** — Docker / CI image alignment to Node 24 LTS. (Stays after W1 because SRS migration adds new infra concerns that the deploy images need to know about.)
 8. **W4** — venue builder migration (`cur8-api` drafts table + endpoints first, `cur8-ui` builder admin after).
 
 **Cross-repo merge ordering**:
@@ -742,21 +750,35 @@ All 10 previously-open decisions are now answered:
 12. **pnpm 11.x migration moves from W2 into W0.** Corepack-managed pnpm 11.x is the foundation for every subsequent lockfile / dependency wave. Doing the package-manager swap in W0 means every later wave operates on the target package manager from the start — no mid-program lockfile rewrite.
 13. **fnm-only Node management on all dev workstations.** No system or Homebrew Node coexists with fnm on `bradys-macbook` or `bradys-rxco-macbook`. `reese-mac-mini` has no Node at all and stays that way. CLI tools that require Node (e.g. `gemini-cli`) install as npm globals under fnm-managed Node, not via Homebrew formulae. Verified clean on 2026-05-14: `which -a node` resolves only to fnm paths on both dev Macs.
 14. **Single PR per repo, commit-based structure.** Each repo ships its upgrade program as one feature branch (`feat/upgrade-2026q2`) and one PR. The workstream / wave structure is preserved as ordered commits inside the branch — not as separate per-wave PRs. The only exception is the post-SRS AMS-removal follow-up (one tiny `chore/ams-removal` PR per repo), which lands after SRS prod-validates because the `streaming.provider` runtime flag requires AMS code to remain in-tree during the validation window. Local sub-branches off `feat/upgrade-2026q2` for working organization are fine and don't need to appear here.
-15. **Bumps target latest stable, not minimum-working.** Whenever a dependency must be bumped (Node compat, security CVE, build failure, anything), the version target is the `latest` dist-tag on the registry (skipping pre-releases). The Wave A/B/C/D phasing in W3 is preserved — this rule is about *version target*, not *bump scope*. A specific exception: when a Wave C bump is required earlier (e.g. `canvas` 2 → 3 in W0 for Node 24 compat), it's pulled forward as a carve-out and the Wave C entry becomes a no-op. Such carve-outs are documented inline at the W0 task and at the original Wave C entry.
+15. **Bumps target latest stable, not minimum-working.** Whenever a dependency must be bumped (Node compat, security CVE, build failure, anything), the version target is the `latest` dist-tag on the registry (skipping pre-releases). The Wave A/B/C/D phasing in W3 is preserved as commit-group structure — this rule is about *version target*, not *bump scope*. A specific exception: when a Wave C bump is required earlier (e.g. `canvas` 2 → 3 in W0 for Node 24 compat), it's pulled forward as a carve-out and the Wave C entry becomes a no-op. Such carve-outs are documented inline at the W0 task and at the original Wave C entry.
+
+16. **Everything-to-latest, immediately. Overrides executive decision #4.** Per user direction 2026-05-14 evening: every dependency in every repo bumps to its `latest` dist-tag in *this* program iteration, not deferred behind W1 SRS. Wave A/B/C/D structure is retained as commit-group ordering inside `feat/upgrade-2026q2` (clean review groups, separable reverts), but the cross-wave sequencing constraint from executive decision #4 is dropped. Consequences explicitly accepted:
+    - **cur8-api Wave A + B are re-applied** (the reverts on 2026-05-14 are themselves reverted, or equivalently the same bumps are re-introduced). The Codex caution stands: SRS port lands on top of changed redis/@tus/express-session/qs/stripe runtime; any SRS-related regression is investigated against the new dep surface, not the old one.
+    - **Wave C** (API breaking upgrades) and **Wave D** (UI cleanup) execute in this program too, not "later." Parity gates per Wave C/D §"parity gates" still gate each commit-group merge — gates are not waived, only the sequencing is.
+    - **Locked decision #15's "latest dist-tag" rule** is restated, not weakened. No "minimum-working" carve-outs from this point forward unless a concrete tooling blocker is documented inline.
+    - **AMS-removal carve-out preserved.** The `streaming.provider` runtime flag still requires AMS code in-tree during the SRS validation window. AMS deletion is still the post-SRS-prod `chore/ams-removal` follow-up PR per repo, not folded into the main branch — that's a separate constraint from the dep-churn one.
+
+17. **Lint/format swap: oxlint + Prettier 4 + Stylelint latest. Replaces ESLint everywhere.** All ESLint and `eslint-config-*` / `eslint-plugin-*` / `babel-eslint` packages are deleted from both `cur8-api` and `cur8-ui`. Replaced by:
+    - **Linter**: `oxlint` (latest) in both repos. ESLint-config-compatible during transition so existing `.eslintrc.js` rules port incrementally. Final config lives in `.oxlintrc.json` per repo.
+    - **JS formatter**: `prettier` bumped to latest 4.x (cur8-ui has Prettier 1.17 — very old; cur8-api has no Prettier today).
+    - **CSS linter (cur8-ui only)**: `stylelint` bumped to latest with its current config style.
+    - **Reason**: rxco team standardized on oxc/oxlint at work; consistency across personal + work tooling is a productivity win, and oxlint is the fastest in this category. Wave A's "ESLint flat config cleanup" line item is replaced by this swap. The `simple-import-sort` custom-groups import ordering used in `cur8-ui/.eslintrc.js` (internal-alias groups) ports to oxlint's import-order config.
+    - **Consequence**: the `@eslint/js` documented exception to #15 is moot — `@eslint/js` is being deleted, not version-pinned. The exception is removed from this document below.
+    - **CI/Pre-commit**: the lint workflow and any `lint-staged` config get re-pointed at `oxlint`; Prettier still runs for `*.json` via `lint-staged` (already configured).
 
 ### Documented exceptions to #15
 
-- **`cur8-api/@eslint/js`** pinned to `^9.39.1` rather than latest `^10.0.1`. `@eslint/js` 10.x ships stricter `recommended` rules (`no-useless-assignment`, `no-unassigned-vars`) that flag 24 pre-existing cur8-api code violations. Bumping `@eslint/js` to 10.x without simultaneously bumping ESLint itself to 10.x would mismatch majors; bumping both is a focused code-fix project beyond Wave A's "ESLint already on v9" scope per PLAN.md. Resolution: stay on `@eslint/js` 9.x for now; the full ESLint 9 → 10 migration is a queued follow-up after Wave A/B/C land. (Recorded 2026-05-14 in response to independent review.)
+_None as of 2026-05-14 evening._ The prior `@eslint/js` carve-out is removed — see locked decision #17 (ESLint deleted entirely, not pinned).
 
 ---
 
 ## Non-goals (this batch)
 
-- One-shot "update everything" PR
+- ~~One-shot "update everything" PR~~ — per locked decision #16, "update everything" is in scope, just split across commit groups, not collapsed into one diff.
 - Vite migration
 - React 19
 - React Router 7
-- Express 5 (until after Node/pnpm/SRS land)
+- ~~Express 5 (until after Node/pnpm/SRS land)~~ — per locked decision #16, the "until after SRS lands" gating is dropped. Express 5 remains a non-goal of this batch only because it's a middleware-semantics break with no current win, not because of sequencing. Re-evaluate during Wave C; if it bumps cleanly with the parity gates, it's in.
 - Full UI framework consolidation
 - JSON-only venue model
 - Deleting AMS before SRS production proof
@@ -897,6 +919,32 @@ Builds the reproducible harness that will eventually capture the W0 parity basel
   - Resolving the email-HTML TODO (add preview endpoint or chosen alternative).
 - **Nits fixed in commit `a21d13170`** after Codex 2nd-pass review: (a) transaction-csv promoted to `todo:true` (its placeholder `query: {TODO}` would have built `?TODO=...` in real captures), (b) harness now defensively rejects any params/query key named `TODO` (case-insensitive) so future placeholder slip fails fast, (c) README relative path to the harness corrected (`../../` -> `../../../` — README lives three dirs deep, not two).
 - **Status**: harness + nit fixes committed and pushed. W0 task #4 contract is defined. Actual captures pending the deploy window.
+
+### 2026-05-14 evening — `cur8-ui` W0 start + program scope override
+
+Continuation session on personal MacBook after the work-machine planning session ended with "next session should start with cur8-ui W0 fresh." Branch `feat/upgrade-2026q2` cut off `dev` in cur8-ui, Node 24.15.0 pin committed, then yarn → pnpm 11.1.2 migration began. Two pnpm 11 install gates surfaced during the migration; both were resolved properly in `pnpm-workspace.yaml`, not via package.json overrides or `.pnpmfile.cjs` hooks.
+
+- **Branch**: `feat/upgrade-2026q2` off `dev` (cur8-ui).
+- **Commits so far**:
+  - `195c9d7a6` `chore(w0): pin Node 24.15.0 (.nvmrc, .node-version, engines.node)` — also drops the contradictory `engines.npm` entry (was `>=9` with the npm package itself at `^8.19.2` in deps).
+- **pnpm 11 install gates hit + resolved in `pnpm-workspace.yaml`**:
+  - **blockExoticSubdeps** (pnpm 11's default supply-chain guardrail rejecting git-URL transitive deps). Hit on `colorthief@2.3.2 → quantize (git://github.com/olivierlesnicki/quantize.git)`, pinned by `color-thief-react@2.1.0`. Resolved via the official mechanism — `pnpm config --location project set blockExoticSubdeps false` — which writes `blockExoticSubdeps: false` into `pnpm-workspace.yaml`. `.npmrc block-exotic-subdeps=false` was tried first and silently ignored; `pnpm.overrides` redirects don't apply *before* the gate fires; `.pnpmfile.cjs` `readPackage` hook works but is the wrong abstraction for a one-line gate-flip. (Removing `color-thief-react` entirely is the Wave D8 fix and the long-term answer — until then, the gate-flip is documented at the colorthief subdep level via comments in `pnpm-workspace.yaml`.)
+  - **Build-scripts gate (pnpm 11 default)**. Resolved in `allowBuilds:`. Approved: `@parcel/watcher`, `fsevents` (native file-watchers needed for dev-server hot reload). Explicitly denied: `core-js@2`, `core-js@3`, `preact@8.2.9`, `protobufjs`, `styled-components` — all are sponsor/donate `console.log` postinstall scripts, not load-bearing.
+- **Program-scope override (locked decision #16)**: user direction this evening — "EVERYTHING should be on its latest version, including in cur8-api." This overrides executive decision #4 (SRS-before-churn). Codified as new locked decision #16 above with the Codex caution recorded inline (SRS port will land on top of changed runtime deps in cur8-api; any SRS regression is investigated against the new dep surface). Wave A/B/C/D structure retained as commit-group ordering, not as sequencing gates.
+- **Linter/formatter swap (locked decision #17)**: ESLint and every `eslint-*` / `babel-eslint` package deleted in both `cur8-api` and `cur8-ui`. Replaced by `oxlint@latest` + `prettier` 4.x + `stylelint` latest (cur8-ui CSS lint only). Reason: rxco team standard at work; aligning personal + work tooling. Wave A entry rewritten accordingly. `@eslint/js` documented exception to #15 is moot — recorded as removed.
+- **Working agreement #1 honored**: this PLAN.md update commits *before* any further code lands on either repo branch. Code commits after this PLAN.md commit will reference these decisions by number.
+- **Status (queued for next commits on `cur8-ui/feat/upgrade-2026q2` after this PLAN.md update)**:
+  - Commit: pnpm 11.1.2 migration (the install work just done, plus yarn.lock delete + `pnpm-lock.yaml` generation + CLAUDE/README/CONTRIBUTING yarn → pnpm).
+  - Commit: W0 zero-touch package deletes (`fs`, `npm`, `base64-img`, `moment-countdown`, `redux-saga`, `eslint-plugin-redux-saga`).
+  - Commit: Wave A — oxlint + Prettier 4 + Stylelint latest swap.
+  - Commits: Wave B (minor/patch bumps to latest), Wave C (API breakers per the table), Wave D (UI cleanup, ordered D1–D8). Parity gates per wave still required before any commit-group is considered done.
+  - Commit: cur8-ui baselines (depcheck, pnpm audit, webpack-bundle-analyzer, Playwright e2e green, visual-regression tool pick + first capture). Captured *after* the W0 deletes / migrations so the baseline reflects the new dep surface.
+  - PLAN.md execution-log update at session end.
+- **On cur8-api (queued for the next cur8-api commits)**:
+  - Re-apply Wave A + B bumps (originally reverted as `425d20d85`, `8bfb7ecf2`, `817635567`, `1dc0bb8c7` on 2026-05-14 morning). Locked decision #16 supersedes the revert rationale.
+  - Execute the linter swap per locked decision #17 — delete `eslint`, `@eslint/js`, all `eslint-config-*` / `eslint-plugin-*`; add `oxlint` + `.oxlintrc.json`.
+  - Wave C bumps (`helmet` 3 → 8, `multer` 1 → 2, `axios` 0.21 → 1, `aws-sdk` v2 → v3 across the remaining call sites, etc.) per the Wave C table; parity gates per Wave C "parity gates" subsection still required pre-merge.
+  - W1 SRS port follows; the salvage commits from `feature/streaming-service` re-implement on top of the now-modernized dep surface.
 
 ## Document history
 
