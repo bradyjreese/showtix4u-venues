@@ -2,7 +2,7 @@
 
 Single source of truth for the upgrade program across `cur8-api`, `cur8-ui`, and `showtix4u-venues`. Built from joint Claude + Codex convergence over five review rounds plus the locked-decision pass. All claims here have been grep-verified against the local repos as of 2026-05-14.
 
-## Current state (snapshot — 2026-05-15 late night)
+## Current state (snapshot — 2026-05-15 evening, conversion session opening)
 
 Read this section first if you're a fresh agent or starting a new chat. It's a point-in-time snapshot; for full per-commit detail, the §"Execution log" below has every commit hash + summary.
 
@@ -26,11 +26,16 @@ Read this section first if you're a fresh agent or starting a new chat. It's a p
   - `.oxlintrc.json` + `.oxfmtrc.json` + `.stylelintrc` + `.stylelintignore` (new lint/format config files)
   - `pnpm-workspace.yaml` (pnpm 11 `allowBuilds:` config)
   - `docs/baselines/2026-05-14/*` (W0 baselines + Node 24 gotchas doc)
-- **What's QUEUED — open question with user (asked, not yet answered)**:
-  - **4 class components** still using `utils/withRouter.jsx` shim — `ReservedSeating` (1998 lines), `GeneralSeating` (1057 lines), `EventListing` (4680 lines), `Payout` (1619 lines). Total ~9,400 LOC of class-component code. The shim is intentional Router 7 bridge code, not technical debt. Build is green; runtime is fine. Converting class → function would rewire ~24 lifecycle methods → `useEffect`, class state → `useState`, bound-method refs, complex seat-selection / checkout / payout flows — high regression risk without browser-driven UI testing. **Asked user**: (1) leave on shim and ship, (2) convert all 4 now, (3) convert smallest (GeneralSeating) as pilot. **User went to sleep before answering.** Resume by re-asking, or default to option 1 (recommended) and move to cur8-api.
+- **DECISION (2026-05-15 evening, user)**: convert all 4 class components to function components now, phased with check-ins between each. Sequence smallest → largest so the conversion pattern (lifecycle → `useEffect`, class state → `useState`/`useReducer`, bound refs → `useRef`, withRouter HOC drop → `useNavigate`/`useLocation`/`useParams` inline) is validated on smaller surfaces before tackling EventListing. After all 4 land, delete `app/utils/withRouter.jsx` (zero callers) and log the session.
+  - **Conversion order** (file paths verified on `feat/upgrade-2026q2` HEAD):
+    1. `app/components/Event/GeneralSeating/GeneralSeating.jsx` — 1,057 LOC
+    2. `app/containers/Payout/Payout.jsx` — 1,619 LOC
+    3. `app/components/Event/ReservedSeating/ReservedSeating.jsx` — 1,998 LOC
+    4. `app/containers/Event/EventListing/EventListing.jsx` — 4,680 LOC
+  - **Validation per step**: `pnpm lint` + `pnpm build` after each commit; user spot-reviews the diff before the next conversion starts. Browser smoke-testing is deferred to dev-environment validation near program end per [§"Validation environments"] / `defer-deploys` policy.
 - **What ELSE is queued (optional polish)**:
   - `app/lib/react-element-pan/` vendored fork of `eventlistener` — could be modernized or dropped (only used by one component); not blocking.
-- **Resume command from a fresh chat**: `cd ~/Code/cur8-ui && git pull && pnpm install && pnpm build` — verify build green at ~30s, then either re-ask the user on the 4 class components or (if user has already decided to skip) move to `cd ~/Code/cur8-api && git pull && pnpm install` and start Wave D-mirror items.
+- **Resume command from a fresh chat**: `cd ~/Code/cur8-ui && git pull && pnpm install && pnpm build` — verify build green at ~30s, then continue the class→function conversion from wherever the §"Execution log" shows it paused. If all 4 have landed and `app/utils/withRouter.jsx` is deleted, move to `cd ~/Code/cur8-api && git pull && pnpm install` and start Wave D-mirror items (smallest first: `randomized-string` → `crypto.randomUUID()` 3 sites).
 
 ### `cur8-api` — branch `feat/upgrade-2026q2`
 
