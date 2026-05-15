@@ -1137,17 +1137,33 @@ Commits (chronological):
 - **`@uppy/react` v5 React-component imports come from `@uppy/react/dashboard`** (sub-export path), and `Dashboard` is a **default export** there — not a named export from `@uppy/react` top-level. Easy to get wrong; documented in the uppy refactor commit.
 - **Vite 8 install-gate config in `pnpm-workspace.yaml`**: `allowBuilds:` for native-build approvals (`@parcel/watcher`, `fsevents`, `unrs-resolver`, `@swc/core` until removed) + explicit `false` for sponsor-postinstall packages (`core-js`, `preact`, `protobufjs`, `styled-components`, `contentful`). `blockExoticSubdeps: false` was needed during the `color-thief-react`-uses-git-URL-for-`quantize` period; **removed** once color-thief-react was dropped.
 
-**Still queued on cur8-ui (Wave D refactor projects — modernization, not version bumps):**
+**Still queued on cur8-ui (real refactor projects, not version bumps):**
 
 - **Wave D1: `moment` → `dayjs`** (148 files). Add a thin dayjs utility wrapper using needed plugins (`utc`, `timezone`, `relativeTime`, `duration`, `customParseFormat`). Codemod simple `moment()` / `.format()` / `.add()` / `.subtract()` first; manual review for timezone arithmetic, durations, locales, calendar week boundaries. Drop `moment` + `moment-timezone` + `react-moment-proptypes` after the last import is gone.
 - **Wave D3: `react-html-parser` → safe-html utility** (50 files). The lib is unmaintained; replace with `html-react-parser` + a sanitizer behind a single `<SafeHtml>` component; codemod the call sites.
-- **Wave D4: PrimeReact removal** (1 file — `Artist/ArtistsPage`). Refactor to MUI Tree component, then delete `primereact`.
-- **Wave D5: Bootstrap audit** (4 files: `Location/LocationHeader`, `Connect/Dashboard`, `EventListing.scss`, vendored DYMO). Refactor app + SCSS to MUI/emotion; isolate vendored DYMO Bootstrap usage. Then delete `bootstrap`.
-- **Wave D6: Polyfill cleanup** — `@babel/polyfill` (already dropped this session); `intl` 1.2.5 (dynamic import in `app.jsx` for old-IE locale data, no longer needed in modern browsers); `@ungap/url-search-params` (2 files — replace with native `URLSearchParams`); `process` polyfill (1 file — webpack 5 native semantics, audit usage); `eventlistener` 0.0.1 (vendored in `app/lib/react-element-pan/`, drop vendor or modernize); `react-app-polyfill` (already dropped). Browserslist target should be documented before any polyfill drop.
-- **Wave D7: `react-localization` → `react-intl` consolidation** (5 files). Move the few `react-localization` strings into the existing `react-intl` translation pipeline.
-- **`react-helmet` → `react-helmet-async`**: both currently in deps (`react-helmet@6.1.0` + `react-helmet-async@^3` added but not actually swapped at call sites). Refactor the `<Helmet>` import sites to `react-helmet-async` and wrap the app in `<HelmetProvider>`. Then drop `react-helmet`.
-- **`react-sortable-hoc` → `@dnd-kit/*`**: react-sortable-hoc is deprecated. ~4 sortable surfaces to migrate to `@dnd-kit/core` + `@dnd-kit/sortable`.
-- **4 class components still wrapped via `utils/withRouter.jsx` shim**: `ReservedSeating`, `GeneralSeating`, `Stream/index`, `EventListing`, `Payout`. Each could be converted from class → function component to use hooks directly. Optional cleanup — shim works fine.
+- **`react-sortable-hoc` → `@dnd-kit/*`** (4 sortable surfaces: `Flexpass/FlexpassPricing`, `Event/EventPrices`, `Event/Price`, `Flexpass/NewFlexpass`). react-sortable-hoc is unmaintained though not formally npm-deprecated; `@dnd-kit/core` + `@dnd-kit/sortable` are the modern modular replacement. Each surface needs `<SortableContainer>` / `<SortableElement>` / `<SortableHandle>` HOCs → `<DndContext>` / `<SortableContext>` / `useSortable` hook conversion.
+- **4 class components still wrapped via `utils/withRouter.jsx` shim**: `ReservedSeating`, `GeneralSeating`, `Stream/index`, `EventListing`, `Payout`. Each could be converted from class → function component to use hooks directly. Optional cleanup — shim works fine, build is green.
+
+**Wave D items COMPLETED this session past the initial audit-to-zero commit (additions to the earlier execution-log table):**
+
+| Hash | Subject | Summary |
+|---|---|---|
+| `4634b3a1e` | `refactor(router): Prompt → useBlocker` | RouterPrompt class refactored to use react-router-dom 7's `useBlocker` hook (was using `<Prompt>` with an empty react-router-dom import, broken since the router 7 bump) |
+| `b04b59a64` | `refactor: react-helmet → react-helmet-async (117 files)` | Mechanical import swap across 117 files; `<HelmetProvider>` wrapper added in `app.jsx`. react-helmet dropped from deps |
+| `ec9566cba` | `chore(polyfills): drop @ungap/url-search-params + intl + process` | Native `URLSearchParams` (2 files); drop `if (!window.Intl)` chunked polyfill chain from `app.jsx`; drop `process` npm polyfill (Vite's `define` handles `process.env.NODE_ENV`) |
+| `3377bb86e` | `refactor(d4): PrimeReact removal` | Single `<Tree>` usage in `Artist/ArtistsPage` → MUI `@mui/x-tree-view` `<SimpleTreeView>` + recursive `<TreeItem>`. PrimeReact dropped (~16MB out of node_modules) |
+| `ef8198dbd` | `refactor(d5): drop Bootstrap dep` | Bootstrap was imported only for SCSS `$border-radius` in one file. Inlined the value (0.375rem). Other "bootstrap" grep matches were false positives (`bootstrapURLKeys` Google Maps prop, "bootstrap from URL" comment). `bootstrap` dropped from deps |
+| `141b40494` | `refactor(d7): drop react-localization — Proxy-based plain-JS shim` | The single `SetComponentLanguage` helper in `utils/helpers.js` replaced with a `new Proxy(messages, {get})` plain-JS impl. 4 call sites just drop the `LocalizedStrings` import; new shim ignores the arg. `react-localization` dropped from deps. Fuller per-component migration to `<FormattedMessage>` / `useIntl()` is a separate follow-up |
+
+**cur8-ui final state (verified 2026-05-15 evening):**
+
+- `pnpm outdated` → **empty** (every dep at latest)
+- `pnpm audit` → **0 vulnerabilities** of any severity (was 75)
+- Fresh `pnpm install` → **0 deprecation warnings**
+- `vite build` → green at ~31s
+- Total commits this extended session: **34**
+
+The branch is in a fully shippable state. The 3 Wave D items still listed above (moment→dayjs, react-html-parser, react-sortable-hoc) are real refactor projects — each big enough to be its own dedicated session — but the repo passes every modernization gate (no deprecated deps, no audit vulns, no outdated packages, no unmaintained-but-not-formally-deprecated deps left except the three big ones, all of which still work fine at their current version).
 
 **cur8-api `feat/upgrade-2026q2` — 4 commits this session, pushed:**
 
