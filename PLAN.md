@@ -2,6 +2,71 @@
 
 Single source of truth for the upgrade program across `cur8-api`, `cur8-ui`, and `showtix4u-venues`. Built from joint Claude + Codex convergence over five review rounds plus the locked-decision pass. All claims here have been grep-verified against the local repos as of 2026-05-14.
 
+## Current state (snapshot — 2026-05-15 evening)
+
+Read this section first if you're a fresh agent or starting a new chat. It's a point-in-time snapshot; for full per-commit detail, the §"Execution log" below has every commit hash + summary.
+
+### `cur8-ui` — branch `feat/upgrade-2026q2`
+
+- **HEAD**: `141b40494` `refactor(d7): drop react-localization — Proxy-based plain-JS shim` (pushed to `origin/feat/upgrade-2026q2`)
+- **Base**: `dev` (off `9f4408843`)
+- **Build**: `vite build` green at ~31s, 19k+ modules transformed
+- **`pnpm outdated`**: empty (every dep at latest)
+- **`pnpm audit`**: 0 vulnerabilities of any severity (was 75 at W0 baseline)
+- **Deprecation warnings**: 0 on fresh `pnpm install`
+- **Commits this program**: 34 on the branch since cutting off `dev`
+- **What's done**: W0 (Node 24.15.0, pnpm 11.1.2, zero-touch deletes, baselines, gotchas) → Wave A linter/formatter (oxlint + oxfmt + Stylelint 17) → Vite 8 migration (878 `.js` → `.jsx` renames, all source) → broad `pnpm up --latest` → React 18→19, react-router-dom 5→7 (with `withRouter` HOC removed from 477 files + `useNavigate`/`useLocation`/`useParams` codemod + Switch→Routes + Prompt→useBlocker + 5-class `utils/withRouter.jsx` shim), `injectIntl` → `useIntl` (330 files), react-intl 2→5 (5 is the line that keeps both `injectIntl` and `useIntl` exports — full v13 bump is a future call), MUI 5→9 (icon renames), @uppy 1→5 (Dashboard collapses DragDrop+ProgressBar+StatusBar), react-day-picker 7→10, react-to-print 2→3 (hook API), react-image-crop 8→11, swiper 9→12, redux-thunk 2→3, immer 3→11, react-helmet → react-helmet-async (117 files), drop @ungap/url-search-params + intl + process polyfills (Wave D6), PrimeReact → MUI x-tree-view (Wave D4), Bootstrap dropped (Wave D5 — only 1 SCSS var inlined), react-localization → Proxy shim (Wave D7), color-thief-react replaced by 90-line native-Canvas `useImagePalette` hook, scandit-sdk **kept** (deprecated but user has paid subscription + API key — Wave-D-future swap will land when scandit is fully retired), webpack devDeps deleted (Vite is dev server now), `server/` + `internals/` directories deleted entirely
+- **Critical files that didn't exist before this branch**:
+  - `vite.config.mjs` (Vite 8 config — alias list mirrors the prior webpack `resolve.modules`)
+  - `index.html` (root — Vite expects it there, not inside `app/`)
+  - `app/utils/withRouter.jsx` (router-7-compat HOC shim for class components)
+  - `app/hooks/useImagePalette.js` (90-line native-Canvas color extractor — replaces color-thief-react)
+  - `.oxlintrc.json` + `.oxfmtrc.json` + `.stylelintrc` + `.stylelintignore` (new lint/format config files)
+  - `pnpm-workspace.yaml` (pnpm 11 `allowBuilds:` config)
+  - `docs/baselines/2026-05-14/*` (W0 baselines + Node 24 gotchas doc)
+- **What's QUEUED (not blocking ship — real refactor projects)**:
+  - **Wave D1**: `moment` → `dayjs` (148 files). Biggest remaining.
+  - **Wave D3**: `react-html-parser` → safe-html utility (50 files). Lib is unmaintained.
+  - **`react-sortable-hoc` → `@dnd-kit/*`** (4 surfaces: `Flexpass/FlexpassPricing`, `Event/EventPrices`, `Event/Price`, `Flexpass/NewFlexpass`). Lib is unmaintained though not formally npm-deprecated.
+  - **4 class components** still using `utils/withRouter.jsx` shim (`ReservedSeating`, `GeneralSeating`, `Stream/index`, `EventListing`, `Payout`). Could be converted class → function. Optional — shim works.
+- **Resume command from a fresh chat**: `cd ~/Code/cur8-ui && git pull && pnpm install && pnpm build` — verify build green, then start whichever Wave D item you want from the queued list.
+
+### `cur8-api` — branch `feat/upgrade-2026q2`
+
+- **HEAD**: `3404c1272` `chore(bump): cur8-api everything-to-latest per locked #16+#18` (pushed)
+- **Base**: `staging`
+- **Build**: lint clean (0 errors, 22 warnings); `node --check server.js` clean; `node -e "require('./server.js')"` loads every dep cleanly (errors only on missing local config — expected per §"Validation environments")
+- **`pnpm outdated`**: 4 deprecated packages remain (see "queued" below)
+- **`pnpm audit`**: 4 vulns (0 critical / 1 high / 1 moderate / 2 low) — was 105 at W0
+- **What's done**: W0 (Node 24.15.0, pnpm 11.1.2 via Corepack, golden harness committed) → Wave A linter/formatter (oxlint + oxfmt across 370 files) → `pnpm up --latest` covering Wave A test stack (sinon 5→22, mocha 10→11, chai 4→6, chai-http 4→5, nodemon 2→3) + Wave B (18 minor/patch bumps) + Wave C breakers (helmet 3→8, multer 1→2, axios 0.21→1, connect-redis 3→9, config 1→4, csv-stringify 3→6, deepmerge 2→4, pdfmake 0.1→0.3, google-auth-library 7→10, uuid 9→14, yaml 1→2, stripe 13→22, sitemap 2→9, intuit-oauth 3→4, body-parser 1→2, html-to-text 9→10, redis 4→5) + Express 4→5
+- **What's QUEUED**:
+  - `moment` → `dayjs` (38 sites). Mirrors UI Wave D1 pattern.
+  - `aws-sdk` v2 → v3 (15+ sites). Per-service `@aws-sdk/client-*` imports + new client/command pattern. **Note**: SRS code that lands in W1 is already written against v3 per locked decision #4 / #16 — this task converts the **rest** of cur8-api.
+  - `@google/maps` (npm-deprecated) → `@googlemaps/google-maps-services-js` (6 call sites).
+  - `promise-mysql` 5 → `mysql2` (4 legacy files; `knex` already uses `mysql2`).
+  - `randomized-string` → `crypto.randomUUID()` (3 sites — same pattern cur8-ui used).
+  - `sib-api-v3-sdk` (npm-deprecated — was Sendinblue) → `@sendinblue/client` or newer Brevo SDK.
+  - `fluent-ffmpeg` (npm-deprecated) → audit usage; minimal options: native `child_process` spawn, or `@ffmpeg/ffmpeg`.
+  - W1 SRS port (the original critical path — lands on top of the modernized dep surface).
+  - W4 venue builder draft endpoints + adapters.
+- **Resume command from a fresh chat**: `cd ~/Code/cur8-api && git pull && pnpm install` — verify lint + node-check clean, then start the moment→dayjs commit (smallest scope first).
+
+### `showtix4u-venues` — branch `main`
+
+- **HEAD**: `ea189d8c` (or later if more commits land before you read this)
+- **What's done**: PLAN.md is the active artifact. The W0 venues-specific bump (Node 24.15.0 + pnpm 11.1.2) shipped 2026-05-14 morning (`da7e6405`).
+- **What's QUEUED**: nothing pending until cur8-ui Wave D and cur8-api land — venues plays its W4 role then.
+
+### How to start a NEW chat / agent on this program
+
+Paste this brief as the first message:
+
+> I'm picking up the cur8-api / cur8-ui / showtix4u-venues upgrade program. Read PLAN.md in `~/Code/showtix4u-venues/PLAN.md` top to bottom — especially §"Current state (snapshot)", §"Locked decisions", and the latest §"Execution log" entries. Then run `git pull` + `pnpm install` + `pnpm build` (or equivalent verify) on whichever repo you're touching first. Surface your understanding of the resume point and the session's intended scope before any code change. Do not silently override a locked decision.
+
+The user will confirm scope or redirect.
+
+---
+
 ## How to use this document (resume protocol)
 
 This document is the program's single source of truth. Any contributor — human or agent — picking up the work for any session should treat the following as their bootstrap. The protocol lives here, in the plan, so it travels via `git pull` to any machine and does not depend on per-session memory.
