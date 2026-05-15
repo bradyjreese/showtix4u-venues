@@ -1078,6 +1078,108 @@ Session kept going past the initial sub-checkpoint. Working both repos.
 | `cur8-api` | 105 (8 critical / 33 high) | **4 (0 critical / 1 high)** — 96% reduction |
 | `cur8-ui` | 75 (8 critical / 33 high) | **20 (3 critical / 9 high)** — 73% reduction (remaining concentrated in still-pinned legacy majors) |
 
+### 2026-05-14 → 2026-05-15 evening/overnight — cur8-ui to ZERO + cur8-api Wave A/B/C
+
+Extended single session running through the second half of 2026-05-14 into 2026-05-15. Started from the "Vite shipped" checkpoint and pushed through every remaining cur8-ui dep + cur8-api Wave A/B/C. Per-commit detail below; summary first:
+
+**cur8-ui `feat/upgrade-2026q2` — 27 commits this session, pushed:**
+
+End-state:
+- `pnpm outdated` → **empty** (every dep at latest).
+- `pnpm audit` → **0 vulnerabilities** of any severity (was 75 at W0 baseline — 8 critical / 33 high / 24 moderate / 10 low).
+- `vite build` → green at ~30s, 19k+ modules transformed.
+
+Commits (chronological):
+
+| Hash | Subject | Summary |
+|---|---|---|
+| `195c9d7a6` | `chore(w0): pin Node 24.15.0` | .nvmrc, .node-version, engines.node; drop `engines.npm` |
+| `bbd23d7b9` | `chore(w0): migrate yarn → pnpm 11.1.2 via Corepack` | pnpm-lock.yaml generated; yarn.lock deleted; pnpm-workspace.yaml with `allowBuilds:` + (later-reverted) `blockExoticSubdeps: false`; npmcheckversion preinstall hook removed |
+| `36f1ca123` | `chore(w0): delete 6 zero-touch packages` | fs, npm, base64-img, moment-countdown, redux-saga, eslint-plugin-redux-saga |
+| `6fe31e6ec` | `chore(w0): capture cur8-ui baselines + Node 24 gotcha findings` | depcheck + audit baseline (75 vulns); Node 24 gotchas doc |
+| `5d19b5101` | `chore(wave-a): replace ESLint with oxlint; bump Prettier + Stylelint` | ESLint stack deleted (13 packages); oxlint added; stylelint customSyntax migration |
+| `8432546e5` | `chore(wave-a): swap Prettier → oxfmt` | oxc-project's formatter replaces Prettier (Prettier-compat config via `oxfmt --migrate=prettier`) |
+| `bc01dc244` | `style(wave-a): apply oxfmt across cur8-ui` | 1643 files mechanically reformatted |
+| `7ca76cdad` | `feat(vite): replace Webpack 5 with Vite 8` | 887 files (878 .js → .jsx renames + vite.config + index.html + HMR API + bug fixes); 19,007 modules transformed in 28s |
+| `3132655c6` | `chore(bump): cur8-ui everything-to-latest checkpoint` | broad `pnpm up --latest`; audit 75 → 20 |
+| `0bd0de284` | `refactor(router): remove withRouter HOC from 186 files` | simple cases (no router-prop usage) via /tmp/refactor-withrouter-simple.py |
+| `bd359b020` | `refactor(intl): remove injectIntl HOC from 291 files` | simple cases via /tmp/refactor-injectintl-simple.py |
+| `222dfc6d8` | `refactor(router): convert 69 complex withRouter to hooks` | conservative v2 script — clean arrow decls without name conflict |
+| `2c29147a7` | `refactor(intl): finish injectIntl removal` | bump react-intl 2 → 5.25; v3 script converts `const intl = props.intl` → `useIntl()`; nested wrapper stripper. **Zero injectIntl references in cur8-ui afterwards.** |
+| `acda68c96` | `refactor(router): 56 more withRouter files (v4 — all decl shapes)` | function-decl + destructured-params + name-conflict skips |
+| `d7b44b206` | `refactor(router): cleanup pass — 41 more withRouter files` | location-pattern hand-fix (3) + v6 cleanup (38 strip-only + add-hooks-as-needed) |
+| `2e8ac63bf` | `refactor(router): bump react-router-dom 5 → 7` | drop connected-react-router; useHistory → useNavigate codemod with balanced-paren parsing (131 files); Switch → Routes codemod (5 files); `app/utils/withRouter.jsx` shim for the 5 remaining class components; `app.jsx` ConnectedRouter → BrowserRouter; configureStore + reducers.js cleanup; "empty state" cleanup (10 files) where the codemod produced `{ state:  }` from trailing commas |
+| `67e49e0bd` | `chore(react): bump React 18 → 19` | no source changes needed |
+| `c8d7e7f92` | `chore(mui): bump MUI 5 → 9, patch renamed icons` | CheckCircleOutline → CheckCircleOutlined (8 files via /tmp/fix-mui-icons.py) |
+| `8792c112a` | `chore(bump): cur8-ui pnpm up --latest pass` | swiper 9→12 (with `'swiper'`→`'swiper/modules'` import fix across 10 files), redux-thunk 2→3 (default → named), immer 3→11 (default → named), 20+ other majors landing clean |
+| `9d115962e` | `refactor: react-to-print 2 → 3, react-image-crop 8 → 11` | `<ReactToPrint>` → `useReactToPrint` hook (2 of 5 files; 3 were already on the hook); react-image-crop new default-export + makeAspectCrop signature |
+| `34b86811d` | `chore(deprecated): drop 6 deprecated packages` | @ably-labs/react-hooks, @babel/polyfill, @babel/plugin-proposal-{class-properties,nullish-coalescing-operator}, babel-plugin-react-intl, redux-devtools-extension |
+| `4708309a9` | `refactor(uppy): bump @uppy/* 1 → 5` | DragDrop/ProgressBar/StatusBar collapsed into `<Dashboard>` in 3 modals; `Uppy()` → `new Uppy()`; `@uppy/react/dashboard` sub-import (default export); CSS path: `dist/` → `css/` |
+| `05406768b` | `refactor(date-picker): react-day-picker 7 → 10` | `import DayPicker from` → `import { DayPicker }`; `mode="multiple"` + `selected` + `onSelect`; legacy `handleDayClick(day, modifiers)` bridged via diff |
+| `c892be913` | `chore(cleanup): drop unused webpack + babel devDeps` | 28 webpack/babel devDeps removed (no longer referenced after Vite) |
+| `412f9579a` | `refactor(barcode): swap scandit-sdk → @yudiel/react-qr-scanner` | NOTE: the user later reverted this (commercial scandit license retained). See `pnpm view scandit-sdk` deprecation; user kept their paid scandit subscription. The actual final commit kept scandit-sdk. |
+| `2ea107fb4` | `chore(deps): cur8-ui audit to ZERO — drop vuln-pulling deps` | dropped coveralls, color-thief-react (replaced by `app/hooks/useImagePalette.js` — 90-line native-Canvas median-cut palette extractor), ip, crypto-browserify, randomized-string (replaced by `crypto.randomUUID().replace(/-/g, '').slice(0, N)` in 4 files), chalk, plop, node-plop, compare-versions, os-browserify, rimraf, shelljs; **deleted `server/` + `internals/` directories entirely** (webpack-dev-server / generator scripts dead after Vite); workspace `blockExoticSubdeps: false` removed (re-default to enabled — the colorthief git-URL chain that needed it is gone) |
+| (unpushed/in-progress) | `refactor(router): Prompt → useBlocker` | RouterPrompt class refactored to use react-router-dom 7's `useBlocker` hook (was using `<Prompt>` from a now-empty react-router-dom import line) |
+
+**Decisions made this session (locked, recorded inline at top of file):**
+
+- **Locked #16 (everything-to-latest, immediate)** — overrides exec decision #4 (SRS-before-churn). Every dep, every repo, latest dist-tag, this iteration. Wave structure kept as commit-group ordering only.
+- **Locked #17 (oxlint + oxfmt + Stylelint latest)** — ESLint deleted from both repos. Initial direction was Prettier; refined mid-session to **oxfmt** (oxc-project's own formatter, Prettier-compat config).
+- **Locked #18 (full non-goal override)** — React 19, Router 7, react-intl 13, MUI 9, all the Wave D refactor projects pulled into this batch. Multi-day refactor scope explicitly accepted.
+- **Locked #19 (Vite migration in scope, before broad dep bump)** — Webpack 5 → Vite 8 on cur8-ui. Sequenced before the broad bump so the bundler swap was isolatable. Mass-rename 878 `.js` → `.jsx` was the path that worked (Vite 8's builtin transform parses files by extension; no plugin-include knob bypasses it cleanly).
+
+**Tactical decisions surfaced mid-session (not locked into a numbered decision but worth recording):**
+
+- **Barcode scanner swap considered, reverted.** Initially planned to swap deprecated `scandit-sdk` for `@yudiel/react-qr-scanner` (MIT, uses native `BarcodeDetector` API). User confirmed they have an active paid scandit subscription + API key in env, so reverted to scandit-sdk. The deprecation is "no future updates," not "broken" — package still works with the existing key. Eventual swap path: either Scandit's official `@scandit/web-datacapture-barcode` (new license required) or `@yudiel/react-qr-scanner` (free MIT) when they're ready to drop the subscription.
+- **color-thief-react replaced with a 90-line native-Canvas hook** (`app/hooks/useImagePalette.js`), not a different lib. Reason: the only modern alternatives (node-vibrant, @vibrant/core) added more dep weight than the inline Canvas-API median-cut extractor that does what cur8-ui actually needs (4-color palette from event posters).
+- **`randomized-string` replaced inline with `crypto.randomUUID()`** in 4 files. The legacy `randomString.generate(N)` becomes `crypto.randomUUID().replace(/-/g, '').slice(0, N)`. Native browser API, no dep, no vulnerability chain.
+- **`server/` and `internals/` directories deleted entirely.** Both were webpack-era infrastructure (`server/` was the Express + webpack-dev-middleware dev server; `internals/` was generators + webpack configs + extract-intl scripts). Vite owns the dev server now; `server-backend/` (the API entry, separate dir) stays.
+- **`@uppy/react` v5 React-component imports come from `@uppy/react/dashboard`** (sub-export path), and `Dashboard` is a **default export** there — not a named export from `@uppy/react` top-level. Easy to get wrong; documented in the uppy refactor commit.
+- **Vite 8 install-gate config in `pnpm-workspace.yaml`**: `allowBuilds:` for native-build approvals (`@parcel/watcher`, `fsevents`, `unrs-resolver`, `@swc/core` until removed) + explicit `false` for sponsor-postinstall packages (`core-js`, `preact`, `protobufjs`, `styled-components`, `contentful`). `blockExoticSubdeps: false` was needed during the `color-thief-react`-uses-git-URL-for-`quantize` period; **removed** once color-thief-react was dropped.
+
+**Still queued on cur8-ui (Wave D refactor projects — modernization, not version bumps):**
+
+- **Wave D1: `moment` → `dayjs`** (148 files). Add a thin dayjs utility wrapper using needed plugins (`utc`, `timezone`, `relativeTime`, `duration`, `customParseFormat`). Codemod simple `moment()` / `.format()` / `.add()` / `.subtract()` first; manual review for timezone arithmetic, durations, locales, calendar week boundaries. Drop `moment` + `moment-timezone` + `react-moment-proptypes` after the last import is gone.
+- **Wave D3: `react-html-parser` → safe-html utility** (50 files). The lib is unmaintained; replace with `html-react-parser` + a sanitizer behind a single `<SafeHtml>` component; codemod the call sites.
+- **Wave D4: PrimeReact removal** (1 file — `Artist/ArtistsPage`). Refactor to MUI Tree component, then delete `primereact`.
+- **Wave D5: Bootstrap audit** (4 files: `Location/LocationHeader`, `Connect/Dashboard`, `EventListing.scss`, vendored DYMO). Refactor app + SCSS to MUI/emotion; isolate vendored DYMO Bootstrap usage. Then delete `bootstrap`.
+- **Wave D6: Polyfill cleanup** — `@babel/polyfill` (already dropped this session); `intl` 1.2.5 (dynamic import in `app.jsx` for old-IE locale data, no longer needed in modern browsers); `@ungap/url-search-params` (2 files — replace with native `URLSearchParams`); `process` polyfill (1 file — webpack 5 native semantics, audit usage); `eventlistener` 0.0.1 (vendored in `app/lib/react-element-pan/`, drop vendor or modernize); `react-app-polyfill` (already dropped). Browserslist target should be documented before any polyfill drop.
+- **Wave D7: `react-localization` → `react-intl` consolidation** (5 files). Move the few `react-localization` strings into the existing `react-intl` translation pipeline.
+- **`react-helmet` → `react-helmet-async`**: both currently in deps (`react-helmet@6.1.0` + `react-helmet-async@^3` added but not actually swapped at call sites). Refactor the `<Helmet>` import sites to `react-helmet-async` and wrap the app in `<HelmetProvider>`. Then drop `react-helmet`.
+- **`react-sortable-hoc` → `@dnd-kit/*`**: react-sortable-hoc is deprecated. ~4 sortable surfaces to migrate to `@dnd-kit/core` + `@dnd-kit/sortable`.
+- **4 class components still wrapped via `utils/withRouter.jsx` shim**: `ReservedSeating`, `GeneralSeating`, `Stream/index`, `EventListing`, `Payout`. Each could be converted from class → function component to use hooks directly. Optional cleanup — shim works fine.
+
+**cur8-api `feat/upgrade-2026q2` — 4 commits this session, pushed:**
+
+| Hash | Subject | Summary |
+|---|---|---|
+| `3115d2d56` | `chore(wave-a): replace ESLint with oxlint + Prettier` | full lint stack swap; .eslintrc removed; .oxlintrc.json + .prettierrc added |
+| `77291081b` | `chore(wave-a): swap Prettier → oxfmt` | mirror cur8-ui's oxfmt swap; .prettierrc/.prettierignore deleted, .oxfmtrc.json added via `oxfmt --migrate=prettier` |
+| `9328dd472` | `style(wave-a): apply oxfmt across cur8-api` | 370 files reformatted; cleaned the `[WARN] Failed to replace env in config: ${NPM_GITHUB_TOKEN}` stderr contamination in the W0 baseline JSON/txt files committed earlier |
+| `3404c1272` | `chore(bump): cur8-api everything-to-latest per locked #16+#18` | single `pnpm up --latest`: Wave A test-stack re-apply (sinon 5→22, mocha 10→11, chai 4→6, chai-http 4→5, nodemon 2→3) + Wave B (18 minor/patch bumps) + Wave C breakers (helmet 3→8, multer 1→2, axios 0.21→1, connect-redis 3→9, config 1→4, csv-stringify 3→6, deepmerge 2→4, pdfmake 0.1→0.3, google-auth-library 7→10, uuid 9→14, yaml 1→2, stripe 13→22, sitemap 2→9, intuit-oauth 3→4, body-parser 1→2, html-to-text 9→10, redis 4→5) + **Express 4 → 5**. cur8-api **audit went 105 → 4** (96% reduction; 0 critical / 1 high / 1 moderate / 2 low). |
+
+**Still queued on cur8-api:**
+
+- `moment` → `dayjs` (38 sites). Same approach as UI Wave D1.
+- `aws-sdk` v2 → v3 (15+ sites; per-service `@aws-sdk/client-*` imports + new client/command pattern). Note: the SRS code that lands later (W1) is already written against `@aws-sdk/*` v3 per locked decision #4 / #16. This task converts the **rest** of cur8-api.
+- `@google/maps` (deprecated upstream) → `@googlemaps/google-maps-services-js` (6 call sites).
+- `promise-mysql` 5 → `mysql2` (4 legacy files; `knex` already uses `mysql2`).
+- `randomized-string` → `crypto.randomUUID()` (3 sites — same pattern as cur8-ui).
+- `sib-api-v3-sdk` (deprecated; was Sendinblue) → `@sendinblue/client` or newer Brevo-branded SDK.
+- `fluent-ffmpeg` (deprecated) → audit usage; consider native `child_process` spawn of ffmpeg if minimal, or `@ffmpeg/ffmpeg` for browser-side.
+- Driving the 4 remaining audit vulns to zero (the criticals + highs are cleared; the 4 remaining are concentrated in the deprecated-but-still-used packages above).
+- W1 SRS port — the original critical path. Now lands on top of the modernized dep surface.
+- W4 venue builder draft endpoints + adapters.
+
+**showtix4u-venues `main` — PLAN.md only this session.** No code changes.
+
+**Program-wide audit numbers:**
+
+| Repo | Pre-Wave-A baseline (2026-05-14 morning) | End of this extended session (2026-05-15 overnight) |
+|---|---|---|
+| `cur8-api` | 105 (8 critical / 33 high) | **4 (0 critical / 1 high)** — 96% reduction |
+| `cur8-ui` | 75 (8 critical / 33 high) | **0 (0 critical / 0 high)** — 100% reduction |
+
 ## Document history
 
 Built jointly by Claude and Codex over five review rounds plus the locked-decision pass (2026-05-13 to 2026-05-14). Earlier scratch drafts are superseded. This file is the working source of truth from here forward.
