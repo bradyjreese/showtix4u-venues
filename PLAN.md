@@ -969,6 +969,50 @@ Continuation session on personal MacBook after the work-machine planning session
   - Wave C bumps (`helmet` 3 → 8, `multer` 1 → 2, `axios` 0.21 → 1, `aws-sdk` v2 → v3 across the remaining call sites, etc.) per the Wave C table; parity gates per Wave C "parity gates" subsection still required pre-merge.
   - W1 SRS port follows; the salvage commits from `feature/streaming-service` re-implement on top of the now-modernized dep surface.
 
+### 2026-05-14 evening (continued) — actual commits shipped this session
+
+Initial entry above was the **queued** list. Updating with what actually landed and the open blocker that ends this session.
+
+**Shipped on `cur8-ui/feat/upgrade-2026q2` (5 commits, pushed):**
+
+- `195c9d7a6` `chore(w0): pin Node 24.15.0 (.nvmrc, .node-version, engines.node)`
+- `bbd23d7b9` `chore(w0): migrate yarn → pnpm 11.1.2 via Corepack`
+- `36f1ca123` `chore(w0): delete 6 zero-touch packages` (fs, npm, base64-img, moment-countdown, redux-saga, eslint-plugin-redux-saga)
+- `6fe31e6ec` `chore(w0): capture cur8-ui baselines + Node 24 gotcha findings` (depcheck.json, pnpm-audit.json showing **75 vulnerabilities pre-Wave-A: 8 critical / 33 high / 24 moderate / 10 low**, node24-gotchas.md, README workflow doc)
+- `5d19b5101` `chore(wave-a): replace ESLint with oxlint; bump Prettier + Stylelint` (later swapped to oxfmt — see below)
+- `8432546e5` `chore(wave-a): swap Prettier → oxfmt`
+- `bc01dc244` `style(wave-a): apply oxfmt across cur8-ui` (1643 files mechanically reformatted)
+
+**Shipped on `cur8-api/feat/upgrade-2026q2` (3 commits, pushed):**
+
+- `3115d2d56` `chore(wave-a): replace ESLint with oxlint + Prettier` (config swap only, no code reformat)
+- `77291081b` `chore(wave-a): swap Prettier → oxfmt`
+- `9328dd472` `style(wave-a): apply oxfmt across cur8-api` (370 files mechanically reformatted; also cleaned the `[WARN] Failed to replace env...` stderr contamination in the W0 baseline JSON/txt files committed earlier)
+
+**Shipped on `showtix4u-venues/main` (3 commits, pushed):**
+
+- `37bfea38` `docs(plan): lock decisions #16, #17 — everything-to-latest + oxlint swap`
+- `661443e4` `docs(plan): refine locked #17 — oxfmt replaces Prettier`
+- `454340bb` `docs(plan): lock decisions #18 + #19 — full override + Vite`
+- (This entry itself, pending commit, records the session's actual shape including the Vite blocker.)
+
+**Vite migration attempted, blocked, reverted (locked decision #19 follow-up — pending next session):**
+
+- Goal: replace Webpack 5 with Vite 8 on cur8-ui per locked #19.
+- Approach tried: `vite@8.0.12` + `@vitejs/plugin-react@6` (Babel-based), `@vitejs/plugin-react-oxc@0.4.3` (oxc-based), `@vitejs/plugin-react-swc@4.3.1` (SWC-based). All three combinations hit the same wall: Vite 8's `builtin:vite-transform` parses files before any plugin can intercept, and rejects JSX in `.js` files. The `oxc.include: /\.[jt]sx?$/` config that the migration docs prescribe is NOT honored by the builtin transform in Vite 8.0.12 — `app/app.js:86` (`<Provider store={store}>`) consistently errors with "Unexpected token" or "The JSX syntax extension is not currently enabled" regardless of plugin choice.
+- Vite 7.3.3 (the previous-major stable) was tried as an interim and hit similar JSX-in-.js issues (different error path; esbuild-based) — but the user direction is Vite 8 ("we should be on the latest LTS of vite", later "let's go to vite 8"), and Vite 7 isn't acceptable per the everything-to-latest direction.
+- All Vite WIP reverted (vite.config.mjs, root index.html, app/app.js HMR API edit, app/configureStore.js HMR API edit, package.json script swap, pnpm-lock.yaml). cur8-ui branch is back to `bc01dc244` — last green state with oxfmt applied.
+- **Resume options (next session):**
+  - **Option A — mass-rename `.js` → `.jsx`** for the 879 files currently containing JSX content. Mechanical via git mv. Side-effects to handle: the explicit `<script type="module" src="/app/app.js">` reference in the new root `index.html` becomes `/app/app.jsx`; any code that explicitly imports with extension (e.g., `import './foo.js'`) needs updating; `extract-intl` / Babel codemod tooling that hard-codes `.js` needs auditing; the prior import statements that don't include extensions Just Work via `resolve.extensions`.
+  - **Option B — pin Vite at a version where `oxc.include` is honored.** This needs a specific commit or version that has the fix; investigation pending.
+  - **Option C — write a thin Rollup/Vite plugin** that runs *before* `builtin:vite-transform` and pre-transpiles JSX-in-.js via a separate Babel pass. This is the most invasive but bullet-proof.
+- **What this means for cur8-api:** locked decision #18's full-override dep bump for cur8-api (re-apply reverted Wave A/B; add Wave C major bumps; moment → dayjs) is **NOT blocked by the Vite problem** — cur8-api has no bundler. That work can proceed independently in the next session.
+
+**Session result summary:**
+- cur8-ui: W0 fully landed (4 commits) + Wave A linter/formatter swap (3 commits, including oxfmt format pass). Branch is shipable through `bc01dc244`. Vite migration deferred.
+- cur8-api: Wave A linter/formatter swap (3 commits, including oxfmt format pass) landed on top of the prior W0 work. Branch is at `9328dd472`. Wave A test stack re-apply + Wave B + Wave C + moment removal pending next session.
+- showtix4u-venues: 3 PLAN.md commits recording locked decisions #16, #17 (refined), #18, #19 + this session's execution-log entry. Locked decision #16 codifies the everything-to-latest override of executive decision #4; #17 codifies the oxc/oxlint+oxfmt swap; #18 codifies the full non-goal override (React 19, Router 7, react-intl 13, MUI 9, etc. all in scope); #19 codifies the Vite migration (currently blocked per above).
+
 ## Document history
 
 Built jointly by Claude and Codex over five review rounds plus the locked-decision pass (2026-05-13 to 2026-05-14). Earlier scratch drafts are superseded. This file is the working source of truth from here forward.
