@@ -8,13 +8,13 @@ Read this section first if you're a fresh agent or starting a new chat. It's a p
 
 ### `cur8-ui` — branch `feat/upgrade-2026q2`
 
-- **HEAD**: `913b43114` `refactor(Payout): class → function component, drop withRouter HOC` (pushed to `origin/feat/upgrade-2026q2`)
+- **HEAD**: `7ae774656` `refactor(ReservedSeating): class → function component, drop withRouter HOC` (pushed to `origin/feat/upgrade-2026q2`)
 - **Base**: `dev` (off `9f4408843`)
-- **Build**: `vite build` green at ~26s, 19k+ modules transformed
+- **Build**: `vite build` green at ~28s, 19k+ modules transformed
 - **`pnpm outdated`**: empty (every dep at latest)
 - **`pnpm audit`**: 0 vulnerabilities of any severity (was 75 at W0 baseline)
 - **Deprecation warnings**: 0 on fresh `pnpm install`
-- **Commits this program**: 40 on the branch since cutting off `dev` (38 prior + 2 class→function conversions)
+- **Commits this program**: 41 on the branch since cutting off `dev` (38 prior + 3 class→function conversions)
 - **What's done**: W0 (Node 24.15.0, pnpm 11.1.2, zero-touch deletes, baselines, gotchas) → Wave A linter/formatter (oxlint + oxfmt + Stylelint 17) → Vite 8 migration (878 `.js` → `.jsx` renames, all source) → broad `pnpm up --latest` → React 18→19, react-router-dom 5→7 (with `withRouter` HOC removed from 477 files + `useNavigate`/`useLocation`/`useParams` codemod + Switch→Routes + Prompt→useBlocker + 4-class `utils/withRouter.jsx` shim), `injectIntl` → `useIntl` (330 files), react-intl 2→5 (5 is the line that keeps both `injectIntl` and `useIntl` exports — full v13 bump is a future call), MUI 5→9 (icon renames), @uppy 1→5 (Dashboard collapses DragDrop+ProgressBar+StatusBar), react-day-picker 7→10, react-to-print 2→3 (hook API), react-image-crop 8→11, swiper 9→12, redux-thunk 2→3, immer 3→11, react-helmet → react-helmet-async (117 files), drop @ungap/url-search-params + intl + process polyfills (Wave D6), PrimeReact → MUI x-tree-view (Wave D4), Bootstrap dropped (Wave D5 — only 1 SCSS var inlined), react-localization → Proxy shim (Wave D7), color-thief-react replaced by 90-line native-Canvas `useImagePalette` hook, scandit-sdk **kept** (deprecated but user has paid subscription + API key — Wave-D-future swap will land when scandit is fully retired), webpack devDeps deleted (Vite is dev server now), `server/` + `internals/` directories deleted entirely, **Wave D1** `moment`/`moment-timezone`/`react-moment-proptypes` → `dayjs` via centralized `app/utils/dayjs.js` setup (147 files re-imported; `LocalizationProvider` swapped to `AdapterDayjs`), **Wave D3** `react-html-parser` → `html-react-parser` + DOMPurify via `app/utils/safeHtml.js` shim (49 files; every parsed HTML string is now sanitized, which the old lib was not), **Wave D2** `react-sortable-hoc` → `@dnd-kit/core` + `@dnd-kit/sortable` + `@dnd-kit/modifiers` + `@dnd-kit/utilities` across all 4 sortable surfaces (DragHandle now uses `useSortable` listeners/attributes; `onSortEnd({oldIndex, newIndex})` + DOM-walk identification → `onDragEnd({active, over})` with `data.current.table` plumbing; `getNearestTableAncestorId` helper deleted)
 - **Critical files that didn't exist before this branch**:
   - `vite.config.mjs` (Vite 8 config — alias list mirrors the prior webpack `resolve.modules`)
@@ -30,10 +30,10 @@ Read this section first if you're a fresh agent or starting a new chat. It's a p
   - **Conversion order** (file paths verified on `feat/upgrade-2026q2` HEAD):
     1. ~~`app/components/Event/GeneralSeating/GeneralSeating.jsx` — 1,057 LOC~~ ✅ `37a1acdf0`
     2. ~~`app/containers/Payout/Payout.jsx` — 1,619 LOC~~ ✅ `913b43114`
-    3. **NEXT** `app/components/Event/ReservedSeating/ReservedSeating.jsx` — 1,998 LOC
-    4. `app/containers/Event/EventListing/EventListing.jsx` — 4,680 LOC
+    3. ~~`app/components/Event/ReservedSeating/ReservedSeating.jsx` — 1,998 LOC~~ ✅ `7ae774656`
+    4. **NEXT** `app/containers/Event/EventListing/EventListing.jsx` — 4,680 LOC (last + largest)
   - **Validation per step**: `pnpm lint` + `pnpm build` after each commit; user spot-reviews the diff before the next conversion starts. Browser smoke-testing is deferred to dev-environment validation near program end per [§"Validation environments"] / `defer-deploys` policy.
-  - **Pause point (2026-05-15 lunch)**: 2 of 4 landed. ReservedSeating is next on resume. utils/withRouter.jsx has 2 callers remaining.
+  - **Status**: 3 of 4 landed. EventListing is the final and largest conversion. utils/withRouter.jsx has 1 caller remaining.
 - **What ELSE is queued (optional polish)**:
   - `app/lib/react-element-pan/` vendored fork of `eventlistener` — could be modernized or dropped (only used by one component); not blocking.
 - **Resume command from a fresh chat**: `cd ~/Code/cur8-ui && git pull && pnpm install && pnpm build` — verify build green at ~26s, then continue the class→function conversion at **ReservedSeating** (3 of 4). Apply the pattern documented in §"Execution log" → 2026-05-15 conversion session: useState per state field, dual useEffect (mount `[]`-deps + componentDidUpdate gated by `didMountRef`), bound methods → const arrow functions, withRouter HOC dropped (use `useNavigate`/`useLocation` directly if router primitives are referenced; Payout used none). After ReservedSeating lands, EventListing (4,680 LOC) is the last and largest. After all 4: delete `app/utils/withRouter.jsx`. Then `cd ~/Code/cur8-api && git pull && pnpm install` and start Wave D-mirror items (smallest first: `randomized-string` → `crypto.randomUUID()` 3 sites).
@@ -1286,6 +1286,7 @@ User decision recorded in PLAN.md commit `f953634b` (showtix4u-venues): convert 
 |---|---|---|---|
 | `37a1acdf0` | 1,057 | `refactor(GeneralSeating): class → function component, drop withRouter HOC` | oxlint 0 errors / 7 warnings (3 new = oxlint surfacing dead code that was hidden inside class form: `setFlexpassPricingOptions`, `setEventsPricingOptions`, `getTotalTickets`); vite build green at 27.79s |
 | `913b43114` | 1,619 | `refactor(Payout): class → function component, drop withRouter HOC` | oxlint 0 errors / 21 warnings (net +1 vs class — 3 new dead-code surfaces [`renderClientHeader`, `setMessage`, `updateNote`] minus 2 collisions that don't apply [`prevProps` param, `invoiceEventId` temp]); vite build green at 25.99s. Notable additions: (a) `tabs` constant hoisted to module-scope `TABS` (never mutated); (b) in-place array mutations preserved with `setPayouts([...p])` to bypass `Object.is` bailout; (c) `setState(state, callback)` pattern converted by passing new payouts to `updateSelectedIds(p)` directly; (d) inner-vs-outer `getPayouts`/`payouts`/`getEvents` name collisions renamed to `getPayoutsApi`/`payoutsApi`/`getEventsApi`. |
+| `7ae774656` | 1,998 | `refactor(ReservedSeating): class → function component, drop withRouter HOC` | oxlint 0 errors / 31 warnings (net +15 vs class — all dead-code surfaces oxlint sees inside function form: state setters never called [`setMessage`, `setDirection`], helpers never called [`toggleLegend`, `toggleFullScreen`, `handleMenuOpen`, `renderMenu`, `createVenueSectionsMarkup`, `createTableSectionsMarkup`, `bindMouseOverEventToCells`], derived vars never read [`userId`, `customerId`, `direction`, `message`, `section_id`, `row_id`]). vite build green at 27.75s. Notable additions: (a) **instance fields → useRefs** (`sectionsRef`, `sectionsMarkupRef`, `templateRef`, `printRef`, `transformRef`, `isClickedRef` — mutating these must NOT re-render; same as class instance vars but cleaner than `this.foo`); (b) **`componentWillUpdate` (deprecated lifecycle)** → `useEffect([props.refresh])` watching the prop; deprecation note in the code comment; (c) **12+ `setState(state, callback)` patterns**: where callback reads just-set field, compute newVal locally; where it kicks off async work needing new state visible, pass newVal directly to helpers (`getVenuePricingOptionsFromVenue(responseVenue)`); for the 150-line `handleSeatClick` callback, linearize by pre-computing then passing values down; for `mergeTemplateAndData`'s DOM-query callback, `queueMicrotask` defers until after React commits. (d) `mapStateToProps` duplicate `permissions` key removed (JS keeps the later one; same value, identical behavior); (e) `attendeesPricingOptions` ReferenceError in `handleRowClick` and `state.event` in `renderMenu` preserved as latent bugs from the class form with comments. |
 
 **Pattern established (mechanical, behavior-preserving):**
 1. `useState` per piece of class state; rename when shadowing a same-named prop (e.g. `pricingOptions` state → `pricingOptionsState` since `props.pricingOptions` exists).
@@ -1297,9 +1298,9 @@ User decision recorded in PLAN.md commit `f953634b` (showtix4u-venues): convert 
 
 **Queued for this session (in order):**
 - ~~`app/containers/Payout/Payout.jsx`~~ ✅ landed as `913b43114`
-- `app/components/Event/ReservedSeating/ReservedSeating.jsx` — 1,998 LOC
-- `app/containers/Event/EventListing/EventListing.jsx` — 4,680 LOC
-- Delete `app/utils/withRouter.jsx` after the last one — 0 callers will remain (currently 2: ReservedSeating, EventListing).
+- ~~`app/components/Event/ReservedSeating/ReservedSeating.jsx`~~ ✅ landed as `7ae774656`
+- `app/containers/Event/EventListing/EventListing.jsx` — 4,680 LOC (last and largest)
+- Delete `app/utils/withRouter.jsx` after the last one — 0 callers will remain (currently 1: EventListing).
 
 ## Document history
 
