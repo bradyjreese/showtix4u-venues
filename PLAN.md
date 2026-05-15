@@ -2,7 +2,7 @@
 
 Single source of truth for the upgrade program across `cur8-api`, `cur8-ui`, and `showtix4u-venues`. Built from joint Claude + Codex convergence over five review rounds plus the locked-decision pass. All claims here have been grep-verified against the local repos as of 2026-05-14.
 
-## Current state (snapshot — 2026-05-15 evening, conversion session opening)
+## Current state (snapshot — 2026-05-15 late evening, end of session on work machine)
 
 Read this section first if you're a fresh agent or starting a new chat. It's a point-in-time snapshot; for full per-commit detail, the §"Execution log" below has every commit hash + summary.
 
@@ -38,35 +38,36 @@ Read this section first if you're a fresh agent or starting a new chat. It's a p
   - **Status**: COMPLETE. 4 of 4 conversions landed + shim deleted. ~9,400 LOC of class-component code now runs as function components with hooks. Net diff across all 5 commits: roughly equal insertions/deletions (3,409 ins / 3,124 del + 42 deletions for the shim).
 - **What ELSE is queued (optional polish)**:
   - `app/lib/react-element-pan/` vendored fork of `eventlistener` — could be modernized or dropped (only used by one component); not blocking.
-- **Resume command from a fresh chat**: `cd ~/Code/cur8-ui && git pull && pnpm install && pnpm build` — verify build green at ~26s. The class→function conversion session is complete (all 4 components, withRouter shim deleted). Next workstream is **cur8-api Wave D-mirror items**: `cd ~/Code/cur8-api && git pull && pnpm install` and start `randomized-string` → `crypto.randomUUID()` (3 sites — smallest). Subsequent in order: `promise-mysql 5 → mysql2` (4 sites), `@google/maps → @googlemaps/google-maps-services-js` (6 sites), `moment → dayjs` (38 sites, mirrors UI D1), `sib-api-v3-sdk → Brevo SDK`, `fluent-ffmpeg → native child_process`, finally `aws-sdk v2 → v3` (15+ sites, biggest). Then W1 SRS port and W4 venue builder.
+- **Resume command from a fresh chat**: `cd ~/Code/cur8-ui && git pull && pnpm install && pnpm build` — verify build green at ~26s. The cur8-ui upgrade work paused here on 2026-05-15 evening; **the active workstream is now cur8-api Wave D-mirror replacements** (3 of 7 done as of `cur8-api@457ad59f5`). cur8-ui remaining work — W1 HLS port (port 2 files from `feature/repo-upgrades`), W2 Docker (Dockerfiles + GHA + yarn→pnpm in docs), W4 Venue Builder admin UI (hard dep on cur8-api W4) — comes after cur8-api advances further. Per locked decision #14 the cur8-api PR merges first, then the cur8-ui PR.
 
 ### `cur8-api` — branch `feat/upgrade-2026q2`
 
-- **HEAD**: `3404c1272` `chore(bump): cur8-api everything-to-latest per locked #16+#18` (pushed)
-- **Base**: `staging`
-- **Build**: lint clean (0 errors, 22 warnings); `node --check server.js` clean; `node -e "require('./server.js')"` loads every dep cleanly (errors only on missing local config — expected per §"Validation environments")
-- **`pnpm outdated`**: 4 deprecated packages remain (see "queued" below)
-- **`pnpm audit`**: 4 vulns (0 critical / 1 high / 1 moderate / 2 low) — was 105 at W0
-- **What's done**: W0 (Node 24.15.0, pnpm 11.1.2 via Corepack, golden harness committed) → Wave A linter/formatter (oxlint + oxfmt across 370 files) → `pnpm up --latest` covering Wave A test stack (sinon 5→22, mocha 10→11, chai 4→6, chai-http 4→5, nodemon 2→3) + Wave B (18 minor/patch bumps) + Wave C breakers (helmet 3→8, multer 1→2, axios 0.21→1, connect-redis 3→9, config 1→4, csv-stringify 3→6, deepmerge 2→4, pdfmake 0.1→0.3, google-auth-library 7→10, uuid 9→14, yaml 1→2, stripe 13→22, sitemap 2→9, intuit-oauth 3→4, body-parser 1→2, html-to-text 9→10, redis 4→5) + Express 4→5
 - **HEAD**: `457ad59f5` `refactor(deps): swap @google/maps → @googlemaps/google-maps-services-js` (pushed to `origin/feat/upgrade-2026q2`)
-- **`pnpm outdated`**: 3 deprecated packages remain (`aws-sdk` v2, `fluent-ffmpeg`, `sib-api-v3-sdk`)
+- **Base**: `staging`
+- **Build**: lint clean (0 errors, 22 warnings — unchanged through the 3 dep-replacement commits); `node --check server.js` clean; `node -e "require('./server.js')"` loads every dep cleanly (errors only on missing local config — expected per §"Validation environments")
+- **`pnpm outdated`**: 3 deprecated packages remain — `aws-sdk` v2, `fluent-ffmpeg`, `sib-api-v3-sdk`. (Was 4; `@google/maps` cleared on 2026-05-15 evening.)
+- **`pnpm audit`**: 4 vulns (0 critical / 1 high / 1 moderate / 2 low) — was 105 at W0. Concentrated in the 3 remaining deprecated packages above; replacing them will drive audit toward 0.
+- **Commits this program**: 7 on the branch since cutting off `staging` (4 prior + 3 Wave D-mirror dep replacements landed 2026-05-15 evening on work machine).
+- **What's done**: W0 (Node 24.15.0, pnpm 11.1.2 via Corepack, golden harness committed) → Wave A linter/formatter (oxlint + oxfmt across 370 files) → `pnpm up --latest` covering Wave A test stack (sinon 5→22, mocha 10→11, chai 4→6, chai-http 4→5, nodemon 2→3) + Wave B (18 minor/patch bumps) + Wave C breakers (helmet 3→8, multer 1→2, axios 0.21→1, connect-redis 3→9, config 1→4, csv-stringify 3→6, deepmerge 2→4, pdfmake 0.1→0.3, google-auth-library 7→10, uuid 9→14, yaml 1→2, stripe 13→22, sitemap 2→9, intuit-oauth 3→4, body-parser 1→2, html-to-text 9→10, redis 4→5) + Express 4→5 → **Wave D-mirror dep replacements (3 of 7 landed)**: `randomized-string` → `crypto.randomBytes` (`3ec996ffd`), `promise-mysql` + legacy `mysql` (full retirement) → `mysql2` including knex client config swap (`959f06bd1`), `@google/maps` → `@googlemaps/google-maps-services-js` (`457ad59f5`).
 - **What's QUEUED** (in PLAN-recommended order, smallest first):
   - ~~`randomized-string` → `crypto.randomBytes(...).toString('hex')`~~ ✅ landed as `3ec996ffd`
-  - ~~`promise-mysql` 5 → `mysql2`~~ ✅ landed as `959f06bd1` — full retirement of legacy mysql package
-  - ~~`@google/maps` (npm-deprecated) → `@googlemaps/google-maps-services-js` (5 call sites)~~ ✅ landed as `457ad59f5` (API key still works — same Google Cloud platform credential)
-  - `moment` → `dayjs` (38 sites). Mirrors UI Wave D1 pattern.
+  - ~~`promise-mysql` 5 → `mysql2`~~ ✅ landed as `959f06bd1` — full retirement of legacy mysql package (originally scoped to 4 files; expanded after discovering knex was on `client: 'mysql'`, not mysql2 as PLAN had stated)
+  - ~~`@google/maps` (npm-deprecated) → `@googlemaps/google-maps-services-js` (5 call sites)~~ ✅ landed as `457ad59f5` (API key compatibility confirmed — same Google Cloud platform credential)
+  - **NEXT** `moment` → `dayjs` (38 sites). Mirrors UI Wave D1 pattern. Add a centralized `utils/dayjs.js` setup module like cur8-ui has (`app/utils/dayjs.js` — see cur8-ui plugin list for reference).
   - `sib-api-v3-sdk` (npm-deprecated — was Sendinblue) → `@sendinblue/client` or newer Brevo SDK.
-  - `fluent-ffmpeg` (npm-deprecated) → audit usage; minimal options: native `child_process` spawn, or `@ffmpeg/ffmpeg`.
+  - `fluent-ffmpeg` (npm-deprecated) → audit usage first; minimal options: native `child_process` spawn, or `@ffmpeg/ffmpeg`.
   - `aws-sdk` v2 → v3 (15+ sites; biggest scope, do last). Per-service `@aws-sdk/client-*` imports + new client/command pattern. **Note**: SRS code that lands in W1 is already written against v3 per locked decision #4 / #16 — this task converts the **rest** of cur8-api.
+- **Workstreams not yet started** (after Wave D-mirror queue lands):
   - W1 SRS port (the original critical path — lands on top of the modernized dep surface).
-  - W4 venue builder draft endpoints + adapters.
-- **Resume command from a fresh chat**: `cd ~/Code/cur8-api && git pull && pnpm install` — verify lint + node-check clean, then continue cur8-api Wave D-mirror replacements at the next queued item (currently `moment` → `dayjs`).
+  - W2 Docker (Dockerfiles + buildspecs + GHA workflows to patch-pinned Node 24; README/CONTRIBUTING/CLAUDE.md yarn→pnpm).
+  - W4 venue builder draft endpoints + adapters (cur8-ui W4 admin UI has a hard dep on this).
+- **Resume command from a fresh chat**: `cd ~/Code/cur8-api && git pull && pnpm install` — verify lint + node-check clean, then continue cur8-api Wave D-mirror replacements at **`moment` → `dayjs`**. Reference cur8-ui's `app/utils/dayjs.js` for the centralized plugin setup pattern; cur8-api can mirror it. Smaller-first ordering applied; aws-sdk v2→v3 stays last.
 
 ### `showtix4u-venues` — branch `main`
 
-- **HEAD**: `ea189d8c` (or later if more commits land before you read this)
-- **What's done**: PLAN.md is the active artifact. The W0 venues-specific bump (Node 24.15.0 + pnpm 11.1.2) shipped 2026-05-14 morning (`da7e6405`).
-- **What's QUEUED**: nothing pending until cur8-ui Wave D and cur8-api land — venues plays its W4 role then.
+- **HEAD**: `852ffa6b` `docs(plan): execution log — cur8-api @google/maps swap (457ad59f5)` (pushed)
+- **What's done**: PLAN.md is the active artifact. The W0 venues-specific bump (Node 24.15.0 + pnpm 11.1.2) shipped 2026-05-14 morning (`da7e6405`). Subsequent commits are all PLAN.md execution-log entries tracking cur8-ui + cur8-api work as it lands.
+- **What's QUEUED**: nothing pending until cur8-api W4 venue builder draft endpoints land — venues plays its W4 template-archive role then.
 
 ### How to start a NEW chat / agent on this program
 
@@ -1270,16 +1271,16 @@ The branch is in a fully shippable state. The only "old pattern" remaining is th
 | `959f06bd1` | 9 files (5 client-config sites + 4 promise-mysql files + package.json + lockfile) | `refactor(deps): full retirement — promise-mysql + legacy mysql → mysql2` | **PLAN.md correction**: the earlier note "knex already uses mysql2" was wrong — knex was configured with `client: 'mysql'` (the legacy unmaintained mysqljs/mysql@2.18.1 package, last released Nov 2020) in 3 files / 5 sites. Verified on 2026-05-15. User decision (same date) to do the full retirement instead of just the 4 promise-mysql files: swap knex client to `mysql2`, convert the 4 promise-mysql files, add `mysql2@3.22.3` as direct dep, drop `promise-mysql@5.2.0` AND legacy `mysql@2.18.1`. Connection options unchanged; mysql2's `client: 'mysql2'` produces same SQL via knex's same builder. API differences (e.g. `.query()` return shape) don't affect any of the 4 promise-mysql files because they only use DDL queries and discard return values. `restore-dump.js` had dead `mysql` + `fs` imports (used `execSync` to shell out to mysql CLI instead) — both deleted as cleanup. node --check clean on all 7 modified code files; `require('mysql2/promise')` resolves under Node 24.15.0; oxlint 22 warnings / 0 errors (unchanged); `pnpm audit` still 4 vulns (concentrated in other deprecated packages, no change from this refactor). |
 | `457ad59f5` | 7 files (5 call sites + package.json + lockfile) | `refactor(deps): swap @google/maps → @googlemaps/google-maps-services-js` | Drops `@google/maps@1.1.3` (Google archived in 2020). Adds `@googlemaps/google-maps-services-js@3.4.2`. API surface change is non-trivial: (a) `createClient({key, Promise})` → `new Client({})` + per-call `params.key`; (b) `.method(args).asPromise()` → `.method({params: {...args, key}})`; (c) `response.json` → `response.data`; (d) `placesAutoCompleteSessionToken()` util → `crypto.randomUUID()`; (e) `.placesAutoComplete()` → `.placeAutocomplete()` (renamed); (f) `.place({placeid})` → `.placeDetails({place_id})` (method+param rename); (g) `components: {country: [...]}` (object) → `'country:us\|country:ca'` (string); (h) caught-error shape `error.json?.status` → `error.response?.data?.status` (axios errors carry Google API response on `error.response`). Files: `vendor/google.js` (4 helpers: placesAutoComplete, placeDetail, timezone, geocode), `tasks/find-locations-geolocation.js`, `tasks/dev/get-timezones.js`, `tasks/dev/create-marketing-lists.js`. `tasks/dev/event-date-google-diffs.js` had a dead googleMapsClient import (never used) — deleted along with unused `config` require. **API key compat**: existing `config.get('google.map_api_key')` continues to work — Google Cloud API keys authenticate at platform level, not library. Required Cloud APIs (Geocoding, Places, Time Zone) had to be enabled for the old client anyway. node --check clean on 5 files; lint 0/22 unchanged; `new Client({}).geocode` resolves under Node 24.15.0; `pnpm outdated` 4 deprecated → 3 (`@google/maps` cleared); audit still 4 vulns (Google package wasn't a vuln source). |
 
-**Still queued on cur8-api:**
+**Still queued on cur8-api** (after the 3 commits above):
 
-- `promise-mysql` 5 → `mysql2` (4 legacy files; `knex` already uses `mysql2`).
-- `@google/maps` (deprecated upstream) → `@googlemaps/google-maps-services-js` (6 call sites).
-- `moment` → `dayjs` (38 sites). Same approach as UI Wave D1.
+- **NEXT** `moment` → `dayjs` (38 sites). Same approach as UI Wave D1. Mirror cur8-ui's centralized `app/utils/dayjs.js` setup module on the API side (mirror plugin list — utc, timezone, customParseFormat, duration, relativeTime, etc.).
 - `sib-api-v3-sdk` (deprecated; was Sendinblue) → `@sendinblue/client` or newer Brevo-branded SDK.
 - `fluent-ffmpeg` (deprecated) → audit usage; consider native `child_process` spawn of ffmpeg if minimal, or `@ffmpeg/ffmpeg` for browser-side.
 - `aws-sdk` v2 → v3 (15+ sites; per-service `@aws-sdk/client-*` imports + new client/command pattern). Note: the SRS code that lands later (W1) is already written against `@aws-sdk/*` v3 per locked decision #4 / #16. This task converts the **rest** of cur8-api. Do last (biggest scope).
-- Driving the 4 remaining audit vulns to zero (the criticals + highs are cleared; the 4 remaining are concentrated in the deprecated-but-still-used packages above).
+- Driving the 4 remaining audit vulns to zero (vulns are concentrated in the 3 remaining deprecated-but-still-used packages above; replacing them clears the vulns).
 - W1 SRS port — the original critical path. Now lands on top of the modernized dep surface.
+
+**Pause point (2026-05-15 evening, end of session on work machine `bradys-rxco-macbook`):** 3 of 7 Wave D-mirror dep replacements landed. User ending chat to continue on `bradys-macbook` (personal). All commits pushed to `origin/feat/upgrade-2026q2`. Working trees clean. Next chat resumes at **`moment` → `dayjs`** on cur8-api.
 - W4 venue builder draft endpoints + adapters.
 
 **showtix4u-venues `main` — PLAN.md only this session.** No code changes.
