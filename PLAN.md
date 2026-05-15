@@ -758,13 +758,14 @@ All 10 previously-open decisions are now answered:
     - **Locked decision #15's "latest dist-tag" rule** is restated, not weakened. No "minimum-working" carve-outs from this point forward unless a concrete tooling blocker is documented inline.
     - **AMS-removal carve-out preserved.** The `streaming.provider` runtime flag still requires AMS code in-tree during the SRS validation window. AMS deletion is still the post-SRS-prod `chore/ams-removal` follow-up PR per repo, not folded into the main branch — that's a separate constraint from the dep-churn one.
 
-17. **Lint/format swap: oxlint + Prettier 4 + Stylelint latest. Replaces ESLint everywhere.** All ESLint and `eslint-config-*` / `eslint-plugin-*` / `babel-eslint` packages are deleted from both `cur8-api` and `cur8-ui`. Replaced by:
+17. **Lint/format swap: oxlint + oxfmt + Stylelint latest. Replaces ESLint everywhere.** All ESLint and `eslint-config-*` / `eslint-plugin-*` / `babel-eslint` packages are deleted from both `cur8-api` and `cur8-ui`. Replaced by:
     - **Linter**: `oxlint` (latest) in both repos. ESLint-config-compatible during transition so existing `.eslintrc.js` rules port incrementally. Final config lives in `.oxlintrc.json` per repo.
-    - **JS formatter**: `prettier` bumped to latest 4.x (cur8-ui has Prettier 1.17 — very old; cur8-api has no Prettier today).
-    - **CSS linter (cur8-ui only)**: `stylelint` bumped to latest with its current config style.
-    - **Reason**: rxco team standardized on oxc/oxlint at work; consistency across personal + work tooling is a productivity win, and oxlint is the fastest in this category. Wave A's "ESLint flat config cleanup" line item is replaced by this swap. The `simple-import-sort` custom-groups import ordering used in `cur8-ui/.eslintrc.js` (internal-alias groups) ports to oxlint's import-order config.
+    - **JS/TS formatter**: `oxfmt` (latest — the oxc-project's own formatter, Prettier-compatible config via `oxfmt --migrate=prettier`). Replaces Prettier in both repos. Config lives in `.oxfmtrc.json`. Rationale for picking oxfmt over Prettier: stays inside the oxc toolchain (same vendor as oxlint, single mental model), Rust-based (faster than Prettier on large trees), Prettier-compatible config so existing style rules migrate 1:1.
+        - **2026-05-14 evening note**: an earlier Wave A commit on cur8-api (`3115d2d56`) and on cur8-ui (`5d19b5101`) used `prettier@^3.8.3` instead of `oxfmt`. Both repos get a follow-up `chore(wave-a): swap Prettier → oxfmt` commit immediately after, before any code-reformat pass lands. The reformat pass on each repo uses oxfmt, not Prettier — committing as `style(wave-a): apply oxfmt across <repo>`.
+    - **CSS linter (cur8-ui only)**: `stylelint` bumped to latest with the modern `customSyntax: "postcss-styled-syntax"` pattern (the deprecated `stylelint-processor-styled-components` API stopped working in stylelint 15+; `stylelint-config-styled-components` retired alongside).
+    - **Reason**: rxco team standardized on oxc/oxlint at work; consistency across personal + work tooling is a productivity win, and oxc tools are fastest in this category. Wave A's "ESLint flat config cleanup" line item is replaced by this swap. The `simple-import-sort` custom-groups import ordering used in `cur8-ui/.eslintrc.js` (internal-alias groups) ports to oxlint's import-order config.
     - **Consequence**: the `@eslint/js` documented exception to #15 is moot — `@eslint/js` is being deleted, not version-pinned. The exception is removed from this document below.
-    - **CI/Pre-commit**: the lint workflow and any `lint-staged` config get re-pointed at `oxlint`; Prettier still runs for `*.json` via `lint-staged` (already configured).
+    - **CI/Pre-commit**: the lint workflow runs `pnpm lint` (oxlint) and `pnpm format:check` (oxfmt). For cur8-ui specifically, lint-staged runs `oxlint --fix` on `*.js` and `oxfmt --write` on `*.json`.
 
 ### Documented exceptions to #15
 
