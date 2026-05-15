@@ -48,17 +48,18 @@ Read this section first if you're a fresh agent or starting a new chat. It's a p
 - **`pnpm outdated`**: 4 deprecated packages remain (see "queued" below)
 - **`pnpm audit`**: 4 vulns (0 critical / 1 high / 1 moderate / 2 low) — was 105 at W0
 - **What's done**: W0 (Node 24.15.0, pnpm 11.1.2 via Corepack, golden harness committed) → Wave A linter/formatter (oxlint + oxfmt across 370 files) → `pnpm up --latest` covering Wave A test stack (sinon 5→22, mocha 10→11, chai 4→6, chai-http 4→5, nodemon 2→3) + Wave B (18 minor/patch bumps) + Wave C breakers (helmet 3→8, multer 1→2, axios 0.21→1, connect-redis 3→9, config 1→4, csv-stringify 3→6, deepmerge 2→4, pdfmake 0.1→0.3, google-auth-library 7→10, uuid 9→14, yaml 1→2, stripe 13→22, sitemap 2→9, intuit-oauth 3→4, body-parser 1→2, html-to-text 9→10, redis 4→5) + Express 4→5
-- **What's QUEUED**:
-  - `moment` → `dayjs` (38 sites). Mirrors UI Wave D1 pattern.
-  - `aws-sdk` v2 → v3 (15+ sites). Per-service `@aws-sdk/client-*` imports + new client/command pattern. **Note**: SRS code that lands in W1 is already written against v3 per locked decision #4 / #16 — this task converts the **rest** of cur8-api.
-  - `@google/maps` (npm-deprecated) → `@googlemaps/google-maps-services-js` (6 call sites).
+- **HEAD**: `3ec996ffd` `refactor(deps): replace randomized-string with node crypto` (pushed to `origin/feat/upgrade-2026q2`)
+- **What's QUEUED** (in PLAN-recommended order, smallest first):
+  - ~~`randomized-string` → `crypto.randomBytes(...).toString('hex')`~~ ✅ landed as `3ec996ffd` (used `randomBytes` not `randomUUID` to support length-50 UTM tokens that exceed randomUUID's 32-char ceiling).
   - `promise-mysql` 5 → `mysql2` (4 legacy files; `knex` already uses `mysql2`).
-  - `randomized-string` → `crypto.randomUUID()` (3 sites — same pattern cur8-ui used).
+  - `@google/maps` (npm-deprecated) → `@googlemaps/google-maps-services-js` (6 call sites).
+  - `moment` → `dayjs` (38 sites). Mirrors UI Wave D1 pattern.
   - `sib-api-v3-sdk` (npm-deprecated — was Sendinblue) → `@sendinblue/client` or newer Brevo SDK.
   - `fluent-ffmpeg` (npm-deprecated) → audit usage; minimal options: native `child_process` spawn, or `@ffmpeg/ffmpeg`.
+  - `aws-sdk` v2 → v3 (15+ sites; biggest scope, do last). Per-service `@aws-sdk/client-*` imports + new client/command pattern. **Note**: SRS code that lands in W1 is already written against v3 per locked decision #4 / #16 — this task converts the **rest** of cur8-api.
   - W1 SRS port (the original critical path — lands on top of the modernized dep surface).
   - W4 venue builder draft endpoints + adapters.
-- **Resume command from a fresh chat**: `cd ~/Code/cur8-api && git pull && pnpm install` — verify lint + node-check clean, then start the moment→dayjs commit (smallest scope first).
+- **Resume command from a fresh chat**: `cd ~/Code/cur8-api && git pull && pnpm install` — verify lint + node-check clean, then continue cur8-api Wave D-mirror replacements at the next queued item (currently `promise-mysql` → `mysql2`).
 
 ### `showtix4u-venues` — branch `main`
 
@@ -1258,15 +1259,22 @@ The branch is in a fully shippable state. The only "old pattern" remaining is th
 | `9328dd472` | `style(wave-a): apply oxfmt across cur8-api` | 370 files reformatted; cleaned the `[WARN] Failed to replace env in config: ${NPM_GITHUB_TOKEN}` stderr contamination in the W0 baseline JSON/txt files committed earlier |
 | `3404c1272` | `chore(bump): cur8-api everything-to-latest per locked #16+#18` | single `pnpm up --latest`: Wave A test-stack re-apply (sinon 5→22, mocha 10→11, chai 4→6, chai-http 4→5, nodemon 2→3) + Wave B (18 minor/patch bumps) + Wave C breakers (helmet 3→8, multer 1→2, axios 0.21→1, connect-redis 3→9, config 1→4, csv-stringify 3→6, deepmerge 2→4, pdfmake 0.1→0.3, google-auth-library 7→10, uuid 9→14, yaml 1→2, stripe 13→22, sitemap 2→9, intuit-oauth 3→4, body-parser 1→2, html-to-text 9→10, redis 4→5) + **Express 4 → 5**. cur8-api **audit went 105 → 4** (96% reduction; 0 critical / 1 high / 1 moderate / 2 low). |
 
+### 2026-05-15 evening — cur8-api Wave D-mirror dep replacements start
+
+`pnpm outdated` re-verified on `feat/upgrade-2026q2` HEAD `3404c1272`: only the 4 known-deprecated packages remain (`@google/maps`, `aws-sdk` v2, `fluent-ffmpeg`, `sib-api-v3-sdk`). No straight version bumps left — `everything-to-latest` from earlier really got everything to latest stable. Remaining cur8-api work is **library replacements** (not version bumps). PLAN-ordered queue, smallest first.
+
+| Hash | LOC | Subject | Notes |
+|---|---|---|---|
+| `3ec996ffd` | 5 files / 5 call sites | `refactor(deps): replace randomized-string with node crypto` | Drops `randomized-string@2.0.1`. Replaces `randomString.generate(N)` with `crypto.randomBytes(...).toString('hex')`. Adapts the pattern because UTM tokens use length 50, which exceeds `crypto.randomUUID().slice(0, N)`'s 32-hex-char ceiling — cur8-ui's `randomUUID`+`slice` precedent didn't apply at this length. Charset narrows from alphanumeric to hex, entropy stays ample (200 bits at length 50). No format validation exists on `reference_id` or `client_tokens.token`. node --check clean; oxlint 0 errors / 22 warnings (unchanged repo-wide). |
+
 **Still queued on cur8-api:**
 
-- `moment` → `dayjs` (38 sites). Same approach as UI Wave D1.
-- `aws-sdk` v2 → v3 (15+ sites; per-service `@aws-sdk/client-*` imports + new client/command pattern). Note: the SRS code that lands later (W1) is already written against `@aws-sdk/*` v3 per locked decision #4 / #16. This task converts the **rest** of cur8-api.
-- `@google/maps` (deprecated upstream) → `@googlemaps/google-maps-services-js` (6 call sites).
 - `promise-mysql` 5 → `mysql2` (4 legacy files; `knex` already uses `mysql2`).
-- `randomized-string` → `crypto.randomUUID()` (3 sites — same pattern as cur8-ui).
+- `@google/maps` (deprecated upstream) → `@googlemaps/google-maps-services-js` (6 call sites).
+- `moment` → `dayjs` (38 sites). Same approach as UI Wave D1.
 - `sib-api-v3-sdk` (deprecated; was Sendinblue) → `@sendinblue/client` or newer Brevo-branded SDK.
 - `fluent-ffmpeg` (deprecated) → audit usage; consider native `child_process` spawn of ffmpeg if minimal, or `@ffmpeg/ffmpeg` for browser-side.
+- `aws-sdk` v2 → v3 (15+ sites; per-service `@aws-sdk/client-*` imports + new client/command pattern). Note: the SRS code that lands later (W1) is already written against `@aws-sdk/*` v3 per locked decision #4 / #16. This task converts the **rest** of cur8-api. Do last (biggest scope).
 - Driving the 4 remaining audit vulns to zero (the criticals + highs are cleared; the 4 remaining are concentrated in the deprecated-but-still-used packages above).
 - W1 SRS port — the original critical path. Now lands on top of the modernized dep surface.
 - W4 venue builder draft endpoints + adapters.
