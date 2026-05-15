@@ -1284,6 +1284,7 @@ User decision recorded in PLAN.md commit `f953634b` (showtix4u-venues): convert 
 | Hash | LOC | Subject | Validation |
 |---|---|---|---|
 | `37a1acdf0` | 1,057 | `refactor(GeneralSeating): class → function component, drop withRouter HOC` | oxlint 0 errors / 7 warnings (3 new = oxlint surfacing dead code that was hidden inside class form: `setFlexpassPricingOptions`, `setEventsPricingOptions`, `getTotalTickets`); vite build green at 27.79s |
+| `913b43114` | 1,619 | `refactor(Payout): class → function component, drop withRouter HOC` | oxlint 0 errors / 21 warnings (net +1 vs class — 3 new dead-code surfaces [`renderClientHeader`, `setMessage`, `updateNote`] minus 2 collisions that don't apply [`prevProps` param, `invoiceEventId` temp]); vite build green at 25.99s. Notable additions: (a) `tabs` constant hoisted to module-scope `TABS` (never mutated); (b) in-place array mutations preserved with `setPayouts([...p])` to bypass `Object.is` bailout; (c) `setState(state, callback)` pattern converted by passing new payouts to `updateSelectedIds(p)` directly; (d) inner-vs-outer `getPayouts`/`payouts`/`getEvents` name collisions renamed to `getPayoutsApi`/`payoutsApi`/`getEventsApi`. |
 
 **Pattern established (mechanical, behavior-preserving):**
 1. `useState` per piece of class state; rename when shadowing a same-named prop (e.g. `pricingOptions` state → `pricingOptionsState` since `props.pricingOptions` exists).
@@ -1294,10 +1295,10 @@ User decision recorded in PLAN.md commit `f953634b` (showtix4u-venues): convert 
 6. Over-fetching or other behavior quirks present in the class are preserved as-is — the goal is "same behavior, hooks form," not "clean up."
 
 **Queued for this session (in order):**
-- `app/containers/Payout/Payout.jsx` — 1,619 LOC (money flow)
+- ~~`app/containers/Payout/Payout.jsx`~~ ✅ landed as `913b43114`
 - `app/components/Event/ReservedSeating/ReservedSeating.jsx` — 1,998 LOC
 - `app/containers/Event/EventListing/EventListing.jsx` — 4,680 LOC
-- Delete `app/utils/withRouter.jsx` after the last one — 0 callers will remain.
+- Delete `app/utils/withRouter.jsx` after the last one — 0 callers will remain (currently 2: ReservedSeating, EventListing).
 
 ## Document history
 
