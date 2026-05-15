@@ -714,13 +714,12 @@ Per locked decision #14, each repo ships as one PR. The wave structure becomes c
 **Per repo, in commit order (default ordering, not a hard gate after locked #16):**
 
 1. **W0** — env-prereq note, safety-rail fixes, baselines, zero-touch deletes, pnpm 11.x conversion, Node 24 gotcha findings, `.node-version` + `engines.node` bumps. `pnpm-workspace.yaml` carries `allowBuilds:` + `blockExoticSubdeps: false` (cur8-ui) per pnpm 11 install requirements (see 2026-05-14 evening execution-log entry for the resolution path).
-2. **W3 Wave A** — tooling stabilization, including the **linter swap to oxlint** + Prettier 4 + Stylelint latest per locked decision #17. ESLint and all `eslint-*` / `babel-eslint` packages deleted. (Moves ahead of W1 because the linter swap touches CI workflows and pre-commit hooks that W1 will lean on.)
-3. **W3 Wave B** — minor/patch bumps to latest (locked #15) across remaining maintained packages.
-4. **W3 Wave C** (`cur8-api`) — API breaking upgrades per the Wave C table, with parity gates required pre-merge.
-5. **W3 Wave D** (`cur8-ui`) — UI cleanup and replacements, ordered D1–D8.
-6. **W1 SRS** (`cur8-api` + `cur8-ui`) — SRS code under the `streaming.provider` flag, still set to `ant-media`. Lands on top of the modernized dep surface; the Codex caution (SRS on top of new redis / @tus / express-session / qs / stripe versions) is the accepted trade-off recorded in locked #16.
-7. **W2** — Docker / CI image alignment to Node 24 LTS. (Stays after W1 because SRS migration adds new infra concerns that the deploy images need to know about.)
-8. **W4** — venue builder migration (`cur8-api` drafts table + endpoints first, `cur8-ui` builder admin after).
+2. **W3 Wave A** — tooling stabilization, including the **linter swap to oxlint + oxfmt** + Stylelint latest per locked decision #17. ESLint and all `eslint-*` / `babel-eslint` packages deleted; Prettier replaced by oxfmt.
+3. **(cur8-ui only) Vite migration** per locked decision #19 — replaces Webpack 5 with Vite. Sequenced *before* the broad dep bump so the bundler swap and the dep bump remain independently revertible. `internals/webpack/*` deleted; `vite.config.js` introduced; `env-cmd` removed in favor of Vite-native `.env.<mode>` files. React itself is NOT bumped during this commit-group — that's the next group.
+4. **W3 Wave B + Wave C + Wave D (combined under locked #18)** — `pnpm up --latest` followed by per-major-jump refactor commits. Sub-order recommended for review clarity (each is its own commit or commit-group): React 18 → 19 → react-router-dom 5 → 7 (kills `connected-react-router`) → MUI 5 → latest → antd 5 → 6 → @uppy 1 → 5 → @stripe 1 → 9 → moment removal (148 files) → react-html-parser removal (50 files) → PrimeReact removal → Bootstrap audit → polyfill cleanup → react-localization → react-intl consolidation → remaining minors/patches. Parity gates per wave still required pre-merge.
+5. **W1 SRS** (`cur8-api` + `cur8-ui`) — SRS code under the `streaming.provider` flag, still set to `ant-media`. Lands on top of the modernized dep + Vite surface; the Codex caution (SRS on top of new redis / @tus / express-session / qs / stripe versions) is the accepted trade-off recorded in locked #16.
+6. **W2** — Docker / CI image alignment to Node 24 LTS. (Stays after W1 because SRS migration adds new infra concerns that the deploy images need to know about.)
+7. **W4** — venue builder migration (`cur8-api` drafts table + endpoints first, `cur8-ui` builder admin after).
 
 **Cross-repo merge ordering**:
 - `cur8-api/feat/upgrade-2026q2` merges first (team PR).
@@ -767,6 +766,29 @@ All 10 previously-open decisions are now answered:
     - **Consequence**: the `@eslint/js` documented exception to #15 is moot — `@eslint/js` is being deleted, not version-pinned. The exception is removed from this document below.
     - **CI/Pre-commit**: the lint workflow runs `pnpm lint` (oxlint) and `pnpm format:check` (oxfmt). For cur8-ui specifically, lint-staged runs `oxlint --fix` on `*.js` and `oxfmt --write` on `*.json`.
 
+18. **Full-override of the non-goals: every package bumps to latest, including the previously deferred majors.** Per user direction 2026-05-14 evening, "everything to latest" is taken literally — including React 18 → 19, react-router-dom 5 → 7, react-intl 2 → 13, MUI 5 → latest (was capped at 6 in Wave D8), antd 5 → 6, @uppy 1 → 5, @stripe 1 → 9, moment removal (Wave D1), react-html-parser refactor (Wave D3), PrimeReact removal (Wave D4), Bootstrap audit (Wave D5), polyfill cleanup (Wave D6), react-localization → react-intl (Wave D7). The Wave A/B/C/D commit-group structure is preserved for review clarity but the *scope* of each commit-group expands to include everything previously deferred.
+
+    **Trade-off explicitly accepted:** this is a multi-day / multi-week refactor program, not a one-session task. The 356 build errors observed when `pnpm up --latest` ran on cur8-ui (2026-05-14 evening) are real refactor surface — each major-jump (React 19, Router 7, MUI 9, antd 6, etc.) has its own API-break surface to chase down. Sessions push incremental commits and clear resume points; the branch lives long.
+
+    **Consequences for the Non-goals list below:**
+    - `Vite migration` — **REMOVED** from non-goals (see locked decision #19).
+    - `React 19` — **REMOVED** from non-goals.
+    - `React Router 7` — **REMOVED** from non-goals. Requires killing `connected-react-router` (~500-line refactor of every connected route).
+    - `Full UI framework consolidation` — stays a non-goal (the rule is "bump to latest", not "consolidate" — keep MUI + styled-components + emotion coexisting if they still work after bumps).
+    - `JSON-only venue model` — stays a non-goal (locked decision #6 — separate architectural reason).
+    - `Deleting AMS before SRS production proof` — stays a non-goal (locked decision #8 — flag-rollback requirement).
+    - `Tracking Node Current (26.x)` — stays a non-goal (locked decision #2 — Node 24 LTS line only).
+    - `Any user-visible regression` — stays the principle, but the surface area is now much larger; parity gates per Wave run more often.
+
+19. **Vite replaces Webpack on cur8-ui. Sequenced *before* the Wave C/D dep bumps.** Per user direction 2026-05-14 evening ("the entire point of ALL of this is to do real, meaningful upgrades"). Webpack 5 is at end-of-line maintenance velocity; the React/JS frontend ecosystem has consolidated on Vite. Trade-offs explicitly accepted:
+    - **Sequencing**: Vite migration lands as a discrete commit group on `cur8-ui/feat/upgrade-2026q2` *before* the broad `pnpm up --latest` dep bump. Reason: fewer moving variables during the bundler swap (deps as they are today are known-working with Webpack; bumping concurrently mixes "did the bundler swap break this?" with "did the dep major break this?"). After Vite is green, the dep bump runs and the modern bundler handles many of the breaking-API edge cases more gracefully (native ESM, better tree-shaking, simpler config).
+    - **What gets deleted**: `internals/webpack/*.babel.js`, `babel-loader` chain (Vite's `@vitejs/plugin-react` handles JSX + Fast Refresh), `env-cmd` (Vite has native `.env.<mode>` files), `webpack-bundle-analyzer` (replaced by `rollup-plugin-visualizer`), `webpack-dev-middleware`, `webpack-hot-middleware`, `webpack-pwa-manifest` (replaced by Vite plugin), `add-asset-html-webpack-plugin`, `circular-dependency-plugin` (Vite plugin exists), various `*-loader` (sass, css, html, null, style, imports, image — replaced by Vite's built-in or plugin equivalent), `webpack`, `webpack-cli`.
+    - **What gets added**: `vite` (latest), `@vitejs/plugin-react` (Fast Refresh + JSX), `rollup-plugin-visualizer` (bundle analyzer), `vite-plugin-svgr` if needed, `vite-plugin-pwa` (Workbox + manifest), plus any cur8-ui-specific Vite plugins surfaced during migration.
+    - **What gets rewritten**: `vite.config.js` (replaces all three webpack `.babel.js` configs); `server/` (Vite has its own dev-server — keep cur8-ui's custom Express dev-server if needed for HTTPS / `local.cur8.com` hostname, but wire it to Vite via `vite.createServer` instead of `webpack-dev-middleware`); env config (`env/*.env.js` → Vite's `.env.<mode>` files or a thin shim because the existing `app/utils/env.js` copy-paste workflow is gitignored and may stay); DYMO vendored lib import path (Vite's static-asset handling); `react-pdf` worker URL handling.
+    - **What stays the same**: React still at the version it's at (Vite migration explicitly does NOT bump React; that's locked #18's next commit-group); MUI, antd, emotion, styled-components stay at their current versions during the migration; tests stay on Jest (Vitest swap is a separate decision after Vite migration lands).
+    - **CI**: `.github/workflows/lint.yml` and `smoke.yml` already use pnpm + Node-via-`.nvmrc`; the build step swaps from `pnpm build` (which currently runs webpack) to `pnpm build` (which after migration runs `vite build`). Same script name, different binary underneath.
+    - **Webpack-on-Babel devDeps cleanup**: after Vite is green, `@babel/cli`, `@babel/register`, `babel-loader`, `babel-jest` (jest keeps for now), `babel-plugin-lodash`, `babel-plugin-react-intl`, `babel-plugin-styled-components`, `babel-plugin-transform-react-remove-prop-types`, `babel-plugin-dynamic-import-node`, `@babel/plugin-transform-modules-commonjs` get audited — some go away with Vite, some stay for Jest.
+
 ### Documented exceptions to #15
 
 _None as of 2026-05-14 evening._ The prior `@eslint/js` carve-out is removed — see locked decision #17 (ESLint deleted entirely, not pinned).
@@ -776,10 +798,10 @@ _None as of 2026-05-14 evening._ The prior `@eslint/js` carve-out is removed —
 ## Non-goals (this batch)
 
 - ~~One-shot "update everything" PR~~ — per locked decision #16, "update everything" is in scope, just split across commit groups, not collapsed into one diff.
-- Vite migration
-- React 19
-- React Router 7
-- ~~Express 5 (until after Node/pnpm/SRS land)~~ — per locked decision #16, the "until after SRS lands" gating is dropped. Express 5 remains a non-goal of this batch only because it's a middleware-semantics break with no current win, not because of sequencing. Re-evaluate during Wave C; if it bumps cleanly with the parity gates, it's in.
+- ~~Vite migration~~ — per locked decision #19, Vite migration is now in scope and sequenced *before* the broad dep bump.
+- ~~React 19~~ — per locked decision #18, React 19 is now in scope.
+- ~~React Router 7~~ — per locked decision #18, React Router 7 is now in scope (requires removing `connected-react-router`).
+- ~~Express 5 (until after Node/pnpm/SRS land)~~ — per locked decision #16, the "until after SRS lands" gating is dropped. Per locked decision #18, Express 5 is now in scope alongside the rest of Wave C.
 - Full UI framework consolidation
 - JSON-only venue model
 - Deleting AMS before SRS production proof
