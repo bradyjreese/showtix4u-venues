@@ -1017,10 +1017,64 @@ After the earlier session-end revert, this session resumed Vite via **Option A f
 
 **On `cur8-api/feat/upgrade-2026q2`:** also next-session — re-apply reverted Wave A/B; add Wave C breakers (helmet, multer, axios, aws-sdk v3); moment → dayjs (38 sites); Express 4→5 (now in scope per #16+#18).
 
-**Session result summary:**
+**Session result summary (initial sub-checkpoint — superseded by the continued-session entry below):**
 - cur8-ui: W0 fully landed (4 commits) + Wave A linter/formatter swap (3 commits, including oxfmt format pass). Branch is shipable through `bc01dc244`. Vite migration deferred.
 - cur8-api: Wave A linter/formatter swap (3 commits, including oxfmt format pass) landed on top of the prior W0 work. Branch is at `9328dd472`. Wave A test stack re-apply + Wave B + Wave C + moment removal pending next session.
-- showtix4u-venues: 3 PLAN.md commits recording locked decisions #16, #17 (refined), #18, #19 + this session's execution-log entry. Locked decision #16 codifies the everything-to-latest override of executive decision #4; #17 codifies the oxc/oxlint+oxfmt swap; #18 codifies the full non-goal override (React 19, Router 7, react-intl 13, MUI 9, etc. all in scope); #19 codifies the Vite migration (currently blocked per above).
+- showtix4u-venues: 3 PLAN.md commits recording locked decisions #16, #17 (refined), #18, #19 + this session's execution-log entry.
+
+### 2026-05-14 evening (extended) — Vite shipped + Wave C bumps + HOC refactors
+
+Session kept going past the initial sub-checkpoint. Working both repos.
+
+**`cur8-ui` post-checkpoint (4 commits, pushed):**
+- `7ca76cdad` `feat(vite): replace Webpack 5 with Vite 8` — closes locked #19. Mass-rename 878 `.js` → `.jsx` (path that worked, per the prior session's "Option A"). vite.config.mjs, root `index.html`, HMR API ported. Three real bugs surfaced + fixed inline (IOStatus const-reassignment, empty TYPES export, vendored DYMO node-fetch dead code). Build green: 19,007 modules transformed in 28.18s.
+- `3132655c6` `chore(bump): cur8-ui everything-to-latest checkpoint per locked #18` — broad `pnpm up --latest` with selective pin-backs for the still-pending refactors. cur8-ui **audit went 75 → 20 vulns** (3 critical / 9 high / 7 moderate / 1 low — 73% reduction). Pin-backs documented in the commit message + queued for follow-up commits in this same branch (each pin-back is its own scoped refactor commit). Bumps that landed clean: swiper 9 → 12 (with `'swiper'` → `'swiper/modules'` import path fix across 10 files), redux-thunk 2 → 3 (default → named export, 2 files), immer 3 → 11 (default → named, 1 file). The react-intl polyfill chain (`addLocaleData`, `locale-data/*`) was deleted from `i18n.js` with long-form rationale comment.
+- `0bd0de284` `refactor(router): remove withRouter HOC from 186 files (no router-prop use)` — automated mechanical pass. 186/353 withRouter files had no actual `history`/`match`/`location` prop usage in body (copy-pasted boilerplate); script (Python in `/tmp/refactor-withrouter-simple.py`) deletes the import + wrapper. Build green post-pass. 167 complex files remain for manual hook refactor.
+- `bd359b020` `refactor(intl): remove injectIntl HOC from 291 files (no intl-prop use)` — same automated pattern with `/tmp/refactor-injectintl-simple.py`. 291/330 (88%) had no `intl` prop usage. Build green. 39 complex files remain for `useIntl()` hook refactor.
+
+**`cur8-api` post-checkpoint (1 commit, pushed):**
+- `3404c1272` `chore(bump): cur8-api everything-to-latest per locked #16+#18` — single big `pnpm up --latest` covering Wave A test-stack re-apply (sinon 5→22, mocha 10→11, chai 4→6, chai-http 4→5, nodemon 2→3) + Wave B re-apply (18 minor/patch bumps) + Wave C breakers (helmet 3→8, multer 1→2, axios 0.21→1, connect-redis 3→9, config 1→4, csv-stringify 3→6, deepmerge 2→4, pdfmake 0.1→0.3, google-auth-library 7→10, uuid 9→14, yaml 1→2, stripe 13→22, sitemap 2→9, intuit-oauth 3→4, body-parser 1→2, html-to-text 9→10, redis 4→5) + **Express 4 → 5**. cur8-api **audit went 105 → 4 vulns** (0 critical / 1 high / 1 moderate / 2 low — 96% reduction). Verification: lint clean, `node --check server.js` clean, server require loads every dep (errors only on env-config-not-defined which is the expected local-no-config state per W0). `mocha --dry-run` similarly loads cleanly.
+
+**Still queued in cur8-ui's branch (next commits, not next program):**
+
+- 167 complex `withRouter` files: manual hook refactor (`useHistory`/`useNavigate`/`useLocation`/`useParams`), then unpin `react-router-dom` to 7 and remove `connected-react-router`.
+- 39 complex `injectIntl` files: manual `useIntl()` hook refactor, then unpin `react-intl` to 13.
+- `Switch` → `<Routes>` migration (3 files, biggest is `containers/App/index.jsx` ~500 lines of route DSL).
+- `Prompt` → `useBlocker` (3 files).
+- React 18 → 19 + ref-forwarding API updates.
+- MUI 5 → 9 (icon renames CheckCircleOutline → CheckCircleOutlined etc.).
+- `@uppy/*` 1 → 5 (plugin instance API rewrite).
+- `react-image-crop` 8 → 11 (default-export rewrite + new makeAspectCrop signature).
+- `react-day-picker` 7 → 10.
+- `react-pdf` 4 → 10.
+- `antd` 5 → 6.
+- `@stripe/*` 1 → 9.
+- `react-helmet` → `react-helmet-async`.
+- `react-sortable-hoc` → `@dnd-kit/*`.
+- `react-to-print` 2 → 3.
+- `chalk` 2 → 5 (ESM-only).
+- `contentful` 9 → 11.
+- Webpack devDeps cleanup.
+- moment → dayjs on cur8-ui (148 files per Wave D1).
+- react-html-parser refactor (50 files per Wave D3).
+- PrimeReact removal (Wave D4), Bootstrap audit (Wave D5), polyfill cleanup (Wave D6), react-localization (Wave D7).
+
+**Still queued in cur8-api's branch:**
+
+- `moment` → `dayjs` (38 sites).
+- `aws-sdk` v2 → v3 (15+ sites; `@aws-sdk/client-*` per service).
+- `@google/maps` → `@googlemaps/google-maps-services-js` (deprecated upstream).
+- `promise-mysql` → `mysql2`.
+- `randomized-string` → `crypto.randomUUID()`.
+- W1 SRS port (the original critical-path work; now lands on top of the modernized dep surface).
+- W4 venue builder draft endpoints + adapters.
+
+**Audit numbers (program-wide):**
+
+| Repo | Pre-Wave-A baseline | Now |
+|---|---|---|
+| `cur8-api` | 105 (8 critical / 33 high) | **4 (0 critical / 1 high)** — 96% reduction |
+| `cur8-ui` | 75 (8 critical / 33 high) | **20 (3 critical / 9 high)** — 73% reduction (remaining concentrated in still-pinned legacy majors) |
 
 ## Document history
 
