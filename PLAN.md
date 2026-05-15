@@ -8,13 +8,13 @@ Read this section first if you're a fresh agent or starting a new chat. It's a p
 
 ### `cur8-ui` — branch `feat/upgrade-2026q2`
 
-- **HEAD**: `f436a53b6` `chore(stream): drop dead withRouter import in Stream/index` (pushed to `origin/feat/upgrade-2026q2`)
+- **HEAD**: `913b43114` `refactor(Payout): class → function component, drop withRouter HOC` (pushed to `origin/feat/upgrade-2026q2`)
 - **Base**: `dev` (off `9f4408843`)
-- **Build**: `vite build` green at ~30s, 19k+ modules transformed
+- **Build**: `vite build` green at ~26s, 19k+ modules transformed
 - **`pnpm outdated`**: empty (every dep at latest)
 - **`pnpm audit`**: 0 vulnerabilities of any severity (was 75 at W0 baseline)
 - **Deprecation warnings**: 0 on fresh `pnpm install`
-- **Commits this program**: 38 on the branch since cutting off `dev`
+- **Commits this program**: 40 on the branch since cutting off `dev` (38 prior + 2 class→function conversions)
 - **What's done**: W0 (Node 24.15.0, pnpm 11.1.2, zero-touch deletes, baselines, gotchas) → Wave A linter/formatter (oxlint + oxfmt + Stylelint 17) → Vite 8 migration (878 `.js` → `.jsx` renames, all source) → broad `pnpm up --latest` → React 18→19, react-router-dom 5→7 (with `withRouter` HOC removed from 477 files + `useNavigate`/`useLocation`/`useParams` codemod + Switch→Routes + Prompt→useBlocker + 4-class `utils/withRouter.jsx` shim), `injectIntl` → `useIntl` (330 files), react-intl 2→5 (5 is the line that keeps both `injectIntl` and `useIntl` exports — full v13 bump is a future call), MUI 5→9 (icon renames), @uppy 1→5 (Dashboard collapses DragDrop+ProgressBar+StatusBar), react-day-picker 7→10, react-to-print 2→3 (hook API), react-image-crop 8→11, swiper 9→12, redux-thunk 2→3, immer 3→11, react-helmet → react-helmet-async (117 files), drop @ungap/url-search-params + intl + process polyfills (Wave D6), PrimeReact → MUI x-tree-view (Wave D4), Bootstrap dropped (Wave D5 — only 1 SCSS var inlined), react-localization → Proxy shim (Wave D7), color-thief-react replaced by 90-line native-Canvas `useImagePalette` hook, scandit-sdk **kept** (deprecated but user has paid subscription + API key — Wave-D-future swap will land when scandit is fully retired), webpack devDeps deleted (Vite is dev server now), `server/` + `internals/` directories deleted entirely, **Wave D1** `moment`/`moment-timezone`/`react-moment-proptypes` → `dayjs` via centralized `app/utils/dayjs.js` setup (147 files re-imported; `LocalizationProvider` swapped to `AdapterDayjs`), **Wave D3** `react-html-parser` → `html-react-parser` + DOMPurify via `app/utils/safeHtml.js` shim (49 files; every parsed HTML string is now sanitized, which the old lib was not), **Wave D2** `react-sortable-hoc` → `@dnd-kit/core` + `@dnd-kit/sortable` + `@dnd-kit/modifiers` + `@dnd-kit/utilities` across all 4 sortable surfaces (DragHandle now uses `useSortable` listeners/attributes; `onSortEnd({oldIndex, newIndex})` + DOM-walk identification → `onDragEnd({active, over})` with `data.current.table` plumbing; `getNearestTableAncestorId` helper deleted)
 - **Critical files that didn't exist before this branch**:
   - `vite.config.mjs` (Vite 8 config — alias list mirrors the prior webpack `resolve.modules`)
@@ -28,14 +28,15 @@ Read this section first if you're a fresh agent or starting a new chat. It's a p
   - `docs/baselines/2026-05-14/*` (W0 baselines + Node 24 gotchas doc)
 - **DECISION (2026-05-15 evening, user)**: convert all 4 class components to function components now, phased with check-ins between each. Sequence smallest → largest so the conversion pattern (lifecycle → `useEffect`, class state → `useState`/`useReducer`, bound refs → `useRef`, withRouter HOC drop → `useNavigate`/`useLocation`/`useParams` inline) is validated on smaller surfaces before tackling EventListing. After all 4 land, delete `app/utils/withRouter.jsx` (zero callers) and log the session.
   - **Conversion order** (file paths verified on `feat/upgrade-2026q2` HEAD):
-    1. `app/components/Event/GeneralSeating/GeneralSeating.jsx` — 1,057 LOC
-    2. `app/containers/Payout/Payout.jsx` — 1,619 LOC
-    3. `app/components/Event/ReservedSeating/ReservedSeating.jsx` — 1,998 LOC
+    1. ~~`app/components/Event/GeneralSeating/GeneralSeating.jsx` — 1,057 LOC~~ ✅ `37a1acdf0`
+    2. ~~`app/containers/Payout/Payout.jsx` — 1,619 LOC~~ ✅ `913b43114`
+    3. **NEXT** `app/components/Event/ReservedSeating/ReservedSeating.jsx` — 1,998 LOC
     4. `app/containers/Event/EventListing/EventListing.jsx` — 4,680 LOC
   - **Validation per step**: `pnpm lint` + `pnpm build` after each commit; user spot-reviews the diff before the next conversion starts. Browser smoke-testing is deferred to dev-environment validation near program end per [§"Validation environments"] / `defer-deploys` policy.
+  - **Pause point (2026-05-15 lunch)**: 2 of 4 landed. ReservedSeating is next on resume. utils/withRouter.jsx has 2 callers remaining.
 - **What ELSE is queued (optional polish)**:
   - `app/lib/react-element-pan/` vendored fork of `eventlistener` — could be modernized or dropped (only used by one component); not blocking.
-- **Resume command from a fresh chat**: `cd ~/Code/cur8-ui && git pull && pnpm install && pnpm build` — verify build green at ~30s, then continue the class→function conversion from wherever the §"Execution log" shows it paused. If all 4 have landed and `app/utils/withRouter.jsx` is deleted, move to `cd ~/Code/cur8-api && git pull && pnpm install` and start Wave D-mirror items (smallest first: `randomized-string` → `crypto.randomUUID()` 3 sites).
+- **Resume command from a fresh chat**: `cd ~/Code/cur8-ui && git pull && pnpm install && pnpm build` — verify build green at ~26s, then continue the class→function conversion at **ReservedSeating** (3 of 4). Apply the pattern documented in §"Execution log" → 2026-05-15 conversion session: useState per state field, dual useEffect (mount `[]`-deps + componentDidUpdate gated by `didMountRef`), bound methods → const arrow functions, withRouter HOC dropped (use `useNavigate`/`useLocation` directly if router primitives are referenced; Payout used none). After ReservedSeating lands, EventListing (4,680 LOC) is the last and largest. After all 4: delete `app/utils/withRouter.jsx`. Then `cd ~/Code/cur8-api && git pull && pnpm install` and start Wave D-mirror items (smallest first: `randomized-string` → `crypto.randomUUID()` 3 sites).
 
 ### `cur8-api` — branch `feat/upgrade-2026q2`
 
