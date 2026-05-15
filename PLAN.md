@@ -48,10 +48,10 @@ Read this section first if you're a fresh agent or starting a new chat. It's a p
 - **`pnpm outdated`**: 4 deprecated packages remain (see "queued" below)
 - **`pnpm audit`**: 4 vulns (0 critical / 1 high / 1 moderate / 2 low) — was 105 at W0
 - **What's done**: W0 (Node 24.15.0, pnpm 11.1.2 via Corepack, golden harness committed) → Wave A linter/formatter (oxlint + oxfmt across 370 files) → `pnpm up --latest` covering Wave A test stack (sinon 5→22, mocha 10→11, chai 4→6, chai-http 4→5, nodemon 2→3) + Wave B (18 minor/patch bumps) + Wave C breakers (helmet 3→8, multer 1→2, axios 0.21→1, connect-redis 3→9, config 1→4, csv-stringify 3→6, deepmerge 2→4, pdfmake 0.1→0.3, google-auth-library 7→10, uuid 9→14, yaml 1→2, stripe 13→22, sitemap 2→9, intuit-oauth 3→4, body-parser 1→2, html-to-text 9→10, redis 4→5) + Express 4→5
-- **HEAD**: `3ec996ffd` `refactor(deps): replace randomized-string with node crypto` (pushed to `origin/feat/upgrade-2026q2`)
+- **HEAD**: `959f06bd1` `refactor(deps): full retirement — promise-mysql + legacy mysql → mysql2` (pushed to `origin/feat/upgrade-2026q2`)
 - **What's QUEUED** (in PLAN-recommended order, smallest first):
-  - ~~`randomized-string` → `crypto.randomBytes(...).toString('hex')`~~ ✅ landed as `3ec996ffd` (used `randomBytes` not `randomUUID` to support length-50 UTM tokens that exceed randomUUID's 32-char ceiling).
-  - `promise-mysql` 5 → `mysql2` (4 legacy files; `knex` already uses `mysql2`).
+  - ~~`randomized-string` → `crypto.randomBytes(...).toString('hex')`~~ ✅ landed as `3ec996ffd`
+  - ~~`promise-mysql` 5 → `mysql2`~~ ✅ landed as `959f06bd1` — **full retirement** of legacy mysql package (originally scoped to 4 files; expanded to also swap knex client config from `'mysql'` → `'mysql2'` after discovering the PLAN-stated assumption "knex already uses mysql2" was wrong)
   - `@google/maps` (npm-deprecated) → `@googlemaps/google-maps-services-js` (6 call sites).
   - `moment` → `dayjs` (38 sites). Mirrors UI Wave D1 pattern.
   - `sib-api-v3-sdk` (npm-deprecated — was Sendinblue) → `@sendinblue/client` or newer Brevo SDK.
@@ -59,7 +59,7 @@ Read this section first if you're a fresh agent or starting a new chat. It's a p
   - `aws-sdk` v2 → v3 (15+ sites; biggest scope, do last). Per-service `@aws-sdk/client-*` imports + new client/command pattern. **Note**: SRS code that lands in W1 is already written against v3 per locked decision #4 / #16 — this task converts the **rest** of cur8-api.
   - W1 SRS port (the original critical path — lands on top of the modernized dep surface).
   - W4 venue builder draft endpoints + adapters.
-- **Resume command from a fresh chat**: `cd ~/Code/cur8-api && git pull && pnpm install` — verify lint + node-check clean, then continue cur8-api Wave D-mirror replacements at the next queued item (currently `promise-mysql` → `mysql2`).
+- **Resume command from a fresh chat**: `cd ~/Code/cur8-api && git pull && pnpm install` — verify lint + node-check clean, then continue cur8-api Wave D-mirror replacements at the next queued item (currently `@google/maps` → `@googlemaps/google-maps-services-js`).
 
 ### `showtix4u-venues` — branch `main`
 
@@ -1266,6 +1266,7 @@ The branch is in a fully shippable state. The only "old pattern" remaining is th
 | Hash | LOC | Subject | Notes |
 |---|---|---|---|
 | `3ec996ffd` | 5 files / 5 call sites | `refactor(deps): replace randomized-string with node crypto` | Drops `randomized-string@2.0.1`. Replaces `randomString.generate(N)` with `crypto.randomBytes(...).toString('hex')`. Adapts the pattern because UTM tokens use length 50, which exceeds `crypto.randomUUID().slice(0, N)`'s 32-hex-char ceiling — cur8-ui's `randomUUID`+`slice` precedent didn't apply at this length. Charset narrows from alphanumeric to hex, entropy stays ample (200 bits at length 50). No format validation exists on `reference_id` or `client_tokens.token`. node --check clean; oxlint 0 errors / 22 warnings (unchanged repo-wide). |
+| `959f06bd1` | 9 files (5 client-config sites + 4 promise-mysql files + package.json + lockfile) | `refactor(deps): full retirement — promise-mysql + legacy mysql → mysql2` | **PLAN.md correction**: the earlier note "knex already uses mysql2" was wrong — knex was configured with `client: 'mysql'` (the legacy unmaintained mysqljs/mysql@2.18.1 package, last released Nov 2020) in 3 files / 5 sites. Verified on 2026-05-15. User decision (same date) to do the full retirement instead of just the 4 promise-mysql files: swap knex client to `mysql2`, convert the 4 promise-mysql files, add `mysql2@3.22.3` as direct dep, drop `promise-mysql@5.2.0` AND legacy `mysql@2.18.1`. Connection options unchanged; mysql2's `client: 'mysql2'` produces same SQL via knex's same builder. API differences (e.g. `.query()` return shape) don't affect any of the 4 promise-mysql files because they only use DDL queries and discard return values. `restore-dump.js` had dead `mysql` + `fs` imports (used `execSync` to shell out to mysql CLI instead) — both deleted as cleanup. node --check clean on all 7 modified code files; `require('mysql2/promise')` resolves under Node 24.15.0; oxlint 22 warnings / 0 errors (unchanged); `pnpm audit` still 4 vulns (concentrated in other deprecated packages, no change from this refactor). |
 
 **Still queued on cur8-api:**
 
