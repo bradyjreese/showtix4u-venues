@@ -6,17 +6,28 @@ Single source of truth for the upgrade program across `cur8-api`, `cur8-ui`, and
 
 Read this section first if you're a fresh agent or starting a new chat. It's a point-in-time snapshot; for full per-commit detail, the §"Execution log" below has every commit hash + summary.
 
-### `cur8-ui` — branch `feat/upgrade-2026q2`
+### `cur8-ui` — branch `dev-with-upgrade-2026q2` (was `feat/upgrade-2026q2`, retired 2026-05-15 night)
 
-- **HEAD**: `79a0ed2b2` `chore: drop utils/withRouter.jsx — all class components now use router hooks` (pushed to `origin/feat/upgrade-2026q2`)
-- **Base**: `dev` (off `9f4408843`)
-- **Build**: `vite build` green at ~26s, 19k+ modules transformed
-- **`pnpm outdated`**: empty (every dep at latest)
-- **`pnpm audit`**: 0 vulnerabilities of any severity (was 75 at W0 baseline)
-- **Deprecation warnings**: 0 on fresh `pnpm install`
+- **HEAD**: `1d6b84e68` `Merge feat/upgrade-2026q2 into dev-with-upgrade-2026q2` (pushed to `origin/dev-with-upgrade-2026q2`). Last upgrade-program commit before the merge: `79a0ed2b2` `chore: drop utils/withRouter.jsx — all class components now use router hooks`. The merge also brought in Valerie's Konva ReservedSeating + e2e fix + email-template-fix commits that were on `dev` but not the upgrade branch.
+- **Base for eventual PR**: still `dev`. PR creation deferred until W2 Docker (Vite-aware Dockerfile changes) + cur8-api W1 SRS land. Valerie reverted an earlier merge attempt (`810a0297f5` → `35d69519b9` 2026-05-15 morning) when she realized the upgrade requires Docker build-command changes she hadn't accounted for. See §"Execution log" → "2026-05-15 night — branch reorg" for the full chain. **PR #1458 (the agent-opened draft) is closed.**
+- **Build**: `vite build` green at ~26s, 19k+ modules transformed. **However, build-green ≠ ship-clean** — see §"Known issues blocking PR" below. Lint, format, and runtime-API correctness are NOT verified by the build alone.
+- **`pnpm outdated`**: **5 patches available** as of 2026-05-15 night Codex audit (was empty at session-end snapshot earlier in the day): `@vitejs/plugin-react` 6.0.1→6.0.2, `react-intl` 10.1.6→10.1.7, `react-router-dom` 7.15.0→7.15.1, `vite` 8.0.12→8.0.13, `antd` 6.3.7→6.4.2. Sweep before next merge.
+- **`pnpm audit`**: 0 vulnerabilities of any severity (was 75 at W0 baseline). ✅ still holds.
+- **Deprecation warnings**: 0 on fresh `pnpm install`. ✅ still holds.
+- **`pnpm lint`**: **FAILS** (exit 1) — 1 error + 3,866 warnings as of 2026-05-15 night. The 1 error is the PrivateRoute syntax break; see §"Known issues blocking PR".
+- **`pnpm format:check`**: **FAILS** (exit 2) — same syntax error trips it, plus many files need re-formatting.
+- **Behind `origin/dev`**: 5 commits — `35d69519b` (the revert), `4d24cb8f3` (Konva replicate), `56a1b2cd8` + `458c1208c` + `53d98b182` (CUR8-3124 trilogy). Integration branch will need a sync before any merge back to `dev`.
 - **Commits this program**: 43 on the branch since cutting off `dev` (38 prior + 4 class→function conversions + 1 shim deletion)
-- **Class components remaining in source**: 0. utils/withRouter.jsx deleted.
+- **Class components remaining in source**: 0 of the 4 PLAN-tracked conversions (GeneralSeating, Payout, ReservedSeating, EventListing). utils/withRouter.jsx deleted. **3 untracked class components exist** in the repo-wide grep: `app/utils/injectReducer.jsx` (code-splitting reducer HOC), `app/utils/injectSaga.jsx` (almost certainly dead since W0 redux-saga removal — verify zero callers and delete), and Valerie's new `app/components/Event/ReservedSeating/ReservedSeating_konva.js` (parallel work she owns, deliberate class form). See §"Execution log" → "2026-05-15 night" for context.
 - **What's done**: W0 (Node 24.15.0, pnpm 11.1.2, zero-touch deletes, baselines, gotchas) → Wave A linter/formatter (oxlint + oxfmt + Stylelint 17) → Vite 8 migration (878 `.js` → `.jsx` renames, all source) → broad `pnpm up --latest` → React 18→19, react-router-dom 5→7 (with `withRouter` HOC removed from 477 files + `useNavigate`/`useLocation`/`useParams` codemod + Switch→Routes + Prompt→useBlocker + 4-class `utils/withRouter.jsx` shim), `injectIntl` → `useIntl` (330 files), react-intl 2→5 (5 is the line that keeps both `injectIntl` and `useIntl` exports — full v13 bump is a future call), MUI 5→9 (icon renames), @uppy 1→5 (Dashboard collapses DragDrop+ProgressBar+StatusBar), react-day-picker 7→10, react-to-print 2→3 (hook API), react-image-crop 8→11, swiper 9→12, redux-thunk 2→3, immer 3→11, react-helmet → react-helmet-async (117 files), drop @ungap/url-search-params + intl + process polyfills (Wave D6), PrimeReact → MUI x-tree-view (Wave D4), Bootstrap dropped (Wave D5 — only 1 SCSS var inlined), react-localization → Proxy shim (Wave D7), color-thief-react replaced by 90-line native-Canvas `useImagePalette` hook, scandit-sdk **kept** (deprecated but user has paid subscription + API key — Wave-D-future swap will land when scandit is fully retired), webpack devDeps deleted (Vite is dev server now), `server/` + `internals/` directories deleted entirely, **Wave D1** `moment`/`moment-timezone`/`react-moment-proptypes` → `dayjs` via centralized `app/utils/dayjs.js` setup (147 files re-imported; `LocalizationProvider` swapped to `AdapterDayjs`), **Wave D3** `react-html-parser` → `html-react-parser` + DOMPurify via `app/utils/safeHtml.js` shim (49 files; every parsed HTML string is now sanitized, which the old lib was not), **Wave D2** `react-sortable-hoc` → `@dnd-kit/core` + `@dnd-kit/sortable` + `@dnd-kit/modifiers` + `@dnd-kit/utilities` across all 4 sortable surfaces (DragHandle now uses `useSortable` listeners/attributes; `onSortEnd({oldIndex, newIndex})` + DOM-walk identification → `onDragEnd({active, over})` with `data.current.table` plumbing; `getNearestTableAncestorId` helper deleted)
+- **Known issues blocking PR** (surfaced 2026-05-15 night by Codex independent audit; the prior snapshot's "fully shippable state" claim was premature — `vite build` is not the same as healthy):
+  - **Syntax error** in `app/components/PrivateRoute/index.jsx:35`: `PrivateRoute.defaultProps = {: false,` (malformed object literal). Fails `pnpm lint` and `pnpm format:check` outright. `vite build` does not catch it because `PrivateRoute` appears dead/unimported in the current app graph (only referenced inside a JSX comment), so lint/format are the health gates catching the broken source file. Likely a codemod fallout from one of the router/intl mass passes.
+  - **142 `<Route component={...}>` uses** in `app/containers/App/index.jsx`. React Router 7 dropped the v5 `component` / `render` props in favor of `element`. Routes silently render nothing at runtime; `vite build` does not catch it. The largest known-bad surface in the upgrade.
+  - **2 `<Redirect>` JSX uses** still in the tree (`app/components/PrivateRoute/index.jsx`, `app/containers/Client/ClientDashboardPage/index.jsx`). `Redirect` is not exported by `react-router-dom@7` (confirmed `Redirect: false` at runtime). Use `<Navigate>` instead.
+  - **Stale `withRouter` import** in `app/containers/Connect/CreateEmailTemplate/index.js:13` (`import { withRouter } from 'react-router'`); also still wraps the connect() export as `withRouter(CreateEmailTemplate)` at line 650. The router-7 codemod missed this file. `react-router` itself isn't a direct dep at this point — likely runtime import error.
+  - **Valerie's new Konva file** `app/components/Event/ReservedSeating/ReservedSeating_konva.js` (added 2026-05-15 on `dev`, brought in by today's merge) imports the dropped packages `react-html-parser`, `react-localization`, `moment-timezone`, and `withRouter` from `react-router`. It was written against `dev`'s pre-upgrade dep surface; on the integration branch those imports are broken. Either backport the file to use the upgrade-branch equivalents (`html-react-parser` via `utils/safeHtml`, the react-localization Proxy shim, `utils/dayjs`, `useNavigate`/`useLocation`), or coordinate with Valerie to land an updated version. **This file is a hard merge-back blocker** — it's net-new from her on `dev`, so it can't just be skipped.
+  - **Docker / CI untouched (W2 not started)**: `docker/dev.dockerfile`, `docker/prod.dockerfile`, `docker/local.dockerfile` still use Node 22, `yarn`, and `npm run build`. This is the exact constraint Valerie cited when reverting the merge — until Docker is updated to know about Vite + pnpm + Node 24, dev-with-upgrade-2026q2 cannot merge to `dev`.
+
 - **Critical files that didn't exist before this branch**:
   - `vite.config.mjs` (Vite 8 config — alias list mirrors the prior webpack `resolve.modules`)
   - `index.html` (root — Vite expects it there, not inside `app/`)
@@ -38,7 +49,7 @@ Read this section first if you're a fresh agent or starting a new chat. It's a p
   - **Status**: COMPLETE. 4 of 4 conversions landed + shim deleted. ~9,400 LOC of class-component code now runs as function components with hooks. Net diff across all 5 commits: roughly equal insertions/deletions (3,409 ins / 3,124 del + 42 deletions for the shim).
 - **What ELSE is queued (optional polish)**:
   - `app/lib/react-element-pan/` vendored fork of `eventlistener` — could be modernized or dropped (only used by one component); not blocking.
-- **Resume command from a fresh chat**: `cd ~/Code/cur8-ui && git pull && pnpm install && pnpm build` — verify build green at ~26s. The cur8-ui upgrade work paused here on 2026-05-15 evening; **the active workstream is now cur8-api Wave D-mirror replacements** (3 of 7 done as of `cur8-api@457ad59f5`). cur8-ui remaining work — W1 HLS port (port 2 files from `feature/repo-upgrades`), W2 Docker (Dockerfiles + GHA + yarn→pnpm in docs), W4 Venue Builder admin UI (hard dep on cur8-api W4) — comes after cur8-api advances further. Per locked decision #14 the cur8-api PR merges first, then the cur8-ui PR.
+- **Resume command from a fresh chat**: `cd ~/Code/cur8-ui && git fetch && git checkout dev-with-upgrade-2026q2 && git pull && pnpm install && pnpm build` — verify build green at ~26s, then run `pnpm lint`, `pnpm format:check`, and the router/removed-package greps from §"Known issues blocking PR". Note: `feat/upgrade-2026q2` no longer exists on origin (retired 2026-05-15 night). **The active workstream is now cur8-ui health-gate fixes**: PrivateRoute syntax, React Router 7 route API cleanup, remaining `Redirect`/`withRouter` cleanup, Konva removed-package imports, and formatting/lint. cur8-ui W1 HLS port, W2 Docker, and W4 Venue Builder admin UI remain queued after the branch is honest-green and after their API dependencies land. Per locked decision #14 the cur8-api PR merges first, then the cur8-ui PR.
 
 ### `cur8-api` — branch `feat/upgrade-2026q2`
 
@@ -46,7 +57,8 @@ Read this section first if you're a fresh agent or starting a new chat. It's a p
 - **Base**: `staging`
 - **Build**: lint clean (0 errors, 22 warnings — unchanged through the 3 dep-replacement commits); `node --check server.js` clean; `node -e "require('./server.js')"` loads every dep cleanly (errors only on missing local config — expected per §"Validation environments")
 - **`pnpm outdated`**: 3 deprecated packages remain — `aws-sdk` v2, `fluent-ffmpeg`, `sib-api-v3-sdk`. (Was 4; `@google/maps` cleared on 2026-05-15 evening.)
-- **`pnpm audit`**: 4 vulns (0 critical / 1 high / 1 moderate / 2 low) — was 105 at W0. Concentrated in the 3 remaining deprecated packages above; replacing them will drive audit toward 0.
+- **`pnpm audit`**: 4 vulns (0 critical / 1 high / 1 moderate / 2 low) — was 105 at W0. **Attribution corrected 2026-05-15 night** (prior PLAN claim "concentrated in the 3 remaining deprecated packages" was wrong): 3 of 4 vulns are `mocha → serialize-javascript` (1 high + 1 moderate — serialize-js RCE via RegExp.flags + DoS via crafted array-likes; fix via mocha bump or `pnpm.overrides`) and `mocha → diff` (1 low jsdiff DoS in parsePatch/applyPatch). **Only 1 of 4 is from the deprecated-package backlog** (`aws-sdk` v2 low — region-param validation). The deprecated-package replacement queue alone will not clear audit; mocha's transitive vulns need a separate fix.
+- **PR #3630**: open as draft against `staging`, 396 files / 38,698 additions. **Mergeable state: DIRTY (CONFLICTING).** Agent-opened 2026-05-15T22:35:41Z (see §"Execution log" → "2026-05-15 night — branch reorg" for context). Per user direction "do nothing with it right now."
 - **Commits this program**: 7 on the branch since cutting off `staging` (4 prior + 3 Wave D-mirror dep replacements landed 2026-05-15 evening on work machine).
 - **What's done**: W0 (Node 24.15.0, pnpm 11.1.2 via Corepack, golden harness committed) → Wave A linter/formatter (oxlint + oxfmt across 370 files) → `pnpm up --latest` covering Wave A test stack (sinon 5→22, mocha 10→11, chai 4→6, chai-http 4→5, nodemon 2→3) + Wave B (18 minor/patch bumps) + Wave C breakers (helmet 3→8, multer 1→2, axios 0.21→1, connect-redis 3→9, config 1→4, csv-stringify 3→6, deepmerge 2→4, pdfmake 0.1→0.3, google-auth-library 7→10, uuid 9→14, yaml 1→2, stripe 13→22, sitemap 2→9, intuit-oauth 3→4, body-parser 1→2, html-to-text 9→10, redis 4→5) + Express 4→5 → **Wave D-mirror dep replacements (3 of 7 landed)**: `randomized-string` → `crypto.randomBytes` (`3ec996ffd`), `promise-mysql` + legacy `mysql` (full retirement) → `mysql2` including knex client config swap (`959f06bd1`), `@google/maps` → `@googlemaps/google-maps-services-js` (`457ad59f5`).
 - **What's QUEUED** (in PLAN-recommended order, smallest first):
@@ -65,7 +77,7 @@ Read this section first if you're a fresh agent or starting a new chat. It's a p
 
 ### `showtix4u-venues` — branch `main`
 
-- **HEAD**: `852ffa6b` `docs(plan): execution log — cur8-api @google/maps swap (457ad59f5)` (pushed)
+- **HEAD**: `7d50a0ff` `docs(plan): refresh snapshot for end-of-session handoff to personal machine` (pushed)
 - **What's done**: PLAN.md is the active artifact. The W0 venues-specific bump (Node 24.15.0 + pnpm 11.1.2) shipped 2026-05-14 morning (`da7e6405`). Subsequent commits are all PLAN.md execution-log entries tracking cur8-ui + cur8-api work as it lands.
 - **What's QUEUED**: nothing pending until cur8-api W4 venue builder draft endpoints land — venues plays its W4 template-archive role then.
 
@@ -126,7 +138,7 @@ Per locked decision #14, the upgrade program ships as **one PR per repo**. Each 
 | Repo | Single branch | Base | Squashes/contains commits for |
 |---|---|---|---|
 | `cur8-api` | `feat/upgrade-2026q2` | `staging` | W0, W1 SRS, W2 Docker, W3 Waves A/B/C, W4 venue drafts |
-| `cur8-ui` | `feat/upgrade-2026q2` | `dev` | W0, W1 HLS port, W2 Docker, W3 Waves A/B/C/D, W4 venue builder admin |
+| `cur8-ui` | `dev-with-upgrade-2026q2` *(interim — was `feat/upgrade-2026q2`, retired 2026-05-15 night; see §"Execution log")* | `dev` | W0, W1 HLS port, W2 Docker, W3 Waves A/B/C/D, W4 venue builder admin |
 | `showtix4u-venues` | direct to `main` (no PR) | `main` | W0 only |
 
 **Solo private repo carve-out**: `showtix4u-venues` is solo-owned (`bradyjreese/showtix4u-venues` on GitHub). PR ceremony adds no value with a single reviewer, so W0 commits land directly on `main` (optionally via a short-lived local working branch that is fast-forwarded and deleted). This carve-out is **specific to this repo** — `cur8-api` and `cur8-ui` are team-owned and continue to follow the single-PR rule.
@@ -1318,7 +1330,56 @@ User decision recorded in PLAN.md commit `f953634b` (showtix4u-venues): convert 
 - ~~`app/containers/Event/EventListing/EventListing.jsx`~~ ✅ landed as `e7208030a`
 - ~~Delete `app/utils/withRouter.jsx`~~ ✅ deleted as `79a0ed2b2` (0 callers)
 
-**Session complete: 4 of 4 class components converted + shim removed.** Branch is in a fully shippable state with zero class components remaining in `cur8-ui` source.
+**Session complete: 4 of 4 class components converted + shim removed.** Branch is in a fully shippable state with zero class components remaining in `cur8-ui` source. *(Note: a later session-end audit on 2026-05-15 night surfaced 3 untracked class components — 2 utility HOCs + Valerie's new Konva file — that weren't on the conversion list. See next entry.)*
+
+### 2026-05-15 night — branch reorg: `feat/upgrade-2026q2` retired, `dev-with-upgrade-2026q2` is the integration branch
+
+Continuation session on `bradys-macbook` after the work-machine class-conversion session. User opened the chat with the cur8-ui draft PR (#1458) showing only 5 files changed despite ~9,400 LOC of class refactors having been pushed. Investigation chain:
+
+1. **An agent opened PRs prematurely overnight.** PR #1458 (cur8-ui, 2026-05-15T22:34:21Z) and PR #3630 (cur8-api, 2026-05-15T22:35:41Z), both authored by `bradyjreese`. No `gh pr create` shows up in any local Claude Code transcript — likely a remote/cloud agent run with the user's gh auth, or a transcript-less invocation. The user did not intentionally open either. **Per Valerie's morning Slack note, the upgrade work is not ready to merge to `dev`**: (a) Vite migration changes the Docker build command and Dockerfiles haven't been updated; (b) it requires cur8-api changes that haven't been ported.
+
+2. **The cur8-ui PR diff showed only 5 files because of a merge-revert in `dev`.** Earlier 2026-05-15 (13:38 → 13:42 UTC), Valerie merged `feat/upgrade-2026q2` → `dev` (`810a0297f5`) and reverted 4 minutes later (`35d69519b9`) for the same Docker/API reason. The reverted merge commit stays in the commit graph, so git's 3-dot diff merge-base algorithm picked `f436a53b6c` (the last commit *before* the 5 class refactors) as the base — making all the dep-migration work appear as "common ancestor" even though `dev` has reverted the actual file changes. Classic [revert-of-faulty-merge](https://git-scm.com/docs/howto/revert-a-faulty-merge) pitfall. Verified by diffing `package.json` between branches: `dev-with-upgrade-2026q2` has `dayjs ^1.11.20`, `@uppy/core ^5.2.0`, no moment / no react-sortable-hoc; `dev` still has `moment ^2.22.0`, `react-html-parser ^2.0.2`, `react-sortable-hoc ^0.6.8`.
+
+3. **Resolution: shift cur8-ui upgrade work to `dev-with-upgrade-2026q2`** per Valerie's direction. That branch already existed (last updated at `810a0297f5`, the now-reverted merge). It was 5 commits behind `dev` (revert + Konva replicate `4d24cb8f30` + 3× CUR8-3124) AND 5 commits behind `feat/upgrade-2026q2` (the 5 class refactors).
+
+4. **Merge `feat/upgrade-2026q2` → `dev-with-upgrade-2026q2` (`1d6b84e68`).** Clean merge — Valerie's "Add ReservedSeating + Konva" added a new file `ReservedSeating_konva.js`, separate from the `ReservedSeating.jsx` the class refactor touched, so no file-level overlap. The 5 class refactors + the withRouter.jsx deletion are now on the integration branch alongside Valerie's Konva + email-template + e2e fix work.
+
+5. **Delete `feat/upgrade-2026q2` from origin** (and local). PR #1458 auto-closed (closedAt 2026-05-15T22:49:44Z). **`dev-with-upgrade-2026q2` is the canonical cur8-ui upgrade branch going forward** until W2 Docker + cur8-api W1 SRS clear and a fresh PR-to-`dev` becomes viable. Per locked decision #14 the program still ships as one PR per repo — the branch name change is interim, not a structural shift.
+
+6. **PR #3630 (cur8-api) deferred.** Same agent-opened pattern (against `staging`, 396 files, 38,698 additions). Unlike cur8-ui, its diff is honest — `staging` doesn't have the merge-revert situation. **Left as open draft per user direction "do nothing with it right now."** No `staging-with-upgrade-2026q2` integration branch exists on cur8-api; if mirroring is needed it's a deliberate later decision, not reflexive symmetry.
+
+**Drift surfaced during verification (not in PLAN.md prior):**
+
+- **3 class components in cur8-ui weren't on the conversion list:**
+  - `app/utils/injectReducer.jsx` — code-splitting reducer HOC. Used where async-injected reducers exist; check whether dynamic imports still need it post-Vite.
+  - `app/utils/injectSaga.jsx` — code-splitting saga HOC. Almost certainly leftover from the W0 `redux-saga` removal (`36f1ca123`); the package is gone but this HOC file wasn't deleted. Verify zero callers, then delete.
+  - `app/components/Event/ReservedSeating/ReservedSeating_konva.js` — Valerie's new Konva-based seating layer (commit `0b2b70c2d7` on `dev`, brought in by today's merge). Parallel work outside the upgrade plan; she owns it. Class form was a deliberate choice on her side, not upgrade-debt.
+
+  The "Class components remaining in source: 0" claim from the prior session-end was accurate *for the upgrade-tracked surface* (the 4 PLAN-listed conversions + the withRouter shim) but not for the repo-wide grep. Snapshot wording updated.
+
+**Snapshot fields updated this session:** cur8-ui branch name, HEAD, base note, class-components-remaining wording, resume command. PR / branch structure table updated to reflect the interim branch.
+
+**No code changes this session beyond the merge commit `1d6b84e68` itself.** This PLAN.md update is the second commit per locked working agreement #2 (execution-log entry is the last commit of a session).
+
+**Status:** cur8-ui upgrade-program work continues on `dev-with-upgrade-2026q2`. cur8-api work continues on `feat/upgrade-2026q2` unchanged; PR #3630 stays open as draft. Next active workstream is **not** Wave D-mirror — see Codex audit below — it's cur8-ui health-gate fixes first.
+
+**Codex independent audit (same session, after this entry's initial draft).** User ran a parallel Codex `git fetch --all --prune` + verification pass. Findings forced corrections to the snapshot blocks above:
+
+- **cur8-ui `pnpm outdated` was claimed empty; it isn't.** 5 patches available (`@vitejs/plugin-react` 6.0.1→6.0.2, `react-intl` 10.1.6→10.1.7, `react-router-dom` 7.15.0→7.15.1, `vite` 8.0.12→8.0.13, `antd` 6.3.7→6.4.2). Snapshot now reflects the patch list.
+- **cur8-ui `pnpm lint` FAILS (exit 1)** — 1 error + 3,866 warnings. The 1 error is a syntax break in `app/components/PrivateRoute/index.jsx:35` (`PrivateRoute.defaultProps = {: false,` — malformed object literal). Likely codemod fallout from one of the router/intl mass passes. `pnpm format:check` also fails (exit 2) on the same syntax error.
+- **cur8-ui has 142 `<Route component={...}>` uses** in `app/containers/App/index.jsx`. React Router 7 dropped v5 `component` / `render` props in favor of `element`. Routes silently render nothing at runtime; `vite build` doesn't catch this.
+- **cur8-ui still uses `<Redirect>` in 2 files** (`PrivateRoute/index.jsx`, `ClientDashboardPage/index.jsx`). `Redirect` is not exported by `react-router-dom@7`; confirmed `Redirect: false` at runtime. Use `<Navigate>`.
+- **cur8-ui stale router imports**: `app/containers/Connect/CreateEmailTemplate/index.js:13` still has `import { withRouter } from 'react-router'` and the connect() export still wraps with `withRouter(...)`. The codemod missed it.
+- **Valerie's Konva file imports removed packages** (`react-html-parser`, `react-localization`, `moment-timezone`, `withRouter`). Hard merge-back blocker — see "Known issues" subsection in the cur8-ui snapshot.
+- **cur8-ui Docker untouched**: `docker/{dev,prod,local}.dockerfile` still on Node 22 / yarn / `npm run build`. This is exactly the constraint Valerie cited when reverting.
+- **cur8-ui 5 commits behind `origin/dev`**: integration branch needs a sync (Konva replicate + 3× CUR8-3124 + the revert) before any merge to `dev`.
+- **cur8-api `pnpm audit` attribution was wrong.** Earlier PLAN said the 4 vulns were "concentrated in the deprecated packages"; actually 3 of 4 are from `mocha → serialize-javascript` (high+moderate) + `mocha → diff` (low). Only 1 of 4 is from the deprecated-package backlog (`aws-sdk` low). The D-mirror replacement queue alone will not clear audit; mocha vulns need their own fix.
+- **cur8-api PR #3630 is CONFLICTING against staging** (`mergeStateStatus: DIRTY`). Noted in the cur8-api snapshot.
+- **`showtix4u-venues` snapshot HEAD was stale** — PLAN said `852ffa6b`; actual is `7d50a0ff` (this session's pending commit is the next one beyond that). Corrected.
+
+**Implication for the "Next active workstream" line in the snapshot:** the prior PLAN said cur8-ui was "fully shippable" and pointed all attention at cur8-api Wave D-mirror. That ordering is wrong given the above. **The actual next step is cur8-ui health-gate fixes** (PrivateRoute syntax, Route `component=`→`element=` codemod, `<Redirect>`→`<Navigate>`, CreateEmailTemplate withRouter cleanup, Konva file rewrite/coordination with Valerie, then format/lint sweep). cur8-api Wave D-mirror (`moment`→`dayjs`) resumes after the cur8-ui surface is honest-green.
+
+**Lesson recorded inline (not yet promoted to a working agreement):** session-end "Status: COMPLETE / fully shippable" claims need to be paired with the actual health-gate checks they imply. `pnpm build` green is a necessary but not sufficient signal — `pnpm lint`, `pnpm format:check`, and codemod-contract greps (e.g. "0 v5 router APIs remaining") need to be part of the check before a session claims green. Worth promoting to working agreement #4 in a future pass if the pattern repeats.
 
 ## Document history
 
