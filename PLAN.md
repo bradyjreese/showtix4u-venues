@@ -54,27 +54,27 @@ Read this section first if you're a fresh agent or starting a new chat. It's a p
 
 ### `cur8-api` — branch `feat/upgrade-2026q2`
 
-- **HEAD**: `457ad59f5` `refactor(deps): swap @google/maps → @googlemaps/google-maps-services-js` (pushed to `origin/feat/upgrade-2026q2`)
+- **HEAD**: `9eec44fa8` `refactor(deps): migrate moment / moment-timezone → dayjs (Wave D-mirror)` (pushed to `origin/feat/upgrade-2026q2`)
 - **Base**: `staging`
-- **Build**: lint clean (0 errors, 22 warnings — unchanged through the 3 dep-replacement commits); `node --check server.js` clean; `node -e "require('./server.js')"` loads every dep cleanly (errors only on missing local config — expected per §"Validation environments")
-- **`pnpm outdated`**: 3 deprecated packages remain — `aws-sdk` v2, `fluent-ffmpeg`, `sib-api-v3-sdk`. (Was 4; `@google/maps` cleared on 2026-05-15 evening.)
+- **Build**: lint clean (0 errors, 22 warnings — unchanged through 4 dep-replacement commits); `node --check server.js` clean; `node -e "require('./server.js')"` loads every dep cleanly (errors only on missing local config — expected per §"Validation environments")
+- **`pnpm outdated`**: 3 deprecated direct deps remain — `aws-sdk` v2, `fluent-ffmpeg`, `sib-api-v3-sdk`. moment + moment-timezone dropped 2026-05-17 (`9eec44fa8`); `moment` stays as a transitive of `bunyan@1.8.15` (logger; bunyan→pino is a PLAN-deferred swap, not in current scope).
 - **`pnpm audit`**: 4 vulns (0 critical / 1 high / 1 moderate / 2 low) — was 105 at W0. **Attribution corrected 2026-05-15 night** (prior PLAN claim "concentrated in the 3 remaining deprecated packages" was wrong): 3 of 4 vulns are `mocha → serialize-javascript` (1 high + 1 moderate — serialize-js RCE via RegExp.flags + DoS via crafted array-likes; fix via mocha bump or `pnpm.overrides`) and `mocha → diff` (1 low jsdiff DoS in parsePatch/applyPatch). **Only 1 of 4 is from the deprecated-package backlog** (`aws-sdk` v2 low — region-param validation). The deprecated-package replacement queue alone will not clear audit; mocha's transitive vulns need a separate fix.
 - **PR #3630**: open as draft against `staging`, 396 files / 38,698 additions. **Mergeable state: DIRTY (CONFLICTING).** Agent-opened 2026-05-15T22:35:41Z (see §"Execution log" → "2026-05-15 night — branch reorg" for context). Per user direction "do nothing with it right now."
-- **Commits this program**: 7 on the branch since cutting off `staging` (4 prior + 3 Wave D-mirror dep replacements landed 2026-05-15 evening on work machine).
-- **What's done**: W0 (Node 24.15.0, pnpm 11.1.2 via Corepack, golden harness committed) → Wave A linter/formatter (oxlint + oxfmt across 370 files) → `pnpm up --latest` covering Wave A test stack (sinon 5→22, mocha 10→11, chai 4→6, chai-http 4→5, nodemon 2→3) + Wave B (18 minor/patch bumps) + Wave C breakers (helmet 3→8, multer 1→2, axios 0.21→1, connect-redis 3→9, config 1→4, csv-stringify 3→6, deepmerge 2→4, pdfmake 0.1→0.3, google-auth-library 7→10, uuid 9→14, yaml 1→2, stripe 13→22, sitemap 2→9, intuit-oauth 3→4, body-parser 1→2, html-to-text 9→10, redis 4→5) + Express 4→5 → **Wave D-mirror dep replacements (3 of 7 landed)**: `randomized-string` → `crypto.randomBytes` (`3ec996ffd`), `promise-mysql` + legacy `mysql` (full retirement) → `mysql2` including knex client config swap (`959f06bd1`), `@google/maps` → `@googlemaps/google-maps-services-js` (`457ad59f5`).
+- **Commits this program**: 8 on the branch since cutting off `staging` (4 prior + 4 Wave D-mirror dep replacements).
+- **What's done**: W0 (Node 24.15.0, pnpm 11.1.2 via Corepack, golden harness committed) → Wave A linter/formatter (oxlint + oxfmt across 370 files) → `pnpm up --latest` covering Wave A test stack (sinon 5→22, mocha 10→11, chai 4→6, chai-http 4→5, nodemon 2→3) + Wave B (18 minor/patch bumps) + Wave C breakers (helmet 3→8, multer 1→2, axios 0.21→1, connect-redis 3→9, config 1→4, csv-stringify 3→6, deepmerge 2→4, pdfmake 0.1→0.3, google-auth-library 7→10, uuid 9→14, yaml 1→2, stripe 13→22, sitemap 2→9, intuit-oauth 3→4, body-parser 1→2, html-to-text 9→10, redis 4→5) + Express 4→5 → **Wave D-mirror dep replacements (4 of 7 landed)**: `randomized-string` → `crypto.randomBytes` (`3ec996ffd`), `promise-mysql` + legacy `mysql` (full retirement) → `mysql2` including knex client config swap (`959f06bd1`), `@google/maps` → `@googlemaps/google-maps-services-js` (`457ad59f5`), `moment` + `moment-timezone` → `dayjs` via centralized `lib/dayjs.js` (38 files; 13 plugins; inline fixes for moment-tz `Zone.utcOffset` sign convention + immutable-mutation in 2 test files' `roundSecs`) (`9eec44fa8`).
 - **What's QUEUED** (in PLAN-recommended order, smallest first):
   - ~~`randomized-string` → `crypto.randomBytes(...).toString('hex')`~~ ✅ landed as `3ec996ffd`
   - ~~`promise-mysql` 5 → `mysql2`~~ ✅ landed as `959f06bd1` — full retirement of legacy mysql package (originally scoped to 4 files; expanded after discovering knex was on `client: 'mysql'`, not mysql2 as PLAN had stated)
   - ~~`@google/maps` (npm-deprecated) → `@googlemaps/google-maps-services-js` (5 call sites)~~ ✅ landed as `457ad59f5` (API key compatibility confirmed — same Google Cloud platform credential)
-  - **NEXT** `moment` → `dayjs` (38 sites). Mirrors UI Wave D1 pattern. Add a centralized `utils/dayjs.js` setup module like cur8-ui has (`app/utils/dayjs.js` — see cur8-ui plugin list for reference).
-  - `sib-api-v3-sdk` (npm-deprecated — was Sendinblue) → `@sendinblue/client` or newer Brevo SDK.
+  - ~~`moment` → `dayjs` (38 sites)~~ ✅ landed as `9eec44fa8` — centralized `lib/dayjs.js` mirrors cur8-ui plugin set (13 plugins, CJS shape); variable name `moment` retained at call sites since dayjs API is mostly identical; inline fixes for the 3 known incompatibilities (`moment.tz.zone` sign convention in `getTimezoneOffset`; immutable-mutation in `roundSecs` across 2 test files).
+  - **NEXT** `sib-api-v3-sdk` (npm-deprecated — was Sendinblue) → `@getbrevo/brevo` or `@sendinblue/client`. 2 files: `vendor/mail.js` (real use) + `db/locations.js` (commented reference only).
   - `fluent-ffmpeg` (npm-deprecated) → audit usage first; minimal options: native `child_process` spawn, or `@ffmpeg/ffmpeg`.
   - `aws-sdk` v2 → v3 (15+ sites; biggest scope, do last). Per-service `@aws-sdk/client-*` imports + new client/command pattern. **Note**: SRS code that lands in W1 is already written against v3 per locked decision #4 / #16 — this task converts the **rest** of cur8-api.
 - **Workstreams not yet started** (after Wave D-mirror queue lands):
   - W1 SRS port (the original critical path — lands on top of the modernized dep surface).
   - W2 Docker (Dockerfiles + buildspecs + GHA workflows to patch-pinned Node 24; README/CONTRIBUTING/CLAUDE.md yarn→pnpm).
   - W4 venue builder draft endpoints + adapters (cur8-ui W4 admin UI has a hard dep on this).
-- **Resume command from a fresh chat**: `cd ~/Code/cur8-api && git pull && pnpm install` — verify lint + node-check clean, then continue cur8-api Wave D-mirror replacements at **`moment` → `dayjs`**. Reference cur8-ui's `app/utils/dayjs.js` for the centralized plugin setup pattern; cur8-api can mirror it. Smaller-first ordering applied; aws-sdk v2→v3 stays last.
+- **Resume command from a fresh chat**: `cd ~/Code/cur8-api && git pull && pnpm install` — verify lint + node-check clean, then continue cur8-api Wave D-mirror replacements at **`sib-api-v3-sdk` → Brevo SDK** (2 files; `vendor/mail.js` is the real call site, `db/locations.js` has only a commented reference). Smaller-first ordering applied; aws-sdk v2→v3 stays last.
 
 ### `showtix4u-venues` — branch `main`
 
@@ -1411,6 +1411,24 @@ Follow-up to the 2026-05-15 night entry. Codex performed the React Router 7 clea
 **Suggested follow-up (not blocking):** Slack Valerie about the Konva file rewrite (her brand-new commit got its imports modified) and confirm `dev-with-upgrade-2026q2` is still the integration branch she wants to receive work.
 
 **Next active workstream: cur8-api Wave D-mirror, starting with `moment` → `dayjs`.** 38 cur8-api files import `moment` or `moment-timezone` (verified: 28 + 10). Mirror cur8-ui's centralized `app/utils/dayjs.js` setup (13 plugins extended). PLAN-ordered queue after dayjs: `sib-api-v3-sdk` → Brevo SDK (2 files), `fluent-ffmpeg` (1 file, `tasks/video-processing.js`), `aws-sdk` v2 → v3 (15 files; biggest; do last; SRS code per locked #4 is already v3). Then W1 SRS — the long pole.
+
+### 2026-05-17 — cur8-api Wave D-mirror item #4: moment → dayjs
+
+Continues the cur8-api D-mirror queue from the 2026-05-15 evening session. 4 of 7 D-mirror replacements now landed.
+
+| Hash | LOC | Subject | Notes |
+|---|---|---|---|
+| `9eec44fa8` | 41 files / 38 import-swap sites + 3 inline fixes + lib/dayjs.js NEW + package.json + lockfile | `refactor(deps): migrate moment / moment-timezone → dayjs (Wave D-mirror)` | Drops `moment@^2.30.1` + `moment-timezone@^0.6.2` from direct deps. `moment` stays as a transitive of `bunyan@1.8.15` (logger; bunyan→pino swap is PLAN-deferred, not in current scope) but is `MODULE_NOT_FOUND` to app code. NEW `lib/dayjs.js` mirrors `cur8-ui/app/utils/dayjs.js` (same 13 plugins extended: utc, timezone, customParseFormat, duration, relativeTime, isBetween, isSameOrAfter, isSameOrBefore, localeData, localizedFormat, minMax, objectSupport, weekOfYear) but in CJS shape (`module.exports = dayjs`). Variable name `moment` retained at call sites — dayjs API is mostly identical so chained calls (`.add`, `.subtract`, `.format`, `.tz`, `.toISOString`) work as-is. **3 known-incompatibility fixes inline**: (1) `lib/helpers.js:23` `getTimezoneOffset` — moment-tz's `Zone.utcOffset(timestamp)` returns POSITIVE minutes WEST of UTC (LA=+480); dayjs's instance `.utcOffset()` returns the standard convention (positive EAST, LA=-480). Negated to preserve the prior sign for downstream `time_offset_minutes` consumers (`lib/helpers.js:84` → `db/event-dates.js:437`). (2) + (3) `test/legacy/data.js` + `test/data/events.js` `roundSecs(date)` — dayjs is immutable, so `date.add(1, 'second')` + `date.milliseconds(0)` standalone were silently no-ops. Reassign through; renamed `.milliseconds()` → canonical `.millisecond()`. Validation: `node --check` clean on all 41 files; `pnpm lint` 0 errors / 22 warnings (unchanged); `pnpm format:check` green; `pnpm audit` 4 vulns (unchanged — moment wasn't a vuln source); inline smoke confirms `getTimezoneOffset` returns +420 LA (summer DST), +240 NY, 0 UTC, -540 Tokyo, and `roundSecs` rounds-up at 600ms / rounds-down at 400ms. |
+
+**Still queued on cur8-api** (3 of 7 D-mirror items remain):
+
+- **NEXT** `sib-api-v3-sdk` (npm-deprecated — was Sendinblue, now Brevo) → `@getbrevo/brevo` or `@sendinblue/client`. 2 files: `vendor/mail.js` real call site + `db/locations.js` commented reference only.
+- `fluent-ffmpeg` (npm-deprecated) → audit usage first; 1 file (`tasks/video-processing.js`); options are native `child_process` spawn of ffmpeg binary, or `@ffmpeg/ffmpeg` for browser-side (this is server-side so child_process is the obvious pick).
+- `aws-sdk` v2 → v3 (15+ sites; biggest scope; do last). Per-service `@aws-sdk/client-*` imports + new client/command pattern. SRS code that lands in W1 is already written against v3 per locked decision #4 / #16 — this task converts the **rest** of cur8-api.
+
+After Wave D-mirror queue clears: **W1 SRS** — the original critical path, lands on top of the modernized dep surface. Then W2 Docker. Then W4 venue endpoints.
+
+**Audit numbers (cur8-api):** 4 vulns unchanged (1 high + 1 moderate from mocha→serialize-javascript, 1 low from aws-sdk v2, 1 low from mocha→diff). moment wasn't a vuln source, so dropping it doesn't move the audit needle. mocha's transitive vulns need a separate fix (mocha bump or `pnpm.overrides`); aws-sdk's clears when v3 swap lands.
 
 ## Document history
 
