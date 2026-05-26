@@ -1,8 +1,8 @@
 # Upgrade & Venue Builder Plan
 
-> **STATUS — PAUSED 2026-05-19.** The full upgrade program is on hold. Execution moves to **claude-plan.md** (narrow scope: finish SRS, cut UI playback over, embed venue builder). This document remains the long-form locked-decision reference and resumes when claude-plan ships. See claude-plan.md §7.1 / §7.2 for what is parked and where.
+> **STATUS — PAUSED / TEMPORARY REFERENCE.** The full upgrade program is on hold. Current execution scope lives in repo-local plan docs on `cur8-api` and `cur8-ui`: `SRS-PLAN.md` and `VENUE-PLAN.md` on the corresponding SRS and venue-builder branches. This document remains a historical locked-decision reference only until final cleanup review confirms it can be deleted or its remaining ledger/effort content is intentionally discarded.
 
-Single source of truth for the upgrade program across `cur8-api`, `cur8-ui`, and `showtix4u-venues`. Built from joint Claude + Codex convergence over five review rounds plus the locked-decision pass. All claims here have been grep-verified against the local repos as of 2026-05-14.
+Historical upgrade-program reference across `cur8-api`, `cur8-ui`, and `showtix4u-venues`. Built from joint Claude + Codex convergence over five review rounds plus the locked-decision pass. Current execution plans live in the repo-local SRS and venue plan docs; this file is not the active source of truth.
 
 ## Current state (snapshot — 2026-05-17, post cur8-ui health-gate cleanup)
 
