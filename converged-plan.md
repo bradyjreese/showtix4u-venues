@@ -2,7 +2,19 @@
 
 **Status**: ACTIVE. Canonical execution plan. Replaces `PLAN.md` for execution. `PLAN.md` remains as the locked long-form upgrade reference, broader Wave A/B/C/D scope **paused**.
 
+**Execution tracking rule**: keep this file current as decisions, branch setup, baseline checks, PRs, deploys, and validation gates complete. Section 0 is the running ledger; the later sections remain the detailed execution spec.
+
 ---
+
+## 0. Execution ledger
+
+- **2026-05-25 — repo boundary confirmed**: `showtix4u-venues` is the orchestration/reference repo for this plan plus the initial Fabric venue-builder source. It is not tied into `cur8-api` or `cur8-ui` at runtime today, and no SRS code ships from this repo.
+- **2026-05-25 — transport decision**: PR 1 uses one NLB with TLS termination for WHIP HTTPS + RTMPS on shared public `443`; router protocol-sniffs WHIP HTTP requests vs RTMP publish handshakes after TLS termination. Plain RTMP remains TCP `1935`.
+- **2026-05-25 — clean branches created**: `cur8-api` `feat/srs` from current `origin/staging`; `cur8-ui` `feat/srs-ui` from current `origin/dev`; `showtix4u-venues` stays on `main` for plan/builder-source updates.
+- **2026-05-25 — baseline checks**: `showtix4u-venues` `pnpm check` passes. `cur8-api` native `npm ci` is blocked by `canvas@2.11.2` requiring local native build deps (`pkg-config`/pixman/cairo path) and tests also need local `config/test.json`. `cur8-ui` `yarn install --frozen-lockfile` passes on Node 22, but current `dev` fails existing eslint/stylelint baselines.
+- **2026-05-26 — per-repo plan docs landed**: `cur8-api:feat/srs:SRS-PLAN.md`, `cur8-api:feat/venue-builder-api:VENUE-PLAN.md`, `cur8-ui:feat/srs-ui:SRS-PLAN.md`, `cur8-ui:feat/venue-builder-ui:VENUE-PLAN.md` — all docs-only branches off current `staging` / `dev`. Each diff from base is exactly one plan file (3 doc commits each).
+- **2026-05-26 — review pass against repo state**: §4.1 expanded with verified salvage gaps (CDK SG split / NLB / router missing, task-size oversized, `srs.conf` no `rtc_server`/`on_play`, `entrypoint.sh` no `rtc_server.candidate` templating, `streaming_streams` schema reconciliations). §6.2.4 expanded with `returnCreateVenueSectionsMarkup` event-awareness gap and three preview-parity strategies. WHIP client salvage (`feature/repo-upgrades:app/utils/whip-client.js`) audited: constructor takes only `whipUrl` (no token param), hardcoded STUN, `Location`-header teardown. cur8-ui touched-file targets verified with line numbers against `origin/dev` (LibraryFilmReview L3/L232/L262 etc., LivestreamWatchPage L3/L130/L182/L187). Builder `main.ts` refactor scope quantified: 1,185 LoC DOM-imperative script, ~30 named element IDs, mount API authoring required.
+- **Next checkpoint**: start `cur8-api` PR 1 additive SRS foundation: copy/port only scoped SRS files, add shared-443 router/infra shape, and keep AMS default behavior unchanged.
 
 ## 1. Why a new plan + framing constraints
 
@@ -46,7 +58,7 @@ Per user direction + codex v2 refinement: **SRS and venue builder are independen
 | cur8-ui | SRS adaptation | `feat/srs-ui` | freshly pulled `origin/dev` |
 | cur8-api | Venue builder backend | `feat/venue-builder-api` | freshly pulled `origin/staging` |
 | cur8-ui | Venue builder UI | `feat/venue-builder-ui` | freshly pulled `origin/dev` |
-| showtix4u-venues | Plan + builder source | `main` (solo carve-out) | — |
+| showtix4u-venues | Plan/orchestration docs + initial builder source only | `main` (solo carve-out) | — |
 
 Old upgrade branches stay on disk as **salvage sources only**. See §8 for hygiene.
 
@@ -94,7 +106,7 @@ git -C ~/Code/cur8-ui  switch -c feat/venue-builder-ui  dev
 
 | Branch | State |
 |---|---|
-| `main` | Clean. `PLAN.md` paused-banner 2026-05-19. `builder/src/` is Fabric v7 + Vite 8 + TS 6, more advanced than the cur8-ui Konva demo (user-confirmed). |
+| `main` | Plan/orchestration repo plus initial builder source only. `PLAN.md` paused-banner 2026-05-19. `builder/src/` is Fabric v7 + Vite 8 + TS 6, more advanced than the cur8-ui Konva demo (user-confirmed). No SRS runtime code ships from this repo. |
 
 ## 4. Workstream A — cur8-api SRS (`feat/srs`)
 
@@ -122,7 +134,10 @@ The salvage code is the design, not just reference material:
 - `controllers/srs.js` — "launch SRS task for this stream" is the canonical flow. **Apply directly.**
 - `vendor/srs.js` — SDP helpers, S3 path generation, manifest rewriting, token validation, **plus** the task-launch wrappers. **Apply directly.**
 - `db/migrations/2026-05/streaming-streams.sql` — `task_arn` column **is required** and holds the per-stream Fargate task ARN.
-- `streaming-service/srs.conf` — one-task-per-stream sidecar config. Use salvage as the RTMP/HLS/transcode/hook baseline, **not** as a blind copy: current salvage config does not prove WHIP/RTC readiness. PR 1 must add/verify SRS RTC + WHIP config, expose the UDP media port, and template `rtc_server.candidate` from the task's actual public address before SRS starts. Cross-reference both `feat/upgrade-2026q2` and `feature/streaming-service`; take the safe union, then make the WHIP/RTC deltas explicit in review.
+- `streaming-service/srs.conf` — one-task-per-stream sidecar config. Use salvage as the RTMP/HLS/transcode/hook baseline, **not** as a blind copy: current salvage config does not prove WHIP/RTC readiness. PR 1 must add/verify SRS RTC + WHIP config, expose the UDP media port, and template `rtc_server.candidate` from the task's actual public address before SRS starts. Cross-reference both `feat/upgrade-2026q2` and `feature/streaming-service`; take the safe union, then make the WHIP/RTC deltas explicit in review. Verified gaps in salvage `srs.conf` as of 2026-05-26: no `rtc_server` block at all, and `http_hooks` configures `on_publish` / `on_unpublish` / `on_hls` only — no `on_play`. If `POST /api/public/srs/on-play` is meant to receive SRS callbacks, the config must add the hook; otherwise drop `on-play` from the public API surface (the salvage `controllers/srs.js:onPlay` becomes an internal admin handler).
+- `infra/lib/srs-stack.ts` (salvage) — verified 2026-05-26 against `feat/upgrade-2026q2 @ 9c2101462` and local `stash@{0}`. Per-stream-task-only construct: single security group opens public TCP 1985 (`anyIpv4`) for WHIP signaling and public UDP 8000 (`anyIpv4`) for WebRTC media; no NLB; no router service definition; task size 4 vCPU / 8 GB; IAM task role scoped to S3 only (no `ec2:DescribeNetworkInterfaces`); no CFN outputs for router public hostname / Route53 / ACM; no cur8-api role IAM additions. PR 1 ports this AFTER rewriting against §4.5 — NLB ingress + router service + SG split + smaller task starting size (1 vCPU / 2 GB target) + SRS task role `ec2:DescribeNetworkInterfaces` + cur8-api role `ecs:RunTask/StopTask/DescribeTasks/iam:PassRole/ec2:DescribeNetworkInterfaces` + CFN outputs (router hostname, NLB ARN, SRS task SG ID, cur8-api SG ID).
+- `streaming-service/entrypoint.sh` (salvage) — verified 2026-05-26. Performs `sed` replacement for `API_CALLBACK_URL_PLACEHOLDER` and `SRS_CALLBACK_SECRET_PLACEHOLDER` only. Does not fetch ECS task metadata, does not resolve public IP, does not template `rtc_server.candidate`. PR 1 extends with the §4.5 candidate self-resolution procedure (task metadata `/task` suffix, region from AZ, MAC-first ENI filter with `private-ip + vpc-id` fallback, template `rtc_server.candidate` before `exec srs`).
+- `db/migrations/2026-05/streaming-streams.sql` (salvage) — verified 2026-05-26. Columns: `internal_id`, `stream_id`, `provider`, `stream_key`, `client_id`, `event_id`, `scheduled_item_id`, `video_type`, `status varchar(32)`, `task_arn`, `task_private_ip`, `task_public_addr`, `task_network_interface_id`, `created`, `updated`. Reconciliations PR 1 must lock: (a) `stream_key` column vs `stream_publish_token` API contract — rename, alias, or document the mapping; (b) `status varchar(32)` has no enum/check — runtime states implied by §4.5 (`created`, `initializing`, `running`, `launch_failed`, `orphaned`, `finalized`) need a CHECK constraint or documented vocabulary; (c) missing lifecycle timestamps `started_at` (first `on_publish`) and `ended_at` (`on_unpublish` or sweep finalize) — add to migration or store in associated tables; (d) no `hls_path` column — if per-stream override needed, add a column; otherwise document deterministic generation from `stream_id`.
 
 Why v11–v13 swung to shared-service and v14/v15 swing back: v11 was right that putting per-stream tasks **behind one shared NLB target group** breaks stream identity. That's not the same as "per-stream tasks are wrong" — the original PLAN.md design explicitly solved this with a stream-aware **router service** (§4.5). v11 wrongly read the routing problem as un-solvable in PR 1–3 and pulled back to a single-instance shared service that caps concurrency at one box. The user-confirmed rule is small per-stream SRS tasks: the router may be shared, SRS may not. v15 makes that non-negotiable.
 
@@ -447,7 +462,7 @@ The clean migration pattern (codex framing — adopted):
 - **Builder JSON validation** — duplicate names, empty sections, invalid seat counts, bad dimensions.
 - **Builder JSON normalization** — canonical sections/rows/tables/seats (handles renames, drift, ordering).
 - **Builder JSON materializer** — generates the same in-memory section/row/seat objects the current relational system expects. Used by preview and publish.
-- **Builder JSON → `.mst` preview** — render via Node port of `utils/locations.js:returnCreateVenueSectionsMarkup`.
+- **Builder JSON → `.mst` preview** — render via Node port of `utils/locations.js:returnCreateVenueSectionsMarkup`. **Event-awareness gap**: the runtime function signature on `cur8-ui:origin/dev` is `(sections, removeRowNames, client_id, event_date_id, isLoggedIn, sectionsMarkup, sectionsMarkupNoRowNames, sectionNames)` — it consumes `event_date_id` for per-event seat status and `isLoggedIn` for visibility gating. A builder draft has no `event_date_id` at the layout-authoring stage. Preview cannot reuse the runtime function as-is. PR 4 picks one of: (a) sibling Node helper `renderLayoutPreviewMarkup(sections)` ignoring event/auth, verify byte-equivalent against the runtime function with no-event defaults; (b) pass `client_id=null, event_date_id=null, isLoggedIn=true` and audit the runtime function for null-tolerance, document the contract; (c) diagnostics-only preview (counts + warnings + errors), parity verified at publish time via round-trip through `db.venues.getLayout`. Decision is binding for the publish-parity gate.
 - **Builder JSON → relational publish plan** — diff against current relational state, identify ID mapping + destructive changes.
 - **Publish plan → `venue_section`/`venue_row`/`venue_seat` writes** — inside a transaction.
 - **Published relational layout → builder JSON** (fallback) — for future edits of builder-published venues if no recent JSON draft exists.
@@ -501,6 +516,7 @@ Minimum feature set:
 
 ### 6.5 `showtix4u-venues` role during migration
 
+- Boundary: this repo is not currently wired into `cur8-api` or `cur8-ui`. It houses the canonical orchestration docs and the initial venue-builder source/reference copy; runtime SRS work happens in `cur8-api` and `cur8-ui`.
 - Short term: template archive + `pnpm upload` / `pnpm download` utility (untouched).
 - Medium term: cur8-api publish flow becomes S3 source of truth.
 - Long term: `showtix4u-venues/html/` retires; `builder/` extracted per §6.3.
@@ -624,7 +640,7 @@ SRS PRs (1–3) and venue-builder PRs (4–6) are independent. PR 4 can start im
 2. **Plan commit posture** — `converged-plan.md` is canonical and the only remaining plan file. Decide whether to commit it directly on `main` (solo-repo carve-out).
 3. **Stale-branch deletes** (`dev/brady`, `vegas.dev`) — now or after merge. Default after merge (§8).
 4. **MySQL JSON vs LONGTEXT** for `venue_layout_draft.layout_json` — verify prod DB version at `feat/venue-builder-api` kickoff.
-5. **Router service transport shape** — choose and document TLS ownership before PR 1 (see §4.5). Default: single NLB with TLS termination for HTTPS WHIP signaling and RTMPS, forwarding decrypted HTTP/RTMP bytes to the router, plus TCP passthrough for RTMP on 1935, all targeting the router. Decide whether RTMPS shares public 443 with WHIP via router protocol sniffing or uses an explicit RTMPS port such as 1443. Alternative: router terminates TLS in-app, but then router cert loading, listener config, and tests must land in the same PR. UDP RTC media bypasses the LB entirely (browser → per-task public IP direct).
+5. **Router service transport shape** — decided 2026-05-25: single NLB with TLS termination for HTTPS WHIP signaling and RTMPS, forwarding decrypted HTTP/RTMP bytes to the router, plus TCP passthrough for RTMP on 1935, all targeting the router. RTMPS shares public 443 with WHIP; the router protocol-sniffs HTTP WHIP requests vs RTMP publish handshakes after TLS termination. Router-terminated TLS and explicit RTMPS port 1443 are rejected for PR 1 unless shared 443 proves unworkable during implementation. UDP RTC media bypasses the LB entirely (browser → per-task public IP direct).
 6. **Per-task UDP addressability** — choose EIP per task vs awsvpc `assignPublicIp: ENABLED` vs shared NLB UDP target groups (see §4.5). Default for first-live: awsvpc public-IP-on-task. Decision drives SRS `rtc_server.candidate` config and per-stream task launch latency.
 7. **WHIP iOS/Firefox compatibility** — confirm reviewer hardware mix during PR 3 manual validation; if WHIP fails on a required browser, escalate (potential fallback: stay on RTMP-via-OBS for that workflow). Initial expectation: modern WHIP support is universal.
 8. **External publish validation target** — pick at least one real third-party/custom streaming service or encoder workflow to test against the RTMP/RTMPS credentials before staging soak.
