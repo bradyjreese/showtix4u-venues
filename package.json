@@ -14,5 +14,5 @@
 		"upload": "./scripts/upload-venue.sh",
 		"download": "./scripts/download-venue.sh"
 	},
-	"packageManager": "pnpm@11.1.2"
+	"packageManager": "pnpm@11.5.0"
 }
