@@ -23,7 +23,7 @@ usage() {
 }
 
 aws_cmd() {
-  AWS_PROFILE=cur8-prod op plugin run -- aws "$@"
+  AWS_PROFILE=cur8-prod aws "$@"
 }
 
 maybe_run() {
@@ -39,7 +39,7 @@ preflight_auth() {
     return 0
   fi
   if ! aws_cmd sts get-caller-identity >/dev/null 2>&1; then
-    echo "Error: AWS auth failed. Unlock 1Password or re-auth and try again." >&2
+    echo "Error: AWS auth failed. Verify 1Password CLI auth and the cur8-prod AWS profile." >&2
     exit 1
   fi
 }

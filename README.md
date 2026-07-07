@@ -8,7 +8,7 @@ The repo currently contains **~3,000 venue maps** in `html/`.
 
 - **Node.js** (LTS recommended)
 - **pnpm** via [Corepack](https://nodejs.org/api/corepack.html) — run `corepack enable` if not already active
-- **AWS CLI** with [1Password CLI plugin](https://developer.1password.com/docs/cli/) for S3 access (`AWS_PROFILE=cur8-prod`)
+- **AWS CLI** with the `cur8-prod` profile configured through 1Password-backed `credential_process`
 
 ## Setup
 
@@ -46,7 +46,8 @@ pnpm check           # Run all non-mutating checks
 
 ### Upload & Download
 
-Both scripts authenticate via 1Password (`op plugin run -- aws`). Unlock 1Password before running.
+Both scripts use `AWS_PROFILE=cur8-prod aws ...`. The AWS profile reads credentials from 1Password
+through `~/.aws/credentials` / `~/.aws/op_credential_process.py`.
 
 ```sh
 # Upload by venue ID
