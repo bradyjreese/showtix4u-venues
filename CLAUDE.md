@@ -4,12 +4,13 @@ HTML venue maps uploaded to S3 as `.mst` files. ~3,000 venues. Data/HTML repo, n
 
 ## Tooling
 
-- **pnpm** via corepack — djlint for formatting and linting (configured in `pyproject.toml`)
-- **uv** for Python/djlint management (project-local `.venv`)
-- `pnpm format` — normalize inline styles + reformat HTML files
-- `pnpm check` — non-mutating HTML format/lint checks + builder typecheck
+- **pnpm** via corepack — Prettier for formatting and TypeScript for builder checks
+- `pnpm format` — format the repository with Prettier (cached)
+- `pnpm format:check` — check repository formatting (cached)
+- `pnpm check` — check formatting and builder types
 - `pnpm upload` / `pnpm download` — accepts venue IDs, file paths, `--all`, `--dry-run`, `--concurrency N`, `--file PATH`
-- S3 auth: `AWS_PROFILE=cur8-prod` via 1Password (`op plugin run -- aws`)
+- S3 auth: use `AWS_PROFILE=cur8-prod aws ...` directly; credentials come
+  from 1Password-backed `credential_process`
 
 ## HTML Template Syntax
 

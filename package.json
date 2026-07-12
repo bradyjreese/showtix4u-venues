@@ -1,18 +1,19 @@
 {
-	"name": "showtix4u-venues",
-	"version": "1.0.0",
-	"private": true,
-	"type": "module",
-	"scripts": {
-		"format": "uv run python scripts/normalize-inline-styles.py html && uv run djlint html/ --reformat --quiet --warn && uv run python scripts/normalize-inline-styles.py html",
-		"format:check": "uv run python scripts/normalize-inline-styles.py --check html && uv run djlint html/ --check",
-		"lint:html": "uv run djlint html/ --lint",
-		"check:html": "pnpm format:check && pnpm lint:html",
-		"typecheck": "pnpm --filter venue-builder exec tsc --noEmit",
-		"check": "pnpm check:html && pnpm typecheck",
-		"dev": "pnpm --filter venue-builder dev",
-		"upload": "./scripts/upload-venue.sh",
-		"download": "./scripts/download-venue.sh"
-	},
-	"packageManager": "pnpm@11.5.0"
+  "name": "showtix4u-venues",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "format": "prettier --write --ignore-unknown --cache .",
+    "format:check": "prettier --check --ignore-unknown --cache .",
+    "typecheck": "pnpm --filter venue-builder exec tsc --noEmit",
+    "check": "pnpm format:check && pnpm typecheck",
+    "dev": "pnpm --filter venue-builder dev",
+    "upload": "./scripts/upload-venue.sh",
+    "download": "./scripts/download-venue.sh"
+  },
+  "packageManager": "pnpm@11.5.0",
+  "devDependencies": {
+    "prettier": "^3.9.5"
+  }
 }
