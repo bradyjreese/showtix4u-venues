@@ -1,57 +1,62 @@
 <!-- Lyme-Old Lyme High School -->
 <style>
-    .last-cell>div>table>tbody>tr>td:nth-last-child(1),
-    .last-cell>div>table>tr>td:nth-last-child(1) {
-        display: none;
-        visibility: hidden;
-    }
+  .last-cell > div > table > tbody > tr > td:nth-last-child(1),
+  .last-cell > div > table > tr > td:nth-last-child(1) {
+    display: none;
+    visibility: hidden;
+  }
 
-    .first-cell>div>table>tbody>tr>td:nth-child(1),
-    .first-cell>div>table>tr>td:nth-child(1) {
-        display: none;
-        visibility: hidden;
-    }
+  .first-cell > div > table > tbody > tr > td:nth-child(1),
+  .first-cell > div > table > tr > td:nth-child(1) {
+    display: none;
+    visibility: hidden;
+  }
 
-    .row-blue>div>table>tbody>tr>td:has(> .seatCharts-seat),
-    .row-blue>div>table>tr>td:has(> .seatCharts-seat) {
-        background-color: cornflowerblue;
-    }
+  .row-blue > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-blue > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: cornflowerblue;
+  }
 
-    .row-red>div>table>tbody>tr>td:has(> .seatCharts-seat),
-    .row-red>div>table>tr>td:has(> .seatCharts-seat) {
-        background-color: red;
-    }
+  .row-red > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-red > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: red;
+  }
 
-    .row-yellow>div>table>tbody>tr>td:has(> .seatCharts-seat),
-    .row-yellow>div>table>tr>td:has(> .seatCharts-seat) {
-        background-color: goldenrod;
-    }
+  .row-yellow > div > table > tbody > tr > td:has(> .seatCharts-seat),
+  .row-yellow > div > table > tr > td:has(> .seatCharts-seat) {
+    background-color: goldenrod;
+  }
 
-    .extra-wide-left>div>table:nth-child(1)>tbody>tr>td:nth-child(3)>.seatCharts-cell,
-    .extra-wide-left>div>table:nth-child(1)>tr>td:nth-child(3)>.seatCharts-cell,
-    .extra-wide-left>div>table:nth-child(1)>tbody>tr>td:nth-child(4)>.seatCharts-cell,
-    .extra-wide-left>div>table:nth-child(1)>tr>td:nth-child(4)>.seatCharts-cell,
-    .extra-wide-left>div>table:nth-last-child(1)>tbody>tr>td:nth-child(3)>.seatCharts-cell,
-    .extra-wide-left>div>table:nth-last-child(1)>tr>td:nth-child(3)>.seatCharts-cell,
-    .extra-wide-center>div>table:nth-child(1)>tbody>tr>td:nth-child(7)>.seatCharts-cell,
-    .extra-wide-center>div>table:nth-child(1)>tr>td:nth-child(7)>.seatCharts-cell,
-    .extra-wide-center>div>table:nth-child(1)>tbody>tr>td:nth-child(8)>.seatCharts-cell,
-    .extra-wide-center>div>table:nth-child(1)>tr>td:nth-child(8)>.seatCharts-cell,
-    .extra-wide-right>div>table:nth-child(1)>tbody>tr>td:nth-last-child(4)>.seatCharts-cell,
-    .extra-wide-right>div>table:nth-child(1)>tr>td:nth-last-child(4)>.seatCharts-cell,
-    .extra-wide-right>div>table:nth-child(1)>tbody>tr>td:nth-last-child(3)>.seatCharts-cell,
-    .extra-wide-right>div>table:nth-child(1)>tr>td:nth-last-child(3)>.seatCharts-cell,
-    .extra-wide-right>div>table:nth-last-child(1)>tbody>tr>td:nth-last-child(3)>.seatCharts-cell,
-    .extra-wide-right>div>table:nth-last-child(1)>tr>td:nth-last-child(3)>.seatCharts-cell {
-        width: 74px;
-    }
+  .extra-wide-left > div > table:nth-child(1) > tbody > tr > td:nth-child(3) > .seatCharts-cell,
+  .extra-wide-left > div > table:nth-child(1) > tr > td:nth-child(3) > .seatCharts-cell,
+  .extra-wide-left > div > table:nth-child(1) > tbody > tr > td:nth-child(4) > .seatCharts-cell,
+  .extra-wide-left > div > table:nth-child(1) > tr > td:nth-child(4) > .seatCharts-cell,
+  .extra-wide-left > div > table:nth-last-child(1) > tbody > tr > td:nth-child(3) > .seatCharts-cell,
+  .extra-wide-left > div > table:nth-last-child(1) > tr > td:nth-child(3) > .seatCharts-cell,
+  .extra-wide-center > div > table:nth-child(1) > tbody > tr > td:nth-child(7) > .seatCharts-cell,
+  .extra-wide-center > div > table:nth-child(1) > tr > td:nth-child(7) > .seatCharts-cell,
+  .extra-wide-center > div > table:nth-child(1) > tbody > tr > td:nth-child(8) > .seatCharts-cell,
+  .extra-wide-center > div > table:nth-child(1) > tr > td:nth-child(8) > .seatCharts-cell,
+  .extra-wide-right > div > table:nth-child(1) > tbody > tr > td:nth-last-child(4) > .seatCharts-cell,
+  .extra-wide-right > div > table:nth-child(1) > tr > td:nth-last-child(4) > .seatCharts-cell,
+  .extra-wide-right > div > table:nth-child(1) > tbody > tr > td:nth-last-child(3) > .seatCharts-cell,
+  .extra-wide-right > div > table:nth-child(1) > tr > td:nth-last-child(3) > .seatCharts-cell,
+  .extra-wide-right > div > table:nth-last-child(1) > tbody > tr > td:nth-last-child(3) > .seatCharts-cell,
+  .extra-wide-right > div > table:nth-last-child(1) > tr > td:nth-last-child(3) > .seatCharts-cell {
+    width: 74px;
+  }
 </style>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
   <!-- Stage Image -->
   <tr>
     <td>
       <div align="center">
-        <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png" alt="STAGE" width="300" height="80" />
+        <img
+          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
+          alt="STAGE"
+          width="300"
+          height="80"
+        />
       </div>
     </td>
   </tr>
