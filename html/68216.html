@@ -1,0 +1,99 @@
+<!-- St. Christine's Theater 2026 (68216) -->
+<style>
+  .stage-image {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: white;
+    font-size: 80px;
+    color: black;
+  }
+
+  .top-part {
+    width: 900px;
+    height: 200px;
+  }
+
+  .thrust-part {
+    width: 300px;
+    height: 300px;
+  }
+</style>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <!-- Stage Image -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <table align="center" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <div class="stage-image top-part" align="center">STAGE</div>
+            </td>
+          </tr>
+          <tr>
+            <td align="center">
+              <div class="stage-image thrust-part" align="center"></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div align="center" style="position: relative; z-index: 0">
+        <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="1" height="25" />
+      </div>
+    </td>
+  </tr>
+  <!-- ALL -->
+  <tr>
+    <td>
+      <div align="center" style="position: relative">
+        <table align="center">
+          <!-- Angled Seats -->
+          <tr>
+            <td>
+              <div
+                class="adjust rotate90R"
+                align="center"
+                style="position: relative; z-index: 2; bottom: 225px; right: 10px"
+              >
+                {{{ sectionsMarkup.83838 }}}
+              </div>
+            </td>
+            <td rowspan="2">
+              <div align="center" style="position: relative; z-index: 0">
+                <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="80" height="1" />
+              </div>
+            </td>
+            <td>
+              <div
+                class="adjust rotate90L"
+                align="center"
+                style="position: relative; z-index: 2; bottom: 225px; left: 10px"
+              >
+                {{{ sectionsMarkup.83839 }}}
+              </div>
+            </td>
+          </tr>
+          <!-- Seats -->
+          <tr>
+            <td>
+              <div align="center" style="position: relative; z-index: 1; bottom: 80px">
+                {{{ sectionsMarkup.83840 }}}
+              </div>
+            </td>
+            <td>
+              <div align="center" style="position: relative; z-index: 1; bottom: 80px">
+                {{{ sectionsMarkup.83841 }}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
