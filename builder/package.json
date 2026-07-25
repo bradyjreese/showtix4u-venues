@@ -8,10 +8,10 @@
     "build": "vite build"
   },
   "dependencies": {
-    "fabric": "^7.2.0"
+    "fabric": "^7.4.0"
   },
   "devDependencies": {
-    "typescript": "^6.0.2",
-    "vite": "^8.0.9"
+    "typescript": "^7.0.2",
+    "vite": "^8.1.5"
   }
 }

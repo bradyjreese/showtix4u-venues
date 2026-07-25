@@ -12,8 +12,8 @@
     "upload": "./scripts/upload-venue.sh",
     "download": "./scripts/download-venue.sh"
   },
-  "packageManager": "pnpm@11.5.0",
+  "packageManager": "pnpm@11.17.0",
   "devDependencies": {
-    "prettier": "^3.9.5"
+    "prettier": "^3.9.6"
   }
 }
