@@ -13,6 +13,20 @@
     height: 350px;
     font-size: 40px;
   }
+  .venue-note {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 2px solid black;
+    background-color: white;
+    width: 400px;
+    height: 50px;
+    font-size: 18px;
+    bottom: 125px;
+  }
 </style>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
@@ -21,9 +35,16 @@
     <td>
       <div align="center" style="position: relative">
         <table align="center">
+          <tr>
+            <td colspan="3" align="center">
+              <div class="venue-note" align="center">
+                ROWS S1, S2, AND S3 ARE ON THE STAGE
+              </div>
+            </td>
+          </tr>
           <!-- Top -->
           <tr>
-            <td colspan="3">
+            <td colspan="3" align="center">
               <div align="center" style="position: relative; z-index: 1">
                 <table align="center">
                   <tr>
