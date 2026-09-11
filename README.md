@@ -1,74 +1,103 @@
 # ShowTix4U Venues
 
-HTML venue seat maps for the ShowTix4U ticketing platform. Each file defines the layout for a single venue and is uploaded to S3 as a `.mst` (Mustache) template, rendered at runtime by the app.
+HTML venue seat maps for the ShowTix4U ticketing platform. Each file defines the layout for a single venue and is
+uploaded to S3 as a `.mst` template, rendered at runtime by the app.
 
-The repo currently contains **~3,000 venue maps** in `html/`.
+The repo contains approximately 3,000 venue maps in `html/`.
+The browser-based venue builder is maintained separately in [venue-builder](https://github.com/bradyjreese/venue-builder).
 
-## Prerequisites
+## Requirements
 
-- **Node.js** (LTS recommended)
-- **pnpm** via [Corepack](https://nodejs.org/api/corepack.html) — run `corepack enable` if not already active
-- **AWS CLI** with the `cur8-prod` profile configured through 1Password-backed `credential_process`
+Editing the templates requires only a text editor. There is no build step or package installation for venue uploads
+and downloads. The transfer scripts require Bash and the AWS CLI with the `cur8-prod` profile configured through
+the 1Password-backed `credential_process`.
 
-## Setup
-
-```sh
-corepack enable   # activates pnpm
-pnpm install      # installs formatter and builder dependencies
-```
+Node.js and npm are optional; they are used only for Prettier formatting. `.node-version` records the existing Node
+version for use with `fnm`.
 
 ## Project Structure
 
-```
-html/           # Venue HTML files named by numeric venue ID (e.g. 1915.html)
+```text
+html/                     # Venue templates named by numeric ID (e.g. 1915.html)
 scripts/
-  upload-venue.sh    # Upload HTML files to S3 as .mst
-  download-venue.sh  # Download .mst files from S3 as HTML
-builder/        # Vite/Fabric venue builder prototype
+  upload-venue.sh          # Upload HTML files to S3 as .mst
+  download-venue.sh        # Download .mst files from S3 as HTML
 utils/
-  ReservedSeating.scss  # Seat styling reference (used by the app frontend)
-screenshots/    # Venue screenshots for reference
+  ReservedSeating.scss     # Seat styling reference used by the app frontend
+screenshots/              # Venue screenshots for reference
 ```
 
-## Scripts
+## Edit a Venue
 
-### Formatting & Checks
+Open a venue in your editor, for example:
 
 ```sh
-pnpm format       # Format the repository with Prettier (cached)
-pnpm format:check # Check repository formatting (cached)
-pnpm typecheck    # Type-check the builder app
-pnpm check        # Check formatting and builder types
+nvim html/1915.html
 ```
 
-### Upload & Download
+`.editorconfig` sets two-space indentation, UTF-8, LF line endings, and a final newline in supporting editors.
+Neovim reads these settings without a custom configuration. The existing VS Code settings remain available.
+In Neovim, `:Tutor` opens the built-in tutorial, `:write` saves, and `:quit` exits.
 
-Both scripts use `AWS_PROFILE=cur8-prod aws ...`. The AWS profile reads credentials from 1Password
-through `~/.aws/credentials` / `~/.aws/op_credential_process.py`.
+These files contain template placeholders. Opening one directly in a browser does not render the generated seat
+tables; the app supplies those at runtime. Review the diff before uploading:
+
+```sh
+git diff -- html/1915.html
+./scripts/upload-venue.sh --dry-run 1915
+```
+
+## Upload and Download
+
+Run the scripts directly from this repository. Both use `AWS_PROFILE=cur8-prod aws ...`; the profile reads credentials
+through the configured 1Password credential process.
 
 ```sh
 # Upload by venue ID
-pnpm upload 1915
-pnpm upload 1915 2656
+./scripts/upload-venue.sh 1915
+./scripts/upload-venue.sh 1915 2656
 
 # Upload by file path
-pnpm upload html/1915.html
+./scripts/upload-venue.sh html/1915.html
 
-# Download by venue ID
-pnpm download 1915
-pnpm download 1915 2656
+# Download by venue ID (replaces the local file)
+./scripts/download-venue.sh 1915
+./scripts/download-venue.sh 1915 2656
 
 # Read IDs from a file (one per line, # comments supported)
-pnpm upload --file ids.txt
-pnpm download --file ids.txt
+./scripts/upload-venue.sh --file ids.txt
+./scripts/download-venue.sh --file ids.txt
 
 # Parallel operations (default concurrency: 4)
-pnpm upload -j 8 --file ids.txt
+./scripts/upload-venue.sh -j 8 --file ids.txt
 
-# Preview without making changes
-pnpm upload --dry-run 1915
-pnpm download --dry-run 1915
+# Preview without making changes or contacting AWS
+./scripts/upload-venue.sh --dry-run 1915
+./scripts/download-venue.sh --dry-run 1915
 ```
+
+For example, uploading `1915` copies `html/1915.html` unchanged to
+`s3://prdv2-dt-client/venues/1915.mst` with content type `text/html`.
+The `.mst` extension identifies the template; the script does not compile or render it.
+
+## Optional Formatting
+
+Install the locked formatter version with npm:
+
+```sh
+fnm install
+fnm use
+npm ci
+
+# Format only the file you edited
+npm exec -- prettier --write html/1915.html
+
+# Check repository formatting
+npm run check
+```
+
+`npm run format` formats the whole repository. Prefer formatting individual files for venue changes to keep diffs
+focused. The existing Prettier rules are unchanged.
 
 ## HTML Template Syntax
 
@@ -83,7 +112,9 @@ Seating images are hosted at `https://s3.amazonaws.com/prdv2-dt-client/seating_i
 
 ## Conventions
 
-- **File naming** — Each venue file is named by its numeric ID: `html/<venueId>.html`
-- **Stage spacer** — Use a height of `25px` unless a spec says otherwise
-- **Single-section layouts** — Stack `sectionsMarkup.*` entries vertically inside a single centered inner table; use the main section's name as the single header
-- **Premium row styling** — Use lightweight CSS wrappers: `.row-premium td:has(.seatCharts-seat) { ... }`
+- **File naming** — Each venue file is named by its numeric ID: `html/<venueId>.html`.
+- **Stage spacer** — Use a height of `25px` unless a spec says otherwise.
+- **Single-section layouts** — Stack `sectionsMarkup.*` entries vertically inside a single centered inner table;
+  use the main section's name as the single header.
+- **Premium row styling** — Use lightweight CSS wrappers: `.row-premium td:has(.seatCharts-seat) { ... }`.
+- **Agent instructions** — Edit `AI-INSTRUCTIONS.md`; the agent-specific entry points are relative symlinks to it.

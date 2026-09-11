@@ -6,14 +6,9 @@
   "scripts": {
     "format": "prettier --write --ignore-unknown --cache .",
     "format:check": "prettier --check --ignore-unknown --cache .",
-    "typecheck": "pnpm --filter venue-builder exec tsc --noEmit",
-    "check": "pnpm format:check && pnpm typecheck",
-    "dev": "pnpm --filter venue-builder dev",
-    "upload": "./scripts/upload-venue.sh",
-    "download": "./scripts/download-venue.sh"
+    "check": "npm run format:check"
   },
-  "packageManager": "pnpm@11.24.0",
   "devDependencies": {
-    "prettier": "^3.9.6"
+    "prettier": "3.9.6"
   }
 }

@@ -1,4 +1,0 @@
-packages:
-  - builder
-allowBuilds:
-  canvas: false
