@@ -10,14 +10,14 @@ builder lives in [venue-builder](https://github.com/bradyjreese/venue-builder).
 
 ## Tooling
 
-- Editing and transferring venues require no Node packages or build step.
+- This repository has no project package dependencies or build step.
 - Run `./scripts/upload-venue.sh` and `./scripts/download-venue.sh` directly.
   Both accept venue IDs, `--dry-run`, `--concurrency N`, and `--file PATH`.
   Upload also accepts HTML file paths. Neither script supports `--all`.
 - S3 auth uses `AWS_PROFILE=cur8-prod aws ...` with the configured 1Password-backed `credential_process`.
-- npm installs only the optional Prettier formatter. Use `npm ci`, then `npm run check` to check formatting.
-- Prefer formatting the edited files with `npm exec -- prettier --write <paths>`; avoid unrelated venue reformatting.
-- `.editorconfig` defines portable indentation and line endings; `.prettierrc.json` retains the formatting rules.
+- `.editorconfig` defines portable indentation and line endings.
+- Preserve the surrounding HTML formatting and avoid unrelated venue reformatting.
+  Run `git diff --check` to check for whitespace errors before committing.
 
 ## Venue Templates
 
@@ -29,7 +29,6 @@ builder lives in [venue-builder](https://github.com/bradyjreese/venue-builder).
 - For single-section layouts, stack `sectionsMarkup.*` entries vertically inside one centered inner table;
   use the main section's name as the single header.
 - Use lightweight CSS wrappers such as `.row-premium td:has(.seatCharts-seat) { ... }` for premium rows.
-- `utils/ReservedSeating.scss` is an app frontend styling reference; these HTML files do not import it.
 
 ## Instruction Entry Points
 

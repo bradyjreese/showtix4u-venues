@@ -12,9 +12,6 @@ Editing the templates requires only a text editor. There is no build step or pac
 and downloads. The transfer scripts require Bash and the AWS CLI with the `cur8-prod` profile configured through
 the 1Password-backed `credential_process`.
 
-Node.js and npm are optional; they are used only for Prettier formatting. `.node-version` records the existing Node
-version for use with `fnm`.
-
 ## Project Structure
 
 ```text
@@ -22,8 +19,6 @@ html/                     # Venue templates named by numeric ID (e.g. 1915.html)
 scripts/
   upload-venue.sh          # Upload HTML files to S3 as .mst
   download-venue.sh        # Download .mst files from S3 as HTML
-utils/
-  ReservedSeating.scss     # Seat styling reference used by the app frontend
 screenshots/              # Venue screenshots for reference
 ```
 
@@ -36,13 +31,14 @@ nvim html/1915.html
 ```
 
 `.editorconfig` sets two-space indentation, UTF-8, LF line endings, and a final newline in supporting editors.
-Neovim reads these settings without a custom configuration. The existing VS Code settings remain available.
+Neovim reads these settings without a custom configuration. Preserve the surrounding HTML formatting when editing.
 In Neovim, `:Tutor` opens the built-in tutorial, `:write` saves, and `:quit` exits.
 
 These files contain template placeholders. Opening one directly in a browser does not render the generated seat
 tables; the app supplies those at runtime. Review the diff before uploading:
 
 ```sh
+git diff --check
 git diff -- html/1915.html
 ./scripts/upload-venue.sh --dry-run 1915
 ```
@@ -79,25 +75,6 @@ through the configured 1Password credential process.
 For example, uploading `1915` copies `html/1915.html` unchanged to
 `s3://prdv2-dt-client/venues/1915.mst` with content type `text/html`.
 The `.mst` extension identifies the template; the script does not compile or render it.
-
-## Optional Formatting
-
-Install the locked formatter version with npm:
-
-```sh
-fnm install
-fnm use
-npm ci
-
-# Format only the file you edited
-npm exec -- prettier --write html/1915.html
-
-# Check repository formatting
-npm run check
-```
-
-`npm run format` formats the whole repository. Prefer formatting individual files for venue changes to keep diffs
-focused. The existing Prettier rules are unchanged.
 
 ## HTML Template Syntax
 
