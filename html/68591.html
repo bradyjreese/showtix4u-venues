@@ -1,2583 +1,769 @@
-
 <!-- WSCA Gym/Stage (68591) -->
 <!-- NOTE THIS IS A TABLE POD -->
+<!-- Table IDs are retained from 68381. Replace them with 68591's IDs before uploading. -->
 <style>
-  .round-table {
-    position: relative;
-    z-index: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    font-size: 50px;
-    background-color: cornflowerblue;
-    border: 2px solid black;
-    border-radius: 50%;
-    width: 105px;
-    height: 105px;
+  #venue-68591 {
+    width: 1200px;
+    margin: 0 auto;
+    color: #000;
+    font-family: Arial, sans-serif;
   }
-  .square-table {
+
+  #venue-68591 .venue-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 845px;
+    height: 148px;
+    margin: 0 auto 25px;
+    background-color: #070404;
+    color: #fff;
+    font-size: 36px;
+  }
+
+  #venue-68591 .seating-area {
     position: relative;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+
+  #venue-68591 .premiere-seating {
+    --table-outline: #24467c;
+    --available-seat: #24467c;
+    width: 1114px;
+    padding: 32px 16px 24px;
+    background-color: #99bcf2;
+  }
+
+  #venue-68591 .standard-seating {
+    --table-outline: #606468;
+    --available-seat: #63666a;
+    width: 1200px;
+    margin-top: 30px;
+    padding: 24px 12px 32px;
+    background-color: #e4e8ec;
+  }
+
+  #venue-68591 .seating-heading {
+    position: absolute;
+    top: -22px;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: #000;
+    font-family: Arial, sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 42px;
+    text-align: center;
+  }
+
+  #venue-68591 .seating-row {
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 0 auto;
+  }
+
+  #venue-68591 .seating-row > tbody > tr > td {
+    padding: 0;
+    vertical-align: top;
+    text-align: center;
+  }
+
+  #venue-68591 .premiere-rectangles {
+    width: 800px;
+  }
+
+  #venue-68591 .premiere-rounds {
+    width: 1080px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  #venue-68591 .standard-rounds,
+  #venue-68591 .standard-rectangles-six {
+    width: 1176px;
+  }
+
+  #venue-68591 .standard-rectangles-five {
+    width: 1020px;
+    margin-top: 52px;
+    margin-bottom: 30px;
+  }
+
+  #venue-68591 .table-pod {
+    position: relative;
+    width: 154px;
+    height: 200px;
+    margin: 0 auto;
+  }
+
+  #venue-68591 .table-top {
+    position: absolute;
     z-index: 0;
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: auto;
-    font-size: 50px;
-    color: white;
-    background-color: purple;
-    border: 2px solid black;
-    width: 105px;
-    height: 105px;
+    justify-content: center;
+    box-sizing: border-box;
+    border: 3px solid var(--table-outline);
+    color: #000;
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  #venue-68591 .rectangle-five .table-top {
+    left: 41px;
+    top: 0;
+    width: 72px;
+    height: 140px;
+  }
+
+  #venue-68591 .rectangle-seven .table-top {
+    left: 34px;
+    top: 0;
+    width: 86px;
+    height: 166px;
+  }
+
+  #venue-68591 .round-six,
+  #venue-68591 .round-seven {
+    width: 176px;
+    height: 182px;
+  }
+
+  #venue-68591 .round-six .table-top {
+    left: 32px;
+    top: 24px;
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+  }
+
+  #venue-68591 .round-seven .table-top {
+    left: 27px;
+    top: 24px;
+    width: 122px;
+    height: 122px;
+    border-radius: 50%;
+  }
+
+  #venue-68591 .table-seat {
+    position: absolute;
+    z-index: 1;
+    width: 34px;
+    height: 34px;
+    line-height: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  #venue-68591 .table-seat .seatCharts-seat {
+    display: block;
+    box-sizing: border-box;
+    width: 34px;
+    height: 34px;
+    margin: 0;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 14px;
+    line-height: 32px;
+    text-align: center;
+  }
+
+  #venue-68591 .seatCharts-seat.available:not(
+    .selected, .focused, .unavailable, .empty, .wheelchair, .handicap, .companion, .obstructed
+  ) {
+    background-color: var(--available-seat);
+    border-color: var(--available-seat);
+    color: #fff;
+  }
+
+  #venue-68591 .rectangle-five .seat-a {
+    left: 24px;
+    top: 38px;
+  }
+
+  #venue-68591 .rectangle-five .seat-b {
+    left: 24px;
+    top: 101px;
+  }
+
+  #venue-68591 .rectangle-five .seat-c {
+    left: 77px;
+    top: 157px;
+  }
+
+  #venue-68591 .rectangle-five .seat-d {
+    left: 130px;
+    top: 101px;
+  }
+
+  #venue-68591 .rectangle-five .seat-e {
+    left: 130px;
+    top: 38px;
+  }
+
+  #venue-68591 .rectangle-seven .seat-a {
+    left: 17px;
+    top: 27px;
+  }
+
+  #venue-68591 .rectangle-seven .seat-b {
+    left: 17px;
+    top: 74px;
+  }
+
+  #venue-68591 .rectangle-seven .seat-c {
+    left: 17px;
+    top: 121px;
+  }
+
+  #venue-68591 .rectangle-seven .seat-d {
+    left: 77px;
+    top: 183px;
+  }
+
+  #venue-68591 .rectangle-seven .seat-e {
+    left: 137px;
+    top: 121px;
+  }
+
+  #venue-68591 .rectangle-seven .seat-f {
+    left: 137px;
+    top: 74px;
+  }
+
+  #venue-68591 .rectangle-seven .seat-g {
+    left: 137px;
+    top: 27px;
+  }
+
+  #venue-68591 .round-six .seat-a {
+    left: 38px;
+    top: 29px;
+  }
+
+  #venue-68591 .round-six .seat-b {
+    left: 17px;
+    top: 98px;
+  }
+
+  #venue-68591 .round-six .seat-c {
+    left: 66px;
+    top: 144px;
+  }
+
+  #venue-68591 .round-six .seat-d {
+    left: 130px;
+    top: 135px;
+  }
+
+  #venue-68591 .round-six .seat-e {
+    left: 158px;
+    top: 77px;
+  }
+
+  #venue-68591 .round-six .seat-f {
+    left: 134px;
+    top: 29px;
+  }
+
+  #venue-68591 .round-seven .seat-a {
+    left: 34px;
+    top: 32px;
+  }
+
+  #venue-68591 .round-seven .seat-b {
+    left: 13px;
+    top: 85px;
+  }
+
+  #venue-68591 .round-seven .seat-c {
+    left: 34px;
+    top: 139px;
+  }
+
+  #venue-68591 .round-seven .seat-d {
+    left: 88px;
+    top: 164px;
+  }
+
+  #venue-68591 .round-seven .seat-e {
+    left: 142px;
+    top: 139px;
+  }
+
+  #venue-68591 .round-seven .seat-f {
+    left: 163px;
+    top: 85px;
+  }
+
+  #venue-68591 .round-seven .seat-g {
+    left: 142px;
+    top: 32px;
   }
 </style>
-<table width="100" border="0" cellspacing="0" cellpadding="0" align="center">
-  <!-- Stage Image -->
-  <tr>
-    <td>
-      <div align="center" style="position: relative; z-index: 0">
-        <img
-          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/stage.png"
-          alt="STAGE"
-          width="300"
-          height="80"
-        />
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <div align="center" style="position: relative; z-index: 0">
-        <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="1" height="100" />
-      </div>
-    </td>
-  </tr>
-  <!-- ROUND TABLES -->
-  <!-- ROWS ONE & TWO -->
-  <tr>
-    <td>
-      <div align="center" style="position: relative">
-        <table>
-          <tr>
-            <td align="center">
-              <div align="center" style="position: relative">
-                <table>
-                  <!-- ROW ONE -->
-                  <!-- TABLES 1-6 -->
-                  <tr>
-                    <!-- Table 1 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83897.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83897.8 }}}
-                              </div>
-                            </td>
-                            <td rowspan="3">
-                              <div class="round-table" align="center">1</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83897.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83897.7 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83897.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83897.6 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83897.4 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" align="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83897.5 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td rowspan="3">
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="50"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 2 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83898.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83898.8 }}}
-                              </div>
-                            </td>
-                            <td rowspan="3">
-                              <div class="round-table" align="center">2</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83898.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83898.7 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83898.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83898.6 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83898.4 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" align="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83898.5 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td rowspan="3">
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="50"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 3 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83899.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83899.8 }}}
-                              </div>
-                            </td>
-                            <td rowspan="3">
-                              <div class="round-table" align="center">3</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83899.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83899.7 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83899.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83899.6 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83899.4 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" align="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83899.5 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td rowspan="3">
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="50"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 4 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83900.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83900.8 }}}
-                              </div>
-                            </td>
-                            <td rowspan="3">
-                              <div class="round-table" align="center">4</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83900.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83900.7 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83900.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83900.6 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83900.4 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" align="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83900.5 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td rowspan="3">
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="50"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 5 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83901.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83901.8 }}}
-                              </div>
-                            </td>
-                            <td rowspan="3">
-                              <div class="round-table" align="center">5</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83901.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83901.7 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83901.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83901.6 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83901.4 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" align="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83901.5 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td rowspan="3">
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="50"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 6 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83902.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83902.8 }}}
-                              </div>
-                            </td>
-                            <td rowspan="3">
-                              <div class="round-table" align="center">6</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83902.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83902.7 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83902.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83902.6 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83902.4 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" align="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83902.5 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="50"
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- ROW TWO -->
-                  <!-- TABLES 7-12 -->
-                  <tr>
-                    <!-- Table 7 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83903.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83903.8 }}}
-                              </div>
-                            </td>
-                            <td rowspan="3">
-                              <div class="round-table" align="center">7</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83903.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83903.7 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83903.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83903.6 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83903.4 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" align="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83903.5 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <!-- Table 8 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83904.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83904.8 }}}
-                              </div>
-                            </td>
-                            <td rowspan="3">
-                              <div class="round-table" align="center">8</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83904.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83904.7 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83904.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83904.6 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83904.4 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" align="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83904.5 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <!-- Table 9 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83905.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83905.8 }}}
-                              </div>
-                            </td>
-                            <td rowspan="3">
-                              <div class="round-table" align="center">9</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83905.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83905.7 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83905.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83905.6 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83905.4 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" align="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83905.5 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <!-- Table 10 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83906.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83906.8 }}}
-                              </div>
-                            </td>
-                            <td rowspan="3">
-                              <div class="round-table" align="center">10</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83906.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83906.7 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83906.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83906.6 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83906.4 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" align="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83906.5 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <!-- Table 11 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83907.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83907.8 }}}
-                              </div>
-                            </td>
-                            <td rowspan="3">
-                              <div class="round-table" align="center">11</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83907.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83907.7 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83907.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83907.6 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83907.4 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" align="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83907.5 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <!-- Table 12 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83908.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83908.8 }}}
-                              </div>
-                            </td>
-                            <td rowspan="3">
-                              <div class="round-table" align="center">12</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83908.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83908.7 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83908.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83908.6 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83908.4 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" align="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83908.5 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <div style="position: relative; z-index: 0">
-        <img src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png" width="1" height="100" />
-      </div>
-    </td>
-  </tr>
-
-  <!-- SQUARE TABLES -->
-  <!-- ROWS THREE - EIGHT -->
-  <tr>
-    <td>
-      <div align="center" style="position: relative">
-        <table>
-          <tr>
-            <td align="center">
-              <div align="center" style="position: relative">
-                <table>
-                  <!-- ROW THREE -->
-                  <!-- TABLES 13-18 -->
-                  <tr>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 13 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83909.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83909.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">13</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83909.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83909.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 14 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83910.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83910.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">14</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83910.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83910.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 15 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83911.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83911.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">15</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83911.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83911.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 16 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83912.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83912.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">16</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83912.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83912.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 17 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83913.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83913.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">17</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83913.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83913.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 18 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83914.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83914.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">18</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83914.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83914.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="50"
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- ROW FOUR -->
-                  <!-- TABLES 19-24 -->
-                  <tr>
-                    <!-- Table 19 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83915.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83915.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">19</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83915.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83915.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 20 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83916.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83916.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">20</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83916.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83916.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 21 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83917.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83917.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">21</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83917.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83917.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 22 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83918.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83918.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">22</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83918.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83918.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 23 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83919.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83919.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">23</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83919.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83919.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 24 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83920.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83920.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">24</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83920.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83920.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="50"
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- ROW FIVE -->
-                  <!-- TABLES 25-30 -->
-                  <tr>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 25 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83921.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83921.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">25</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83921.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83921.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 26 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83922.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83922.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">26</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83922.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83922.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 27 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83923.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83923.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">27</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83923.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83923.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 28 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83924.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83924.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">28</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83924.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83924.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 29 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83925.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83925.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">29</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83925.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83925.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 30 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83926.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83926.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">30</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83926.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83926.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="100"
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- ROW SIX -->
-                  <!-- TABLES 31-36 -->
-                  <tr>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 31 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83927.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83927.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">31</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83927.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83927.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 32 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83928.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83928.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">32</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83928.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83928.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 33 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83929.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83929.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">33</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83929.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83929.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 34 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83930.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83930.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">34</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83930.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83930.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 35 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83931.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83931.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">35</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83931.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83931.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 36 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83932.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83932.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">36</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83932.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83932.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="50"
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- ROW SEVEN -->
-                  <!-- TABLES 37-42 -->
-                  <tr>
-                    <!-- Table 37 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83933.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83933.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">37</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83933.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83933.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 38 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83934.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83934.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">38</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83934.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83934.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 39 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83935.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83935.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">39</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83935.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83935.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 40 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83936.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83936.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">40</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83936.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83936.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 41 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83937.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83937.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">41</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83937.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83937.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 42 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83938.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83938.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">42</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83938.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83938.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="50"
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- ROW EIGHT -->
-                  <!-- TABLES 43-48 -->
-                  <tr>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 43 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83939.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83939.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">43</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83939.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83939.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 44 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83940.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83940.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">44</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83940.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83940.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 45 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83941.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83941.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">45</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83941.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83941.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 46 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83942.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83942.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">46</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83942.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83942.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 47 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83943.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83943.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">47</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83943.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83943.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                    <td>
-                      <div style="position: relative; z-index: 0">
-                        <img
-                          src="https://s3.amazonaws.com/prdv2-dt-client/seating_images/pixel.png"
-                          width="1"
-                          height="1"
-                        />
-                      </div>
-                    </td>
-                    <!-- Table 48 -->
-                    <td align="center">
-                      <div align="center" style="position: relative">
-                        <table cellspacing="10" cellpadding="0">
-                          <tr>
-                            <td colspan="3" align="bottom">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83944.1 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div align="right" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83944.4 }}}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="square-table" align="center">48</div>
-                            </td>
-                            <td>
-                              <div align="left" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83944.2 }}}
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="3" valign="top">
-                              <div align="center" style="position: relative; z-index: 1">
-                                {{{ tablesMarkup.83944.3 }}}
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </td>
-  </tr>
-</table>
+<div id="venue-68591">
+  <div class="venue-stage">Stage</div>
+  <div class="seating-area premiere-seating" role="group" aria-labelledby="venue-68591-premiere">
+    <h2 class="seating-heading" id="venue-68591-premiere">Premiere Seating</h2>
+    <!-- Row 1: tables 1-5 -->
+    <table class="seating-row premiere-rectangles" role="presentation">
+      <tbody>
+        <tr>
+          <!-- Table 1: 5 seats -->
+          <td>
+            <div class="table-pod rectangle-five" data-table-number="1">
+              <div class="table-top">1</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83897.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83897.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83897.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83897.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83897.E }}}</div>
+            </div>
+          </td>
+          <!-- Table 2: 7 seats -->
+          <td>
+            <div class="table-pod rectangle-seven" data-table-number="2">
+              <div class="table-top">2</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83898.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83898.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83898.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83898.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83898.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83898.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83898.G }}}</div>
+            </div>
+          </td>
+          <!-- Table 3: 7 seats -->
+          <td>
+            <div class="table-pod rectangle-seven" data-table-number="3">
+              <div class="table-top">3</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83899.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83899.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83899.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83899.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83899.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83899.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83899.G }}}</div>
+            </div>
+          </td>
+          <!-- Table 4: 7 seats -->
+          <td>
+            <div class="table-pod rectangle-seven" data-table-number="4">
+              <div class="table-top">4</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83900.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83900.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83900.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83900.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83900.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83900.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83900.G }}}</div>
+            </div>
+          </td>
+          <!-- Table 5: 5 seats -->
+          <td>
+            <div class="table-pod rectangle-five" data-table-number="5">
+              <div class="table-top">5</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83901.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83901.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83901.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83901.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83901.E }}}</div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Row 2: tables 6-11 -->
+    <table class="seating-row premiere-rounds" role="presentation">
+      <tbody>
+        <tr>
+          <!-- Table 6: 6 seats -->
+          <td>
+            <div class="table-pod round-six" data-table-number="6">
+              <div class="table-top">6</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83902.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83902.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83902.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83902.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83902.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83902.F }}}</div>
+            </div>
+          </td>
+          <!-- Table 7: 6 seats -->
+          <td>
+            <div class="table-pod round-six" data-table-number="7">
+              <div class="table-top">7</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83903.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83903.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83903.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83903.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83903.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83903.F }}}</div>
+            </div>
+          </td>
+          <!-- Table 8: 6 seats -->
+          <td>
+            <div class="table-pod round-six" data-table-number="8">
+              <div class="table-top">8</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83904.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83904.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83904.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83904.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83904.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83904.F }}}</div>
+            </div>
+          </td>
+          <!-- Table 9: 6 seats -->
+          <td>
+            <div class="table-pod round-six" data-table-number="9">
+              <div class="table-top">9</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83905.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83905.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83905.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83905.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83905.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83905.F }}}</div>
+            </div>
+          </td>
+          <!-- Table 10: 6 seats -->
+          <td>
+            <div class="table-pod round-six" data-table-number="10">
+              <div class="table-top">10</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83906.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83906.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83906.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83906.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83906.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83906.F }}}</div>
+            </div>
+          </td>
+          <!-- Table 11: 6 seats -->
+          <td>
+            <div class="table-pod round-six" data-table-number="11">
+              <div class="table-top">11</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83907.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83907.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83907.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83907.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83907.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83907.F }}}</div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Row 3: tables 12-16 -->
+    <table class="seating-row premiere-rectangles" role="presentation">
+      <tbody>
+        <tr>
+          <!-- Table 12: 5 seats -->
+          <td>
+            <div class="table-pod rectangle-five" data-table-number="12">
+              <div class="table-top">12</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83908.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83908.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83908.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83908.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83908.E }}}</div>
+            </div>
+          </td>
+          <!-- Table 13: 7 seats -->
+          <td>
+            <div class="table-pod rectangle-seven" data-table-number="13">
+              <div class="table-top">13</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83909.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83909.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83909.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83909.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83909.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83909.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83909.G }}}</div>
+            </div>
+          </td>
+          <!-- Table 14: 7 seats -->
+          <td>
+            <div class="table-pod rectangle-seven" data-table-number="14">
+              <div class="table-top">14</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83910.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83910.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83910.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83910.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83910.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83910.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83910.G }}}</div>
+            </div>
+          </td>
+          <!-- Table 15: 7 seats -->
+          <td>
+            <div class="table-pod rectangle-seven" data-table-number="15">
+              <div class="table-top">15</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83911.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83911.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83911.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83911.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83911.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83911.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83911.G }}}</div>
+            </div>
+          </td>
+          <!-- Table 16: 5 seats -->
+          <td>
+            <div class="table-pod rectangle-five" data-table-number="16">
+              <div class="table-top">16</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83912.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83912.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83912.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83912.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83912.E }}}</div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="seating-area standard-seating" role="group" aria-labelledby="venue-68591-standard">
+    <h2 class="seating-heading" id="venue-68591-standard">Standard Seating</h2>
+    <!-- Row 4: tables 17-22 -->
+    <table class="seating-row standard-rounds" role="presentation">
+      <tbody>
+        <tr>
+          <!-- Table 17: 6 seats -->
+          <td>
+            <div class="table-pod round-six" data-table-number="17">
+              <div class="table-top">17</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83913.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83913.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83913.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83913.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83913.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83913.F }}}</div>
+            </div>
+          </td>
+          <!-- Table 18: 6 seats -->
+          <td>
+            <div class="table-pod round-six" data-table-number="18">
+              <div class="table-top">18</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83914.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83914.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83914.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83914.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83914.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83914.F }}}</div>
+            </div>
+          </td>
+          <!-- Table 19: 7 seats -->
+          <td>
+            <div class="table-pod round-seven" data-table-number="19">
+              <div class="table-top">19</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83915.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83915.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83915.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83915.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83915.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83915.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83915.G }}}</div>
+            </div>
+          </td>
+          <!-- Table 20: 7 seats -->
+          <td>
+            <div class="table-pod round-seven" data-table-number="20">
+              <div class="table-top">20</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83916.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83916.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83916.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83916.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83916.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83916.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83916.G }}}</div>
+            </div>
+          </td>
+          <!-- Table 21: 6 seats -->
+          <td>
+            <div class="table-pod round-six" data-table-number="21">
+              <div class="table-top">21</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83917.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83917.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83917.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83917.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83917.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83917.F }}}</div>
+            </div>
+          </td>
+          <!-- Table 22: 6 seats -->
+          <td>
+            <div class="table-pod round-six" data-table-number="22">
+              <div class="table-top">22</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83918.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83918.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83918.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83918.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83918.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83918.F }}}</div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Row 5: tables 23-27 -->
+    <table class="seating-row standard-rectangles-five" role="presentation">
+      <tbody>
+        <tr>
+          <!-- Table 23: 7 seats -->
+          <td>
+            <div class="table-pod rectangle-seven" data-table-number="23">
+              <div class="table-top">23</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83919.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83919.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83919.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83919.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83919.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83919.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83919.G }}}</div>
+            </div>
+          </td>
+          <!-- Table 24: 7 seats -->
+          <td>
+            <div class="table-pod rectangle-seven" data-table-number="24">
+              <div class="table-top">24</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83920.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83920.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83920.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83920.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83920.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83920.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83920.G }}}</div>
+            </div>
+          </td>
+          <!-- Table 25: 7 seats -->
+          <td>
+            <div class="table-pod rectangle-seven" data-table-number="25">
+              <div class="table-top">25</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83921.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83921.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83921.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83921.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83921.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83921.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83921.G }}}</div>
+            </div>
+          </td>
+          <!-- Table 26: 7 seats -->
+          <td>
+            <div class="table-pod rectangle-seven" data-table-number="26">
+              <div class="table-top">26</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83922.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83922.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83922.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83922.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83922.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83922.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83922.G }}}</div>
+            </div>
+          </td>
+          <!-- Table 27: 7 seats -->
+          <td>
+            <div class="table-pod rectangle-seven" data-table-number="27">
+              <div class="table-top">27</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83923.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83923.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83923.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83923.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83923.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83923.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83923.G }}}</div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Row 6: tables 28-33 -->
+    <table class="seating-row standard-rectangles-six" role="presentation">
+      <tbody>
+        <tr>
+          <!-- Table 28: 7 seats -->
+          <td>
+            <div class="table-pod rectangle-seven" data-table-number="28">
+              <div class="table-top">28</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83924.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83924.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83924.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83924.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83924.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83924.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83924.G }}}</div>
+            </div>
+          </td>
+          <!-- Table 29: 7 seats -->
+          <td>
+            <div class="table-pod rectangle-seven" data-table-number="29">
+              <div class="table-top">29</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83925.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83925.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83925.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83925.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83925.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83925.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83925.G }}}</div>
+            </div>
+          </td>
+          <!-- Table 30: 7 seats -->
+          <td>
+            <div class="table-pod rectangle-seven" data-table-number="30">
+              <div class="table-top">30</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83926.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83926.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83926.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83926.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83926.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83926.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83926.G }}}</div>
+            </div>
+          </td>
+          <!-- Table 31: 7 seats -->
+          <td>
+            <div class="table-pod rectangle-seven" data-table-number="31">
+              <div class="table-top">31</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83927.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83927.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83927.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83927.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83927.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83927.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83927.G }}}</div>
+            </div>
+          </td>
+          <!-- Table 32: 7 seats -->
+          <td>
+            <div class="table-pod rectangle-seven" data-table-number="32">
+              <div class="table-top">32</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83928.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83928.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83928.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83928.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83928.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83928.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83928.G }}}</div>
+            </div>
+          </td>
+          <!-- Table 33: 7 seats -->
+          <td>
+            <div class="table-pod rectangle-seven" data-table-number="33">
+              <div class="table-top">33</div>
+              <div class="table-seat seat-a">{{{ tablesMarkup.83929.A }}}</div>
+              <div class="table-seat seat-b">{{{ tablesMarkup.83929.B }}}</div>
+              <div class="table-seat seat-c">{{{ tablesMarkup.83929.C }}}</div>
+              <div class="table-seat seat-d">{{{ tablesMarkup.83929.D }}}</div>
+              <div class="table-seat seat-e">{{{ tablesMarkup.83929.E }}}</div>
+              <div class="table-seat seat-f">{{{ tablesMarkup.83929.F }}}</div>
+              <div class="table-seat seat-g">{{{ tablesMarkup.83929.G }}}</div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
